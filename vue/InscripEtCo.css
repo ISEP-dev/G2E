@@ -1,32 +1,47 @@
-html, body {
-    box-sizing: border-box;
+footer{
+    border-radius: 2px;
+}
+.footer_principal{
+	background-color: rgb(88, 89, 91);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: normal 25px sans-serif;
+	padding: 45px 50px;
+	margin-top: 80px;
+}
+.footer_principal .footer_gauche p{
+	color:  rgb(231, 231, 231);
+	font-size: 14px;
+    margin: 0;
+    font-size: 17px;
+}
+.footer_principal p.footer_lien{
+	font-size:20px;
+	font-weight: bold;
+	color:  #ffffff;
 }
 
-#footer .left{
-    text-align:left;
-    float:left;
-    margin:20px;
-    padding-left: 10px;
-    }
-#footer .right{
-    float:right;
-    text-align:right;
-    margin:20px;
-    padding-right: 10px;
-    }
-#footer .centre{
-    text-align:center;
-    margin:20px;
-    }
-#footer{
-    background: rgb(231, 231, 231);
-    border: 1px solid #000000;
-    border-radius: 10px;
-    bottom: 0;
-    position: absolute;
-    width: 100%;
-    margin-bottom: 10px;
+.footer_principal p.footer_liens a{
+	display:inline-block;
+	line-height: 1.8;
+	text-decoration: none;
+	color:  inherit;
 }
+
+.footer_principal .footer_droit{
+	float: right;
+}
+
+.footer_principal .footer_droit a{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	background-color:  #33383b;
+	border-radius: 2px;
+	margin-left: 3px;
+}
+
 #header .centre{
     font-size: 30px;
     text-align:center;
@@ -42,18 +57,7 @@ html, body {
     padding-right: 20px;
     padding-left: 20px;
 }
-.vl {
-    border-left: 3px solid rgba(109, 111, 113, 0.529);
-    height:78px;
-    position: absolute;
-    margin-left: 20%;
-}
-.vl2 {
-    border-left: 3px solid rgba(109, 111, 113, 0.52);
-    height:78px;
-    position: absolute;
-    margin-left: 70%;
-}
+
 .boutton {
     display: inline-block;
     padding: 10px 15px;
