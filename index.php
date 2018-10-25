@@ -6,8 +6,8 @@
  */
 class Main
 {
-    public static $imagesPath = "vue/images/";
-    public static $cssPath    = "vue/css/";
+    public static $imagesPath = "./vue/images/";
+    public static $cssPath    = "./vue/css/";
 }
 
 ?>
