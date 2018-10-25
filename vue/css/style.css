@@ -1,0 +1,19 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 10px;
+}
+.container{
+    display: flex;
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid red;
+}
