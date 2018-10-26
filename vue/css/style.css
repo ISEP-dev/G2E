@@ -28,20 +28,25 @@
 }
 body{
     padding: 20px;
-    display: flex;
-    flex-flow: row wrap;
 }
 /* Style */
 .strong{
     font-weight: bolder;
 }
+.row{
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
 .col-gauche,.col-droite{
     padding:       10px;
-    margin:        0 50px;               /* Espacement horizontal */
-    border:        2px solid var(--gray);
+    margin:        0 50px;   /* Espacement horizontal */
+    border:        2px solid var(--gris-noir);
     border-radius: 10px;
     height:        500px;
-    box-shadow:    3px 3px var(--gray);
+    box-shadow:    3px 3px var(--gris-noir);
     flex:          5;
 }
 /* Pour téléphone mobile et tablettes */

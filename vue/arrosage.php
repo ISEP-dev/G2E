@@ -14,11 +14,13 @@
         <div class="col-6">Test</div>
         <div class="col-6">Test</div>
     </div> -->
-    <div class="col-gauche">
-        Test gauche
-    </div>
-    <div class="col-droite">
-        Test droite
+    <div class="ligne">
+        <div class="col-gauche">
+            Test gauche
+        </div>
+        <div class="col-droite">
+            Test droite
+        </div>
     </div>
 </body>
 </html>
