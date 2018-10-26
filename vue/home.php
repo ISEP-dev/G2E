@@ -12,9 +12,7 @@
 <body>
     <?php include 'header.html'; ?>
 
-    <div>
-        Contenu principal
-    </div>
+    <div>Contenu</div>
 
     <?php include 'footer.html'; ?>
 </body>
