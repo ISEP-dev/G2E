@@ -1,41 +1,20 @@
-#bloc_gauche{
-    height:60%;
-    width: 30%;
-    border: 2px solid #878888;
-    border-radius: 5%;
-    margin-left: 10%;
-    float: left;
-}
-#formulaire{
-    margin-top: 5%;
-    text-align: center;
-}
-#bloc_droit{
-    height:60%;
-    width: 30%;
-    border: 2px solid #878888;
-    border-radius: 5%;
-    position: absolute;
-    margin-left: 60%;
-    text-align: center;
-}
+@import "./style.css";
 .pagination {
     display: inline-block;
-    margin-top: 97%;
 }
-.pagination a {
-    color: black;
+.pagination > a {
+    color: var(--noir);
     float: left;
     padding: 8px 16px;
     text-decoration: none;
 }
-.pagination a.active {
-    background-color: rgb(56, 119, 97);
-    color: white;
-    border-radius: 5px;
+.pagination > a.active {
+    background-color: var(--vert);
+    color: var(--blanc);
+    border-radius: 100%;
 }
-.pagination a:hover:not(.active) {
-    background-color: rgba(221, 221, 221, 0.118);
+.pagination > a:hover:not(.active) {
+    background-color: rgba(221, 221, 221, 0.8);
     border-radius: 100%;
 }
 #boutton_publier{
@@ -61,7 +40,7 @@
     display: inline-block;
     position: relative;
     transition: 0.5s;
-} 
+}
 .boutton_publier span:after {
     content: '\00bb';
     position: absolute;
@@ -85,4 +64,10 @@
 #boutton_option{
     margin-left: 10px;
     margin-top: -30px;
+}
+#toolbar-editor{
+    background-color: var(--gris-clair);
+    border-bottom-left-radius: var(--input-radius);
+    border-bottom-right-radius: var(--input-radius);
+    padding: 0 var(--padding);
 }
