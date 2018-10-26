@@ -1,38 +1,57 @@
+/*
+ * Feuille de style globale
+*/
+:root{
+    --blue:#007bff;
+    --indigo:#6610f2;
+    --purple:#6f42c1;
+    --pink:#e83e8c;
+    --red:#dc3545;
+    --orange:#fd7e14;
+    --yellow:#ffc107;
+    --green:#28a745;
+    --teal:#20c997;
+    --cyan:#17a2b8;
+    --white:#fff;
+    --gray:#6c757d;
+    --gray-dark:#343a40;
+}
 *{
     box-sizing: border-box;
 }
 body{
-    padding: 10px;
-}
-.container{
+    padding: 20px;
     display: flex;
+    flex-flow: row wrap;
 }
-.row::after {
-    content: "";
-    clear: both;
-    display: table;
+/* Style */
+.strong{
+    font-weight: bolder;
 }
-[class*="col-"] {
-    float: left;
+.col-gauche,.col-droite{
     padding: 10px;
-    border: 1px solid red;
+    margin: 0 50px;    /* Espacement horizontal */
+    border: 2px solid var(--gray);
+    border-radius: 10px;
+    height: 500px;
+    box-shadow: 3px 3px var(--gray);
+    flex:auto;
 }
-.col-1 {width: 8.33%;}
-.col-2 {width: 16.66%;}
-.col-3 {width: 25%;}
-.col-4 {width: 33.33%;}
-.col-5 {width: 41.66%;}
-.col-6 {width: 50%;}
-.col-7 {width: 58.33%;}
-.col-8 {width: 66.66%;}
-.col-9 {width: 75%;}
-.col-10 {width: 83.33%;}
-.col-11 {width: 91.66%;}
-.col-12 {width: 100%;}
-
+/* Pour téléphone mobile et tablettes */
+@media (max-width: 768px) {
+    .col-gauche,.col-droite{
+        margin-bottom: 50px;
+    }
+    body{
+        flex-flow: column wrap;
+    }
+}
 .centre{
     text-align: center;
 }
 .droite{
     text-align: right;
+}
+.gauche{
+    text-align: left;
 }
