@@ -33,12 +33,12 @@ body{
 .strong{
     font-weight: bolder;
 }
-.row{
+.ligne{
     width: 100%;
     justify-content: center;
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-around;
+    justify-content: center;
 }
 .col-gauche,.col-droite{
     padding:       10px;
