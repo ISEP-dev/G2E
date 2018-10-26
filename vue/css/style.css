@@ -17,3 +17,91 @@ body{
     padding: 15px;
     border: 1px solid red;
 }
+#bloc_gauche{
+    height:60%;
+    width: 30%;
+    border: 2px solid #878888;
+    border-radius: 5%;
+    margin-left: 10%;
+    float: left;
+}
+#formulaire{
+    margin-top: 5%;
+    text-align: center;
+}
+#bloc_droit{
+    height:60%;
+    width: 30%;
+    border: 2px solid #878888;
+    border-radius: 5%;
+    position: absolute;
+    margin-left: 60%;
+    text-align: center;
+}
+.pagination {
+    display: inline-block;
+    margin-top: 97%;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+.pagination a.active {
+    background-color: rgb(56, 119, 97);
+    color: white;
+    border-radius: 5px;
+}
+.pagination a:hover:not(.active) {
+    background-color: rgba(221, 221, 221, 0.118);
+    border-radius: 100%;
+}
+#boutton_publier{
+    text-align: right;
+    margin-right: 2%;
+}
+.boutton_publier {
+    display: inline-block;
+    border-radius: 2px;
+    background-color: #3873b1;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 7px;
+    width: 100px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+.boutton_publier span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+} 
+.boutton_publier span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+.boutton_publier:hover span {
+    padding-right: 15px;
+}
+.boutton_publier:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+#message{
+    resize: none;
+    width: 97%;
+    height: 75%;
+}
+#boutton_option{
+    margin-left: 10px;
+    margin-top: -30px;
+}
