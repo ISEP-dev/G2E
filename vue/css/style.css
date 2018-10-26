@@ -1,6 +1,7 @@
 /*
  * Feuille de style globale
 */
+/* Variables globales */
 :root{
     /*--blue:       #007bff;
     --indigo:     #6610f2;
@@ -15,13 +16,16 @@
     --blanc:      #fff;
     --gray:       #6c757d;
     --gray-dark:  #343a40;*/
-    --gris-noir:  rgb(88, 89, 91);
-    --gris-clair: rgb(231, 231, 231);
-    --bleu-clair: rgb(117, 187, 194);
-    --bleu-fonce: rgb(62, 102, 108);
-    --vert:       rgb(133, 195, 140);
-    --blanc:      #fff;
-    --noir:        #000;
+    --gris-noir:    rgb(88, 89, 91);
+    --gris-clair:   rgb(231, 231, 231);
+    --bleu-clair:   rgb(117, 187, 194);
+    --bleu-fonce:   rgb(62, 102, 108);
+    --vert:         rgb(133, 195, 140);
+    --blanc:        #fff;
+    --noir:         #000;
+    --radius:       10px;
+    --input-radius: 5px;
+    --padding: 15px;
 }
 *{
     box-sizing: border-box;
@@ -29,9 +33,14 @@
 body{
     padding: 20px;
 }
-/* Style */
-.strong{
+.b,.strong{
     font-weight: bolder;
+}
+.italic{
+    font-style: italic;
+}
+.underline{
+    text-decoration: underline;
 }
 .ligne{
     width: 100%;
@@ -40,16 +49,17 @@ body{
     flex-flow: row wrap;
     justify-content: center;
 }
+/* ------ Les deux colonnes droite et gauche ------ */
 .col-gauche,.col-droite{
     padding:       10px;
     margin:        0 50px;   /* Espacement horizontal */
     border:        2px solid var(--gris-noir);
-    border-radius: 10px;
+    border-radius: var(--radius);
     height:        500px;
     box-shadow:    3px 3px var(--gris-noir);
     flex:          5;
 }
-/* Pour téléphone mobile et tablettes */
+/* ------ Pour téléphone mobile et tablettes ------ */
 @media (max-width: 768px) {
     .col-gauche,.col-droite{
         margin-bottom: 50px;
@@ -66,4 +76,24 @@ body{
 }
 .gauche{
     text-align: left;
+}
+/* ------ Données formulaire général ------ */
+textarea{
+    border-top-left-radius: var(--radius);    /* à revoir pour autres form */
+    border-top-right-radius: var(--radius);   /* à revoir pour autres form */
+    resize: none;
+    font-size: 1.3em;
+    width: 100%;
+}
+input[type=text]{
+    border-radius: var(--input-radius);
+    height: 30px;
+}
+select:focus, textarea:focus, input[type=text]:focus{
+    border-radius: var(--input-radius);
+    outline: 0;
+    box-shadow: 0 0 0 .15rem rgba(0, 123, 255, .15);
+    color: #495057;
+    background-color: #fff;
+    border-color: #var(--bleu-clair);
 }
