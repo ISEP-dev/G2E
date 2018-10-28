@@ -3,7 +3,7 @@
 */
 /* Variables globales */
 :root{
-    /*--blue:       #007bff;
+    /* --blue:       #007bff;
     --indigo:     #6610f2;
     --purple:     #6f42c1;
     --pink:       #e83e8c;
@@ -15,7 +15,7 @@
     --cyan:       #17a2b8;
     --blanc:      #fff;
     --gray:       #6c757d;
-    --gray-dark:  #343a40;*/
+    --gray-dark:  #343a40; */
     --gris-noir:    rgb(88, 89, 91);
     --gris-clair:   rgb(231, 231, 231);
     --bleu-clair:   rgb(117, 187, 194);
@@ -25,7 +25,7 @@
     --noir:         #000;
     --radius:       10px;
     --input-radius: 5px;
-    --padding: 15px;
+    --padding:      15px;
 }
 *{
     box-sizing: border-box;
@@ -43,11 +43,10 @@ body{
     text-decoration: underline;
 }
 .ligne{
-    width: 100%;
+    width:           100%;
     justify-content: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
+    display:         flex;
+    flex-flow:       row wrap;
 }
 /* ------ Les deux colonnes droite et gauche ------ */
 .col-gauche,.col-droite{
@@ -56,17 +55,26 @@ body{
     border:        2px solid var(--gris-noir);
     border-radius: var(--radius);
     height:        500px;
-    box-shadow:    3px 3px var(--gris-noir);
+    box-shadow:    6px 6px 10px var(--gris-noir);
     flex:          5;
 }
 /* ------ Pour téléphone mobile et tablettes ------ */
 @media (max-width: 768px) {
-    .col-gauche,.col-droite{
-        margin-bottom: 50px;
-    }
-    body{
+    .ligne{
         flex-flow: column wrap;
+        height: 100%;
     }
+    .header{order: 1;}
+    .col-gauche{
+        order: 2;
+        margin: 0px 0px;
+        margin-bottom: 20px;
+    }
+    .col-droite{
+        order: 3;
+        margin: 0px 0px;
+    }
+    .footer{order: 4;}
 }
 .centre{
     text-align: center;
@@ -77,23 +85,26 @@ body{
 .gauche{
     text-align: left;
 }
+.hidden{
+    display: none !important;
+}
 /* ------ Données formulaire général ------ */
 textarea{
-    border-top-left-radius: var(--radius);    /* à revoir pour autres form */
-    border-top-right-radius: var(--radius);   /* à revoir pour autres form */
-    resize: none;
-    font-size: 1.3em;
-    width: 100%;
+    border-top-left-radius:  var(--radius);    /* WARNING: à revoir pour autres form */
+    border-top-right-radius: var(--radius);    /* WARNING: à revoir pour autres form */
+    resize:                  none;
+    font-size:               1.3em;
+    width:                   100%;
 }
 input[type=text]{
     border-radius: var(--input-radius);
-    height: 30px;
+    height:        30px;
 }
 select:focus, textarea:focus, input[type=text]:focus{
-    border-radius: var(--input-radius);
-    outline: 0;
-    box-shadow: 0 0 0 .15rem rgba(0, 123, 255, .15);
-    color: #495057;
+    border-radius:    var(--input-radius);
+    outline:          0;
+    box-shadow:       0 0 0 .15rem rgba(0, 123, 255, .15);
+    color:            #495057;
     background-color: #fff;
-    border-color: #var(--bleu-clair);
+    border-color:     #var(--bleu-clair);
 }
