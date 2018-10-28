@@ -33,12 +33,15 @@
 body{
     padding: 20px;
 }
+/* Texte gras */
 .b,.strong{
     font-weight: bolder;
 }
+/* Texte Italique */
 .italic{
     font-style: italic;
 }
+/* Texte Souligner */
 .underline{
     text-decoration: underline;
 }
@@ -76,16 +79,46 @@ body{
     }
     .footer{order: 4;}
 }
+/* Alignement horizontal : https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-6 */
+/* Permet de centrer une div */
 .centre{
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
+/* Aligner une div à droite */
 .droite{
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
 }
+/* Aligner une div à gauche */
 .gauche{
-    text-align: left;
+    display: flex;
+    justify-content: flex-start;
 }
-.hidden{
+/* Espace les divs sur toute la page */
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}
+/* Alignement vertical : https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-7 */
+/* Alignement vertical en haut */
+.v-haut{
+    display: flex;
+    align-items: flex-start;
+}
+/* Alignement vertical au centre */
+.v-centre{
+    display: flex;
+    align-items: center;
+}
+/* Alignement vertical en bas */
+.v-bas{
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Cacher une div */
+.hide{
     display: none !important;
 }
 /* ------ Données formulaire général ------ */
