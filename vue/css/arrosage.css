@@ -1,8 +1,5 @@
 @import "./style.css";
 
-body{
-
-}
 .nom-maison{
     padding-left: 25px;
     clear: right;
@@ -28,52 +25,84 @@ div.maison{
     font-size: 1.5rem;
 }
 /* ----- Toggle switch arroseur ----- */
-.arroseur-label{
+.toggle-button {
     position: relative;
-    display: inline-block;
-    width: 85px;
-    height: 35px;
-    border: 1px solid var(--vert);
-    background-color: var(--blanc);
-    border-radius: 35px;
-    box-shadow: inset 0.8px 0.2px 1px var(--vert);
+    width: 120px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
-.arroseur-checkbox{
-    display: none;    /* Cacher la case  */
+/* Case à cocher de la checkbox */
+.arroseur-checkbox {
+    display: none;
 }
-/* Span arroseur toggle */
-.arroseur-slider{
-    position: absolute;
+/* Bloc du bouton */
+.arroseur-label {
+    display: block;
+    overflow: hidden;
     cursor: pointer;
-    border-radius: 35px;
+    border: 2px solid var(--noir);
+    border-radius: 50px;
+}
+/* Texte du bouton */
+.arroseur-inner {
+    display: block;
+    width: 200%;
+    margin-left: -100%;
+    transition: margin .3s ease-in-out 0s;
+    /* cubic-bezier(.88,.56,.4,-0.79)
+    .79,1.6,.12,.44 */
+}
+/* Attribut commun texte bouton  */
+.arroseur-inner:before, .arroseur-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 40px;
+    padding: 0;
+    line-height: 43px;
+    font-size: 24px;
+    color: white;
+    font-family: Trebuchet, Arial, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+/* Attribut texte bouton actif */
+.arroseur-inner:before {
+    content: "ON";
+    padding-left: 12px;
+    background-color: #EEEEEE;
+    color: var(--bleu-clair);
+}
+/* Attribut texte bouton inactif */
+.arroseur-inner:after {
+    content: "OFF";
+    padding-right: 12px;
+    background-color: #EEEEEE;
+    color: #4D4D4D;
+    text-align: right;
+}
+/* Cercle du bouton */
+.arroseur-slider {
+    display: block;
+    width: 33px;
+    height: 33px;
+    margin-right: 15px;
+    margin-top: 6px;
+    background: #4D4D4D;
+    position: absolute;
     top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
+    right: 66px;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    transition: all .6s cubic-bezier(.79,1.6,.12,.44) 0s;
 }
-/* Span slider rond  */
-.arroseur-slider::before{
-    position: absolute;
-    content: "";
-    border-radius: 50%;
-    height: 25px;
-    width: 25px;
-    left: 5px;
-    bottom: 4px;
-    background-color: var(--bleu-fonce);
-    transition: all 450ms ease;
+.arroseur-checkbox:checked + .arroseur-label .arroseur-inner {
+    margin-left: 0;
 }
-.arroseur-checkbox:active+ .arroseur-label{
-    background-color: var(--orange);
-}
-.arroseur-checkbox:not(:checked) + .arroseur-slider{
-    transform: translateX(0px);
-}
-.arroseur-checkbox:checked + .arroseur-slider::before{
-    transform: translateX(50px);
-}
-@keyframes shrink{
-    0%{ transform:   scale(1);  }
-    33%{ transform:  scale(.65);}
-    100%{ transform: scale(1);  }
+.arroseur-checkbox:checked + .arroseur-label .arroseur-slider {
+    right: -9px;
+    background-color: var(--bleu-clair);
 }
