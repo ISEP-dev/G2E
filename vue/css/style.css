@@ -116,7 +116,6 @@ body{
     display: flex;
     align-items: flex-end;
 }
-
 /* Cacher une div */
 .hide{
     display: none !important;
@@ -129,15 +128,17 @@ textarea{
     font-size:               1.3em;
     width:                   100%;
 }
+select{
+    border-radius: var(--input-radius);
+}
 input[type=text]{
     border-radius: var(--input-radius);
     height:        30px;
 }
 select:focus, textarea:focus, input[type=text]:focus{
-    border-radius:    var(--input-radius);
-    outline:          0;
-    box-shadow:       0 0 0 .15rem rgba(0, 123, 255, .15);
-    color:            #495057;
-    background-color: #fff;
-    border-color:     #var(--bleu-clair);
+    border-radius: var(--input-radius);
+    outline:       0;
+    box-shadow:    0 0 5px var(--bleu-clair);
+    border:        1px solid var(--bleu-clair);
+    color:         var(--gris-noir);
 }
