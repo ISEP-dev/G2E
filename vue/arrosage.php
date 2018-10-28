@@ -15,22 +15,16 @@
         <div class="col-gauche">
             <div class="maison">
                 <h2 class="nom-maison">Maison 1</h2>
-                <div class="arroseur">
+                <div class="arroseur space-between">
                     <div class="nom-arroseur">
                         Arbre au fond du jardin
                     </div>
-                    <label class="arroseur-label">
-                        <input type="checkbox" class="arroseur-checkbox" name="button" checked></input>
-                        <span class="arroseur-slider"></span>
-                    </label>
-                </div>
-                <div class="arroseur">
-                    Test
-                </div>
-                <div class="arroseur">
-                    Test
-                    <div class="droite">
-
+                    <div class="toggle-button">
+                        <input type="checkbox" class="arroseur-checkbox" id="arroseur-check" name="button"></input>
+                        <label class="arroseur-label" for="arroseur-check">
+                            <span class="arroseur-inner"></span>
+                            <span class="arroseur-slider"></span>
+                        </label>
                     </div>
                 </div>
                 <div class="arroseur">
