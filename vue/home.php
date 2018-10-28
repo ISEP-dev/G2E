@@ -10,10 +10,8 @@
     <link rel="stylesheet" href="./vue/css/style.css">
 </head>
 <body>
-    <?php include 'header.html'; ?>
+    <?php include 'header.php'; ?>
 
-    <div>Contenu</div>
-
-    <?php include 'footer.html'; ?>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

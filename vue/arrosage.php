@@ -8,18 +8,38 @@
 
     <!-- Feuilles de style -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/arrosage.css">
 </head>
 <body>
-    <!-- <div class="row">
-        <div class="col-6">Test</div>
-        <div class="col-6">Test</div>
-    </div> -->
     <div class="ligne">
         <div class="col-gauche">
-            Test gauche
+            <div class="maison">
+                <h2 class="nom-maison">Maison 1</h2>
+                <div class="arroseur">
+                    <div class="nom-arroseur">
+                        Arbre au fond du jardin
+                    </div>
+                    <label class="arroseur-label">
+                        <input type="checkbox" class="arroseur-checkbox" name="button" checked></input>
+                        <span class="arroseur-slider"></span>
+                    </label>
+                </div>
+                <div class="arroseur">
+                    Test
+                </div>
+                <div class="arroseur">
+                    Test
+                    <div class="droite">
+
+                    </div>
+                </div>
+                <div class="arroseur">
+                    Test
+                </div>
+            </div>
         </div>
-        <div class="col-droite">
-            Test droite
+        <div class="col-droite centre">
+            test
         </div>
     </div>
 </body>

@@ -1,8 +1,79 @@
 @import "./style.css";
 
 body{
+
+}
+.nom-maison{
+    padding-left: 25px;
+    clear: right;
+    position: sticky;
+    position: -webkit-sticky;
+    z-index: 1;
+    top: 0px;
+    background-color: var(--gris-clair);
+    /* border-top: .1rem solid var(--bleu-fonce); */
+}
+div.maison{
+    height: 100%;
+    overflow-y: auto;
+}
+.arroseur{
+    border: 1px solid var(--bleu-fonce);
+    border-radius: var(--radius);
+    padding: 25px;
+    font-size: 1.5rem;
+    margin: var(--padding) auto;
+}
+.nom-arroseur{
+    font-size: 1.5rem;
+}
+/* ----- Toggle switch arroseur ----- */
+.arroseur-label{
+    position: relative;
+    display: inline-block;
+    width: 85px;
+    height: 35px;
+    border: 1px solid var(--vert);
+    background-color: var(--blanc);
+    border-radius: 35px;
+    box-shadow: inset 0.8px 0.2px 1px var(--vert);
+}
+.arroseur-checkbox{
+    display: none;    /* Cacher la case  */
+}
+/* Span arroseur toggle */
+.arroseur-slider{
+    position: absolute;
+    cursor: pointer;
+    border-radius: 35px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+/* Span slider rond  */
+.arroseur-slider::before{
+    position: absolute;
+    content: "";
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+    left: 5px;
+    bottom: 4px;
+    background-color: var(--bleu-fonce);
+    transition: all 450ms ease;
+}
+.arroseur-checkbox:active+ .arroseur-label{
     background-color: var(--orange);
 }
-.row{
-
+.arroseur-checkbox:not(:checked) + .arroseur-slider{
+    transform: translateX(0px);
+}
+.arroseur-checkbox:checked + .arroseur-slider::before{
+    transform: translateX(50px);
+}
+@keyframes shrink{
+    0%{ transform:   scale(1);  }
+    33%{ transform:  scale(.65);}
+    100%{ transform: scale(1);  }
 }
