@@ -1,29 +1,41 @@
 <?php $title = "Gestion de l'arrosage" ?>
 <?php $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'; ?>
-<!-- <body> -->
 <?php ob_start(); ?>
 <!-- Pour aucune maison  -->
-
+<!-- <div class="ligne">
+    <div class="centre v-centre">
+        <p>Vous devez ajouter une maison pour gérer votre arrosage.</p>
+    </div><br>
+    <div class="v-centre">
+        <a href="">Ajouter une maison</a>
+    </div>
+</div> -->
 <!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
     <div class="col-gauche">
         <div class="maison">
-            <h2 class="nom-maison">Maison 1</h2>
+            <div class="sticky-header-maison">
+                <h2>Maison Principale</h2>
+                <a href="">
+                    <img class="ajout-maison" src="../vue/images/btn-add.png" alt="">
+                </a>
+            </div>
             <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
                         Arbre au fond du jardin
                     </div>
                     <div class="toggle-button">
-                        <input type="checkbox" class="arroseur-checkbox" id="arroseur-check" name="button" checked></input>
-                        <label class="arroseur-label" for="arroseur-check">
+                        <input type="checkbox" class="arroseur-checkbox" id="arroseurID-maisonID" name="button" checked></input>
+                        <label class="arroseur-label" for="arroseurID-maisonID">
                             <span class="arroseur-inner"></span>
                             <span class="arroseur-slider"></span>
                         </label>
                     </div>
                 </div>
-                <div class="progress-bar">
-                    <progress value="20" max="100">20%</progress>
+                <div class="progress">
+                    <progress value="50" max="100" class="progress-bar"></progress>
+                    <div class="progress-value strong">{{progress.value}}%</div>
                 </div>
             </div>
             <div class="arroseur">
@@ -45,5 +57,4 @@
 <?php $body = ob_get_clean(); ?>
 <?php require('base.php'); ?>
 
-<!-- </body>
-</html> -->
+<div class="modal"></div>

@@ -15,9 +15,9 @@
     <?php include 'footer.php'; ?>
 </body>
 </html>
-<?php // TODO: chemin des css et images (voir avec base) ?>
-<?php // TODO: recherche sur barre de progression ?>
-<?php // TODO: mise en place fichier template de base ?>
+<?php // TODO: chemin des css et images (voir avec base.php) ?>
+<?php // TODO: barre de progression correcte ?? ?>
+<?php // TODO: fichier template (en cours) autres choses à mettre ? ?>
 <?php // TODO: explication mise en place d'une page... (ob_start(), var..) ?>
 <?php // TODO: supression du fichier InscripEtCo ?>
 <?php // TODO:  ?>

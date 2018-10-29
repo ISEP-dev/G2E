@@ -15,7 +15,12 @@
     --cyan:       #17a2b8;
     --blanc:      #fff;
     --gray:       #6c757d;
-    --gray-dark:  #343a40; */
+    --gray-dark:  #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px; */
     --gris-noir:    rgb(88, 89, 91);
     --gris-clair:   rgb(231, 231, 231);
     --bleu-clair:   rgb(117, 187, 194);
@@ -33,8 +38,11 @@
 body{
     padding: 20px;
 }
+a{
+    text-decoration: none;
+}
 /* Texte gras */
-.b,.strong{
+b,.b,.strong{
     font-weight: bolder;
 }
 /* Texte Italique */

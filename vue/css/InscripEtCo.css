@@ -19,9 +19,8 @@ footer{
     color:       rgb(231, 231, 231);
 }
 .footer_liens a{
-    text-decoration: none;
-    display:         inline-block;
-	color:              rgb(231, 231, 231);
+    display: inline-block;
+	color:   rgb(231, 231, 231);
 }
 footer .footer_droit a{
 	display:          inline-block;
