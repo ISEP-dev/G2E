@@ -21,4 +21,4 @@
 <?php // TODO: explication mise en place d'une page... (ob_start(), var..) ?>
 <?php // TODO: supression du fichier InscripEtCo ?>
 <?php // TODO: Utiliser les polices adaptatives ?>
-<?php // TODO:  ?>
+<?php // TODO: WARNING:  Base de donnée à créer !important! ?>
