@@ -18,7 +18,7 @@
         <div class="maison">
             <div class="sticky-header-maison">
                 <h2>Maison Principale</h2>
-                <a href="javascript:modalOpen();" id="test">
+                <a id="test">
                     <img class="ajout-maison" src="../vue/images/btn-add.png" alt="">
                 </a>
             </div>
@@ -50,20 +50,32 @@
             </div>
             <div class="arroseur">
             </div>
+            <div class="arroseur">
+            </div>
+            <div class="arroseur">
+            </div>
+            <div class="arroseur">
+            </div>
+            <div class="arroseur">
+            </div>
+            <div class="arroseur">
+            </div>
+            <div class="arroseur">
+            </div>
         </div>
     </div>
-    <div class="col-droite centre">
-
-    </div>
+    <div class="col-droite">Maison 2</div>
+    <div class="col-gauche">Maison 3</div>
+    <div class="col-droite">Maison 4</div>
 </div>
 <?php $body = ob_get_clean(); ?>
 <?php require('base.php'); ?>
 
-<div class="modal">
+<div class="modal centre">
     <div class="modal-content">
         <div class="modal-header">
             <span class="close">&times;</span>
-            <h3>Ajouter une nouvelle maison</h3>
+            <h3>Ajouter un nouvel arroseur</h3>
         </div>
         <div class="modal-body">
             <p>

@@ -14,12 +14,14 @@
     padding:          0 30px;
     border-radius:    var(--radius);
     background-color: var(--bleu-clair);
-    color: var(--blanc);
+    color:            var(--blanc);
+    font-size:        1.1em;
 }
 /* Image du bouton ajouter une maison */
 .ajout-maison{
     width: 30px;
     height: auto;
+    cursor: pointer;
 }
 div.maison{
     height:     100%;
@@ -33,7 +35,7 @@ div.maison{
     margin:        var(--padding) auto;
 }
 .nom-arroseur{
-    font-size: 1.5rem;
+    font-size: 1.1em;
 }
 /* ----- Toggle switch arroseur ----- */
 .toggle-button {
@@ -133,6 +135,10 @@ div.maison{
 progress{
     height:        .5rem;
     border-radius: .5rem;
+}
+progress::-moz-progress-bar{
+    background-color: var(--bleu-fonce);
+    border-radius:    .5rem;
 }
 progress::-webkit-progress-bar{
     background-color: var(--gris-clair);
