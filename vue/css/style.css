@@ -63,38 +63,47 @@ b,.b,.strong{
     text-decoration: underline;
 }
 .ligne{
-    width:           100%;
-    justify-content: center;
     display:         flex;
     flex-flow:       row wrap;
+    justify-content: center;
+    width:           100%;
 }
+
 /* ------ Les deux colonnes droite et gauche ------ */
 .col-gauche,.col-droite{
+    flex:          1 1 40%;
     padding:       10px;
     margin:        0 50px;   /* Espacement horizontal */
-    border:        2px solid var(--gris-noir);
-    border-radius: var(--radius);
     height:        500px;
+    margin-bottom: 40px;
+    border-radius: var(--radius);
+    border:        2px solid var(--gris-noir);
     box-shadow:    6px 6px 10px var(--gris-noir);
-    flex:          5;
 }
-/* ------ Pour téléphone mobile et tablettes ------ */
+/* ------ Pour  tablettes ------ */
 @media (max-width: 768px) {
     .ligne{
         flex-flow: column wrap;
         height: 100%;
     }
     .header{order: 1;}
-    .col-gauche{
-        order: 2;
-        margin: 0px 0px;
-        margin-bottom: 20px;
+    .col-gauche, .col-droite{
+        margin: 20px 0px;
+        height: 500px;
     }
-    .col-droite{
-        order: 3;
-        margin: 0px 0px;
+    .footer{order: 10;}
+}
+/* ------ téléphone mobile ------ */
+@media (max-width: 576px) {
+    .ligne{
+        flex-flow: column wrap;
+        height: 100%;
     }
-    .footer{order: 4;}
+    .header{order: 1;}
+    .col-gauche, .col-droite{
+        margin: 20px 0px;
+    }
+    .footer{order: 10;}
 }
 /* Alignement horizontal : https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-6 */
 /* Permet de centrer une div */
@@ -182,7 +191,7 @@ select:focus, textarea:focus, input[type=text]:focus{
     width: 40%;
     border-radius: var(--radius);
     padding: 0 3px;
-    background-color: var(--gris-clair);
+    background-color: var(--blanc);
     box-shadow: 1px 1px 20px var(--gris-clair);
     animation: roadRunnerIn .5s;
 }
@@ -199,22 +208,15 @@ select:focus, textarea:focus, input[type=text]:focus{
     text-decoration: none;
 }
 /* En-tête du modal */
-.modal-header{
-    border-bottom: 1px solid var(--gris-noir);
+.modal-header, .modal-footer{
     padding: 5px var(--padding);
 }
 /* Contenu principal du modal */
 .modal-body{
-    border-top: 1px solid var(--gris-noir);
-    border-bottom: 1px solid var(--gris-noir);
+    border-top: 2px solid var(--gris-noir);
+    border-bottom: 2px solid var(--gris-noir);
     padding: 15px;
 }
-/* Bas du modal */
-.modal-footer{
-    border-top: 1px solid var(--gris-noir);
-    padding: 5px var(--padding);
-}
-
 @keyframes roadRunnerIn {
   0% {
     transform:translateX(-1500px) skewX(30deg) scaleX(1.3);
