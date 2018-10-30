@@ -1,6 +1,6 @@
 header{
     padding: 0 20px;
-    font-size: 30px;
+    font-size: 3vw;    /* Police adaptable en fonction de l'écran */
 }
 footer{
     border-radius:    5px;

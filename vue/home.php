@@ -20,5 +20,5 @@
 <?php // TODO: fichier template (en cours) autres choses à mettre ? ?>
 <?php // TODO: explication mise en place d'une page... (ob_start(), var..) ?>
 <?php // TODO: supression du fichier InscripEtCo ?>
-<?php // TODO:  ?>
+<?php // TODO: Utiliser les polices adaptatives ?>
 <?php // TODO:  ?>
