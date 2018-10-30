@@ -39,12 +39,12 @@
                     <progress value="50" max="100" class="progress-bar"></progress>
                     <div class="progress-value strong">{{progress.value}}%</div>
                 </div>
-            </div>
-            <div class="arroseur">
-            </div>
-            <div class="arroseur">
-            </div>
-            <div class="arroseur">
+                <div class="space-between">
+                    <svg class="arroseur-status">
+                        <circle cx="15" cy="10" r="10" />
+                    </svg>
+                    <img src="../vue/images/info.png" alt="" width="30" height="30">
+                </div>
             </div>
             <div class="arroseur">
             </div>
@@ -64,9 +64,13 @@
             </div>
         </div>
     </div>
-    <div class="col-droite">Maison 2</div>
-    <div class="col-gauche">Maison 3</div>
-    <div class="col-droite">Maison 4</div>
+    <div class="col-droite centre v-centre column">
+        <img src="../vue/images/house.png" alt="" height="150">
+        <p>Ajouter une maison</p>
+        <a href="">
+            <img src="../vue/images/btn-add-house.png" alt="" height="150">
+        </a>
+    </div>
 </div>
 <?php $body = ob_get_clean(); ?>
 <?php require('base.php'); ?>

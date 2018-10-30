@@ -119,6 +119,17 @@ div.maison{
     right:            -9px;
     background-color: var(--bleu-clair);
 }
+/* Cercle du status */
+.arroseur-status{
+    padding: 5px 0;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    fill: red;
+}
+.arroseur-status:hover{
+    fill: green !important;
+}
 /* WARNING: utile pour ajout maison seulement */
 .ligne > br{
     width:   100%;

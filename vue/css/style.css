@@ -68,7 +68,10 @@ b,.b,.strong{
     justify-content: center;
     width:           100%;
 }
-
+.column{
+    display: flex;
+    flex-direction: column;
+}
 /* ------ Les deux colonnes droite et gauche ------ */
 .col-gauche,.col-droite{
     flex:          1 1 40%;
@@ -93,7 +96,7 @@ b,.b,.strong{
     }
     .footer{order: 10;}
 }
-/* ------ téléphone mobile ------ */
+/* ------ Pour téléphone mobile ------ */
 @media (max-width: 576px) {
     .ligne{
         flex-flow: column wrap;
