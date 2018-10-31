@@ -34,6 +34,7 @@
 }
 *{
     box-sizing: border-box;
+    /* border: 1px solid blue;  /*Permet de visualiser les différents blocs*/ */
 }
 body{
     padding: 20px;
