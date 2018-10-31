@@ -22,7 +22,8 @@
                     <img class="ajout-maison" src="../vue/images/btn-add.png" alt="">
                 </a>
             </div>
-            <!-- Requête PHP db pour afficher les arroseurs de la maison -->
+            <!-- Requête PHP db pour afficher les arroseurs de la maison
+         -->
             <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
