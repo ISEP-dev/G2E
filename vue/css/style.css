@@ -160,7 +160,7 @@ textarea{
 select{
     border-radius: var(--input-radius);
 }
-input[type=text]{
+input[type=text], input[type=number]{
     border-radius: var(--input-radius);
     height:        30px;
 }
