@@ -1,16 +1,16 @@
 var modalMaison   = document.getElementsByClassName('modal')[0];
 var btnModalClose = document.getElementsByClassName('close')[0];
-var btnModalOpen  = document.getElementById('test');
+var btnOpenHouse  = document.getElementById('add-house-userID');
 
 function test() {
     // alert("Hi !");
     //document.body.style.backgroundColor = "red";
 }
-function modalOpen(){
+function openAddHouse(){
     modalMaison.style.display ="block";
 }
-function modalClose() {
+function closeAddHouse() {
     modalMaison.style.display = "none";
 }
-btnModalOpen.addEventListener('click', modalOpen);
-btnModalClose.addEventListener('click', modalClose);
+btnOpenHouse.addEventListener('click', openAddHouse);
+btnModalClose.addEventListener('click', closeAddHouse);

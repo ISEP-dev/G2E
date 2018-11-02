@@ -1,29 +1,22 @@
+<?php include('../vue/db/process_maison.php'); ?>
 <?php $title = "Gestion de l'arrosage" ?>
 <?php $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'.
                 '<script src="../vue/js/main.js" defer async></script>';
 ?>
 <?php ob_start(); ?>
-<!-- Pour aucune maison  -->
-<!-- <div class="ligne">
-    <div class="centre v-centre">
-        <p>Vous devez ajouter une maison pour gérer votre arrosage.</p>
-    </div><br>
-    <div class="v-centre">
-        <a href="">Ajouter une maison</a>
-    </div>
-</div> -->
 <!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
-    <div class="col-gauche">
+    <?php House::getHouses(); ?>
+    <!-- Requête pour afficher les maisons de l'utilisateur -->
+    <!-- <div class="col-gauche">
         <div class="maison">
             <div class="sticky-header-maison">
                 <h2>Maison Principale</h2>
-                <a id="test">
-                    <img class="ajout-maison" src="../vue/images/btn-add.png" alt="">
+                <a id="add-arr-1">
+                    <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="">
                 </a>
             </div>
-            <!-- Requête PHP db pour afficher les arroseurs de la maison
-         -->
+            <!-- Requête PHP db pour afficher les arroseurs de la maison --
             <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
@@ -87,11 +80,11 @@
             <div class="arroseur">
             </div>
         </div>
-    </div>
+    </div> -->
     <div class="col-droite centre v-centre column">
         <img src="../vue/images/house.png" alt="" height="150">
         <p>Ajouter une maison</p>
-        <a href="">
+        <a id="add-house-userID">
             <img src="../vue/images/btn-add-house.png" alt="" height="150">
         </a>
     </div>
@@ -101,7 +94,7 @@
 
 <div class="modal centre">
     <div class="modal-content">
-        <form class="" action="" method="post">
+        <form class="" action="../vue/db/process_house.php" method="post">
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h3>Ajouter un nouvel arroseur</h3>

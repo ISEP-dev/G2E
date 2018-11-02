@@ -18,7 +18,7 @@
     font-size:        1.1em;
 }
 /* Image du bouton ajouter une maison */
-.ajout-maison{
+.ajout-arroseur{
     width: 30px;
     height: auto;
     cursor: pointer;
@@ -125,10 +125,10 @@ div.maison{
     height: 30px;
     width: 30px;
     cursor: pointer;
-    fill: red;
+    /* fill: red; */
 }
 .arroseur-status:hover{
-    fill: green !important;
+    /* fill: green !important; */
 }
 /* WARNING: utile pour ajout maison seulement */
 .ligne > br{

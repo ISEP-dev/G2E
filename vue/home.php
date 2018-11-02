@@ -22,3 +22,4 @@
 <?php // TODO: supression du fichier InscripEtCo ?>
 <?php // TODO: Utiliser les polices adaptatives ?>
 <?php // TODO: WARNING:  Base de donnée à créer !important! ?>
+<?php // TODO: demander utilité pourcentage et btn info  ?>
