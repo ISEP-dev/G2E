@@ -23,10 +23,12 @@
     height: auto;
     cursor: pointer;
 }
+/* Bloc maison */
 div.maison{
     height:     100%;
     overflow-y: auto;
 }
+/* Bloc arroseur */
 .arroseur{
     border:        1px solid var(--bleu-fonce);
     border-radius: var(--radius);
@@ -37,7 +39,7 @@ div.maison{
 .nom-arroseur{
     font-size: 1.1em;
 }
-/* ----- Toggle switch arroseur ----- */
+/* --------- Switch arroseur --------- */
 .toggle-button {
     position:            relative;
     width:               120px;
@@ -124,18 +126,15 @@ div.maison{
     padding: 5px 0;
     height: 30px;
     width: 30px;
-    cursor: pointer;
     /* fill: red; */
 }
-.arroseur-status:hover{
-    /* fill: green !important; */
-}
+/* --------- Fin switch arroseur --------- */
 /* WARNING: utile pour ajout maison seulement */
 .ligne > br{
     width:   100%;
     content: '';
 }
-/* ------ Progress bar ------ */
+/* --------- Progress bar --------- */
 /* Pour le conteneur barre + valeur */
 .progress{
     display:        flex;
