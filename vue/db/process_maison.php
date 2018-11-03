@@ -17,6 +17,7 @@
 // ';
 // strip_tags(mysqli_real_escape_string($link, $string_to_escape));
 
+
 /**
  * Classe Maison pour créer, modifier, récupérer et supprimer
  */
@@ -31,7 +32,7 @@ class House
         // // WARNING: Changer requête pour afficher celles de l'utilisateur
         $housesQuery = $mysqli->query("SELECT * FROM habitation WHERE id_util = 1;");
 
-        while ($houses = mysqli_fetch_assoc($housesQuery))
+        while ($houses = $housesQuery->fetch_assoc())
         {
             ?>
             <div class="col-gauche maison">
@@ -48,12 +49,55 @@ class House
             <?php
         } # End of while
     }
+    public static function getArroseur()
+    {
+        $mysqli = new mysqli("localhost", "root", "", "g2e");
+        $arroseurQuery = $mysqli->query("SELECT * FROM arroseur WHERE id_habit = 1;");
+        while ($arroseur = $arroseurQuery->fetch_assoc()) {
+            ?>
+            <div class="arroseur">
+                <div class="space-between">
+                    <div class="nom-arroseur">
+                        <?= $arroseur['nom_arr'] ?>
+                    </div>
+                    <div class="toggle-button">
+                        <input id="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>" type="checkbox" class="arroseur-checkbox" name="button" checked></input>
+                        <label class="arroseur-label" for="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>">
+                            <span class="arroseur-inner"></span>
+                            <span class="arroseur-slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="progress">
+                    <progress value="50" max="100" class="progress-bar"></progress>
+                    <div class="progress-value strong">{{progress.value}}%</div>
+                </div>
+                <div class="space-between">
+                    <svg class="arroseur-status">
+                    <?php if ($arroseur['etat_arr'] == 0)
+                    {
+                    ?>
+                        <circle cx="15" cy="10" r="10" fill="red" />
+                    <?php
+                    } else { ?>
+                        <circle cx="15" cy="10" r="10" fill="green"/>
+                    <?php
+                    }?>
+                    </svg>
+                    <img src="../vue/images/info.png" alt="" width="30" height="30">
+                </div>
+            </div>
+            <?php
+        }
+    }
 
     // Fonction de visualisation d'informations de la maison
 
     // Ajouter une nouvelle maison
     public static function addHouse()
     {
+        $mysqli = new mysqli("localhost", "root", "", "g2e");
+
         $houseName       = $_POST['house-name'];
         $houseNumber     = $_POST['house-number'];
         $houseRoute      = $_POST['house-route'];
@@ -61,20 +105,18 @@ class House
         $housePostalCode = $_POST['house-postal'];
         $houseCountry    = $_POST['house-country'];
 
-        ?>
-        <div class="col-gauche maison">
-            <div class="maison">
-                <div class="sticky-header-maison">
-                    <h2><?= $houseName; ?></h2>
-                    <a id="add-arr-<?= $houseName; ?>">
-                        <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="../vue/images/btn-add.png">
-                    </a>
-                </div>
-            </div>
-        </div>
-        <?php
         // Requête SQL
-        $addHouseQuery = mysqli_query($link, "INSERT INTO TABLE_NAME() VALUES ...;");
+        $addHouseQuery = $mysqli->query("INSERT INTO habitation(nom_habit, numero_habit, rue_habit, ville_habit, code_postal_habit, pays_habit, id_util)
+        VALUES('$houseName', '$houseNumber', '$houseRoute', '$houseCity', '$housePostalCode', '$houseCountry', '1');");
+        if (!$addHouseQuery) {
+            // Erreur d'ajout d'une maison
+            die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" .$mysqli->error);
+        }
+        else {
+            // Tout s'est bien passé on redirige où on veut
+            header("Location: ../arrosage.php");
+        }
+
     }
     // Supprimer une maison existante
     public static function removeHouse($idHome)
