@@ -89,12 +89,18 @@
                 <h3>Ajouter un nouvel arroseur</h3>
             </div>
             <div class="modal-body">
-                <input type="text" name="house-name" placeholder="Nom de la maison">
-                <input type="number" name="house-number" placeholder="Numéro de rue">
-                <input type="text" name="house-route" placeholder="Rue">
-                <input type="text" name="house-city" placeholder="Ville">
-                <input type="text" name="house-postal" placeholder="Code Postal">
-                <input type="text" name="house-country" placeholder="Pays">
+                <label for="house-name">Nom de la maison : </label>
+                <input type="text" id="house-name" name="house-name" placeholder="Entrez le nom de la maison">
+                <label for="house-number">Numéro de rue : </label>
+                <input type="number" id="house-number" name="house-number" placeholder="Entrez votre numéro de rue">
+                <label for="house-route">Rue : </label>
+                <input type="text" id="house-route" name="house-route" placeholder="Rue, route, avenue, ...">
+                <label for="house-city">Nom de la ville : </label>
+                <input type="text" id="house-city" name="house-city" placeholder="Entrez votre ville">
+                <label for="house-postal">Numéro de code postal : </label>
+                <input type="text" id="house-postal" name="house-postal" placeholder="Code Postal">
+                <label for="house-country">Pays : </label>
+                <input type="text" id="house-country" name="house-country" placeholder="Pays">
 
             </div>
             <div class="modal-footer droite">

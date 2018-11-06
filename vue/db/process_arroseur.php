@@ -2,7 +2,7 @@
     $mysqli = new mysqli("localhost", "root", "", "g2e");
 
     $arroseurQuery = $mysqli->query("SELECT * FROM arroseur WHERE id_habit = 3;");
-    while ($arroseur = $arroseurQuery->fetch_assoc())
+    while ($arroseur = $arroseurQuery->fetch_assoc())    
     {
     ?>
     <div class="arroseur">

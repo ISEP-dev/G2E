@@ -21,5 +21,6 @@
 <?php // TODO: explication mise en place d'une page... (ob_start(), var..) ?>
 <?php // TODO: supression du fichier InscripEtCo ?>
 <?php // TODO: Utiliser les polices adaptatives ?>
-<?php // TODO: WARNING:  Base de donnée à créer !important! ?>
+<?php // TODO: WARNING:  Base de donnée à créer !important! (en cours) ?>
 <?php // TODO: demander utilité pourcentage et btn info  ?>
+<?php // TODO: Barre de navigation ?>
