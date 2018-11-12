@@ -6,7 +6,7 @@
 <?php ob_start(); ?>
 <!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
-    <?php House::getHouses(); ?>
+    <?php# House::getHouses(); ?>
     <!-- Requête pour afficher les maisons de l'utilisateur -->
     <div class="col-gauche">
         <div class="maison">
@@ -91,14 +91,19 @@
             <div class="modal-body">
                 <label for="house-name">Nom de la maison : </label>
                 <input type="text" id="house-name" name="house-name" placeholder="Entrez le nom de la maison">
+                <br>
                 <label for="house-number">Numéro de rue : </label>
-                <input type="number" id="house-number" name="house-number" placeholder="Entrez votre numéro de rue">
+                <input type="number" id="house-number" name="house-number" placeholder="Entrez numéro de rue">
+                <br>
                 <label for="house-route">Rue : </label>
                 <input type="text" id="house-route" name="house-route" placeholder="Rue, route, avenue, ...">
+                <br>
                 <label for="house-city">Nom de la ville : </label>
                 <input type="text" id="house-city" name="house-city" placeholder="Entrez votre ville">
+                <br>
                 <label for="house-postal">Numéro de code postal : </label>
                 <input type="text" id="house-postal" name="house-postal" placeholder="Code Postal">
+                <br>
                 <label for="house-country">Pays : </label>
                 <input type="text" id="house-country" name="house-country" placeholder="Pays">
 
