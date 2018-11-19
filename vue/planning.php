@@ -1,18 +1,18 @@
-<?php include('../vue/db/process_planning.php'); ?>
 <?php $title = "Planning" ?>
 <?php $head  = '<link rel="stylesheet" href="../vue/css/planning.css">'.
                 '<script src="../vue/js/main.js" defer async></script>';
 ?>
 <?php ob_start(); ?>
     <div class="ligne">
-    <?php include('../vue/db/process_planning.php'); ?>
+
+    
         <div class="col-gauche">
         <div class="rdv">
         <div class="sticky-header-rendezvous">
             Selectionner une date : <br><input type="date" name="date">
             <hr>
             </div>
-            <!--
+            
                 <div class= "rendezvous space-between" >
                     <div class="nom-rendezvous">
                         M. Dupond à (heure)
@@ -52,7 +52,7 @@
                     <a>
                     <a><img class="poubelle" src="../vue/images/poubelle.png" alt="poubelle.png" style="width:25px;height:25px;">
                 </a>  
-                -->
+               
               </div>  
             </div>
         </div>
