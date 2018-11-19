@@ -1,8 +1,8 @@
 <?php
-    $mysqli = new mysqli("localhost", "root", "", "g2e");
+    $mysqli = new mysqli("localhost", "root", "", "g2e_test");
 
     $arroseurQuery = $mysqli->query("SELECT * FROM arroseur WHERE id_habit = 3;");
-    while ($arroseur = $arroseurQuery->fetch_assoc())    
+    while ($arroseur = $arroseurQuery->fetch_assoc())
     {
     ?>
     <div class="arroseur">
@@ -20,7 +20,7 @@
         </div>
         <div class="progress">
             <progress value="50" max="100" class="progress-bar"></progress>
-            <div class="progress-value strong">{{progress.value}}%</div>
+            <div class="progress-value strong">50%</div>
         </div>
         <div class="space-between">
             <svg class="arroseur-status">
@@ -30,7 +30,7 @@
             <?php
             } else {
             ?>
-                <circle cx="15" cy="10" r="10" fill="green"/>
+                <circle cx="15" cy="10" r="10" fill="green" />
             <?php
             }
             ?>

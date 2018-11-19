@@ -6,9 +6,9 @@
 <?php ob_start(); ?>
 <!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
-    <?php# House::getHouses(); ?>
+    <?php House::getHouses(); ?>
     <!-- Requête pour afficher les maisons de l'utilisateur -->
-    <div class="col-gauche">
+    <!-- <div class="col-gauche">
         <div class="maison">
             <div class="sticky-header-maison">
                 <h2>Maison Principale</h2>
@@ -16,7 +16,7 @@
                     <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="">
                 </a>
             </div>
-            <!-- Requête PHP db pour afficher les arroseurs de la maison -->
+            <!-- Requête PHP db pour afficher les arroseurs de la maison --
             <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
@@ -70,7 +70,7 @@
             <div class="arroseur">
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- Bloc pour pouvoir ajouter une maison facilement -->
     <div class="col-droite centre v-centre column">
         <img src="../vue/images/house.png" alt="" height="150">
@@ -83,7 +83,7 @@
 <!-- Popup pour ajouter une maison -->
 <div class="modal centre">
     <div class="modal-content">
-        <form class="" action="../vue/db/process_maison.php" method="post">
+        <form class="" action="../vue/db/process_add_house.php" method="post">
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h3>Ajouter un nouvel arroseur</h3>
