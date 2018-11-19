@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>Publication</title>
-    <link rel="stylesheet" href="css/publication.css">
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<?php $title = "Publication" ?>
+<?php $head  = '<link rel="stylesheet" href="../vue/css/publication.css">'.
+                '<script src="../vue/js/main.js" defer async></script>';
+?>
+<?php ob_start(); ?>
+
+<link rel="stylesheet" href="css/publication.css">
+<link rel="stylesheet" href="css/style.css">
 <body>
     <div class="ligne">
         <!-- <div class="col-gauche">
@@ -78,4 +79,5 @@
         </div>
     </div>
 </body>
-</html>
+<?php $body = ob_get_clean(); ?>
+<?php require('base.php'); ?>
