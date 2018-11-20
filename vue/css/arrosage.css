@@ -159,7 +159,7 @@ progress::-webkit-progress-value {
     border-radius:    .5rem;
     background-color: var(--bleu-fonce);
     color:            var(--vert);
-    transition:       width .6s ease: ;
+    transition:       width .6s ease;
     /* box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4),
     0 2px 5px 0px rgba(0,0,0,0.3); */
 }
