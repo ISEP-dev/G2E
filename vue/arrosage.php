@@ -1,9 +1,9 @@
-<?php include('../vue/db/process_maison.php'); ?>
-<?php $title = "Gestion de l'arrosage" ?>
-<?php $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'.
+<?php include('../vue/db/process_maison.php');
+    $title = "Gestion de l'arrosage";
+    $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'.
                 '<script src="../vue/js/main.js" defer async></script>';
+    ob_start();
 ?>
-<?php ob_start(); ?>
 <!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
     <?php House::getHouses(); ?>
@@ -115,7 +115,8 @@
         </form>
     </div>
 </div>
-<?php $body = ob_get_clean(); ?>
-<?php require('base.php'); ?>
+<?php $body = ob_get_clean();
+    require('base.php');
 
-<?php // WARNING: Pour toggle bouton ON/OFF attention au label avec le for="idinput" ?>
+// WARNING: Pour toggle bouton ON/OFF attention au label avec le for="idinput"
+?>
