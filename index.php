@@ -1,3 +1,3 @@
 <?php
-    include 'vue/home.php';
+    include 'vue/base.php';
 ?>

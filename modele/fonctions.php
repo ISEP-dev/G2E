@@ -14,7 +14,7 @@ include("connexion.php");
 function selectAll(PDO $bdd, string $table): array
 {
     $query = 'SELECT * FROM ' . $table;
-    return $bdd->query($query)->fetchAll;
+    return $bdd->query($query)->fetchAll();
 }
 
 /**
@@ -27,12 +27,13 @@ function selectWhere(PDO $bdd, string $table, array $attributs): array
 {
     $where = '';
     foreach ($attributs as $key => $value){
+
         $where .= "";
     }
     $query = $bdd->prepare('SELECT * FROM' . $table . 'WHERE' . $where);
 
 
-    return $query->fetchAll;
+    return $query->fetchAll();
 }
 
 /**

@@ -4,7 +4,6 @@
                 '<script src="../vue/js/main.js" defer async></script>';
     ob_start();
 ?>
-<!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
     <?php House::getHouses(); ?>
     <!-- Requête pour afficher les maisons de l'utilisateur -->

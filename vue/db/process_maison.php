@@ -1,20 +1,6 @@
 <?php
-// Hôte, nom d'utilisateur, mot de passe, nom base de donnée
 
-// Connexion à la base de donnée à effectuer
 
-// echo '
-// <div class="col-gauche maison">
-//     <div class="maison">
-//         <div class="sticky-header-maison">
-//             <h2>'.$houseName .'</h2>
-//             <a id="add-arr-'.$houseName.'">
-//                 <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="../vue/images/btn-add.png">
-//             </a>
-//         </div>
-//     </div>
-// </div>
-// ';
 // strip_tags(mysqli_real_escape_string($link, $string_to_escape));
 
 
@@ -32,7 +18,7 @@ class House
         // // WARNING: Changer requête pour afficher celles de l'utilisateur
         $housesQuery = $mysqli->query("SELECT * FROM habitation WHERE id_util = 1;");
 
-        while ($houses = $housesQuery->fetch_assoc())
+        while ( ($houses = $housesQuery->fetch_assoc()) !== null )
         {
             ?>
             <div class="col-gauche maison">

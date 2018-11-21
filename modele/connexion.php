@@ -4,9 +4,7 @@ try
     $dataSourceName = "mysql:host=localhost;dbname=g2e_test;charset=utf8";
     $user           = "root";
     $password       = "";
-    $options        = array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-    );
+    $options        = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $bdd = new PDO($dataSourceName, $user, $password, $options);
 }
 catch (Exception $e)

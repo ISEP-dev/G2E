@@ -11,7 +11,7 @@
         <p>Domisep</p>
     </div>
     <div class="footer_droit">
-        <a href="" ><img src="../vue/images/twitter.png" alt="twitter" style="width:45px;height:45px;border:0;"></a>
-        <a href="" ><img src="../vue/images/facebook.png" alt="facebook" style="width:45px;height:45px;border:0;"></a>
+        <a href="" ><img class="img-footer" src="vue/images/twitter.png" alt="twitter"></a>
+        <a href="" ><img class="img-footer" src="vue/images/facebook.png" alt="facebook"></a>
     </div>
 </footer>
