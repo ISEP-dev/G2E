@@ -61,7 +61,12 @@
         </div>
         <div class="col-droite">
             <div class="centre">
-                
+
+                </div>
+                <div class="droite">
+                    <input type="submit" name="submit" value="Exporter">
+                      <input type="submit" name="submit" value="Imrpimer">
+
                 </div>
             </div>
         </div>
