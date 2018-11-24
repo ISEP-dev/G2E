@@ -61,12 +61,7 @@
         </div>
         <div class="col-droite">
             <div class="centre">
-                <div class="pagination">
-                    <a href="#">&laquo;</a>
-                    <a href="#">1</a>
-                    <a href="#" class="active">2</a>
-                    <a href="#">3</a>
-                    <a href="#">&raquo;</a>
+                
                 </div>
             </div>
         </div>
