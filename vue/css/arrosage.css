@@ -169,3 +169,8 @@ div.progress-value{
     font-size:   .5em;
     color:       var(--bleu-fonce);
 }
+/*  */
+.add-house{
+    width: 300px;
+    cursor: pointer;
+}

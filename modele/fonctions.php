@@ -1,10 +1,10 @@
 <?php
 
 /*
- * Fonctions utiles pour le site web
+ * Fonctions utiles pour la base de donnée
  */
 
-include("connexion.php");
+include("modele/connexion.php");
 
 /**
  * @param PDO $bdd

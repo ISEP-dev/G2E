@@ -1,8 +1,3 @@
-<?php $title = "Planning" ?>
-<?php $head  = '<link rel="stylesheet" href="../vue/css/planning.css">'.
-                '<script src="../vue/js/main.js" defer async></script>';
-?>
-<?php ob_start(); ?>
 <div class="ligne">
     <div class="col-gauche">
         <div class="rdv">
@@ -25,7 +20,7 @@
                         <?= $tickets['titre_ticket']; ?>
                     </div>
                     <a href="" title="Supprimer">
-                        <img class="poubelle" src="../images/poubelle.png" alt="poubelle.png" style="width:25px;height:25px;">
+                        <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png" style="width:25px;height:25px;">
                     </a>
                 </div>
                     <?php
@@ -47,5 +42,3 @@
         <h4 class="v-centre">Numéro de téléphone</h4>
     </div>
 </div>
-<?php $body = ob_get_clean(); ?>
-<?php require('base.php'); ?>

@@ -1,11 +1,5 @@
-<?php include('../vue/db/process_maison.php');
-    $title = "Gestion de l'arrosage";
-    $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'.
-                '<script src="../vue/js/main.js" defer async></script>';
-    ob_start();
-?>
 <div class="ligne">
-    <?php House::getHouses(); ?>
+    <?php // House::getHouses(); ?>
     <!-- Requête pour afficher les maisons de l'utilisateur -->
 <!--     <div class="col-gauche">
         <div class="maison">
@@ -76,21 +70,67 @@
         </div>
     </div>-->
     <!-- Bloc pour pouvoir ajouter une maison facilement -->
+    <?php foreach ($maisons as $maison) { ?>
+    <div class="col-gauche maison">
+        <div class="maison">
+            <div class="sticky-header-maison">
+                <h2><?= $maison['nom_habit']; ?></h2>
+                <a id="add-arr-<?= $maison['id_habit'] ?>" title="Ajouter un arroseur">
+                    <img class="ajout-arroseur" src="vue/images/btn-add.png" alt="vue/images/btn-add.png">
+                </a>
+            </div>
+            <?php foreach ($arroseurs as $arroseur) { // include('process_arroseur.php'); ?>
+                <div class="arroseur">
+                    <div class="space-between">
+                        <div class="nom-arroseur">
+                            <?= $arroseur['nom_arr'] ?>
+                        </div>
+                        <div class="toggle-button">
+                            <input id="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>" type="checkbox" class="arroseur-checkbox" name="button"
+                                   <?php if ($arroseur['etat_arr']) { ?>
+                                    checked
+                                   <?php } else { }?>>
+                            <label class="arroseur-label" for="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>">
+                                <span class="arroseur-inner"></span>
+                                <span class="arroseur-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="progress">
+                        <progress value="50" max="100" class="progress-bar"></progress>
+                        <div class="progress-value strong">50%</div>
+                    </div>
+                    <div class="space-between">
+                        <svg class="arroseur-status">
+                            <?php if ($arroseur['etat_fonctionnement_arr'] == 0) { ?>
+                                <circle cx="15" cy="10" r="10" fill="green"></circle>
+                            <?php } elseif ($arroseur['etat_fonctionnement_arr'] == 1) { ?>
+                                <circle cx="15" cy="10" r="10" fill="orange"></circle>
+                            <?php } elseif ($arroseur['etat_fonctionnement_arr'] == 2) { ?>
+                                <circle cx="15" cy="10" r="10" fill="red"></circle>
+                            <?php } ?>
+                        </svg>
+                        <img src="vue/images/info.png" alt="" width="30" height="30">
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+    <?php } ?>
+
     <div class="col-droite centre v-centre column">
-        <img src="../vue/images/house.png" alt="" height="150">
-        <p>Ajouter une maison</p>
-        <a id="add-house-userID">
-            <img src="../vue/images/btn-add-house.png" alt="" height="150">
+        <a id="add-house-userID" title="Ajouter une maison">
+            <img class="add-house" src="vue/images/add-house.png" alt="">
         </a>
     </div>
 </div>
 <!-- Popup pour ajouter une maison -->
 <div class="modal centre">
     <div class="modal-content">
-        <form class="" action="../vue/db/process_add_house.php" method="post">
+        <form class="" action="index.php?cible=habitation&fonction=ajouter" method="post">
             <div class="modal-header">
                 <span class="close">&times;</span>
-                <h3>Ajouter un nouvel arroseur</h3>
+                <h3>Ajouter une nouvelle maison</h3>
             </div>
             <div class="modal-body">
                 <label for="house-name">Nom de la maison : </label>
@@ -119,8 +159,6 @@
         </form>
     </div>
 </div>
-<?php $body = ob_get_clean();
-    require('base.php');
-
-// WARNING: Pour toggle bouton ON/OFF attention au label avec le for="idinput"
+<?php
+// important -> Pour toggle bouton ON/OFF attention au label avec le for="idinput"
 ?>

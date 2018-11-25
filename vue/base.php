@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,3 +15,5 @@
     <?php require('footer.php'); ?>
 </body>
 </html>
+
+<!-- remove : Plus utile avec MVC -->
