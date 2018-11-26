@@ -26,7 +26,7 @@ function addHouse(PDO $bdd, string $table)
     $houseCountry    = $_POST['house-country'];
 
     // Requête SQL
-    $addHouseQuery = $bdd->query("INSERT INTO habitation(nom_habit, numero_habit, rue_habit, ville_habit, code_postal_habit, pays_habit, id_util)
+    $addHouseQuery = $bdd->query("INSERT INTO $table.(nom_habit, numero_habit, rue_habit, ville_habit, code_postal_habit, pays_habit, id_util)
         VALUES('$houseName', '$houseNumber', '$houseRoute', '$houseCity', '$housePostalCode', '$houseCountry', '1');");
     if (!$addHouseQuery) {
         // Erreur d'ajout d'une maison
