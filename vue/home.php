@@ -11,9 +11,8 @@
 <a href="index.php?cible=utilisateurs&fonction=inscription">Planning</a>
 <br>
 <a href="index.php?cible=habitation&fonction=accueil">Arrosage</a>
-
-
-<a href="index.php?cible=Commercial&fonction=accueil">Arrosage</a>
+<br>
+<a href="index.php?cible=Commercial&fonction=accueil">Commercial</a>
 
 
 <?php
