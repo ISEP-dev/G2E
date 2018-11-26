@@ -1,12 +1,4 @@
-<?php $title = "Informations Client" ?>
-<?php $head  = '<link rel="stylesheet" href="../vue/css/publication.css">'.
-                '<script src="../vue/js/main.js" defer async></script>';
-?>
-<?php ob_start(); ?>
 
-<link rel="stylesheet" href="css/publication.css">
-<link rel="stylesheet" href="css/style.css">
-<body>
     <div class="ligne">
         <!-- <div class="col-gauche">
                 <div id="formulaire">
