@@ -48,7 +48,7 @@
                 <br><br>
                 Résultat recherche
                 <div>
-                    <textarea name="content" rows="8" cols="80" placeholder="Résultat recherche" required></textarea>
+                    <textarea name="content" rows="8" cols="80" placeholder="Résultat recherches" required></textarea>
                     <div id="toolbar-editor">
                     </select>
                     </div>
