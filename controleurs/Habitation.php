@@ -6,7 +6,7 @@
  * Time: 00:42
  */
 
-include "modele/habitation.php";
+include "modele/Habitation.php";
 include "modele/arroseur.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
@@ -28,6 +28,7 @@ switch ($fonction)
         $arroseurs = getArroseur($bdd, $tableArroseur);
         break;
 
+//        Formulaire ajout de maison appelle ce cas là
     case "ajouter":
         addHouse($bdd, $tableHabitation);
         $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';

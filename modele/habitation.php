@@ -10,12 +10,12 @@ require "modele/fonctions.php" ;
 
 $tableHabitation = 'habitation';
 
-function getHouses(PDO $bdd, string $table): array
+//todo : ajouter l'id_user de la session en paramètre
+function getHouses(PDO $bdd, string $table)
 {
-    return selectAll($bdd, $table);
-
+    return $bdd->query('SELECT '. $table. '.* FROM utilisateur INNER JOIN (habitation INNER JOIN habitation_utilisateur ON habitation.id_habit = habitation_utilisateur.id_habit) ON utilisateur.id_util = habitation_utilisateur.id_util WHERE (((utilisateur.id_util)=1))');
 }
-
+//todo : ajouter l'id_user de la session en paramètre
 function addHouse(PDO $bdd, string $table)
 {
     $houseName       = $_POST['house-name'];
@@ -25,22 +25,40 @@ function addHouse(PDO $bdd, string $table)
     $housePostalCode = $_POST['house-postal'];
     $houseCountry    = $_POST['house-country'];
 
-    // Requête SQL
-    $addHouseQuery = $bdd->query("INSERT INTO $table.(nom_habit, numero_habit, rue_habit, ville_habit, code_postal_habit, pays_habit, id_util)
-        VALUES('$houseName', '$houseNumber', '$houseRoute', '$houseCity', '$housePostalCode', '$houseCountry', '1');");
-    if (!$addHouseQuery) {
-        // Erreur d'ajout d'une maison
+//    Association des attributs de la base de donnée au valeurs récupérées du formulaire
+    $attributs = array(
+        'nom_habit' => $houseName,
+        'numero_habit' => $houseNumber,
+        'rue_habit' => $houseRoute,
+        'ville_habit' => $houseCity,
+        'code_postal_habit' => $housePostalCode,
+        'pays_habit' => $houseCountry
+    );
+//    Insertion nouvelle habitation
+    insert($bdd, $table, $attributs);
+
+//    insertion id de la maison et de l'utilisateur dans habitation_utilisateur
+    $idHabit = $bdd->lastInsertId();
+    $tableHabitUtil = 'habitation_utilisateur';
+    $attributsHabitUtil = array(
+        'id_util' => 1,//$_SESSION['user_id'];
+        'id_habit' => $idHabit
+    );
+    $addKeyHouse = insert($bdd, $tableHabitUtil, $attributsHabitUtil);
+
+    if (!$addKeyHouse)
+    {
         die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" .$bdd->errorInfo);
     }
-    else {
-        // Tout s'est bien passé on redirige où on veut
-        header("Location: ../arrosage.php");
+    else
+    {
+        header("Location: index.php?cible=habitation&fonction=accueil");
     }
 }
 
-function removeHouse($id_user)
+function removeHouse(PDO $bdd, string $table, $idHouse)
 {
-
+    delete($bdd, $table, "id_habit=" . $idHouse);
 }
 
 function modifyHouse($id_user)
