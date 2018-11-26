@@ -30,7 +30,7 @@ footer .footer_droit a{
 	border-radius:    2px;
 	margin-left:      3px;
 }
-.boutton {
+.button {
     display: inline-block;
     padding: 10px 15px;
     font-size: 15px;
@@ -43,11 +43,23 @@ footer .footer_droit a{
     box-shadow: 0 9px rgb(73, 118, 157);
 
   }
-.boutton:hover {
+.button:hover {
     background-color: #3a3a3a;
 }
-.boutton:active {
+.button:active {
     background-color: #949494;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
-  }
+}
+.img-footer{
+    width:45px;
+    height:45px;
+}
+.logo{
+    width: 150px;
+    height: 100px;
+}
+.img-compte{
+    width: 68px;
+    height: 68px;
+}

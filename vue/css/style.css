@@ -42,12 +42,8 @@ body{
 }
 hr {
     display: block;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: inset;
-    border-width: 1px;
+    margin: 0.5em auto;
+    border: 1px inset;
 }
 a{
     text-decoration: none;
@@ -60,7 +56,7 @@ b,.b,.strong{
 .italic{
     font-style: italic;
 }
-/* Texte Souligner */
+/* Texte Souligné */
 .underline{
     text-decoration: underline;
 }
@@ -78,9 +74,8 @@ b,.b,.strong{
 .col-gauche,.col-droite{
     flex:          1 1 40%;
     padding:       10px;
-    margin:        0 50px;   /* Espacement horizontal */
     height:        500px;
-    margin-bottom: 40px;
+    margin:        0 50px 40px;/* Espacement horizontal et bas */
     border-radius: var(--radius);
     border:        2px solid var(--gris-noir);
     box-shadow:    6px 6px 10px var(--gris-noir);
@@ -93,7 +88,7 @@ b,.b,.strong{
     }
     .header{order: 1;}
     .col-gauche, .col-droite{
-        margin: 20px 0px;
+        margin: 20px 0;
         height: 500px;
     }
     .footer{order: 10;}
@@ -106,7 +101,7 @@ b,.b,.strong{
     }
     .header{order: 1;}
     .col-gauche, .col-droite{
-        margin: 20px 0px;
+        margin: 20px 0;
     }
     .footer{order: 10;}
 }

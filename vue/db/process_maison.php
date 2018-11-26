@@ -1,20 +1,6 @@
 <?php
-// Hôte, nom d'utilisateur, mot de passe, nom base de donnée
 
-// Connexion à la base de donnée à effectuer
 
-// echo '
-// <div class="col-gauche maison">
-//     <div class="maison">
-//         <div class="sticky-header-maison">
-//             <h2>'.$houseName .'</h2>
-//             <a id="add-arr-'.$houseName.'">
-//                 <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="../vue/images/btn-add.png">
-//             </a>
-//         </div>
-//     </div>
-// </div>
-// ';
 // strip_tags(mysqli_real_escape_string($link, $string_to_escape));
 
 
@@ -32,7 +18,7 @@ class House
         // // WARNING: Changer requête pour afficher celles de l'utilisateur
         $housesQuery = $mysqli->query("SELECT * FROM habitation WHERE id_util = 1;");
 
-        while ($houses = $housesQuery->fetch_assoc())
+        while ( ($houses = $housesQuery->fetch_assoc()) !== null )
         {
             ?>
             <div class="col-gauche maison">
@@ -40,7 +26,7 @@ class House
                     <div class="sticky-header-maison">
                         <h2><?= $houses['nom_habit']; ?></h2>
                         <a id="add-arr-<?= $houses['id_habit'] ?>">
-                            <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="../vue/images/btn-add.png">
+                            <img class="ajout-arroseur" src="./images/btn-add.png" alt="../images/btn-add.png">
                         </a>
                     </div>
                     <?php include('process_arroseur.php'); ?>
@@ -80,12 +66,12 @@ class House
     // Supprimer une maison existante
     public static function removeHouse($idHome)
     {
-        $removeHouseQuery = mysqli_query($link, "DELETE FROM TABLE_NAME WHERE 'Home.id' = $idHome;");
+//        $removeHouseQuery = $bdd->query("DELETE FROM habitation WHERE nom_habit = $idHome;");
     }
     // Modifier une maison déjà enregistrée
     public static function modifyHouse($idHome, $name)
     {
-        $modifiyHouseQuery = mysqli_query($link, "UPDATE TABLE_NAME SET value = ... WHERE 'Home.id' = $idHome;");
+//        $modifiyHouseQuery = $bdd->query("UPDATE habitation SET VALUE nom_habit WHERE nom_habit = $idHome;");
     }
 }
 

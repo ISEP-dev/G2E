@@ -1,14 +1,13 @@
-<?php include('../vue/db/process_maison.php'); ?>
-<?php $title = "Gestion de l'arrosage" ?>
-<?php $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'.
+<?php include('../vue/db/process_maison.php');
+    $title = "Gestion de l'arrosage";
+    $head  = '<link rel="stylesheet" href="../vue/css/arrosage.css">'.
                 '<script src="../vue/js/main.js" defer async></script>';
+    ob_start();
 ?>
-<?php ob_start(); ?>
-<!-- Pour minimum 1 maison (requète SQL) -->
 <div class="ligne">
     <?php House::getHouses(); ?>
     <!-- Requête pour afficher les maisons de l'utilisateur -->
-    <!-- <div class="col-gauche">
+<!--     <div class="col-gauche">
         <div class="maison">
             <div class="sticky-header-maison">
                 <h2>Maison Principale</h2>
@@ -16,7 +15,7 @@
                     <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="">
                 </a>
             </div>
-            <!-- Requête PHP db pour afficher les arroseurs de la maison --
+            <!-- Requête PHP db pour afficher les arroseurs de la maison
             <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
@@ -69,8 +68,13 @@
             </div>
             <div class="arroseur">
             </div>
+            <div class="arroseur"></div>
+            <div class="arroseur"></div>
+            <div class="arroseur"></div>
+            <div class="arroseur"></div>
+            <div class="arroseur"></div>
         </div>
-    </div> -->
+    </div>-->
     <!-- Bloc pour pouvoir ajouter une maison facilement -->
     <div class="col-droite centre v-centre column">
         <img src="../vue/images/house.png" alt="" height="150">
@@ -115,7 +119,8 @@
         </form>
     </div>
 </div>
-<?php $body = ob_get_clean(); ?>
-<?php require('base.php'); ?>
+<?php $body = ob_get_clean();
+    require('base.php');
 
-<?php // WARNING: Pour toggle bouton ON/OFF attention au label avec le for="idinput" ?>
+// WARNING: Pour toggle bouton ON/OFF attention au label avec le for="idinput"
+?>

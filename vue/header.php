@@ -1,10 +1,10 @@
 <header class="space-between">
-    <img src="../vue/images/ECORAIN.png" alt="Ecorain.png" style="width: 1vw;min-width:150px;height:100px;border:0;">
+    <img class="logo" src="vue/images/ECORAIN.png" alt="ecorain">
     <div class="v-centre">
-        <?= $title; ?>
+        <?= isset($title); ?>
     </div>
-    <button class="boutton">
-        <img src="../vue/images/compte.png" alt="compte.png" style="width:68px;height:65px;border:0;">
+    <button class="button">
+        <img class="img-compte" src="vue/images/compte.png" alt="compte">
         <br>Votre compte
     </button>
 </header>
