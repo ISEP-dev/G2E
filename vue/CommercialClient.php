@@ -1,4 +1,12 @@
-
+<br><br>
+<div>
+        <ul>
+            <li><a href="#news">Statistiques temporelles</a></li>
+            <li><a href="#contact">Statistiques géographiques</a></li>
+            <li><a href="#about">Informations clients</a></li>
+        </ul>
+</div>
+<br><br>
     <div class="ligne">
         <!-- <div class="col-gauche">
                 <div id="formulaire">
@@ -47,7 +55,8 @@
                 </div>
                 <br><br>
                 <div class="droite">
-                    <input type="submit" name="submit" value="Rechercher">
+                <h2>
+                <bouton class="rechercher" style="vertical-align:middle"><span>rechercher </span></button>
                 </div>
             </form>
         </div>
@@ -64,5 +73,3 @@
         </div>
     </div>
 </body>
-<?php $body = ob_get_clean(); ?>
-<?php require('base.php'); ?>

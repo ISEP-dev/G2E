@@ -18,7 +18,10 @@ else
 // Choix de la vue à afficher
 switch ($fonction)
 {
+
     case "accueil":
+        $head = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
+
         $title = "Informations Client";
         $vue = "CommercialClient";
         break;
