@@ -10,7 +10,7 @@
                 </a>
             </div>
             <?php foreach ($arroseurs as $arroseur) { // include('process_arroseur.php'); ?>
-<div class="arroseur">
+            <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
                         <?= $arroseur['nom_arr']; ?>

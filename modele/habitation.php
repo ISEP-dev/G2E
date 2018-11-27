@@ -13,7 +13,10 @@ $tableHabitation = 'habitation';
 //todo : ajouter l'id_user de la session en paramètre
 function getHouses(PDO $bdd, string $table)
 {
-    return $bdd->query('SELECT '. $table. '.* FROM utilisateur INNER JOIN (habitation INNER JOIN habitation_utilisateur ON habitation.id_habit = habitation_utilisateur.id_habit) ON utilisateur.id_util = habitation_utilisateur.id_util WHERE (((utilisateur.id_util)=1))');
+    return $bdd->query("SELECT * FROM habitation ".
+                        "INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit ".
+                        "INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util ".
+                        "WHERE utilisateur.id_util = 2");
 }
 //todo : ajouter l'id_user de la session en paramètre
 function addHouse(PDO $bdd, string $table)
@@ -27,12 +30,12 @@ function addHouse(PDO $bdd, string $table)
 
 //    Association des attributs de la base de donnée au valeurs récupérées du formulaire
     $attributs = array(
-        'nom_habit' => $houseName,
-        'numero_habit' => $houseNumber,
-        'rue_habit' => $houseRoute,
-        'ville_habit' => $houseCity,
+        'nom_habit'         => $houseName,
+        'numero_habit'      => $houseNumber,
+        'rue_habit'         => $houseRoute,
+        'ville_habit'       => $houseCity,
         'code_postal_habit' => $housePostalCode,
-        'pays_habit' => $houseCountry
+        'pays_habit'        => $houseCountry
     );
 //    Insertion nouvelle habitation
     insert($bdd, $table, $attributs);
@@ -41,11 +44,10 @@ function addHouse(PDO $bdd, string $table)
     $idHabit = $bdd->lastInsertId();
     $tableHabitUtil = 'habitation_utilisateur';
     $attributsHabitUtil = array(
-        'id_util' => 1,//$_SESSION['user_id'];
+        'id_util'  => 1,//$_SESSION['user_id'];
         'id_habit' => $idHabit
     );
     $addKeyHouse = insert($bdd, $tableHabitUtil, $attributsHabitUtil);
-
     if (!$addKeyHouse)
     {
         die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" .$bdd->errorInfo);
@@ -56,9 +58,9 @@ function addHouse(PDO $bdd, string $table)
     }
 }
 
-function removeHouse(PDO $bdd, string $table, $idHouse)
+function removeHouse($id_user)
 {
-    delete($bdd, $table, "id_habit=" . $idHouse);
+
 }
 
 function modifyHouse($id_user)

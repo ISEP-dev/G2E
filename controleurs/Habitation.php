@@ -21,11 +21,11 @@ else
 switch ($fonction)
 {
     case "accueil":
-        $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-        $title = "Gestion de l'arrosage";
-        $vue = "arrosage";
-        $maisons = getHouses($bdd, $tableHabitation);
-        $arroseurs = getArroseur($bdd, $tableArroseur);
+        $head      = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+        $title     = "Gestion de l'arrosage";
+        $vue       = "arrosage";
+        $maisons   = getHouses($bdd, $tableHabitation);
+        $arroseurs = getArroseur($bdd, $tableArroseur, $maisons);
         break;
 
 //        Formulaire ajout de maison appelle ce cas là
@@ -33,11 +33,11 @@ switch ($fonction)
         addHouse($bdd, $tableHabitation);
         $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title = "Gestion de l'arrosage";
-        $vue = "arrosage";
+        $vue   = "arrosage";
         break;
     default:
         $title = "Erreur 404";
-        $vue = "erreur404";
+        $vue   = "erreur404";
 //        $message = "Page inexistante";
 }
 

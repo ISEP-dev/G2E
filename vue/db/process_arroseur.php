@@ -11,7 +11,7 @@
                 <?= $arroseur['nom_arr'] ?>
             </div>
             <div class="toggle-button">
-                <input id="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>" type="checkbox" class="arroseur-checkbox" name="button" checked></input>
+                <input id="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>" type="checkbox" class="arroseur-checkbox" name="button" checked>
                 <label class="arroseur-label" for="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>">
                     <span class="arroseur-inner"></span>
                     <span class="arroseur-slider"></span>
@@ -26,11 +26,11 @@
             <svg class="arroseur-status">
             <?php if ($arroseur['etat_arr'] == 0)
             { ?>
-                <circle cx="15" cy="10" r="10" fill="red" />
+                <circle cx="15" cy="10" r="10" fill="red"></circle>
             <?php
             } else {
             ?>
-                <circle cx="15" cy="10" r="10" fill="green" />
+                <circle cx="15" cy="10" r="10" fill="green"></circle>
             <?php
             }
             ?>
