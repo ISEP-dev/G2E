@@ -62,7 +62,8 @@
         </div>
         <div class="col-droite">
             <div class="centre">
-
+                <h3>
+                //  A FAIRE POUR LES BOUTONS EXPORTER ET IMPRIMER
                 </div>
                 <div class="droite">
                     <input type="submit" name="submit" value="Exporter">
