@@ -13,6 +13,8 @@
 <a href="index.php?cible=habitation&fonction=accueil">Arrosage</a>
 <br>
 <a href="index.php?cible=Commercial&fonction=accueil">Commercial</a>
+<br>
+<a href="index.php?cible=Commercial&fonction=acc">Erreur 404</a>
 
 
 <?php
