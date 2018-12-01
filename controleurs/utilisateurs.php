@@ -12,6 +12,7 @@
  * $vue   -> Vue HTML à afficher
  */
 
+include "modele/inscription.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
 {
@@ -25,6 +26,7 @@ else
 switch ($fonction)
 {
     case "accueil":
+        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         $vue = "home";
         $title = "Accueil";
         break;
@@ -35,9 +37,12 @@ switch ($fonction)
         $vue = "planning";
         break;
 
-    case "connexion":
-        $title = "Connexion";
-        $vue = "";
+    /* ajout d'un utilisateur */
+    case "ajouter":
+        addUsers($bdd, $tableUser);
+        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $vue = "home";
+        $title = "Accueil";
         break;
 
     default:
@@ -51,3 +56,4 @@ include("vue/header.php");
 include("vue/" . $vue . ".php");
 include("vue/footer.php");
 // fixme rassembler incsription et connexion
+?>

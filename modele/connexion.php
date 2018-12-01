@@ -3,7 +3,7 @@ try
 {
     $dataSourceName = "mysql:host=localhost;dbname=g2e;charset=utf8";
     $user           = "root";
-    $password       = "";
+    $password       = "root";
     $options        = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $bdd = new PDO($dataSourceName, $user, $password, $options);
 }
