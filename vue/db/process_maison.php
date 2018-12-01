@@ -36,43 +36,6 @@ class House
         } # End of while
     }
     
-    // Fonction de visualisation d'informations de la maison
-
-    // Ajouter une nouvelle maison
-    public static function addHouse()
-    {
-        $mysqli = new mysqli("localhost", "root", "", "g2e");
-
-        $houseName       = $_POST['house-name'];
-        $houseNumber     = $_POST['house-number'];
-        $houseRoute      = $_POST['house-route'];
-        $houseCity       = $_POST['house-city'];
-        $housePostalCode = $_POST['house-postal'];
-        $houseCountry    = $_POST['house-country'];
-
-        // Requête SQL
-        $addHouseQuery = $mysqli->query("INSERT INTO habitation(nom_habit, numero_habit, rue_habit, ville_habit, code_postal_habit, pays_habit, id_util)
-        VALUES('$houseName', '$houseNumber', '$houseRoute', '$houseCity', '$housePostalCode', '$houseCountry', '1');");
-        if (!$addHouseQuery) {
-            // Erreur d'ajout d'une maison
-            die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" .$mysqli->error);
-        }
-        else {
-            // Tout s'est bien passé on redirige où on veut
-            header("Location: ../arrosage.php");
-        }
-
-    }
-    // Supprimer une maison existante
-    public static function removeHouse($idHome)
-    {
-//        $removeHouseQuery = $bdd->query("DELETE FROM habitation WHERE nom_habit = $idHome;");
-    }
-    // Modifier une maison déjà enregistrée
-    public static function modifyHouse($idHome, $name)
-    {
-//        $modifiyHouseQuery = $bdd->query("UPDATE habitation SET VALUE nom_habit WHERE nom_habit = $idHome;");
-    }
 }
 
 

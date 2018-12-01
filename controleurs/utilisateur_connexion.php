@@ -1,13 +1,18 @@
 <?php
 /**
- * Contrôleur des maisons
+ * Contrôleur des utilisateurs
  * User: bastien
  * Date: 25/11/2018
  * Time: 00:42
  */
 
-include "modele/habitation.php";
-include "modele/arroseur.php";
+/* info : Explication des variables
+ * $title -> Titre de la page et de l'onglet
+ * $head  -> Ajout de fichiers CSS ou JS spécifique (optionnel)
+ * $vue   -> Vue HTML à afficher
+ */
+
+include "modele/connexion_user.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
 {
@@ -20,26 +25,23 @@ else
 // Choix de la vue à afficher
 switch ($fonction)
 {
-    case "accueil":
+    //se connecter
+    case "connexion":
+        connection_to_site($bdd, $tableUsers);
         $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-        $title = "Gestion de l'arrosage";
-        $vue = "arrosage";
-        $maisons = getHouses($bdd, $tableHabitation);
-        $arroseurs = getArroseur($bdd, $tableArroseur);
+        $title = "Planning";
+        $vue = "planning";
         break;
 
-    case "ajouter":
-        addHouse($bdd, $tableHabitation);
-        $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-        $title = "Gestion de l'arrosage";
-        $vue = "arrosage";
-        break;
     default:
         $title = "Erreur 404";
         $vue = "erreur404";
 //        $message = "Page inexistante";
+        break;
 }
 
 include("vue/header.php");
 include("vue/" . $vue . ".php");
 include("vue/footer.php");
+// fixme rassembler incsription et connexion
+?>

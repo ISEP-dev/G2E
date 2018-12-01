@@ -69,6 +69,16 @@
   </div>
 </div>
 
+<a href="index.php?cible=utilisateurs&fonction=inscription">Planning</a>
+<br>
+<a href="index.php?cible=habitation&fonction=accueil">Arrosage</a>
+<br>
+<a href="index.php?cible=Commercial&fonction=accueil">Commercial</a>
+<br>
+<a href="index.php?cible=Commercial&fonction=acc">Erreur 404</a>
+
+>>>>>>> 3ad89e43f00f2fe9a7ac4cef8829f6655058de76
+
 <?php
 /*
  TODO: chemin des css et images (voir avec base.php)

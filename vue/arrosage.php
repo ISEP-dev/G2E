@@ -1,74 +1,4 @@
 <div class="ligne">
-    <?php // House::getHouses(); ?>
-    <!-- Requête pour afficher les maisons de l'utilisateur -->
-<!--     <div class="col-gauche">
-        <div class="maison">
-            <div class="sticky-header-maison">
-                <h2>Maison Principale</h2>
-                <a id="add-arr-1">
-                    <img class="ajout-arroseur" src="../vue/images/btn-add.png" alt="">
-                </a>
-            </div>
-            <!-- Requête PHP db pour afficher les arroseurs de la maison
-            <div class="arroseur">
-                <div class="space-between">
-                    <div class="nom-arroseur">
-                        Arbre au fond du jardin
-                    </div>
-                    <div class="toggle-button">
-                        <input id="maison1-arroseur1" type="checkbox" class="arroseur-checkbox" name="button" checked></input>
-                        <label class="arroseur-label" for="maison1-arroseur1">
-                            <span class="arroseur-inner"></span>
-                            <span class="arroseur-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">{{progress.value}}%</div>
-                </div>
-                <div class="space-between">
-                    <svg class="arroseur-status">
-                        <circle cx="15" cy="10" r="10" />
-                    </svg>
-                    <img src="../vue/images/info.png" alt="" width="30" height="30">
-                </div>
-            </div>
-            <div class="arroseur">
-                <div class="space-between">
-                    <div class="nom-arroseur">
-                        Pelouse
-                    </div>
-                    <div class="toggle-button">
-                        <input id="maison1-arroseur2" type="checkbox" class="arroseur-checkbox" name="button"></input>
-                        <label class="arroseur-label" for="maison1-arroseur2">
-                            <span class="arroseur-inner"></span>
-                            <span class="arroseur-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">{{progress.value}}%</div>
-                </div>
-                <div class="space-between">
-                    <svg class="arroseur-status">
-                        <circle cx="15" cy="10" r="10" />
-                    </svg>
-                    <img src="../vue/images/info.png" alt="" width="30" height="30">
-                </div>
-            </div>
-            <div class="arroseur">
-            </div>
-            <div class="arroseur">
-            </div>
-            <div class="arroseur"></div>
-            <div class="arroseur"></div>
-            <div class="arroseur"></div>
-            <div class="arroseur"></div>
-            <div class="arroseur"></div>
-        </div>
-    </div>-->
     <!-- Bloc pour pouvoir ajouter une maison facilement -->
     <?php foreach ($maisons as $maison) { ?>
     <div class="col-gauche maison">
@@ -80,39 +10,36 @@
                 </a>
             </div>
             <?php foreach ($arroseurs as $arroseur) { // include('process_arroseur.php'); ?>
-                <div class="arroseur">
-                    <div class="space-between">
-                        <div class="nom-arroseur">
-                            <?= $arroseur['nom_arr'] ?>
-                        </div>
-                        <div class="toggle-button">
-                            <input id="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>" type="checkbox" class="arroseur-checkbox" name="button"
-                                   <?php if ($arroseur['etat_arr']) { ?>
-                                    checked
-                                   <?php } else { }?>>
-                            <label class="arroseur-label" for="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>">
-                                <span class="arroseur-inner"></span>
-                                <span class="arroseur-slider"></span>
-                            </label>
-                        </div>
+            <div class="arroseur">
+                <div class="space-between">
+                    <div class="nom-arroseur">
+                        <?= $arroseur['nom_arr']; ?>
                     </div>
-                    <div class="progress">
-                        <progress value="50" max="100" class="progress-bar"></progress>
-                        <div class="progress-value strong">50%</div>
-                    </div>
-                    <div class="space-between">
-                        <svg class="arroseur-status">
-                            <?php if ($arroseur['etat_fonctionnement_arr'] == 0) { ?>
-                                <circle cx="15" cy="10" r="10" fill="green"></circle>
-                            <?php } elseif ($arroseur['etat_fonctionnement_arr'] == 1) { ?>
-                                <circle cx="15" cy="10" r="10" fill="orange"></circle>
-                            <?php } elseif ($arroseur['etat_fonctionnement_arr'] == 2) { ?>
-                                <circle cx="15" cy="10" r="10" fill="red"></circle>
-                            <?php } ?>
-                        </svg>
-                        <img src="vue/images/info.png" alt="" width="30" height="30">
+                    <div class="toggle-button">
+                        <input id="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>" type="checkbox" class="arroseur-checkbox" name="button"<?php if ($arroseur['etat_arr']) { ?>checked<?php } else { }?>>
+                        <label class="arroseur-label" for="<?= "maison".$arroseur['id_habit']."-arroseur".$arroseur['id_arr']; ?>">
+                            <span class="arroseur-inner"></span>
+                            <span class="arroseur-slider"></span>
+                        </label>
                     </div>
                 </div>
+                <div class="progress">
+                    <progress value="50" max="100" class="progress-bar"></progress>
+                    <div class="progress-value strong">50%</div>
+                </div>
+                <div class="space-between">
+                    <svg class="arroseur-status">
+                        <?php if ($arroseur['etat_fonctionnement_arr'] == 0) { ?>
+                            <circle cx="15" cy="10" r="10" fill="green"></circle>
+                        <?php } elseif ($arroseur['etat_fonctionnement_arr'] == 1) { ?>
+                            <circle cx="15" cy="10" r="10" fill="orange"></circle>
+                        <?php } elseif ($arroseur['etat_fonctionnement_arr'] == 2) { ?>
+                            <circle cx="15" cy="10" r="10" fill="red"></circle>
+                        <?php } ?>
+                    </svg>
+                    <img src="vue/images/info.png" alt="" width="30" height="30">
+                </div>
+            </div>
             <?php } ?>
         </div>
     </div>
@@ -120,14 +47,14 @@
 
     <div class="col-droite centre v-centre column">
         <a id="add-house-userID" title="Ajouter une maison">
-            <img class="add-house" src="vue/images/add-house.png" alt="">
+            <img class="add-house" src="vue/images/add-house.png" alt="Ajouter une maison">
         </a>
     </div>
 </div>
 <!-- Popup pour ajouter une maison -->
 <div class="modal centre">
     <div class="modal-content">
-        <form class="" action="index.php?cible=habitation&fonction=ajouter" method="post">
+        <form action="index.php?cible=habitation&fonction=ajouter" method="post">
             <div class="modal-header">
                 <span class="close">&times;</span>
                 <h3>Ajouter une nouvelle maison</h3>

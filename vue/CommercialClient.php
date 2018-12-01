@@ -1,12 +1,12 @@
-<?php $title = "Informations Client" ?>
-<?php $head  = '<link rel="stylesheet" href="../vue/css/publication.css">'.
-                '<script src="../vue/js/main.js" defer async></script>';
-?>
-<?php ob_start(); ?>
-
-<link rel="stylesheet" href="css/publication.css">
-<link rel="stylesheet" href="css/style.css">
-<body>
+<br><br>
+<div>
+        <ul>
+            <li><a href="#news">Statistiques temporelles</a></li>
+            <li><a href="#contact">Statistiques géographiques</a></li>
+            <li><a href="#about">Informations clients</a></li>
+        </ul>
+</div>
+<br><br>
     <div class="ligne">
         <!-- <div class="col-gauche">
                 <div id="formulaire">
@@ -55,7 +55,8 @@
                 </div>
                 <br><br>
                 <div class="droite">
-                    <input type="submit" name="submit" value="Rechercher">
+                <h2>
+                <bouton class="rechercher" style="vertical-align:middle"><span>Rechercher </span></button>
                 </div>
             </form>
         </div>
@@ -72,5 +73,3 @@
         </div>
     </div>
 </body>
-<?php $body = ob_get_clean(); ?>
-<?php require('base.php'); ?>
