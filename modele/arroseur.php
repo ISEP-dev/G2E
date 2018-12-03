@@ -11,7 +11,34 @@
 
 $tableArroseur = 'arroseur';
 
-function getArroseur(PDO $bdd, string $table): array
+function getArroseur(PDO $bdd, string $table)
 {
-    return selectAll($bdd, $table);
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=1");
+    // return selectAll($bdd, $table);
+}
+
+function addArroseur(PDO $bdd, string $table, $idHabit): bool
+{
+    $arrName      = $_POST['arr-name'];
+    $arrNUmSerie  = $_POST['arr-num-serie'];
+    $arrEtat      = 0; // $_POST['arr-etat'];
+    $arrEtatFct   = 0; // $_POST['arr-etat-fct'];
+    $arrIdHabit   = $idHabit; // fixme -> change to id from house
+
+    $attributs = array(
+        'nom_arr' => $arrName,
+        'numero_serie_arr' => $arrNUmSerie,
+        'etat_arr' => $arrEtat,
+        'etat_fonctionnement_arr' => $arrEtatFct,
+        'date_ajout_arr' => date('Y-m-d H:i:s'),
+        'id_habit' => $arrIdHabit
+    );
+
+    insert($bdd, $table, $attributs);
+
+}
+
+function removeArroseur(PDO $bdd, string $table)
+{
+
 }

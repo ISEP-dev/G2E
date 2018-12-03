@@ -6,6 +6,7 @@ try
     $password       = "root";
     $options        = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
     $bdd            = new PDO($dataSourceName, $user, $password, $options);
+    date_default_timezone_set('Europe/Paris');
 }
 catch (\Exception $e)
 {

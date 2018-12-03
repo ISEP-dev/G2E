@@ -13,10 +13,10 @@ $tableHabitation = 'habitation';
 //todo : ajouter l'id_user de la session en paramètre
 function getHouses(PDO $bdd, string $table)
 {
-    return $bdd->query("SELECT * FROM habitation ".
-                        "INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit ".
-                        "INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util ".
-                        "WHERE utilisateur.id_util = 2");
+    return $bdd->query("SELECT * FROM " . $table .
+                        " INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit".
+                        " INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util".
+                        " WHERE utilisateur.id_util = 1 ORDER BY habitation.date_ajout_habit");
 }
 //todo : ajouter l'id_user de la session en paramètre
 function addHouse(PDO $bdd, string $table)
@@ -35,7 +35,8 @@ function addHouse(PDO $bdd, string $table)
         'rue_habit'         => $houseRoute,
         'ville_habit'       => $houseCity,
         'code_postal_habit' => $housePostalCode,
-        'pays_habit'        => $houseCountry
+        'pays_habit'        => $houseCountry,
+        'date_ajout_habit'  => date('Y-m-d H:i:s')
     );
 //    Insertion nouvelle habitation
     insert($bdd, $table, $attributs);
@@ -58,12 +59,20 @@ function addHouse(PDO $bdd, string $table)
     }
 }
 
-function removeHouse($id_user)
+function removeHouse(PDO $bdd, string $table, $idHouse)
 {
+    $bdd->query("DELETE * FROM habitation_utilisateur WHERE id_util=1 AND id_habit=" . $idHouse .
+                      "; DELETE * FROM " . $table ." WHERE id_habit = " . $idHouse .";");
 
 }
 
 function modifyHouse($id_user)
+{
+
+}
+
+//fixme: replace '1' with $_SESSION['user_id']
+function getIdHouses(PDO $bdd)
 {
 
 }
