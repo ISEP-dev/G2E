@@ -21,20 +21,24 @@ else
 switch ($fonction)
 {
     case "accueil":
-        $head      = '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title     = "Gestion de l'arrosage";
         $vue       = "arrosage";
         $maisons   = getHouses($bdd, $tableHabitation);
         $arroseurs = getArroseur($bdd, $tableArroseur, $maisons);
         break;
 
-//        Formulaire ajout de maison appelle ce cas là
-    case "ajouter":
+    case "ajouter-maison":
         addHouse($bdd, $tableHabitation);
-        $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
+
+    case "ajouter-arroseur":
+        addArroseur($bdd, $tableArroseur, $_GET['id_habit']);
+        $title = "Gestion de l'arrosage";
+        $vue   = "arrosage";
+        break;
+
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";
