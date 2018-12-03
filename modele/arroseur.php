@@ -17,6 +17,11 @@ function getArroseur(PDO $bdd, string $table)
     // return selectAll($bdd, $table);
 }
 
+function getArroseurById(PDO $bdd, string $table, int $idArr)
+{
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);
+}
+
 function addArroseur(PDO $bdd, string $table, $idHabit): bool
 {
     $arrName      = $_POST['arr-name'];

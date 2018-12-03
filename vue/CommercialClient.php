@@ -56,7 +56,7 @@
                 <br><br>
                 <div class="droite">
                 <h2>
-                <bouton class="rechercher" style="vertical-align:middle"><span>Rechercher </span></button>
+                <button class="rechercher" style="vertical-align:middle"><span>Rechercher </span></button>
                 </div>
             </form>
         </div>
