@@ -5,7 +5,7 @@
  * Date: 25/11/2018
  * Time: 00:42
  */
-
+include "modele/model.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
 {
@@ -24,6 +24,14 @@ switch ($fonction)
 
         $title = "Informations Client";
         $vue = "CommercialClient";
+        break;
+    case "stat_temp":        
+        $title = "Statistiques temporelles de ventes";
+        $vue = "commercial";
+        $Xaxis = $_POST['Xaxis'];
+        $Yaxis = $_POST['Yaxis'];
+        $model = new Model();
+        $graph = $model->getGraph($Xaxis,$Yaxis);
         break;
     default:
         $title = "Erreur 404";
