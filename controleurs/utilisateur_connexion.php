@@ -12,7 +12,7 @@
  * $vue   -> Vue HTML à afficher
  */
 
-include "modele/inscription.php";
+include "modele/connexion_user.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction']))
 {
@@ -25,24 +25,12 @@ else
 // Choix de la vue à afficher
 switch ($fonction)
 {
-    case "accueil":
-        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
-        $vue = "home";
-        $title = "Accueil";
-        break;
-
-    case "inscription":
-        $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
+    //se connecter
+    case "connexion":
+        connection_to_site($bdd, $tableUsers);
+        $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title = "Planning";
         $vue = "planning";
-        break;
-
-    /* ajout d'un utilisateur */
-    case "ajouter":
-        addUsers($bdd, $tableUser);
-        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
-        $vue = "home";
-        $title = "Accueil";
         break;
 
     default:
