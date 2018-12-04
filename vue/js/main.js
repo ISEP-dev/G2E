@@ -3,15 +3,15 @@ let PopUpArroseur       = document.getElementById('add-arroseur');
 let btnPopupCloseMaison = document.getElementById('close-maison');
 let btnPopupCloseArr    = document.getElementById('close-arr');
 let btnAddHouse         = document.getElementById('add-house-userID');
-let btnAddArroseur      = document.getElementById('add-arr-3');
+let btnAddArroseur      = document.getElementById('add-arr-5');
 
 function test() {
-    // alert("Hi !");
-    //document.body.style.backgroundColor = "red";
+// alert("Hi !");
+//document.body.style.backgroundColor = "red";
 }
 
 /*
- * Ouverture et fermeture du popup d'ajout de maison
+ * Ouverture et fermeture du popup d'ajout de maison et d'arroseurs
  */
 btnAddHouse.addEventListener('click', function () {
     PopUpMaison.style.display = "block";
@@ -26,11 +26,12 @@ btnPopupCloseArr.addEventListener('click', function () {
     PopUpArroseur.style.display = "none";
 });
 
-function toggleDropdown(id){
+function toggleDropdown(id) {
     document.getElementById(id).classList.toggle('show');
 }
-// window.onclick = function(event) {
-//     if (!event.target.matches('.btn-dropdown')) {
+
+// document.onclick = function(event) {
+//     if (event.target) {
 //         var dropdowns = document.getElementsByClassName("dropdown-content");
 //         var i;
 //         for (i = 0; i < dropdowns.length; i++) {
@@ -40,4 +41,17 @@ function toggleDropdown(id){
 //             }
 //         }
 //     }
-// }
+// };
+
+document.addEventListener(function (event) {
+    if (event.target.matches('.dropdown-content')){
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+});
