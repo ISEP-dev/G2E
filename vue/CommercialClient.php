@@ -41,8 +41,7 @@
                 <input type="text" id="Nom" name="Nom" placeholder="Nom" required>
                 <label for="Prénom" &nbsp;</label>
                 <input type="text" id="Prénom" name="Prénom" placeholder="Prénom" required>
-                <label for="Adresse" &nbsp;</label>
-                <input type="text" id="Adresse" name="Adresse" placeholder="Adresse" required>
+                
                 <label for="Numéro téléphone"> &nbsp;</label>
                 <input type="text" id="Numéro téléphone" name="Numéro téléphone" placeholder="Numéro téléphone" required>
                 <br><br>
