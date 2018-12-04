@@ -1,12 +1,7 @@
 <?php
-
-//fixme: à enlever après
-//include 'vue/base.php';
-
 if (empty($_SESSION)) {
     session_start();
 }
-//define('ROOT_PATH', __DIR__ . '/');
 
 include("controleurs/fonctions.php");
 
@@ -22,3 +17,4 @@ if(isset($_GET['cible']) && !empty($_GET['cible'])) {
 
 // On appelle le contrôleur
 include('controleurs/' . $urlControleur . '.php');
+var_dump($_SESSION);

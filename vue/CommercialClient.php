@@ -56,7 +56,11 @@
                 <br><br>
                 <div class="droite">
                 <h2>
+<<<<<<< HEAD
                 <bouton class="rechercher" style="vertical-align:middle"><span>Rechercher!!!! </span></button>
+=======
+                <button class="rechercher" style="vertical-align:middle"><span>Rechercher </span></button>
+>>>>>>> 7ae45d3031535d942e683cf610b9dd1cf7d601ce
                 </div>
             </form>
         </div>

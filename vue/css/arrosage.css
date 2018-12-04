@@ -18,10 +18,10 @@
     font-size:        1.1em;
 }
 /* Image du bouton ajouter une maison */
-.ajout-arroseur{
+.param-arroseur{
     width: 30px;
     height: auto;
-    cursor: pointer;
+    margin-left: 10px;
 }
 /* Bloc maison */
 div.maison{
@@ -172,5 +172,7 @@ div.progress-value{
 /*  */
 .add-house{
     width: 300px;
+}
+.add{
     cursor: pointer;
 }
