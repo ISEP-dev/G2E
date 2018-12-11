@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 19 nov. 2018 à 10:30
+-- Généré le :  jeu. 06 déc. 2018 à 01:41
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `g2e`
 --
-CREATE DATABASE IF NOT EXISTS `g2e` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `g2e`;
 
 -- --------------------------------------------------------
 
@@ -41,7 +39,20 @@ CREATE TABLE IF NOT EXISTS `arroseur` (
   `id_habit` int(11) NOT NULL,
   PRIMARY KEY (`id_arr`),
   KEY `id_habit` (`id_habit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Arroseurs';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Arroseurs';
+
+--
+-- Déchargement des données de la table `arroseur`
+--
+
+INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_habit`) VALUES
+(1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1),
+(2, 'Pommier', 'DOM14251', 0, 1, '2018-11-25 17:15:00', 4),
+(3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 2),
+(4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 5),
+(5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 7),
+(6, 'Cocotier', 'DOM14258', 0, 0, '2018-11-27 11:10:00', 5),
+(7, 'Serre', 'DOM15295', 0, 2, '2018-09-25 08:35:08', 12);
 
 -- --------------------------------------------------------
 
@@ -111,8 +122,26 @@ CREATE TABLE IF NOT EXISTS `habitation` (
   `ville_habit` varchar(255) NOT NULL,
   `code_postal_habit` varchar(255) NOT NULL,
   `pays_habit` varchar(255) NOT NULL,
+  `date_ajout_habit` datetime NOT NULL DEFAULT '2018-11-25 00:00:00',
   PRIMARY KEY (`id_habit`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Liste des habitations';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Liste des habitations';
+
+--
+-- Déchargement des données de la table `habitation`
+--
+
+INSERT INTO `habitation` (`id_habit`, `nom_habit`, `numero_habit`, `rue_habit`, `ville_habit`, `code_postal_habit`, `pays_habit`, `date_ajout_habit`) VALUES
+(1, 'Test Habitation', 25, 'Rue de la soif', 'Paris', '75000', 'France', '2018-09-12 10:30:00'),
+(2, 'Maison secondaire', 55, 'Boulevard Foch', 'Angers', '49100', 'France', '2017-05-25 08:09:31'),
+(3, 'Maison principale ', 40, 'Rue Saint Aubin', 'Angers', '49100', 'France', '2018-02-05 15:39:10'),
+(4, 'Maison Bastien', 13, 'Boulevard machin', 'Paris', '75000', 'France', '2018-03-20 20:08:29'),
+(5, 'Maison Bastien', 13, 'Boulevard Raspail', 'Paris', '75000', 'France', '2018-11-24 11:33:00'),
+(7, 'Maison 2', 6, 'Rue de paradis', 'Paris', '75010', 'France', '2018-11-24 17:02:42'),
+(8, 'Maison 5', 9, 'Rue des vents', 'Paris', '75016', 'France', '2018-08-02 21:54:42'),
+(9, 'Maison vacances', 55, 'Rue perdu', 'Pornic', '44250', 'France', '2018-11-24 16:21:34'),
+(10, 'Maison deux', 154, 'Rue de test', 'Ville Test', '49630', 'France', '2018-11-25 04:50:43'),
+(11, 'Test1', 1, 'Rue', 'Test', '49000', 'France', '2018-11-28 22:57:05'),
+(12, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34');
 
 -- --------------------------------------------------------
 
@@ -127,6 +156,18 @@ CREATE TABLE IF NOT EXISTS `habitation_utilisateur` (
   KEY `id_util` (`id_util`),
   KEY `id_habit` (`id_habit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `habitation_utilisateur`
+--
+
+INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`) VALUES
+(1, 5),
+(1, 12),
+(1, 4),
+(1, 1),
+(2, 7),
+(2, 9);
 
 -- --------------------------------------------------------
 
@@ -155,6 +196,22 @@ CREATE TABLE IF NOT EXISTS `mode_programme` (
   `id_prog` int(11) NOT NULL,
   KEY `id_mode` (`id_mode`),
   KEY `id_prog` (`id_prog`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `plante`
+--
+
+DROP TABLE IF EXISTS `plante`;
+CREATE TABLE IF NOT EXISTS `plante` (
+  `id_plante` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_plante` varchar(100) NOT NULL,
+  `fréquence_plante` varchar(100) NOT NULL,
+  `saison_plante` varchar(100) NOT NULL,
+  `temps_arrosage_plante` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_plante`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -209,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `id_util` int(11) NOT NULL,
   PRIMARY KEY (`id_ticket`),
   KEY `id_util` (`id_util`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Gestion des tickets pour les problèmes';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Gestion des tickets pour les problèmes';
 
 -- --------------------------------------------------------
 
@@ -250,7 +307,15 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `type_util` varchar(255) NOT NULL,
   `creee_a_util` datetime NOT NULL,
   PRIMARY KEY (`id_util`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `mdp_util`, `tel_util`, `type_util`, `creee_a_util`) VALUES
+(1, 'Grignon', 'Bastien', 'bg@isep.fr', '$2y$10$u16FmRJH1pdLSxte9SOsZOEw69/xsAnK3nR6ZhSDx4IfUP8fjQC..', '0751247989', 'Utilisateur', '2018-12-03 11:38:08'),
+(2, 'Dupond', 'Jean', 'jean.dupond@gmail.com', '$2y$10$BdTk5xkQqnrJ7Mh8RgMeueAouJ88zg6Wi2LPSwOmE8vpz.pDIl4q6', '0123456789', 'Utilisateur', '2018-12-03 16:54:34');
 
 --
 -- Contraintes pour les tables déchargées
@@ -287,7 +352,7 @@ ALTER TABLE `donnee`
 --
 ALTER TABLE `habitation_utilisateur`
   ADD CONSTRAINT `habitation_utilisateur_ibfk_1` FOREIGN KEY (`id_util`) REFERENCES `utilisateur` (`id_util`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `habitation_utilisateur_ibfk_2` FOREIGN KEY (`id_habit`) REFERENCES `habitation` (`id_habit`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `habitation_utilisateur_ibfk_2` FOREIGN KEY (`id_habit`) REFERENCES `habitation` (`id_habit`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `mode`

@@ -28,7 +28,7 @@
             echo $title;
         } ?>
     </div>
-    <?php if (!isset($_SESSION)) { ?>
+    <?php if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) { ?>
         <div class="dropdown">
             <button class="button" onclick="toggleDropdown('user-dropdown')">
                 <img class="img-compte" src="vue/images/compte.png" alt="compte"/>
@@ -48,3 +48,4 @@
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
     <?php } ?>
 </header>
+<hr>

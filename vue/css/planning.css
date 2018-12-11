@@ -1,4 +1,4 @@
-h1{
+.h1{
     align-items:      center;
     height:           3rem;
     padding:          0 30px;
@@ -8,7 +8,7 @@ h1{
     font-size:        1.1em;
 }
 
-h2{
+.h2{
     align-items:      center;
     height:           3rem;
     padding:          0 30px;
@@ -18,7 +18,7 @@ h2{
     font-size:        1.1em;
     align-content: stretch;
 }
-h3{
+.h3{
     align-items:      center;
     height:           3rem;
     padding:          0 30px;
@@ -27,7 +27,7 @@ h3{
     color:            var(--blanc);
     font-size:        1.1em;
 }
-h4{
+.h4{
     align-items:      center;
     height:           3rem;
     padding:          0 30px;

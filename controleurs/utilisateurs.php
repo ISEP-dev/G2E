@@ -23,26 +23,28 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 switch ($fonction) {
     case "accueil":
         $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        // '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAteeaTGDmHd0ECWPah2EIPMJksVSW5IyI"></script>'.
+        // '<script type="text/javascript" src="vue/js/autocomplete.js"></script>';
         $vue   = "home";
         $title = "Accueil";
         break;
 
     case "connexion":
-        $ok = connection_to_site($bdd, $tableUsers);
+        connection_to_site($bdd, $tableUsers);
         if ($ok) {
-            $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-            $title = "Gestion de l'arrosage";
-            $vue   = "arrosage";
+            $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+            $title    = "Gestion de l'arrosage";
+            $vue      = "arrosage";
         } else {
             // Email ou mdp inconnu
             $title = "Identifiants incorrects";
-            $vue = "erreur404";
+            $vue   = "erreur404";
         }
         break;
 
-    case "inscription":
+    case "planning":
         $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
-        $title = "Planning";
+        $title = "Gestion des incidents";
         $vue   = "planning";
         break;
 

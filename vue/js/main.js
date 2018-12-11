@@ -1,43 +1,42 @@
-let PopUpMaison         = document.getElementById('add-maison');
-let PopUpArroseur       = document.getElementById('add-arroseur');
-let btnPopupCloseMaison = document.getElementById('close-maison');
-let btnPopupCloseArr    = document.getElementById('close-arr');
-let btnAddHouse         = document.getElementById('add-house-userID');
-let btnAddArroseur      = document.getElementById('add-arr-3');
+let PopUpMaison   = document.getElementById('add-maison');
+let PopUpArroseur = document.getElementById('add-arroseur');
+let btnAddHouse   = document.getElementById('add-house-userID');
 
-function test() {
-    // alert("Hi !");
-    //document.body.style.backgroundColor = "red";
+function toggleDropdown(id) {
+    document.getElementById(id).classList.toggle('show');
+}
+
+let close = document.getElementsByClassName('close');
+for (let i = 0; i < close.length; i++) {
+    let btnClose = close.item(i);
+    btnClose.addEventListener("click", function () {
+        PopUpArroseur.style.display = "none";
+        PopUpMaison.style.display   = "none";
+    });
 }
 
 /*
- * Ouverture et fermeture du popup d'ajout de maison
+ * Ouverture et fermeture du popup d'ajout de maison et d'arroseurs
  */
 btnAddHouse.addEventListener('click', function () {
     PopUpMaison.style.display = "block";
 });
-btnAddArroseur.addEventListener('click', function () {
-    PopUpArroseur.style.display = "block";
-});
-btnPopupCloseMaison.addEventListener('click', function () {
-    PopUpMaison.style.display = "none";
-});
-btnPopupCloseArr.addEventListener('click', function () {
-    PopUpArroseur.style.display = "none";
-});
 
-function toggleDropdown(id){
-    document.getElementById(id).classList.toggle('show');
+let btnAddArroseurs = document.getElementsByClassName('add');
+for (let i = 0; i < btnAddArroseurs.length; i++) {
+    let bouton = btnAddArroseurs.item(i);
+    bouton.addEventListener("click", function () {
+        const idHouse            = bouton.id.substring(8);
+        let xhttp                = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("test").innerHTML = idHouse;
+            }
+        };
+        xhttp.open("POST", "index.php?cible=habitation&fonction=accueil", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("idHouse=" + idHouse);
+        console.log(idHouse);
+        PopUpArroseur.style.display = "block";
+    });
 }
-// window.onclick = function(event) {
-//     if (!event.target.matches('.btn-dropdown')) {
-//         var dropdowns = document.getElementsByClassName("dropdown-content");
-//         var i;
-//         for (i = 0; i < dropdowns.length; i++) {
-//             var openDropdown = dropdowns[i];
-//             if (openDropdown.classList.contains('show')) {
-//                 openDropdown.classList.remove('show');
-//             }
-//         }
-//     }
-// }
