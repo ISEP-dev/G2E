@@ -24,7 +24,6 @@
                 </form>
             </div>
         </div>
-
         <div class="col-droite">
             <div class="v-haut header-user">
                 <h2>S'inscrire</h2>
@@ -72,6 +71,7 @@
             </div>
         </div>
     </div>
+
 <?php } else {?>
 
     <h1><a href="index.php?cible=utilisateurs&fonction=planning">Planning</a></h1>
