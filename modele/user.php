@@ -9,7 +9,7 @@ require "modele/fonctions.php";
 
 $tableUsers = 'utilisateur';
 
-function connection_to_site(PDO $bdd, string $table): bool
+function connection_to_site(PDO $bdd, string $table)
 {
     if (isset($_POST['identifiant']) && isset($_POST['motdepasse'])) {
         $email  = $_POST['identifiant'];
@@ -21,16 +21,34 @@ function connection_to_site(PDO $bdd, string $table): bool
             // on enregistre les paramètres de notre visiteur comme variables de session
             $_SESSION['user_name'] = $user['nom_util'] . " " . $user['prenom_util'];
             $_SESSION['user_id']   = $user['id_util'];
-            return true; //header("Location: index.php?cible=habitation&fonction=accueil");
+            switch ($user['type_util']){
+                case 1:
+                    // Utilisateur
+                    header("Location: index.php?cible=habitation&fonction=accueil");
+                    break;
+                case 2:
+                    // Technicien
+                    header("Location: index.php?cible=utilisateurs&fonction=planning");
+                    break;
+                case 3:
+                    // Commercial
+                    header("Location: index.php?cible=Commercial&fonction=accueil");
+                    break;
+                case 3:
+                    // Gestionnaire
+                    header("Location: index.php?cible=habitation&fonction=accueil");
+                    break;
+                default:
+                    header("Location: index.php?cible=habitation&fonction=accueil");
+                    break;
+            }
         }
     } else {
-        return false;
-        // echo '<body onLoad="alert(\'Membre non reconnu... entrez des identifiants valides\')">';
+        echo '<body onLoad="alert(\'Membre non reconnu... entrez des identifiants valides\')">';
         // On le redirige vers la page d'accueil
-        // echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+        echo '<meta http-equiv="refresh" content="0;URL=index.php">';
 
     }
-    return false;
 }
 
 function addUsers(PDO $bdd, string $table)

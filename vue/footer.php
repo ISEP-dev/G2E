@@ -2,7 +2,6 @@
     <div class="footer_gauche">
         <p class="footer_liens">
             <a href="index.php">Accueil</a> |
-            <a href="">Forums</a> |
             <a href="">CGU</a> |
             <a href="">A propos</a> |
             <a href="">FAQ</a> |

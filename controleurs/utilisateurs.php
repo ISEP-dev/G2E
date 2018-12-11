@@ -28,21 +28,21 @@ switch ($fonction) {
         break;
 
     case "connexion":
-        $ok = connection_to_site($bdd, $tableUsers);
+        connection_to_site($bdd, $tableUsers);
         if ($ok) {
-            $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-            $title = "Gestion de l'arrosage";
-            $vue   = "arrosage";
+            $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+            $title    = "Gestion de l'arrosage";
+            $vue      = "arrosage";
         } else {
             // Email ou mdp inconnu
             $title = "Identifiants incorrects";
-            $vue = "erreur404";
+            $vue   = "erreur404";
         }
         break;
 
-    case "inscription":
+    case "planning":
         $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
-        $title = "Planning";
+        $title = "Gestion des incidents";
         $vue   = "planning";
         break;
 
