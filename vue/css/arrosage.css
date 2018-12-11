@@ -176,3 +176,10 @@ div.progress-value{
 .add{
     cursor: pointer;
 }
+.cursor{
+    cursor : pointer;
+}
+.arroseur-info{
+    padding-bottom: 35px;
+    padding-top: 35px;
+}

@@ -11,39 +11,44 @@
 
 $tableArroseur = 'arroseur';
 
-function getArroseur(PDO $bdd, string $table)
+function getArroseur(PDO $bdd, string $table, int $idHabit)
 {
-    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=1");
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit);
     // return selectAll($bdd, $table);
 }
 
-function getArroseurById(PDO $bdd, string $table, int $idArr)
+function getArroseurInfoById(PDO $bdd, string $table, int $idArr)
 {
     return $bdd->query("SELECT * FROM " . $table . " WHERE id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);
 }
 
 function addArroseur(PDO $bdd, string $table, $idHabit): bool
 {
-    $arrName      = $_POST['arr-name'];
-    $arrNUmSerie  = $_POST['arr-num-serie'];
-    $arrEtat      = 0; // $_POST['arr-etat'];
-    $arrEtatFct   = 0; // $_POST['arr-etat-fct'];
-    $arrIdHabit   = $idHabit; // fixme -> change to id from house
+    $arrName     = $_POST['arr-name'];
+    $arrNUmSerie = $_POST['arr-num-serie'];
+    $arrEtat     = 0;
+    $arrEtatFct  = 0;
+    $arrIdHabit  = $idHabit;
 
     $attributs = array(
-        'nom_arr' => $arrName,
-        'numero_serie_arr' => $arrNUmSerie,
-        'etat_arr' => $arrEtat,
+        'nom_arr'                 => $arrName,
+        'numero_serie_arr'        => $arrNUmSerie,
+        'etat_arr'                => $arrEtat,
         'etat_fonctionnement_arr' => $arrEtatFct,
-        'date_ajout_arr' => date('Y-m-d H:i:s'),
-        'id_habit' => $arrIdHabit
+        'date_ajout_arr'          => date('Y-m-d H:i:s'),
+        'id_habit'                => $arrIdHabit
     );
 
-    insert($bdd, $table, $attributs);
+    return insert($bdd, $table, $attributs);
 
 }
 
 function removeArroseur(PDO $bdd, string $table)
+{
+
+}
+
+function getPlantes(PDO $bdd, string $table)
 {
 
 }

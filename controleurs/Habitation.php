@@ -26,14 +26,27 @@ switch ($fonction)
     case "accueil":
         $title     = "Gestion de l'arrosage";
         $vue       = "arrosage";
-        $maisons   = getHouses($bdd, $tableHabitation);
-        $arroseurs = getArroseur($bdd, $tableArroseur);
+        $maisons   = getHouses($bdd, $tableHabitation, $_SESSION['user_id']);
+        $arroseurs = getArroseur($bdd, $tableArroseur, 1);
         break;
 
     case "ajouter-maison":
-        addHouse($bdd, $tableHabitation);
+        addHouse($bdd, $tableHabitation, $_SESSION['user_id']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
+        break;
+
+
+    case "infos-maison":
+        $maisonInfo = getHouseInfoById($bdd, $tableHabitation, 1);
+        $title = $_GET['name_maison'];
+        $vue   = "infos-maison";
+        break;
+
+    case "param-maison":
+        //$maisonInfo = getHouseInfoById($bdd, $tableHabitation, 1);
+        $title = $_GET['name_maison'];
+        $vue   = "param-maison";
         break;
 
     case "ajouter-arroseur":
@@ -42,14 +55,9 @@ switch ($fonction)
         $vue   = "arrosage";
         break;
 
-    case "infos-maison":
-        $title = "Informations sur la " . $_GET['id'];
-        $vue   = "infos-maison";
-        break;
-
     case "infos-arroseur":
-        $arroseur = getArroseurById($bdd, $tableArroseur, $_GET['id']);
-        $title = "Informations de l'arroseur";
+        $arr = getArroseurInfoById($bdd, $tableArroseur, $_GET['name_arroseur']);
+        $title = $arr['nom_arr'];
         $vue   = "infos-arroseur";
         break;
 

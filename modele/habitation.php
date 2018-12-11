@@ -6,55 +6,45 @@
  * Time: 14:32
  */
 
-require "modele/fonctions.php" ;
+require "modele/fonctions.php";
 
 $tableHabitation = 'habitation';
 
 //todo : ajouter l'id_user de la session en paramètre
-function getHouses(PDO $bdd, string $table)
+function getHouses(PDO $bdd, string $table, int $idUser)
 {
     return $bdd->query("SELECT * FROM " . $table .
-                        " INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit".
-                        " INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util".
-                        " WHERE utilisateur.id_util = 1 ORDER BY habitation.date_ajout_habit");
+        " INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit" .
+        " INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util" .
+        " WHERE utilisateur.id_util = " . $idUser . " ORDER BY habitation.date_ajout_habit");
 }
-//todo : ajouter l'id_user de la session en paramètre
-function addHouse(PDO $bdd, string $table)
-{
-    $houseName       = $_POST['house-name'];
-    $houseNumber     = $_POST['house-number'];
-    $houseRoute      = $_POST['house-route'];
-    $houseCity       = $_POST['house-city'];
-    $housePostalCode = $_POST['house-postal'];
-    $houseCountry    = $_POST['house-country'];
 
-//    Association des attributs de la base de donnée au valeurs récupérées du formulaire
+//todo : ajouter l'id_user de la session en paramètre
+function addHouse(PDO $bdd, string $table, int $idUser)
+{
     $attributs = array(
-        'nom_habit'         => $houseName,
-        'numero_habit'      => $houseNumber,
-        'rue_habit'         => $houseRoute,
-        'ville_habit'       => $houseCity,
-        'code_postal_habit' => $housePostalCode,
-        'pays_habit'        => $houseCountry,
+        'nom_habit'         => $_POST['house-name'],
+        'numero_habit'      => $_POST['house-number'],
+        'rue_habit'         => $_POST['house-route'],
+        'ville_habit'       => $_POST['house-city'],
+        'code_postal_habit' => $_POST['house-postal'],
+        'pays_habit'        => $_POST['house-country'],
         'date_ajout_habit'  => date('Y-m-d H:i:s')
     );
 //    Insertion nouvelle habitation
     insert($bdd, $table, $attributs);
 
 //    insertion id de la maison et de l'utilisateur dans habitation_utilisateur
-    $idHabit = $bdd->lastInsertId();
-    $tableHabitUtil = 'habitation_utilisateur';
+    $idHabit            = $bdd->lastInsertId();
+    $tableHabitUtil     = 'habitation_utilisateur';
     $attributsHabitUtil = array(
-        'id_util'  => 1,//$_SESSION['user_id'];
+        'id_util'  => $idUser,
         'id_habit' => $idHabit
     );
-    $addKeyHouse = insert($bdd, $tableHabitUtil, $attributsHabitUtil);
-    if (!$addKeyHouse)
-    {
-        die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" .$bdd->errorInfo);
-    }
-    else
-    {
+    $addKeyHouse        = insert($bdd, $tableHabitUtil, $attributsHabitUtil);
+    if (!$addKeyHouse) {
+        die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" . $bdd->errorInfo());
+    } else {
         header("Location: index.php?cible=habitation&fonction=accueil");
     }
 }
@@ -62,7 +52,7 @@ function addHouse(PDO $bdd, string $table)
 function removeHouse(PDO $bdd, string $table, $idHouse)
 {
     $bdd->query("DELETE * FROM habitation_utilisateur WHERE id_util=1 AND id_habit=" . $idHouse .
-                      "; DELETE * FROM " . $table ." WHERE id_habit = " . $idHouse .";");
+        "; DELETE * FROM " . $table . " WHERE id_habit = " . $idHouse . ";");
 
 }
 
@@ -75,4 +65,9 @@ function modifyHouse($id_user)
 function getIdHouses(PDO $bdd)
 {
 
+}
+
+function getHouseInfoById(PDO $bdd, string $table, int $idHabit)
+{
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
 }
