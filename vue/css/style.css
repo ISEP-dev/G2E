@@ -26,6 +26,7 @@
     --bleu-clair:   rgb(117, 187, 194);
     --bleu-fonce:   rgb(62, 102, 108);
     --vert:         rgb(133, 195, 140);
+    --red:          #f44336;
     --blanc:        #fff;
     --noir:         #000;
     --radius:       10px;
@@ -42,7 +43,7 @@ body{
 }
 hr {
     display: block;
-    margin: 0.5em auto;
+    margin: 1em auto;
     border: 1px inset;
 }
 a{
@@ -146,6 +147,9 @@ b,.b,.strong{
 .hide{
     display: none !important;
 }
+.show{
+    display: block !important;
+}
 /* ------ Données formulaire général ------ */
 textarea{
     border-top-left-radius:  var(--radius);    /* WARNING: à revoir pour autres form */
@@ -180,30 +184,49 @@ select:focus, textarea:focus, input[type=text]:focus{
     overflow: hidden;
     outline: 0;
     overflow-y: auto;
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 /* Contenu globale du modal */
-.modal-content{
+.modal > .modal-content{
     display: flex;
     flex-direction: column;
     pointer-events: auto;
     margin: 8% auto;
     width: 40%;
     border-radius: var(--radius);
-    padding: 0 3px;
     background-color: var(--blanc);
-    box-shadow: 1px 1px 20px var(--gris-clair);
+    box-shadow: 2px 2px 10px var(--gris-clair);
     animation: modalFadeIn .5s;
 }
 /* En-tête du modal */
-.modal-header, .modal-footer{
-    padding: 5px var(--padding);
+.modal-header{
+    border-top-right-radius: var(--radius);
+    border-top-left-radius: var(--radius);
+    background-color: var(--gris-clair);
+    height: 50px;
+    padding: 1px 15px;
+}
+.modal-footer{
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius) ;
+    background-color: var(--gris-clair);
+    height: 50px;
+    padding: 10px;
 }
 /* Contenu principal du modal */
 .modal-body{
-    border-top: 2px solid var(--gris-noir);
-    border-bottom: 2px solid var(--gris-noir);
+    border-top: 1px solid var(--gris-noir);
+    border-bottom: 1px solid var(--gris-noir);
     padding: 15px;
+}
+.btn-modal-submit{
+    border-radius: 5px;
+    background-color: var(--vert);
+    color: var(--blanc);
+    width: 10%;
+}
+.btn-modal-submit:hover, .btn-modal-submit:focus{
+    opacity: 0.7;
 }
 /* Bouton croix fermeture du modal */
 .close {
@@ -246,4 +269,81 @@ select:focus, textarea:focus, input[type=text]:focus{
 @keyframes fadeOut {
   0% { background:rgba(0,0,0,.7); }
   100% { background:rgba(0,0,0,.0); }
+}
+
+.btn-dropdown{
+    cursor: pointer;
+    border: none;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    right: 0;
+    min-width: 120px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 2;
+    border-radius: var(--radius);
+    font-size: 20px;
+    padding: 10px;
+    background-color: var(--gris-clair);
+}
+.dropdown-content a {
+    color: var(--bleu-fonce);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    border-radius: 50px;
+    background-color: var(--bleu-clair);
+    margin-bottom: 5px;
+}
+.dropdown-content a:hover {
+    background-color: var(--bleu-fonce);
+    color: var(--gris-clair);
+    border-radius: 50px;
+}
+.alert{
+    /*Todo : style balise for alertMessage()*/
+}
+
+/* fixme info : test colonne modal*/
+.row{
+    display: flex;
+    flex-direction: row;
+    padding: 0 20%;
+    align-items: center;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 50%;
+    justify-content: flex-start;
+    text-align: start;
+    padding: 5px;
+}
+.back-button{
+    font-size: 25px;
+    text-decoration: none;
+    background-color: var(--bleu-fonce);
+    color: var(--blanc);
+    border-radius: var(--input-radius);
+    padding: 10px;
+}
+.back-button:hover{
+    content: '< ';
+    background-color: var(--bleu-clair);
+    color: var(--noir);
+    -webkit-transform: rotate(20deg);
+    -moz-transform: rotate(20deg);
+    -ms-transform: rotate(20deg);
+    -o-transform: rotate(20deg);
+    transform: rotate(20deg);
+}
+.back-button:hover:before{
+    content: '< ';
 }

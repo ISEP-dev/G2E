@@ -12,37 +12,60 @@
  * $vue   -> Vue HTML à afficher
  */
 
+include "modele/user.php";
 
-if (!isset($_GET['fonction']) || empty($_GET['fonction']))
-{
+if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
-}
-else
-{
+} else {
     $fonction = $_GET['fonction'];
 }
 // Choix de la vue à afficher
-switch ($fonction)
-{
+switch ($fonction) {
     case "accueil":
-        $vue = "home";
+        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        // '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAteeaTGDmHd0ECWPah2EIPMJksVSW5IyI"></script>'.
+        // '<script type="text/javascript" src="vue/js/autocomplete.js"></script>';
+        $vue   = "home";
         $title = "Accueil";
         break;
 
-    case "inscription":
-        $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
-        $title = "Planning";
-        $vue = "planning";
-        break;
-
     case "connexion":
-        $title = "Connexion";
-        $vue = "";
+        connection_to_site($bdd, $tableUsers);
+        if ($ok) {
+            $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+            $title    = "Gestion de l'arrosage";
+            $vue      = "arrosage";
+        } else {
+            // Email ou mdp inconnu
+            $title = "Identifiants incorrects";
+            $vue   = "erreur404";
+        }
         break;
 
+    case "planning":
+        $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
+        $title = "Gestion des incidents";
+        $vue   = "planning";
+        break;
+
+    /* ajout d'un utilisateur */
+    case "ajouter":
+        addUsers($bdd, $tableUsers);
+        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $vue   = "home";
+        $title = "Accueil";
+        break;
+
+    case "logout":
+        $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        session_unset();
+        session_destroy();
+        $vue   = "home";
+        $title = "Accueil";
+        break;
     default:
         $title = "Erreur 404";
-        $vue = "erreur404";
+        $vue   = "erreur404";
 //        $message = "Page inexistante";
         break;
 }
@@ -50,4 +73,4 @@ switch ($fonction)
 include("vue/header.php");
 include("vue/" . $vue . ".php");
 include("vue/footer.php");
-// fixme rassembler incsription et connexion
+?>

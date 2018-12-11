@@ -1,11 +1,6 @@
-<?php $title = "Publication" ?>
-<?php $head  = '<link rel="stylesheet" href="../vue/css/publication.css">'.
-                '<script src="../vue/js/main.js" defer async></script>';
+<?php $title = "Publication";
+$head  = '<link rel="stylesheet" href="vue/css/publication.css">';
 ?>
-<?php ob_start(); ?>
-
-<link rel="stylesheet" href="css/publication.css">
-<link rel="stylesheet" href="css/style.css">
 <body>
     <div class="ligne">
         <!-- <div class="col-gauche">
@@ -34,7 +29,7 @@
                 </div>
         </div> -->
         <div class="col-gauche">
-            <form id="" class="" action="index.html" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
+            <form id="" class="" action="index.php" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
                 <h1 class="centre">Nouvelle Publication</h1>
                 <hr>
                 <label for="titre">Titre &nbsp;</label>
@@ -70,8 +65,8 @@
             <div class="centre">
                 <div class="pagination">
                     <a href="#">&laquo;</a>
-                    <a href="#">1</a>
-                    <a href="#" class="active">2</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
                     <a href="#">3</a>
                     <a href="#">&raquo;</a>
                 </div>
@@ -79,5 +74,3 @@
         </div>
     </div>
 </body>
-<?php $body = ob_get_clean(); ?>
-<?php require('base.php'); ?>

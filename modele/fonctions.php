@@ -26,7 +26,7 @@ function selectAll(PDO $bdd, string $table): array
 function selectWhere(PDO $bdd, string $table, array $attributs): array
 {
     $where = '';
-    foreach($attributs as $key => $value) {
+    foreach ($attributs as $key => $value) {
         $where .= "$key = :$key" . ", ";
     }
     $where = substr_replace($where, '', -2, 2); //caractère de fin de chaine ? \0
@@ -34,7 +34,7 @@ function selectWhere(PDO $bdd, string $table, array $attributs): array
     $statement = $bdd->prepare('SELECT * FROM ' . $table . ' WHERE ' . $where);
 
 
-    foreach($attributs as $key => $value) {
+    foreach ($attributs as $key => $value) {
         $statement->bindParam(":$key", $value);
     }
     $statement->execute();
@@ -51,15 +51,15 @@ function selectWhere(PDO $bdd, string $table, array $attributs): array
 function insert(PDO $bdd, string $table, array $values): bool
 {
     $attributs = '';
-    $valeurs = '';
+    $valeurs   = '';
     foreach ($values as $key => $value) {
 
         $attributs .= $key . ', ';
-        $valeurs .= ':' . $key . ', ';
-        $v[] = $value;
+        $valeurs   .= ':' . $key . ', ';
+        $v[]       = $value;
     }
     $attributs = substr_replace($attributs, '', -2, 2);
-    $valeurs = substr_replace($valeurs, '', -2, 2);
+    $valeurs   = substr_replace($valeurs, '', -2, 2);
 
     $query = ' INSERT INTO ' . $table . ' (' . $attributs . ') VALUES (' . $valeurs . ')';
 
@@ -74,6 +74,7 @@ function insert(PDO $bdd, string $table, array $values): bool
 
 }
 
-function delete(PDO $bdd, string $table, string $where){
-    $bdd->query("DELETE FROM ". $table . "WHERE " . $where);
+function delete(PDO $bdd, string $table, string $where)
+{
+    $bdd->query("DELETE FROM " . $table . "WHERE " . $where);
 }

@@ -1,0 +1,54 @@
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: var(--input-radius);
+}
+
+.header-user {
+    align-items: center;
+    z-index: 1;
+    top: 0;
+    height: 3rem;
+    padding: 0 30px;
+    border-radius: var(--radius);
+    background-color: var(--bleu-clair);
+    color: var(--blanc);
+    font-size: 1.1em;
+}
+
+.adresse {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.boutonConnexion {
+    background-color: #4CAF50;
+}
+
+.boutonInscription {
+    background-color: var(--red);
+}
+
+.boutonConnexion, .boutonInscription {
+    width: 25%;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: var(--input-radius);
+    cursor: pointer;
+}
+
+.boutonConnexion:hover, .boutonInscription:hover {
+    opacity: 0.8;
+}
+
+select {
+    width: 100%;
+    border-radius: var(--input-radius);
+    cursor: pointer;
+}

@@ -1,12 +1,7 @@
 <?php
-
-//fixme: à enlever après
-//include 'vue/base.php';
-
 if (empty($_SESSION)) {
     session_start();
 }
-//define('ROOT_PATH', __DIR__ . '/');
 
 include("controleurs/fonctions.php");
 
