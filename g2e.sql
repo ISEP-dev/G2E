@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 06 déc. 2018 à 01:41
+-- Généré le :  mar. 11 déc. 2018 à 13:27
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -47,12 +47,11 @@ CREATE TABLE IF NOT EXISTS `arroseur` (
 
 INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_habit`) VALUES
 (1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1),
-(2, 'Pommier', 'DOM14251', 0, 1, '2018-11-25 17:15:00', 4),
 (3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 2),
 (4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 5),
 (5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 7),
-(6, 'Cocotier', 'DOM14258', 0, 0, '2018-11-27 11:10:00', 5),
-(7, 'Serre', 'DOM15295', 0, 2, '2018-09-25 08:35:08', 12);
+(6, 'Cocotier', 'DOM14258', 1, 2, '2018-11-27 11:10:00', 5),
+(7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 12);
 
 -- --------------------------------------------------------
 
@@ -124,23 +123,21 @@ CREATE TABLE IF NOT EXISTS `habitation` (
   `pays_habit` varchar(255) NOT NULL,
   `date_ajout_habit` datetime NOT NULL DEFAULT '2018-11-25 00:00:00',
   PRIMARY KEY (`id_habit`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COMMENT='Liste des habitations';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Liste des habitations';
 
 --
 -- Déchargement des données de la table `habitation`
 --
 
 INSERT INTO `habitation` (`id_habit`, `nom_habit`, `numero_habit`, `rue_habit`, `ville_habit`, `code_postal_habit`, `pays_habit`, `date_ajout_habit`) VALUES
-(1, 'Test Habitation', 25, 'Rue de la soif', 'Paris', '75000', 'France', '2018-09-12 10:30:00'),
+(1, 'Maison principale', 25, 'Rue de vanves', 'Paris', '75000', 'France', '2018-09-12 10:30:00'),
 (2, 'Maison secondaire', 55, 'Boulevard Foch', 'Angers', '49100', 'France', '2017-05-25 08:09:31'),
 (3, 'Maison principale ', 40, 'Rue Saint Aubin', 'Angers', '49100', 'France', '2018-02-05 15:39:10'),
-(4, 'Maison Bastien', 13, 'Boulevard machin', 'Paris', '75000', 'France', '2018-03-20 20:08:29'),
-(5, 'Maison Bastien', 13, 'Boulevard Raspail', 'Paris', '75000', 'France', '2018-11-24 11:33:00'),
+(5, 'Maison de vacances', 13, 'Boulevard Raspail', 'Paris', '75000', 'France', '2018-11-24 11:33:00'),
 (7, 'Maison 2', 6, 'Rue de paradis', 'Paris', '75010', 'France', '2018-11-24 17:02:42'),
 (8, 'Maison 5', 9, 'Rue des vents', 'Paris', '75016', 'France', '2018-08-02 21:54:42'),
 (9, 'Maison vacances', 55, 'Rue perdu', 'Pornic', '44250', 'France', '2018-11-24 16:21:34'),
 (10, 'Maison deux', 154, 'Rue de test', 'Ville Test', '49630', 'France', '2018-11-25 04:50:43'),
-(11, 'Test1', 1, 'Rue', 'Test', '49000', 'France', '2018-11-28 22:57:05'),
 (12, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34');
 
 -- --------------------------------------------------------
@@ -163,8 +160,6 @@ CREATE TABLE IF NOT EXISTS `habitation_utilisateur` (
 
 INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`) VALUES
 (1, 5),
-(1, 12),
-(1, 4),
 (1, 1),
 (2, 7),
 (2, 9);
@@ -212,7 +207,17 @@ CREATE TABLE IF NOT EXISTS `plante` (
   `saison_plante` varchar(100) NOT NULL,
   `temps_arrosage_plante` varchar(100) NOT NULL,
   PRIMARY KEY (`id_plante`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `plante`
+--
+
+INSERT INTO `plante` (`id_plante`, `nom_plante`, `fréquence_plante`, `saison_plante`, `temps_arrosage_plante`) VALUES
+(1, 'Arbres et Arbustes', '1 à 2 fois par semaine', 'Été, Printemps', '1 min'),
+(2, 'Pelouse', '1 fois par jour', 'Toute saison', '1 heure'),
+(3, 'Massif de fleurs', '1 fois par jour', 'Été ', '1 minutes'),
+(4, 'Potager', '1 à 2 fois par semaine', 'Été, Printemps', '30 secondes');
 
 -- --------------------------------------------------------
 
@@ -266,7 +271,7 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `id_util` int(11) NOT NULL,
   PRIMARY KEY (`id_ticket`),
   KEY `id_util` (`id_util`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='Gestion des tickets pour les problèmes';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Gestion des tickets pour les problèmes';
 
 -- --------------------------------------------------------
 
@@ -293,6 +298,29 @@ INSERT INTO `type` (`id_type`, `nom_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `type_utilisateur`
+--
+
+DROP TABLE IF EXISTS `type_utilisateur`;
+CREATE TABLE IF NOT EXISTS `type_utilisateur` (
+  `id_type_util` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type_util` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_type_util`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `type_utilisateur`
+--
+
+INSERT INTO `type_utilisateur` (`id_type_util`, `user_type_util`) VALUES
+(1, 'Utilisateur'),
+(2, 'Technicien'),
+(3, 'Commercial'),
+(4, 'Mairie');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `utilisateur`
 --
 
@@ -304,18 +332,21 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `email_util` varchar(255) NOT NULL,
   `mdp_util` varchar(255) NOT NULL,
   `tel_util` varchar(255) NOT NULL,
-  `type_util` varchar(255) NOT NULL,
+  `type_util` int(11) DEFAULT NULL,
   `creee_a_util` datetime NOT NULL,
-  PRIMARY KEY (`id_util`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id_util`),
+  KEY `type_util` (`type_util`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
 INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `mdp_util`, `tel_util`, `type_util`, `creee_a_util`) VALUES
-(1, 'Grignon', 'Bastien', 'bg@isep.fr', '$2y$10$u16FmRJH1pdLSxte9SOsZOEw69/xsAnK3nR6ZhSDx4IfUP8fjQC..', '0751247989', 'Utilisateur', '2018-12-03 11:38:08'),
-(2, 'Dupond', 'Jean', 'jean.dupond@gmail.com', '$2y$10$BdTk5xkQqnrJ7Mh8RgMeueAouJ88zg6Wi2LPSwOmE8vpz.pDIl4q6', '0123456789', 'Utilisateur', '2018-12-03 16:54:34');
+(1, 'Grignon', 'Bastien', 'bastien@isep.fr', '$2y$10$u16FmRJH1pdLSxte9SOsZOEw69/xsAnK3nR6ZhSDx4IfUP8fjQC..', '0751247989', 1, '2018-12-03 11:38:08'),
+(2, 'Dupond', 'Jean', 'jean.dupond@gmail.com', '$2y$10$BdTk5xkQqnrJ7Mh8RgMeueAouJ88zg6Wi2LPSwOmE8vpz.pDIl4q6', '0123456789', 1, '2018-12-03 16:54:34'),
+(3, 'Jean ', 'Dupont', 'jeandupont@gmail.com', '$2y$10$V/3QdHQrJ7lAKTHeEFr02O6fLJbnV91VbtSX9QRQ.PFAm7XlONwoy', '0123456789', 3, '2018-12-10 01:44:48'),
+(4, 'Smith', 'Martin', 'martinsmith@gmail.com', '$2y$10$QLyt2CHmWDBICNAaHp4LJeJOgLc1JaGKQumuxk9rjn.SHzVYKoqg2', '0123456789', 2, '2018-12-10 01:54:33');
 
 --
 -- Contraintes pour les tables déchargées
@@ -348,13 +379,6 @@ ALTER TABLE `donnee`
   ADD CONSTRAINT `id_capt` FOREIGN KEY (`id_capt`) REFERENCES `capteur` (`id_capt`);
 
 --
--- Contraintes pour la table `habitation_utilisateur`
---
-ALTER TABLE `habitation_utilisateur`
-  ADD CONSTRAINT `habitation_utilisateur_ibfk_1` FOREIGN KEY (`id_util`) REFERENCES `utilisateur` (`id_util`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `habitation_utilisateur_ibfk_2` FOREIGN KEY (`id_habit`) REFERENCES `habitation` (`id_habit`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Contraintes pour la table `mode`
 --
 ALTER TABLE `mode`
@@ -377,6 +401,12 @@ ALTER TABLE `publication`
 --
 ALTER TABLE `ticket`
   ADD CONSTRAINT `ticket_ibfk_1` FOREIGN KEY (`id_util`) REFERENCES `utilisateur` (`id_util`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `utilisateur`
+--
+ALTER TABLE `utilisateur`
+  ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`type_util`) REFERENCES `type_utilisateur` (`id_type_util`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
