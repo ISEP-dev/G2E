@@ -29,20 +29,19 @@
             <br><br>
             <div class="droite">
                 <h2>
-                    <button class="rechercher" style="vertical-align:middle"><span>Rechercher</span></button>
+                    <bouton class="rechercher" style="vertical-align:middle"><span>Rechercher </span></button>
             </div>
         </form>
     </div>
     <div class="col-droite">
         <div class="centre">
-
+            <h3>
+                // A FAIRE POUR LES BOUTONS EXPORTER ET IMPRIMER
         </div>
         <div class="droite">
             <input type="submit" name="submit" value="Exporter">
             <input type="submit" name="submit" value="Imrpimer">
-
+            <button class="rechercher" style="vertical-align:middle"><span>Rechercher</span></button>
         </div>
     </div>
 </div>
-</div>
-</body>

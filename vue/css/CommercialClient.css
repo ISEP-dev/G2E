@@ -8,6 +8,18 @@ h1{
     font-size:        1.1em;
 }
 
+.droite {
+  align-items:      center;
+  height:           3rem;
+  padding:          0 30px;
+  border-radius:    var(--radius);
+  background-color: var(--bleu-clair);
+  color:            var(--blanc);
+  font-size:        1.1em;
+}
+
+}
+
   .rechercher {
   display: inline-block;
   border-radius: 4px;
