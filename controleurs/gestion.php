@@ -9,9 +9,10 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 
 switch ($fonction) {
     case "accueil":
-        $head  = '<link rel="stylesheet" href="vue/css/gestion.css">' . '<script src="js/gestion.js"></script>';
-        $vue   = "gestion";
+        $css  = 'gestion';
+        $js = '<script src="vue/js/gestion.js"></script>';
         $title = "Gestion des maisons";
+        $vue   = "gestion";
         break;
 
     default:

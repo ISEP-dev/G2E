@@ -12,12 +12,11 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 
-$head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
 
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
-        $head = '<link rel="stylesheet" href="vue/css/publication.css">';
+        $css = 'publication';
         $title     = "Espace commune";
         $vue       = "publication";
         break;
