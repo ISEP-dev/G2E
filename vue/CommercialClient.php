@@ -39,7 +39,7 @@
                 <input type="text" id="Nom" name="Nom" placeholder="Nom" required>
                 <label for="Prénom"> &nbsp;</label>
                 <input type="text" id="Prénom" name="Prénom" placeholder="Prénom" required>
-              
+
                 <label for="Numéro téléphone"> &nbsp;</label>
                 <input type="text" id="Numéro téléphone" name="Numéro téléphone" placeholder="Numéro téléphone" required>
                 <br><br>
@@ -85,19 +85,3 @@
                 <div class="droite">
                     <input type="submit" name="submit" value="Exporter">
                       <input type="submit" name="submit" value="Imrpimer">
-=======
-                    <button class="rechercher" style="vertical-align:middle"><span>Rechercher</span></button>
-            </div>
-        </form>
-    </div>
-    <div class="col-droite">
-        <div class="centre">
-        </div>
-        <div class="droite">
-            <input type="submit" name="submit" value="Exporter">
-            <input type="submit" name="submit" value="Imrpimer">
-        </div>
-    </div>
-</div>
-</div>
-</body>
