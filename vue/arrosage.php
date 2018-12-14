@@ -190,3 +190,4 @@
 // important -> Pour toggle bouton ON/OFF attention au label avec le for="idinput"
 // href="index.php?cible=habitation&fonction=ajouter-arroseur&id_habit="<?= $maison['id_habit']; "
 ?>
+<script src="vue/js/arrosage.js"></script>
