@@ -19,6 +19,7 @@ else
 }
 
 $head      = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+$js = '<script src="vue/js/arrosage.js"></script>';
 
 // Choix de la vue à afficher
 switch ($fonction)
