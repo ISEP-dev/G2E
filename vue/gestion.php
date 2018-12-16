@@ -1,7 +1,7 @@
 <div class="ligne">
     <div class="col-gauche">
         <div class="maison">
-            <div class="sticky-header-maisons">
+            <div class="header-maisons">
                 Voici vos maisons :
             </div>
                 <?php include('../vue/db/process_gestion.php'); ?>

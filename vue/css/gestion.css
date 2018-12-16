@@ -44,7 +44,7 @@
     overflow-y: auto;
 }
 
-.sticky-header-maisons{
+.header-maisons{
     display:          flex;
     clear:            right;
     position:         sticky;
