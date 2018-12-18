@@ -16,7 +16,8 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 switch ($fonction) {
 
     case "accueil":
-        $css   = 'CommercialClient';
+    $head  = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
+        //$css   = 'CommercialClient';
         $title = "Informations Client";
         $vue   = "CommercialClient";
         break;

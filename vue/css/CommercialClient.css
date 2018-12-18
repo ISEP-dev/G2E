@@ -7,7 +7,9 @@ h1{
     color:            var(--blanc);
     font-size:        1.1em;
 }
-
+.test{
+  border: 1px solid red;
+}
 .droite {
   align-items:      center;
   height:           3rem;
@@ -17,10 +19,7 @@ h1{
   color:            var(--blanc);
   font-size:        1.1em;
 }
-
-}
-
-  .rechercher {
+.rechercher {
   display: inline-block;
   border-radius: 4px;
   background-color: var(--bleu-clair);
