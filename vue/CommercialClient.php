@@ -12,15 +12,17 @@
             <h1 class="centre test">Chercher un client</h1>
             <hr>
             <label for="Nom"> &nbsp;</label>
-            <input type="text" id="Nom" name="Nom" placeholder="Nom" required>
+            <input type="text" id="Nom" name="Nom" placeholder="Nom">
             <label for="Prénom"> &nbsp;</label>
-            <input type="text" id="Prénom" name="Prénom" placeholder="Prénom" required>
+            <input type="text" id="Prénom" name="Prénom" placeholder="Prénom" >
             <label for="Numéro téléphone"> &nbsp;</label>
-            <input type="text" id="Numéro téléphone" name="Numéro téléphone" placeholder="Numéro téléphone" required>
+            <input type="text" id="Numéro téléphone" name="Numéro téléphone" placeholder="Numéro téléphone" >
+            <label for="Ville"> &nbsp;</label>
+            <input type="text" id="Ville" name="Ville" placeholder="Ville" >
             <br><br>
             <div>
                 <textarea name="content" rows="8" cols="80" placeholder="Résultat recherches" required></textarea>
-                <div id="toolbar-editor">
+                <div id="rechercher">
                     <div id=boutton_rechercher>
                         <button class="rechercher" style="vertical-align:middle"><span>Rechercher</span></button>
                     </div>
@@ -32,8 +34,8 @@
 
         </div>
         <div class="droite">
-            <input type="submit" name="submit" value="Exporter">
-            <input type="submit" name="submit" value="Imrpimer">
+            <input type="submit" name="submitExport" value="Exporter">
+            <input type="submit" name="submitPrint" value="Imrpimer">
 
         </div>
     </div>
