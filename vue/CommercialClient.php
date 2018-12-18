@@ -10,7 +10,8 @@
     <div class="col-gauche">
         <form id="" class="" action="index.html" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
             <h1 class="centre test">Chercher un client</h1>
-            <hr>
+
+            <div class="champs1">
             <label for="Nom"> &nbsp;</label>
             <input type="text" id="Nom" name="Nom" placeholder="Nom">
             <label for="Prénom"> &nbsp;</label>
@@ -19,7 +20,10 @@
             <input type="text" id="Numéro téléphone" name="Numéro téléphone" placeholder="Numéro téléphone" >
             <label for="Ville"> &nbsp;</label>
             <input type="text" id="Ville" name="Ville" placeholder="Ville" >
+          </div>
+
             <br><br>
+
             <div>
                 <textarea name="content" rows="8" cols="80" placeholder="Résultat recherches" required></textarea>
                 <div id="rechercher">

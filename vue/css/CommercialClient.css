@@ -1,11 +1,19 @@
 h1{
     align-items:      center;
     height:           3rem;
-    padding:          0 30px;
+
+    padding-left:     30px;
+    padding-right:    30px;
     border-radius:    var(--radius);
     background-color: var(--bleu-clair);
     color:            var(--blanc);
     font-size:        1.1em;
+}
+
+
+.champs{
+  padding-left:     0px;
+  padding-right:    0px;
 }
 
 .droite {
