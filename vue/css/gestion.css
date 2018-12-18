@@ -12,6 +12,7 @@
     cursor: pointer;
     margin: 5px;
     height: 20%;
+    vertical-align: middle;
   }
   
   .gestionbutton span {
