@@ -3,70 +3,23 @@
     <div class="ligne">
         <div class="col-gauche">
             <div class="v-haut header-user">
-                <h2> Se connecter </h2>
+                <h2> Foire aux questions </h2>
             </div>
             <br><br><br><br>
             <div class="centre">
-                <form action="index.php?cible=utilisateurs&fonction=connexion" method="post">
-                    <label for="input_login">Login: </label>
-                    <?php
-								        if(isset($_COOKIE['email'])){
-									         echo "<input id='input_login' type='text' placeholder='Entrez un identifiant'  name='identifiant' required value='". $_COOKIE['email']. "'>";
-								        }
-								        else {
-									          echo "<input id='input_login' type='text' placeholder='Entrez un identifiant'  name='identifiant' required>";
-								        }
-							      ?>
-                    <!--<input id="input_login" type="text" placeholder="Entrez un identifiant" name="identifiant" required>-->
-                    <label for="input_password">Mot de passe: </label>
-                    <input id="input_password" type="password" placeholder="Entrez un mot de passe" name="motdepasse"
-                           required>
-                    <br>
-                    <label for="check_remember">Se souvenir: </label>
-                    <input id="check_remember" type="checkbox" name="remember">
-                    <div class="droite">
-                        <label>
-                            <a id="link-to-passwd" href="#forget_passwd">Mot de passe oublié?</a>
-                        </label>
-                    </div>
-                    <input type="submit" value="Connexion" align="center" class="boutonConnexion"/>
-                </form>
+
             </div>
         </div>
         <div class="col-droite">
             <div class="v-haut header-user">
-                <h2>S'inscrire</h2>
+                <h2>Posez vos questions</h2>
                 <br>
             </div>
             <br>
             <div class="v-centre">
                 <form method="post" action="index.php?cible=utilisateurs&fonction=ajouter">
-
-                    <div class="adresse">
-                        <input type="text" placeholder="Nom" name="nom-utilisateur" width="28" required>*
-                        <input type="text" placeholder="Prenom" name="prenom-utilisateur" width="28" required>*
-                    </div>
-                    <input id="mail" type="text" placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur" width="28"
-                           required>
-                    <input type="text" placeholder="0123456789" name="numero-utilisateur" width="28" required>
-                    <input type="password" placeholder="Entrez un mot de passe" name="password-utilisateur" width="28"
-                           required>
-                    <input type="password" placeholder="Confirmez le mot de passe" name="passwd-utilisateur2" width="28"
-                           required>
-                    <select id="type-utilisateur" name="type-utilisateur">
-                        <option value="1"> Utilisateur </option>
-                        <option value="2"> Technicien  </option>
-                        <option value="3"> Commercial  </option>
-                        <option value="4"> Mairie </option>
-                    </select>
-                    <br/>
-                    <p>
-                    Accepter les <a id="link-to-cgu" href="#cgu" required>conditions générales d'utilisation</a>.
-                    <input type="checkbox" id="cgu_check" name="cgu_check"/>
-
-                    <div class="v-bas">
-                        <input id="suivant" name="submit" class="boutonInscription" type="submit">
-                    </div>
+                  <h4>Soumettez une question: </h4>
+                  <input type="text" placeholder="posez votre question" required/>
                 </form>
             </div>
         </div>

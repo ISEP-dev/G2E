@@ -6,6 +6,7 @@
             <a href="">A propos</a> |
             <a href="">FAQ</a> |
             <a href="">Contactez-nous</a>
+            <a href="">Mentions légales</a>
         </p>
         <p>Domisep</p>
     </div>

@@ -1,11 +1,10 @@
-input[type=text], input[type=password] {
+input{
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    border-radius: var(--input-radius);
 }
 
 .header-user {
@@ -47,8 +46,18 @@ input[type=text], input[type=password] {
     opacity: 0.8;
 }
 
-select {
+select{
     width: 100%;
-    border-radius: var(--input-radius);
+    height:600px;
     cursor: pointer;
+    display: inline-block;
+    border: px solid #ccc;
+    box-sizing: border-box;
+}
+
+.close-passwd .close-cgu {
+    color: var(--gris-noir);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
