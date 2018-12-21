@@ -8,7 +8,8 @@
 
 /* info : Explication des variables
  * $title -> Titre de la page et de l'onglet
- * $head  -> Ajout de fichiers CSS ou JS spécifique (optionnel)
+ * $css   -> Ajout de fichiers CSS juste le nom de fichier sans .Css (optionnel)
+ * $js    ->  Ajout de fichiers JS (optionnel)
  * $vue   -> Vue HTML à afficher
  */
 
