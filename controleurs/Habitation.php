@@ -22,7 +22,7 @@ $js   = '<script src="vue/js/arrosage.js"></script>';
 switch ($fonction) {
     case "accueil":
         $maison      = getHousebyUserId($bdd, $tableHabitation, $_SESSION['user_id']);
-        $maisonsUtil = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
+        $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
         $title       = $maison['nom_habit'];
         $vue         = "arrosage";
         break;
@@ -37,6 +37,10 @@ switch ($fonction) {
         $maison1 = getHouseById($bdd, $tableHabitation, $_POST['house-select']);
         $title   = $maison1['nom_habit'];
         $vue     = "arrosage";
+        break;
+
+    case "ajouter-zone":
+        addZone($bdd, $tableZone, $_POST['id-house']);
         break;
 
     /*  fixme : à voir mais surement à supprimer

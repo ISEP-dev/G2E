@@ -18,26 +18,23 @@ function connection_to_site(PDO $bdd, string $table)
         $stmt->execute([$email]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($user['mdp_util'] == password_verify($passwd, $user['mdp_util'])) {
-          if($_SERVER['SERVER_NAME'] == "localhost"){
-				         if(isset($_POST['remember'])){
-					              setcookie("email",$email,false,"/",false);
-				         }
-				         else {
-					              setcookie("email","",false,"/",false);
-				         }
-			    }
-          else {
-            		  if(isset($_POST['remember'])){
-            					setcookie('email', $email, time() + 7*24*3600, null, null, false, true);
-            			}
-            			else {
-            					setcookie('email', "", time() + 7*24*3600, null, null, false, true);
-            			}
-          }
+            if ($_SERVER['SERVER_NAME'] == "localhost") {
+                if (isset($_POST['remember'])) {
+                    setcookie("email", $email, false, "/", false);
+                } else {
+                    setcookie("email", "", false, "/", false);
+                }
+            } else {
+                if (isset($_POST['remember'])) {
+                    setcookie('email', $email, time() + 7 * 24 * 3600, null, null, false, true);
+                } else {
+                    setcookie('email', "", time() + 7 * 24 * 3600, null, null, false, true);
+                }
+            }
             // on enregistre les paramètres de notre visiteur comme variables de session
             $_SESSION['user_name'] = $user['nom_util'] . " " . $user['prenom_util'];
             $_SESSION['user_id']   = $user['id_util'];
-            switch ($user['type_util']){
+            switch ($user['type_util']) {
                 case 1:
                     // Utilisateur
                     header("Location: index.php?cible=habitation&fonction=accueil");
@@ -58,6 +55,10 @@ function connection_to_site(PDO $bdd, string $table)
                     header("Location: index.php");
                     break;
             }
+        } else {
+            echo '<body onLoad="alert(\'Membre non reconnu... entrez des identifiants valides\')">';
+            // On le redirige vers la page d'accueil
+            echo '<meta http-equiv="refresh" content="0;URL=index.php">';
         }
     } else {
         echo '<body onLoad="alert(\'Membre non reconnu... entrez des identifiants valides\')">';

@@ -7,7 +7,7 @@
     margin-left : 10px;
 }
 
-.zone-titre {
+fieldset > legend.zone-titre {
     display          : flex;
     position         : sticky;
     z-index          : 1;
@@ -27,7 +27,7 @@
     margin-right : 50px;
 }
 
-fieldset > a.add-zone {
+fieldset > a.add-arroseur {
     position         : absolute;
     right            : 150px;
     top              : 6.8em;
@@ -37,9 +37,10 @@ fieldset > a.add-zone {
     font-size        : 35px;
     padding          : 0 10px;
     border           : 2px solid black;
+    z-index          : 1;
 }
 
-.zone {
+fieldset.zone {
     display          : flex;
     flex-flow        : row wrap;
     flex             : 1 1 50%;
@@ -51,17 +52,18 @@ fieldset > a.add-zone {
     box-shadow       : 6px 6px 10px var(--gris-noir);
     overflow-y       : auto;
     background-color : var(--blanc);
+    z-index          : 1;
 }
 
 .zone > div.arroseur {
-    border        : 1px solid var(--bleu-fonce);
+    border        : 3px solid var(--bleu-fonce);
     border-radius : var(--radius);
     padding       : 25px;
     font-size     : 1.5rem;
     margin        : var(--padding) 15px;
 }
 
-.nom-arroseur {
+div.nom-arroseur {
     font-size : 1.1em;
 }
 
@@ -173,12 +175,6 @@ fieldset > a.add-zone {
 }
 
 /* --------- Fin switch arroseur --------- */
-/* WARNING: utile pour ajout maison seulement */
-.ligne > br {
-    width   : 100%;
-    content : '';
-}
-
 /* --------- Progress bar --------- */
 /* Pour le conteneur barre + valeur */
 .progress {
@@ -219,10 +215,6 @@ div.progress-value {
     margin-left : 5px;
     font-size   : .5em;
     color       : var(--bleu-fonce);
-}
-
-.add {
-    cursor : pointer;
 }
 
 .cursor {

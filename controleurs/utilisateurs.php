@@ -33,9 +33,6 @@ switch ($fonction) {
     case "connexion":
         connection_to_site($bdd, $tableUsers);
         $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-        // $title    = "Gestion de l'arrosage";
-        // $vue      = "arrosage";
-
         break;
 
     case "planning":

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 11 déc. 2018 à 13:27
+-- Généré le :  ven. 21 déc. 2018 à 08:53
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -37,21 +37,23 @@ CREATE TABLE IF NOT EXISTS `arroseur` (
   `etat_fonctionnement_arr` int(1) NOT NULL,
   `date_ajout_arr` datetime NOT NULL,
   `id_habit` int(11) NOT NULL,
+  `id_zone` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_arr`),
-  KEY `id_habit` (`id_habit`)
+  KEY `id_habit` (`id_habit`),
+  KEY `id_zone` (`id_zone`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Arroseurs';
 
 --
 -- Déchargement des données de la table `arroseur`
 --
 
-INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_habit`) VALUES
-(1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1),
-(3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 2),
-(4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 5),
-(5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 7),
-(6, 'Cocotier', 'DOM14258', 1, 2, '2018-11-27 11:10:00', 5),
-(7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 12);
+INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_habit`, `id_zone`) VALUES
+(1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1, 0),
+(3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 2, 0),
+(4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 5, 0),
+(5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 7, 0),
+(6, 'Cocotier', 'DOM14258', 1, 2, '2018-11-27 11:10:00', 5, 0),
+(7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 12, 0);
 
 -- --------------------------------------------------------
 
@@ -115,13 +117,14 @@ CREATE TABLE IF NOT EXISTS `donnee` (
 DROP TABLE IF EXISTS `habitation`;
 CREATE TABLE IF NOT EXISTS `habitation` (
   `id_habit` int(11) NOT NULL AUTO_INCREMENT,
+  `order_habit` tinyint(1) NOT NULL,
   `nom_habit` varchar(255) NOT NULL,
   `numero_habit` int(25) NOT NULL,
   `rue_habit` varchar(255) NOT NULL,
   `ville_habit` varchar(255) NOT NULL,
   `code_postal_habit` varchar(255) NOT NULL,
   `pays_habit` varchar(255) NOT NULL,
-  `date_ajout_habit` datetime NOT NULL DEFAULT '2018-11-25 00:00:00',
+  `date_ajout_habit` datetime NOT NULL,
   PRIMARY KEY (`id_habit`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Liste des habitations';
 
@@ -129,16 +132,16 @@ CREATE TABLE IF NOT EXISTS `habitation` (
 -- Déchargement des données de la table `habitation`
 --
 
-INSERT INTO `habitation` (`id_habit`, `nom_habit`, `numero_habit`, `rue_habit`, `ville_habit`, `code_postal_habit`, `pays_habit`, `date_ajout_habit`) VALUES
-(1, 'Maison principale', 25, 'Rue de vanves', 'Paris', '75000', 'France', '2018-09-12 10:30:00'),
-(2, 'Maison secondaire', 55, 'Boulevard Foch', 'Angers', '49100', 'France', '2017-05-25 08:09:31'),
-(3, 'Maison principale ', 40, 'Rue Saint Aubin', 'Angers', '49100', 'France', '2018-02-05 15:39:10'),
-(5, 'Maison de vacances', 13, 'Boulevard Raspail', 'Paris', '75000', 'France', '2018-11-24 11:33:00'),
-(7, 'Maison 2', 6, 'Rue de paradis', 'Paris', '75010', 'France', '2018-11-24 17:02:42'),
-(8, 'Maison 5', 9, 'Rue des vents', 'Paris', '75016', 'France', '2018-08-02 21:54:42'),
-(9, 'Maison vacances', 55, 'Rue perdu', 'Pornic', '44250', 'France', '2018-11-24 16:21:34'),
-(10, 'Maison deux', 154, 'Rue de test', 'Ville Test', '49630', 'France', '2018-11-25 04:50:43'),
-(12, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34');
+INSERT INTO `habitation` (`id_habit`, `order_habit`, `nom_habit`, `numero_habit`, `rue_habit`, `ville_habit`, `code_postal_habit`, `pays_habit`, `date_ajout_habit`) VALUES
+(1, 1, 'Maison principale', 25, 'Rue de vanves', 'Paris', '75000', 'France', '2018-09-12 10:30:00'),
+(2, 0, 'Maison secondaire', 55, 'Boulevard Foch', 'Angers', '49100', 'France', '2017-05-25 08:09:31'),
+(3, 0, 'Maison principale ', 40, 'Rue Saint Aubin', 'Angers', '49100', 'France', '2018-02-05 15:39:10'),
+(5, 0, 'Maison de vacances', 13, 'Boulevard Raspail', 'Paris', '75000', 'France', '2018-11-24 11:33:00'),
+(7, 0, 'Maison 2', 6, 'Rue de paradis', 'Paris', '75010', 'France', '2018-11-24 17:02:42'),
+(8, 0, 'Maison 5', 9, 'Rue des vents', 'Paris', '75016', 'France', '2018-08-02 21:54:42'),
+(9, 0, 'Maison vacances', 55, 'Rue perdu', 'Pornic', '44250', 'France', '2018-11-24 16:21:34'),
+(10, 0, 'Maison deux', 154, 'Rue de test', 'Ville Test', '49630', 'France', '2018-11-25 04:50:43'),
+(12, 0, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34');
 
 -- --------------------------------------------------------
 
@@ -348,6 +351,29 @@ INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `
 (3, 'Jean ', 'Dupont', 'jeandupont@gmail.com', '$2y$10$V/3QdHQrJ7lAKTHeEFr02O6fLJbnV91VbtSX9QRQ.PFAm7XlONwoy', '0123456789', 3, '2018-12-10 01:44:48'),
 (4, 'Smith', 'Martin', 'martinsmith@gmail.com', '$2y$10$QLyt2CHmWDBICNAaHp4LJeJOgLc1JaGKQumuxk9rjn.SHzVYKoqg2', '0123456789', 2, '2018-12-10 01:54:33');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `zone`
+--
+
+DROP TABLE IF EXISTS `zone`;
+CREATE TABLE IF NOT EXISTS `zone` (
+  `id_zone` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_zone` varchar(50) NOT NULL,
+  `id_habit` int(11) NOT NULL,
+  PRIMARY KEY (`id_zone`),
+  KEY `id_habit` (`id_habit`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Zone à pour arroseur';
+
+--
+-- Déchargement des données de la table `zone`
+--
+
+INSERT INTO `zone` (`id_zone`, `nom_zone`, `id_habit`) VALUES
+(1, 'Potager', 1),
+(2, 'Serre', 1);
+
 --
 -- Contraintes pour les tables déchargées
 --
@@ -407,6 +433,12 @@ ALTER TABLE `ticket`
 --
 ALTER TABLE `utilisateur`
   ADD CONSTRAINT `utilisateur_ibfk_1` FOREIGN KEY (`type_util`) REFERENCES `type_utilisateur` (`id_type_util`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Contraintes pour la table `zone`
+--
+ALTER TABLE `zone`
+  ADD CONSTRAINT `zone_ibfk_1` FOREIGN KEY (`id_habit`) REFERENCES `habitation` (`id_habit`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

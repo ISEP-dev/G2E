@@ -1,17 +1,19 @@
+<!-- S : Client house select -->
 <div class="space-between">
     <form id="form-house-select" action="index.php?cible=Habitation&fonction=update-view" method="post">
         <label for="house-select"></label>
         <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange()">
-            <?php foreach ($maisonsUtil as $maisonUser) { ?>
+            <?php foreach ($maisonSelect as $maisonUser) { ?>
                 <option value="<?= $maisonUser['id_habit'] ?>"><?= $maisonUser['nom_habit'] ?></option>
             <?php } ?>
         </select>
     </form>
-    <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a>
+   <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a> <!-- TODO : mettre dans le catalogue-->
 </div>
+<!-- S : Zone -->
 <fieldset class="zone">
     <legend class="zone-titre b">Potager</legend>
-    <a id="add-arroseur" class="add-zone b cursor">+</a>
+    <a id="add-arroseur" class="add-arroseur b cursor">+</a>
     <div class="arroseur">
         <div class="space-between">
             <div class="nom-arroseur">
@@ -33,7 +35,7 @@
                 <div class="progress-value strong">50%</div>
             </div>
             <div class="capteur-type">
-                Type de plante : <span class="italic">arbre</span>
+                Type de plante : <span class="italic">légume</span>
             </div>
         </div>
         <svg class="arroseur-status">
@@ -41,9 +43,6 @@
         </svg>
         <div class="capteur-type">
             <table>
-                <tr>
-                    <td>Type de plante :</td>
-                    <td class="italic">Arbre</td>
                 <tr>
                     <td>Température :</td>
                     <td class="italic">18°C</td>
@@ -68,18 +67,20 @@
                 </label>
             </div>
         </div>
-        <div class="progress">
-            <progress value="50" max="100" class="progress-bar"></progress>
-            <div class="progress-value strong">50%</div>
+        <div class="space-between">
+            <div class="progress">
+                <progress value="50" max="100" class="progress-bar"></progress>
+                <div class="progress-value strong">50%</div>
+            </div>
+            <div class="capteur-type">
+                Type de plante : <span class="italic">fruit</span>
+            </div>
         </div>
         <svg class="arroseur-status">
             <circle cx="15" cy="10" r="10" fill="green"></circle>
         </svg>
         <div class="capteur-type">
             <table>
-                <tr>
-                    <td>Type de plante :</td>
-                    <td class="italic">fruit</td>
                 <tr>
                     <td>Température :</td>
                     <td class="italic">15°C</td>
@@ -104,18 +105,20 @@
                 </label>
             </div>
         </div>
-        <div class="progress">
-            <progress value="50" max="100" class="progress-bar"></progress>
-            <div class="progress-value strong">50%</div>
+        <div class="space-between">
+            <div class="progress">
+                <progress value="50" max="100" class="progress-bar"></progress>
+                <div class="progress-value strong">50%</div>
+            </div>
+            <div class="capteur-type">
+                Type de plante : <span class="italic">arbre</span>
+            </div>
         </div>
         <svg class="arroseur-status">
             <circle cx="15" cy="10" r="10" fill="orange"></circle>
         </svg>
         <div class="capteur-type">
             <table>
-                <tr>
-                    <td>Type de plante :</td>
-                    <td class="italic">légume</td>
                 <tr>
                     <td>Température :</td>
                     <td class="italic">22°C</td>
@@ -126,13 +129,13 @@
         </div>
     </div>
 </fieldset>
-<!-- TODO : change to $_SESSION['iser_id'] -->
+<!-- S : Add new zone -->
 <div class="col-droite centre v-centre column">
     <a id="add-zone" title="Ajouter une nouvelle zone" class="cursor">
         <img src="vue/images/add-zone.png" alt="Ajouter une zone">
     </a>
 </div>
-<!-- Popup pour ajouter une maison -->
+<!-- S : Popup add houses, zones, arroseurs -->
 <div class="modal centre" id="modal-add-maison">
     <div class="modal-content">
         <form action="index.php?cible=habitation&fonction=ajouter-maison" method="post">
@@ -177,7 +180,7 @@
 </div>
 <div class="modal centre" id="modal-add-zone">
     <div class="modal-content">
-        <form action="index.php?cible=habitation&fonction=ajouter-arroseur" method="post">
+        <form action="index.php?cible=habitation&fonction=ajouter-zone" method="post">
             <div class="modal-header space-between">
                 <h3>Ajouter une nouvelle zone</h3>
                 <span class="close">&times;</span>
@@ -186,13 +189,13 @@
                 <table class="centre">
                     <tr>
                         <td><label for="arr-name">Nom de la zone : </label></td>
-                        <td><input type="text" id="arr-name" name="arr-name" placeholder="Entrez le nom" required>
-                            <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
+                        <td><input type="text" id="zone-name" name="zone-name" placeholder="Entrez le nom" required>
+                            <img src="vue/images/icon_question_1024x1024.png" alt="question.png" width="20"
                                  title="Entrez un nom de zone ex: Potager, Serre, ...">
                         </td>
                 </table>
             </div>
-            <input type="hidden" name="house-id">
+            <input type="hidden" name="id-house" value="<?= $maison['id_habit']?>">
             <div class="modal-footer droite">
                 <!-- <a href="" class="droite">Ajouter</a> -->
                 <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
@@ -201,9 +204,7 @@
     </div>
 </div>
 <div class="modal centre" id="modal-add-arroseur">
-    <!--    <script>console.log(document.getElementById("test").textContent)</script>-->
     <div class="modal-content">
-
         <form action="index.php?cible=habitation&fonction=ajouter-arroseur" method="post">
             <div class="modal-header">
                 <span class="close">&times;</span>
@@ -237,7 +238,8 @@
 // important -> Pour toggle bouton ON/OFF attention au label avec le for="idinput"
 // href="index.php?cible=habitation&fonction=ajouter-arroseur&id_habit="<?= $maison['id_habit']; "
 ?>
-<!--  <div class="arroseur">-->
+<!-- info : old arroseur PHP keep it since i did PHP on this
+ <div class="arroseur">-->
 <!--                        <div class="space-between">-->
 <!--                            <div class="nom-arroseur">-->
 <!--                                <a href="index.php?cible=habitation&fonction=infos-arroseur&id=--><? // //= $arroseur['id_arr'];?><!--">-->

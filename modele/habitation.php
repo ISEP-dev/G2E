@@ -9,6 +9,7 @@
 require "modele/fonctions.php";
 
 $tableHabitation = 'habitation';
+$tableZone       = "zone";
 
 //todo : ajouter l'id_user de la session en paramètre
 function getHousebyUserId(PDO $bdd, string $table, int $idUser)
@@ -77,4 +78,20 @@ function modifyHouse($id_user)
 function getHouseInfoById(PDO $bdd, string $table, int $idHabit)
 {
     return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
+}
+
+
+function addZone(PDO $bdd, string $table, $idHabit): string
+{
+    $attributs = array(
+        "nom_zone" => $_POST['zone-name'],
+        "id_habit" => $idHabit
+    );
+    $insertOk  = insert($bdd, $table, $attributs);
+    if (!$insertOk) {
+        die("Impossible d'ajouter une nouvelle zone : " . $bdd->errorInfo());
+    } else {
+        header("Location: index.php?cible=habitation&fonction=accueil");
+    }
+
 }
