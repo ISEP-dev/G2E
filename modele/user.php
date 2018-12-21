@@ -55,7 +55,7 @@ function connection_to_site(PDO $bdd, string $table)
                     header("Location: index.php?cible=habitation&fonction=accueil");
                     break;
                 default:
-                    header("Location: index.php?cible=habitation&fonction=accueil");
+                    header("Location: index.php");
                     break;
             }
         }

@@ -1,185 +1,245 @@
 @import "./style.css";
 
-/* En-tête de la maison */
-.sticky-header-maison{
-    display:          flex;
-    clear:            right;
-    position:         sticky;
-    position:         -webkit-sticky;
-    justify-content:  space-between;
-    align-items:      center;
-    z-index:          1;
-    top:              0;
-    height:           3rem;
-    padding:          0 30px;
-    border-radius:    var(--radius);
-    background-color: var(--bleu-clair);
-    color:            var(--blanc);
-    font-size:        1.1em;
-}
 /* Image du bouton ajouter une maison */
-.param-arroseur{
-    width: 30px;
-    height: auto;
-    margin-left: 10px;
+.param-arroseur {
+    width       : 30px;
+    height      : auto;
+    margin-left : 10px;
 }
-/* Bloc maison */
-div.maison{
-    height:     100%;
-    overflow-y: auto;
+
+.zone-titre {
+    display          : flex;
+    position         : sticky;
+    z-index          : 1;
+    top              : -10px;
+    padding          : 0 5px;
+    width            : max-content;
+    margin-left      : 40px;
+    font-size        : 20px;
+    border-radius    : 50px;
+    background-color : var(--blanc);
+    color            : var(--bleu-fonce);
 }
-/* Bloc arroseur */
-.arroseur{
-    border:        1px solid var(--bleu-fonce);
-    border-radius: var(--radius);
-    padding:       25px;
-    font-size:     1.5rem;
-    margin:        var(--padding) auto;
+
+.add-house {
+    font-size    : 35px;
+    color        : var(--bleu-fonce);
+    margin-right : 50px;
 }
-.nom-arroseur{
-    font-size: 1.1em;
+
+fieldset > a.add-zone {
+    position         : absolute;
+    right            : 150px;
+    top              : 6.8em;
+    border-radius    : 15px;
+    color            : var(--bleu-fonce);
+    background-color : var(--blanc);
+    font-size        : 35px;
+    padding          : 0 10px;
+    border           : 2px solid black;
 }
-/* --------- Switch arroseur --------- */
+
+.zone {
+    display          : flex;
+    flex-flow        : row wrap;
+    flex             : 1 1 50%;
+    padding          : 10px;
+    height           : 500px;
+    margin           : 0 50px 40px;
+    border-radius    : var(--radius);
+    border           : 2px solid var(--gris-noir);
+    box-shadow       : 6px 6px 10px var(--gris-noir);
+    overflow-y       : auto;
+    background-color : var(--blanc);
+}
+
+.zone > div.arroseur {
+    border        : 1px solid var(--bleu-fonce);
+    border-radius : var(--radius);
+    padding       : 25px;
+    font-size     : 1.5rem;
+    margin        : var(--padding) 15px;
+}
+
+.nom-arroseur {
+    font-size : 1.1em;
+}
+
+.capteur-type {
+    font-size   : 18px;
+    line-height : 30px;
+    width       : max-content;
+}
+
+/* ------------------------ Switch arroseur --------------------------- */
 .toggle-button {
-    position:            relative;
-    width:               120px;
-    -webkit-user-select: none;
-    -moz-user-select:    none;
-    -ms-user-select:     none;
-    user-select:         none;
+    position            : relative;
+    width               : 120px;
+    -webkit-user-select : none;
+    -moz-user-select    : none;
+    -ms-user-select     : none;
+    user-select         : none;
 }
+
 /* Case à cocher de la checkbox */
 .arroseur-checkbox {
-    display: none;
+    display : none;
 }
+
 /* Bloc du bouton */
 .arroseur-label {
-    display:       block;
-    overflow:      hidden;
-    cursor:        pointer;
-    border:        2px solid var(--noir);
-    border-radius: 50px;
+    display       : block;
+    overflow      : hidden;
+    cursor        : pointer;
+    border        : 2px solid var(--noir);
+    border-radius : 50px;
 }
+
 /* Texte du bouton */
 .arroseur-inner {
-    display:     block;
-    width:       200%;
-    margin-left: -100%;
-    transition:  margin .3s ease-in-out 0s;
+    display     : block;
+    width       : 200%;
+    margin-left : -100%;
+    transition  : margin .3s ease-in-out 0s;
     /* cubic-bezier(.88,.56,.4,-0.79)
     .79,1.6,.12,.44 */
 }
+
 /* Attribut commun texte bouton  */
 .arroseur-inner:before, .arroseur-inner:after {
-    display:     block;
-    float:       left;
-    width:       50%;
-    height:      40px;
-    padding:     0;
-    line-height: 43px;
-    font-size:   24px;
-    color:       white;
-    font-family: Trebuchet, Arial, sans-serif;
-    font-weight: bold;
-    box-sizing:  border-box;
+    display     : block;
+    float       : left;
+    width       : 50%;
+    height      : 40px;
+    padding     : 0;
+    line-height : 43px;
+    font-size   : 24px;
+    color       : white;
+    font-family : Trebuchet, Arial, sans-serif;
+    font-weight : bold;
+    box-sizing  : border-box;
 }
+
 /* Attribut texte bouton actif */
 .arroseur-inner:before {
-    content:          "ON";
-    padding-left:     12px;
-    background-color: #EEEEEE;
-    color:            var(--bleu-clair);
+    content          : "ON";
+    padding-left     : 12px;
+    background-color : #EEEEEE;
+    color            : var(--bleu-clair);
 }
+
 /* Attribut texte bouton inactif */
 .arroseur-inner:after {
-    content:          "OFF";
-    padding-right:    12px;
-    background-color: #EEEEEE;
-    color:            #4D4D4D;
-    text-align:       right;
+    content          : "OFF";
+    padding-right    : 12px;
+    background-color : #EEEEEE;
+    color            : #4D4D4D;
+    text-align       : right;
 }
+
 /* Cercle du bouton */
 .arroseur-slider {
-    display:       block;
-    width:         33px;
-    height:        33px;
-    margin-right:  15px;
-    margin-top:    6px;
-    background:    #4D4D4D;
-    position:      absolute;
-    top:           0;
-    bottom:        0;
-    right:         66px;
-    border:        2px solid #000000;
-    border-radius: 50px;
-    transition:    all .6s cubic-bezier(.79,1.6,.12,.44) 0s;
+    display       : block;
+    width         : 33px;
+    height        : 33px;
+    margin-right  : 15px;
+    margin-top    : 6px;
+    background    : #4D4D4D;
+    position      : absolute;
+    top           : 0;
+    bottom        : 0;
+    right         : 66px;
+    border        : 2px solid #000000;
+    border-radius : 50px;
+    transition    : all .6s cubic-bezier(.79, 1.6, .12, .44) 0s;
 }
+
 .arroseur-checkbox:checked + .arroseur-label .arroseur-inner {
-    margin-left: 0;
+    margin-left : 0;
 }
+
 .arroseur-checkbox:checked + .arroseur-label .arroseur-slider {
-    right:            -9px;
-    background-color: var(--bleu-clair);
+    right            : -9px;
+    background-color : var(--bleu-clair);
 }
+
+/* --------------------------- fin Switch arroseur ---------------------- */
 /* Cercle du status */
-.arroseur-status{
-    padding: 5px 0;
-    height: 30px;
-    width: 30px;
+.arroseur-status {
+    padding : 5px 0;
+    height  : 30px;
+    width   : 30px;
     /* fill: red; */
 }
+
 /* --------- Fin switch arroseur --------- */
 /* WARNING: utile pour ajout maison seulement */
-.ligne > br{
-    width:   100%;
-    content: '';
+.ligne > br {
+    width   : 100%;
+    content : '';
 }
+
 /* --------- Progress bar --------- */
 /* Pour le conteneur barre + valeur */
-.progress{
-    display:        flex;
-    flex-direction: row;
-    align-items:    center;
+.progress {
+    display        : flex;
+    flex-direction : row;
+    align-items    : center;
+    width          : max-content;
 }
+
 /* Conteneur barre progression */
-progress{
-    height:        .5rem;
-    border-radius: .5rem;
+progress {
+    height        : .5rem;
+    border-radius : .5rem;
 }
-progress::-moz-progress-bar{
-    background-color: var(--bleu-fonce);
-    border-radius:    .5rem;
+
+progress::-moz-progress-bar {
+    background-color : var(--bleu-fonce);
+    border-radius    : .5rem;
 }
-progress::-webkit-progress-bar{
-    background-color: var(--gris-clair);
-    border-radius:    .5rem;
+
+progress::-webkit-progress-bar {
+    background-color : var(--gris-clair);
+    border-radius    : .5rem;
 }
+
 /* Pour la valeur de la barre de progression */
 progress::-webkit-progress-value {
-    border-radius:    .5rem;
-    background-color: var(--bleu-fonce);
-    color:            var(--vert);
-    transition:       width .6s ease;
+    border-radius    : .5rem;
+    background-color : var(--bleu-fonce);
+    color            : var(--vert);
+    transition       : width .6s ease;
     /* box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4),
     0 2px 5px 0px rgba(0,0,0,0.3); */
 }
+
 /* Pour la valeur externe de progression */
-div.progress-value{
-    margin-left: 5px;
-    font-size:   .5em;
-    color:       var(--bleu-fonce);
+div.progress-value {
+    margin-left : 5px;
+    font-size   : .5em;
+    color       : var(--bleu-fonce);
 }
-/*  */
-.add-house{
-    width: 300px;
-}
-.add{
-    cursor: pointer;
-}
-.cursor{
+
+.add {
     cursor : pointer;
 }
-.arroseur-info{
-    padding-bottom: 35px;
-    padding-top: 35px;
+
+.cursor {
+    cursor : pointer;
+}
+
+.arroseur-info {
+    padding-bottom : 35px;
+    padding-top    : 35px;
+}
+
+table, td, th {
+    border-collapse : collapse;
+    padding         : 5px;
+}
+
+.maison-select {
+    padding : 7px;
+    margin  : 10px 0;
 }

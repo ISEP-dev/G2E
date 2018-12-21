@@ -1,65 +1,75 @@
-header{
-    padding: 0 20px;
-    font-size: 3vw;    /* Police adaptable en fonction de l'écran */
+header {
+    padding   : 0 10px;
+    font-size : 3vw; /* Police adaptable en fonction de l'écran */
 }
-footer{
-    border-radius:    5px;
-    background-color: #58595b;
-    width:            100%;
-    padding:          45px 50px;
-    margin-top:       80px;
-	line-height:      1.8;
-    text-align:       left;
-    font:             normal 17px sans-serif;
-}
-.footer_gauche p{
-	font-size:   17px;
-    margin:      0;
-    line-height: 1.5;
-    color:       rgb(231, 231, 231);
-}
-.footer_liens a{
-    display: inline-block;
-	color:   rgb(231, 231, 231);
-}
-footer .footer_droit a{
-	display:          inline-block;
-	width:            50px;
-	height:           50px;
-	background-color: #33383b;
-	border-radius:    2px;
-	margin-left:      3px;
-}
-.button {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 15px;
-    cursor: pointer;
-    text-align: center;
-    color: #0078D6;
-    background-color: rgb(190, 221, 249);
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px rgb(73, 118, 157);
 
-  }
+footer {
+    display          : flex;
+    border-radius    : 5px;
+    background-color : #58595b;
+    width            : 100%;
+    padding          : 20px 50px;
+    line-height      : 2;
+    text-align       : left;
+}
+
+.footer_gauche p {
+    font-size    : 17px;
+    margin       : 0;
+    line-height  : 1.8;
+    color        : rgb(231, 231, 231);
+    word-spacing : 10px;
+}
+
+.footer_liens a {
+    display : inline-flex;
+    color   : rgb(231, 231, 231);
+}
+
+footer .footer_droit a {
+    display          : inline-flex;
+    width            : 50px;
+    height           : 50px;
+    background-color : #33383b;
+    border-radius    : 2px;
+    margin-left      : 3px;
+}
+
+.button {
+    display          : inline-block;
+    padding          : 10px 15px;
+    font-size        : 15px;
+    cursor           : pointer;
+    text-align       : center;
+    color            : #0078D6;
+    background-color : rgb(190, 221, 249);
+    border           : none;
+    border-radius    : 15px;
+    box-shadow       : 0 9px rgb(73, 118, 157);
+
+}
+
 .button:hover {
-    background-color: #3a3a3a;
+    background-color : #3a3a3a;
 }
+
 .button:active {
-    background-color: #949494;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+    background-color : #949494;
+    box-shadow       : 0 5px #666;
+    transform        : translateY(4px);
 }
-.img-footer{
-    width:45px;
-    height:45px;
+
+.img-footer {
+    width  : 45px;
+    height : 45px;
 }
-.logo{
-    width: 150px;
-    height: 100px;
+
+.logo {
+    width  : 150px;
+    height : 100px;
 }
-.img-compte{
-    width: 68px;
-    height: 68px;
+
+.img-compte {
+    width  : 68px;
+    height : 68px;
 }

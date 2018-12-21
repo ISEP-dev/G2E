@@ -8,7 +8,8 @@
 
 /* info : Explication des variables
  * $title -> Titre de la page et de l'onglet
- * $head  -> Ajout de fichiers CSS ou JS spécifique (optionnel)
+ * $css   -> Ajout de fichiers CSS juste le nom de fichier sans .Css (optionnel)
+ * $js    ->  Ajout de fichiers JS (optionnel)
  * $vue   -> Vue HTML à afficher
  */
 
@@ -31,15 +32,10 @@ switch ($fonction) {
 
     case "connexion":
         connection_to_site($bdd, $tableUsers);
-        if ($ok) {
-            $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-            $title    = "Gestion de l'arrosage";
-            $vue      = "arrosage";
-        } else {
-            // Email ou mdp inconnu
-            $title = "Identifiants incorrects";
-            $vue   = "erreur404";
-        }
+        $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+        // $title    = "Gestion de l'arrosage";
+        // $vue      = "arrosage";
+
         break;
 
     case "planning":

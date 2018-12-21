@@ -11,12 +11,25 @@ require "modele/fonctions.php";
 $tableHabitation = 'habitation';
 
 //todo : ajouter l'id_user de la session en paramètre
-function getHouses(PDO $bdd, string $table, int $idUser)
+function getHousebyUserId(PDO $bdd, string $table, int $idUser)
 {
-    return $bdd->query("SELECT * FROM " . $table .
+    return $bdd->query("SELECT habitation.* FROM " . $table .
+        " INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit" .
+        " INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util" .
+        " WHERE utilisateur.id_util = " . $idUser . " AND habitation.order_habit=1 ORDER BY habitation.date_ajout_habit")->fetch(PDO::FETCH_ASSOC);
+}
+
+function getAllHousesFromUser(PDO $bdd, string $table, int $idUser)
+{
+    return $bdd->query("SELECT habitation.* FROM " . $table .
         " INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit" .
         " INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util" .
         " WHERE utilisateur.id_util = " . $idUser . " ORDER BY habitation.date_ajout_habit");
+}
+
+function getHouseById(PDO $bdd, string $table, int $idHabit)
+{
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
 }
 
 //todo : ajouter l'id_user de la session en paramètre
@@ -57,12 +70,6 @@ function removeHouse(PDO $bdd, string $table, $idHouse)
 }
 
 function modifyHouse($id_user)
-{
-
-}
-
-//fixme: replace '1' with $_SESSION['user_id']
-function getIdHouses(PDO $bdd)
 {
 
 }

@@ -11,15 +11,15 @@
                     <label for="input_login">Login: </label>
                     <?php
 								        if(isset($_COOKIE['email'])){
-									         echo "<input id='input_login' type='text' placeholder='Entrez un identifiant'  name='identifiant' required value='". $_COOKIE['email']. "'>";
+									         echo "<input id='input_login' class='user-input' type='text' placeholder='Entrez un identifiant'  name='identifiant' required value='". $_COOKIE['email']. "'>";
 								        }
 								        else {
-									          echo "<input id='input_login' type='text' placeholder='Entrez un identifiant'  name='identifiant' required>";
+									          echo "<input id='input_login' class='user-input' type='text' placeholder='Entrez un identifiant'  name='identifiant' required>";
 								        }
 							      ?>
                     <!--<input id="input_login" type="text" placeholder="Entrez un identifiant" name="identifiant" required>-->
                     <label for="input_password">Mot de passe: </label>
-                    <input id="input_password" type="password" placeholder="Entrez un mot de passe" name="motdepasse"
+                    <input id="input_password" class='user-input' type="password" placeholder="Entrez un mot de passe" name="motdepasse"
                            required>
                     <br>
                     <label for="check_remember">Se souvenir: </label>
@@ -43,15 +43,15 @@
                 <form method="post" action="index.php?cible=utilisateurs&fonction=ajouter">
 
                     <div class="adresse">
-                        <input type="text" placeholder="Nom" name="nom-utilisateur" width="28" required>*
-                        <input type="text" placeholder="Prenom" name="prenom-utilisateur" width="28" required>*
+                        <input type="text" class='user-input' placeholder="Nom" name="nom-utilisateur" width="28" required>*
+                        <input type="text" class='user-input' placeholder="Prenom" name="prenom-utilisateur" width="28" required>*
                     </div>
-                    <input id="mail" type="text" placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur" width="28"
+                    <input id="mail" type="text" class='user-input' placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur" width="28"
                            required>
-                    <input type="text" placeholder="0123456789" name="numero-utilisateur" width="28" required>
-                    <input type="password" placeholder="Entrez un mot de passe" name="password-utilisateur" width="28"
+                    <input type="text" class='user-input' placeholder="0123456789" name="numero-utilisateur" width="28" required>
+                    <input type="password" class='user-input' placeholder="Entrez un mot de passe" name="password-utilisateur" width="28"
                            required>
-                    <input type="password" placeholder="Confirmez le mot de passe" name="passwd-utilisateur2" width="28"
+                    <input type="password" class='user-input' placeholder="Confirmez le mot de passe" name="passwd-utilisateur2" width="28"
                            required>
                     <select id="type-utilisateur" name="type-utilisateur">
                         <option value="1"> Utilisateur </option>
@@ -98,10 +98,10 @@
   <!-- MODAL DE CGU -->
   <div class="modal centre" id="cgu">
       <div class="modal-content">
-    <!--    <script>console.log(document.getElementById("test").textContent)</script>-->
+    <!--<script>console.log(document.getElementById("test").textContent)</script>-->
         <div class="modal-header">
-            <span class="close-cgu">&times;</span>
             <h5>Conditions générales d'utilisation: </h5>
+            <span class="close">&times;</span>
         </div>
         <div class="modal-body">
               <h1 class="v-haut header-user"> Article 1: Notion</h1>
