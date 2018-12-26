@@ -5,14 +5,11 @@ if (empty($_SESSION)) {
 
 include("controleurs/fonctions.php");
 
-//fixme: important: Changer en POST
-if(isset($_GET['cible']) && !empty($_GET['cible'])) {
+if (isset($_GET['cible']) && !empty($_GET['cible'])) {
     // Si la variable cible est passé en GET
-    $urlControleur = $_GET['cible']; //habitation, arroseur, etc.
-
+    $urlControleur = $_GET['cible']; //Controleur appelé : habitation, arroseur, ...
 } else {
-    // Si aucun contrôleur défini en GET, on bascule sur utilisateurs
-    $urlControleur = 'utilisateurs';
+    $urlControleur = 'utilisateurs'; // Controleur de base :  utilisateurs
 }
 
 // On appelle le contrôleur

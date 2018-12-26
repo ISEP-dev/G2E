@@ -15,7 +15,7 @@ fieldset > legend.zone-titre {
     padding          : 0 5px;
     width            : max-content;
     margin-left      : 40px;
-    font-size        : 20px;
+    font-size        : 25px;
     border-radius    : 50px;
     background-color : var(--blanc);
     color            : var(--bleu-fonce);
@@ -27,23 +27,15 @@ fieldset > legend.zone-titre {
     margin-right : 50px;
 }
 
-fieldset > a.add-arroseur {
-    position         : absolute;
-    right            : 150px;
-    top              : 6.8em;
-    border-radius    : 15px;
-    color            : var(--bleu-fonce);
-    background-color : var(--blanc);
-    font-size        : 35px;
-    padding          : 0 10px;
-    border           : 2px solid black;
-    z-index          : 1;
+a.add-arroseur {
+    width     : max-content;
+    font-size : 35px;
+    color     : var(--bleu-fonce);
 }
 
 fieldset.zone {
     display          : flex;
     flex-flow        : row wrap;
-    flex             : 1 1 50%;
     padding          : 10px;
     height           : 500px;
     margin           : 0 50px 40px;
@@ -52,15 +44,22 @@ fieldset.zone {
     box-shadow       : 6px 6px 10px var(--gris-noir);
     overflow-y       : auto;
     background-color : var(--blanc);
-    z-index          : 1;
+    z-index          : -1;
 }
 
-.zone > div.arroseur {
-    border        : 3px solid var(--bleu-fonce);
-    border-radius : var(--radius);
+.container-zone {
+    width     : 100%;
+    display   : flex;
+    flex-flow : row wrap;
+}
+
+div.arroseur {
+    flex          : 0 0 48%;
     padding       : 25px;
-    font-size     : 1.5rem;
     margin        : var(--padding) 15px;
+    border-radius : var(--radius);
+    border        : 3px solid var(--bleu-fonce);
+    font-size     : 1.5rem;
 }
 
 div.nom-arroseur {
@@ -125,7 +124,7 @@ div.nom-arroseur {
 /* Attribut texte bouton actif */
 .arroseur-inner:before {
     content          : "ON";
-    padding-left     : 12px;
+    padding-left     : 25px;
     background-color : #EEEEEE;
     color            : var(--bleu-clair);
 }
@@ -133,10 +132,9 @@ div.nom-arroseur {
 /* Attribut texte bouton inactif */
 .arroseur-inner:after {
     content          : "OFF";
-    padding-right    : 12px;
+    padding-left     : 50px;
     background-color : #EEEEEE;
     color            : #4D4D4D;
-    text-align       : right;
 }
 
 /* Cercle du bouton */
@@ -166,15 +164,6 @@ div.nom-arroseur {
 }
 
 /* --------------------------- fin Switch arroseur ---------------------- */
-/* Cercle du status */
-.arroseur-status {
-    padding : 5px 0;
-    height  : 30px;
-    width   : 30px;
-    /* fill: red; */
-}
-
-/* --------- Fin switch arroseur --------- */
 /* --------- Progress bar --------- */
 /* Pour le conteneur barre + valeur */
 .progress {
@@ -217,6 +206,13 @@ div.progress-value {
     color       : var(--bleu-fonce);
 }
 
+/* Cercle du status */
+.arroseur-status {
+    padding : 5px 0;
+    height  : 30px;
+    width   : 30px;
+}
+
 .cursor {
     cursor : pointer;
 }
@@ -229,9 +225,15 @@ div.progress-value {
 table, td, th {
     border-collapse : collapse;
     padding         : 5px;
+    text-align      : left;
 }
 
 .maison-select {
     padding : 7px;
     margin  : 10px 0;
+}
+
+.freq_plante, .saison_plante {
+    margin-top : 20px;
+    font-size  : medium;
 }

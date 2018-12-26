@@ -353,9 +353,6 @@ select:focus, textarea:focus, input[type=text]:focus {
     border-radius    : 50px;
 }
 
-.alert {
-    /*Todo : style balise for alertMessage()*/
-}
 
 .back-button {
     font-size        : 25px;
