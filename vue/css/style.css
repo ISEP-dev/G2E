@@ -183,10 +183,10 @@ textarea {
 
 select {
     -webkit-appearence : none;
-    appearence : none;
-    border-radius : var(--input-radius);
-    padding : 7px;
-    margin  : 10px 0;
+    appearence         : none;
+    border-radius      : var(--input-radius);
+    padding            : 7px;
+    margin             : 10px 0;
 }
 
 input[type=text], input[type=number], input[type=password] {
@@ -352,7 +352,6 @@ select:focus, textarea:focus, input[type=text]:focus {
     color            : var(--gris-clair);
     border-radius    : 50px;
 }
-
 
 .back-button {
     font-size        : 25px;
