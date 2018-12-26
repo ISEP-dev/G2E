@@ -4,17 +4,11 @@ let PopUpArroseur = document.getElementById('modal-add-arroseur');
 
 let btnAddHouse    = document.getElementById('add-house');
 let btnAddZone     = document.getElementById('add-zone');
-let nbClose        = document.getElementsByClassName('close');
 
 showPopup(btnAddHouse, PopUpMaison);
 showPopup(btnAddZone, PopUpZone);
-closePopup(nbClose);
-
-function showPopup(BtnId, PopUpId) {
-    BtnId.addEventListener('click', function () {
-        PopUpId.style.display = "block";
-    });
-}
+/*
+closePopup(document.getElementsByClassName('close'));
 
 function closePopup(nbBtnClass) {
     for (let i = 0; i < nbBtnClass.length; i++) {
@@ -24,6 +18,13 @@ function closePopup(nbBtnClass) {
             document.getElementById(btnClose.parentNode.parentNode.parentNode.parentNode.id).style.display = "none";
         });
     }
+}
+*/
+
+function showPopup(BtnId, PopUpId) {
+    BtnId.addEventListener('click', function () {
+        PopUpId.style.display = "block";
+    });
 }
 
 document.addEventListener("click", function (event) {
