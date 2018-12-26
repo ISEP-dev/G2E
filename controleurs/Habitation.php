@@ -43,20 +43,17 @@ switch ($fonction) {
         $vue   = "arrosage";
         break;
 
-    case "update-view":
 
+    case "config-arroseur":
+        $vue = "infos-arroseur";
         break;
 
     case "ajouter-zone":
         addZone($bdd, $tableZone, $_POST['id-house']);
         break;
 
-    case "config-arroseur":
-        $vue = "infos-arroseur";
-        break;
-
     case "ajouter-arroseur":
-        addArroseur($bdd, $tableArroseur, $_POST['zone-id']);
+        addArroseur($bdd, $tableArroseur, $_POST['zone-id'], $_POST['select-plante-type']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;

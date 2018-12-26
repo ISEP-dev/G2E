@@ -14,4 +14,9 @@ class Plante
         return $bdd->query("SELECT * FROM " . $table . " WHERE id_plante=" . $idPlante)->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getAllPlantType(PDO $bdd, string $table)
+    {
+        return $bdd->query("SELECT * FROM " . $table);
+    }
+
 }

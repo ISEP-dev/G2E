@@ -60,7 +60,7 @@ foreach ($zones as $zone) {
                         <div class="progress-value strong"><?= $prctTempsArrosage ?>% de <?= $plante_infos['temps_arrosage_plante'] ?></div>
                     </div>
                     <div class="capteur-type">
-                        Type de plante : <span class="italic"><?= $plante_infos['nom_plante'] ?></span><!-- fixme : PHP var -->
+                        Type de plante : <span class="italic"><?= $plante_infos['nom_plante'] ?></span>
                     </div>
                 </div>
                 <svg class="arroseur-status">
@@ -80,7 +80,7 @@ foreach ($zones as $zone) {
                     </div>
                     <div>
                         <div class="freq_plante">
-                            Arroser <i class="b"><?= $plante_infos['frequence_plante'] ?></i><!-- fixme : PHP var -->
+                            Arroser <i class="b"><?= $plante_infos['frequence_plante'] ?></i>
                         </div>
                         <div class="saison_plante">
                             Arroser pendant <?= $plante_infos['saison_plante'] ?>
@@ -193,6 +193,15 @@ foreach ($zones as $zone) {
                             <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
                                  title="Vous le trouverez sur l'appareil (ex : DOM1111)">
                         </td>
+                    <tr>
+                        <td><label for="select-plante-type">Type de plante</label></td>
+                        <td><select name="select-plante-type" id="select-plante-type">
+                                <?php $plantes_type = $plante->getAllPlantType($bdd, "plante");
+                                foreach ($plantes_type as $plante_type) { ?>
+                                    <option value="<?= $plante_type['id_plante'] ?>"><?= $plante_type['nom_plante'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
                 </table>
             </div>
             <input type="hidden" id="zone-id" name="zone-id" value="">
@@ -202,247 +211,3 @@ foreach ($zones as $zone) {
         </form>
     </div>
 </div>
-
-<!-- info : old arroseur PHP keep it since i did PHP on this
-
-                    <div class="arroseur">
-                        <div class="space-between">
-                            <div class="nom-arroseur">
-                                <a href="index.php?cible=habitation&fonction=infos-arroseur&id=<? /* // //= $arroseur['id_arr'];*/ ?>">
-                                    <? /* // //= $arroseur['nom_arr']; */ ?>
-                                </a>
-                            </div>
-                            <div class="toggle-button">
-                                <input id="<? /* // //= "maison" . $arroseur['id_habit'] . "-arroseur" . $arroseur['id_arr']; */ ?>"
-                                       type="checkbox" class="arroseur-checkbox" name="button"
-                                       <?php /*if ($arroseur['etat_arr']) { */ ?>checked<?php /*} else {} */ ?>
-                                <label class="arroseur-label"
-                                       for="<? /* // //= "maison" . $arroseur['id_habit'] . "-arroseur" . $arroseur['id_arr']; */ ?>">
-                                    <span class="arroseur-inner"></span>
-                                    <span class="arroseur-slider"></span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="progress">
-                            <progress value="50" max="100" class="progress-bar"></progress>
-                            <div class="progress-value strong">50%</div>
-                        </div>
-                        <div class="space-between">
-                            <svg class="arroseur-status">
-                                <?php /*if ($arroseur['etat_fonctionnement_arr'] == 0) { */ ?>
-                                    <circle cx="15" cy="10" r="10" fill="green"></circle>
-                                <?php /*} elseif ($arroseur['etat_fonctionnement_arr'] == 1) { */ ?>
-                                    <circle cx="15" cy="10" r="10" fill="orange"></circle>
-                                <?php /*} elseif ($arroseur['etat_fonctionnement_arr'] == 2) { */ ?>
-                                    <circle cx="15" cy="10" r="10" fill="red"></circle>
-                                <?php /*} */ ?>
-                            </svg>
-                            <img src="vue/images/info.png" alt="" width="30" height="30">
-                        </div>
-                    </div>
-<fieldset class="zone">
-    <legend class="zone-titre b">Potager</legend>
-    <a id="add-arroseur" class="add-arroseur b cursor">+</a>
-    <div class="container-zone">
-        <div class="arroseur">
-            <div class="space-between">
-                <div class="nom-arroseur">
-                    <a href="index.php?cible=habitation&fonction=infos-arroseur&id=1">
-                        Tomates fixme : PHP var
-                    </a>
-                </div>
-                <div class="toggle-button">
-                    <input id="maison-arroseur" type="checkbox" class="arroseur-checkbox" name="button" checked>
-                    <label for="maison-arroseur" class="arroseur-label">
-                        <span class="arroseur-inner"></span>
-                        <span class="arroseur-slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="space-between">
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">50%</div>
-                </div>
-                <div class="capteur-type">
-                    Type de plante : <span class="italic">légume</span> fixme : PHP var
-                </div>
-            </div>
-            <svg class="arroseur-status">
-                <circle cx="15" cy="10" r="10" fill="green"></circle>
-            </svg>
-            <div class="space-between">
-                <div class="capteur-type">
-                    <table>
-                        <tr>
-                            <td>Température :</td>
-                            <td class="italic">18°C</td>
-                        <tr>
-                            <td>Humidité :</td>
-                            <td class="italic">50%</td>
-                    </table>
-                </div>
-                <div>
-                    <div class="freq_plante">
-                        Arroser <i class="b">1 à 2 fois par semaine</i> fixme : PHP var
-                    </div>
-                    <div class="saison_plante">
-                        Arroser pendant été, printemps
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="arroseur">
-            <div class="space-between">
-                <div class="nom-arroseur">
-                    <a href="index.php?cible=habitation&fonction=infos-arroseur&id=1">
-                        Framboise
-                    </a>
-                </div>
-                <div class="toggle-button">
-                    <input id="maison-arroseur1" type="checkbox" class="arroseur-checkbox" name="button" checked>
-                    <label for="maison-arroseur1" class="arroseur-label">
-                        <span class="arroseur-inner"></span>
-                        <span class="arroseur-slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="space-between">
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">50%</div>
-                </div>
-                <div class="capteur-type">
-                    Type de plante : <span class="italic">fruit</span>
-                </div>
-            </div>
-            <svg class="arroseur-status">
-                <circle cx="15" cy="10" r="10" fill="green"></circle>
-            </svg>
-            <div class="capteur-type">
-                <table>
-                    <tr>
-                        <td>Température :</td>
-                        <td class="italic">15°C</td>
-                    <tr>
-                        <td>Humidité :</td>
-                        <td class="italic">85%</td>
-                </table>
-            </div>
-        </div>
-        <div class="arroseur">
-            <div class="space-between">
-                <div class="nom-arroseur">
-                    <a href="index.php?cible=habitation&fonction=infos-arroseur&id=1">
-                        Salade
-                    </a>
-                </div>
-                <div class="toggle-button">
-                    <input id="maison-arroseur2" type="checkbox" class="arroseur-checkbox" name="button">
-                    <label for="maison-arroseur2" class="arroseur-label">
-                        <span class="arroseur-inner"></span>
-                        <span class="arroseur-slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="space-between">
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">50%</div>
-                </div>
-                <div class="capteur-type">
-                    Type de plante : <span class="italic">arbre</span>
-                </div>
-            </div>
-            <svg class="arroseur-status">
-                <circle cx="15" cy="10" r="10" fill="orange"></circle>
-            </svg>
-            <div class="capteur-type">
-                <table>
-                    <tr>
-                        <td>Température :</td>
-                        <td class="italic">22°C</td>
-                    <tr>
-                        <td>Humidité :</td>
-                        <td class="italic">20%</td>
-                </table>
-            </div>
-        </div>
-        <div class="arroseur">
-            <div class="space-between">
-                <div class="nom-arroseur">
-                    <a href="index.php?cible=habitation&fonction=infos-arroseur&id=1">
-                        Noyer
-                    </a>
-                </div>
-                <div class="toggle-button">
-                    <input id="maison-arroseur5" type="checkbox" class="arroseur-checkbox" name="button">
-                    <label for="maison-arroseur5" class="arroseur-label">
-                        <span class="arroseur-inner"></span>
-                        <span class="arroseur-slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="space-between">
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">10%</div>
-                </div>
-                <div class="capteur-type">
-                    Type de plante : <span class="italic">arbre</span>
-                </div>
-            </div>
-            <svg class="arroseur-status">
-                <circle cx="15" cy="10" r="10" fill="green"></circle>
-            </svg>
-            <div class="capteur-type">
-                <table>
-                    <tr>
-                        <td>Température :</td>
-                        <td class="italic">19°C</td>
-                    <tr>
-                        <td>Humidité :</td>
-                        <td class="italic">5%</td>
-                </table>
-            </div>
-        </div>
-        <div class="arroseur">
-            <div class="space-between">
-                <div class="nom-arroseur">
-                    <a href="index.php?cible=habitation&fonction=infos-arroseur&id=1">
-                        Salade
-                    </a>
-                </div>
-                <div class="toggle-button">
-                    <input id="maison-arroseur2" type="checkbox" class="arroseur-checkbox" name="button">
-                    <label for="maison-arroseur2" class="arroseur-label">
-                        <span class="arroseur-inner"></span>
-                        <span class="arroseur-slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="space-between">
-                <div class="progress">
-                    <progress value="50" max="100" class="progress-bar"></progress>
-                    <div class="progress-value strong">50%</div>
-                </div>
-                <div class="capteur-type">
-                    Type de plante : <span class="italic">arbre</span>
-                </div>
-            </div>
-            <svg class="arroseur-status">
-                <circle cx="15" cy="10" r="10" fill="red"></circle>
-            </svg>
-            <div class="capteur-type">
-                <table>
-                    <tr>
-                        <td>Température :</td>
-                        <td class="italic">22°C</td>
-                    <tr>
-                        <td>Humidité :</td>
-                        <td class="italic">20%</td>
-                </table>
-            </div>
-        </div>
-    </div>
-</fieldset>-->

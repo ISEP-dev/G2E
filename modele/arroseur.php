@@ -22,16 +22,17 @@ function getArroseurInfoById(PDO $bdd, string $table, int $idArr)
     return $bdd->query("SELECT * FROM " . $table . " WHERE id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);
 }
 
-function addArroseur(PDO $bdd, string $table, $idZone): bool
+function addArroseur(PDO $bdd, string $table, $idZone, $idPlante): bool
 {
     /* fixme : try this regex to avoid non serial-number entry for sprinkler : /^DOM[0-9]{5}$/m */
     $attributs = array(
-        'nom_arr'                 => $arrName     = $_POST['arr-name'],
+        'nom_arr'                 => $_POST['arr-name'],
         'numero_serie_arr'        => $_POST['arr-num-serie'],
         'etat_arr'                => 0,
         'etat_fonctionnement_arr' => 0,
         'date_ajout_arr'          => date('Y-m-d H:i:s'),
-        'id_zone'                => $idZone
+        'id_zone'                 => $idZone,
+        'id_plante'               => $idPlante
     );
 
     return insert($bdd, $table, $attributs);
