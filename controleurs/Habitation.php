@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION['user_id'])) {
+    header('Location: index.php');
+}
+
 /**
  * Contrôleur des maisons
  * User: bastien
@@ -8,6 +12,7 @@
 
 include "modele/habitation.php";
 include "modele/arroseur.php";
+include "modele/Plante.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -21,10 +26,15 @@ $js   = '<script src="vue/js/arrosage.js"></script>';
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
-        $maison      = getHousebyUserId($bdd, $tableHabitation, $_SESSION['user_id']);
-        $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
-        $title       = $maison['nom_habit'];
-        $vue         = "arrosage";
+        if (isset($_POST['house-select'])) {
+            $maison                = getHouseById($bdd, $tableHabitation, $_POST['house-select']);
+            $_SESSION['id_maison'] = $_POST['house-select'];
+        } else {
+            $maison                = getHousebyUserId($bdd, $tableHabitation, $_SESSION['user_id']);
+            $_SESSION['id_maison'] = $maison['id_habit'];
+        }
+        $title                 = $maison['nom_habit'];
+        $vue                   = "arrosage";
         break;
 
     case "ajouter-maison":
@@ -34,13 +44,21 @@ switch ($fonction) {
         break;
 
     case "update-view":
-        $maison1 = getHouseById($bdd, $tableHabitation, $_POST['house-select']);
-        $title   = $maison1['nom_habit'];
-        $vue     = "arrosage";
+
         break;
 
     case "ajouter-zone":
         addZone($bdd, $tableZone, $_POST['id-house']);
+        break;
+
+    case "config-arroseur":
+        $vue = "infos-arroseur";
+        break;
+
+    case "ajouter-arroseur":
+        addArroseur($bdd, $tableArroseur, $_POST['zone-id']);
+        $title = "Gestion de l'arrosage";
+        $vue   = "arrosage";
         break;
 
     /*  fixme : à voir mais surement à supprimer
@@ -56,11 +74,7 @@ switch ($fonction) {
             $vue   = "param-maison";
             break;
 
-        case "ajouter-arroseur":
-            addArroseur($bdd, $tableArroseur, $_GET['id_habit']);
-            $title = "Gestion de l'arrosage";
-            $vue   = "arrosage";
-            break;
+
 
         case "infos-arroseur":
             $arr   = getArroseurInfoById($bdd, $tableArroseur, $_GET['name_arroseur']);

@@ -4,28 +4,26 @@ let PopUpArroseur = document.getElementById('modal-add-arroseur');
 
 let btnAddHouse    = document.getElementById('add-house');
 let btnAddZone     = document.getElementById('add-zone');
-let btnAddArroseur = document.getElementById('add-arroseur');
-let close          = document.getElementsByClassName('close');
+let nbClose        = document.getElementsByClassName('close');
 
-btnAddHouse.addEventListener('click', function () {
-    PopUpMaison.style.display = "block";
-});
+showPopup(btnAddHouse, PopUpMaison);
+showPopup(btnAddZone, PopUpZone);
+closePopup(nbClose);
 
-btnAddZone.addEventListener('click', function () {
-    document.getElementById('modal-add-zone').style.display = "block";
-});
-
-btnAddArroseur.addEventListener('click', function () {
-    PopUpArroseur.style.display = "block";
-});
-
-for (let i = 0; i < close.length; i++) {
-    let btnClose = close.item(i);
-    btnClose.addEventListener("click", function () {
-        PopUpArroseur.style.display = "none";
-        PopUpMaison.style.display   = "none";
-        PopUpZone.style.display     = "none";
+function showPopup(BtnId, PopUpId) {
+    BtnId.addEventListener('click', function () {
+        PopUpId.style.display = "block";
     });
+}
+
+function closePopup(nbBtnClass) {
+    for (let i = 0; i < nbBtnClass.length; i++) {
+        let btnClose = nbBtnClass.item(i);
+        btnClose.addEventListener("click", function () {
+            // Close button need to be 4 child from modalId
+            document.getElementById(btnClose.parentNode.parentNode.parentNode.parentNode.id).style.display = "none";
+        });
+    }
 }
 
 document.addEventListener("click", function (event) {
@@ -53,31 +51,11 @@ document.addEventListener("keydown", function (event) {
     }
 });
 
-let btnAddArroseurs = document.getElementsByClassName('add');
-for (let i = 0; i < btnAddArroseurs.length; i++) {
-    let bouton = btnAddArroseurs.item(i);
-    bouton.addEventListener("click", function () {
-        const idHouse            = bouton.id.substring(8);
-        let xhttp                = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState === 4 && this.status === 200) {
-                document.getElementById("test").innerHTML = idHouse;
-            }
-        };
-        xhttp.open("POST", "index.php?cible=habitation&fonction=accueil", true);
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("idHouse=" + idHouse);
-        console.log(idHouse);
-        PopUpArroseur.style.display = "block";
-    });
+function addArroseur(element){
+    document.getElementById('zone-id').setAttribute('value', element.id.substring(14));
+    PopUpArroseur.style.display = "block";
 }
 
 function onSelectHouseChange() {
     document.getElementById('form-house-select').submit();
-    // let selectedItem = document.getElementById('house-select').value;
-    // let xhr = new XMLHttpRequest();
-    // xhr.open("POST", "index.php?cible=Habitation&fonction=update-view", true);
-    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhr.send("&id_habit=" + selectedItem);
-    // console.log(selectedItem);
 }

@@ -6,12 +6,3 @@
  * Time: 23:20
  */
 
-
-function alertMessage()
-{
-?>
-    <div class="alert">
-
-    </div>
-<?php
-}

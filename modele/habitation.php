@@ -11,13 +11,22 @@ require "modele/fonctions.php";
 $tableHabitation = 'habitation';
 $tableZone       = "zone";
 
-//todo : ajouter l'id_user de la session en paramètre
 function getHousebyUserId(PDO $bdd, string $table, int $idUser)
 {
     return $bdd->query("SELECT habitation.* FROM " . $table .
         " INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit" .
         " INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util" .
         " WHERE utilisateur.id_util = " . $idUser . " AND habitation.order_habit=1 ORDER BY habitation.date_ajout_habit")->fetch(PDO::FETCH_ASSOC);
+}
+
+function getHouseById(PDO $bdd, string $table, int $idHabit)
+{
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
+}
+
+function getHouseNameById(PDO $bdd, string $table, int $idHabit)
+{
+    return $bdd->query("SELECT nom_habit FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
 }
 
 function getAllHousesFromUser(PDO $bdd, string $table, int $idUser)
@@ -28,12 +37,6 @@ function getAllHousesFromUser(PDO $bdd, string $table, int $idUser)
         " WHERE utilisateur.id_util = " . $idUser . " ORDER BY habitation.date_ajout_habit");
 }
 
-function getHouseById(PDO $bdd, string $table, int $idHabit)
-{
-    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
-}
-
-//todo : ajouter l'id_user de la session en paramètre
 function addHouse(PDO $bdd, string $table, int $idUser)
 {
     $attributs = array(
@@ -63,25 +66,19 @@ function addHouse(PDO $bdd, string $table, int $idUser)
     }
 }
 
-function removeHouse(PDO $bdd, string $table, $idHouse)
+function removeHouse(PDO $bdd, string $table, $idUser, $idHouse)
 {
-    $bdd->query("DELETE * FROM habitation_utilisateur WHERE id_util=1 AND id_habit=" . $idHouse .
+    $bdd->query("DELETE * FROM habitation_utilisateur WHERE id_util=" . $idUser . " AND id_habit=" . $idHouse .
         "; DELETE * FROM " . $table . " WHERE id_habit = " . $idHouse . ";");
 
 }
 
-function modifyHouse($id_user)
+function modifyHouse(PDO $bdd, string $table, $id_user)
 {
 
 }
 
-function getHouseInfoById(PDO $bdd, string $table, int $idHabit)
-{
-    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHabit)->fetch(PDO::FETCH_ASSOC);
-}
-
-
-function addZone(PDO $bdd, string $table, $idHabit): string
+function addZone(PDO $bdd, string $table, $idHabit)
 {
     $attributs = array(
         "nom_zone" => $_POST['zone-name'],
@@ -93,5 +90,9 @@ function addZone(PDO $bdd, string $table, $idHabit): string
     } else {
         header("Location: index.php?cible=habitation&fonction=accueil");
     }
+}
 
+function getZonesByHouseId(PDO $bdd, string $table, int $idHouse)
+{
+    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHouse);
 }
