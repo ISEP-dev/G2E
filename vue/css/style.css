@@ -400,3 +400,31 @@ select:focus, textarea:focus, input[type=text]:focus {
 ::-webkit-scrollbar-thumb:hover {
     background-color : rgba(62, 102, 108, 0.85);
 }
+
+ul.navbar {
+    list-style-type  : none;
+    text-align       : center;
+    border-radius    : 10px;
+    background-color : rgba(0, 0, 0, 0.7);
+}
+
+li.navitem {
+    display : inline-flex;
+}
+
+li.navitem > a {
+    display         : flex;
+    color           : white;
+    text-align      : center;
+    padding         : 20px 20px;
+}
+
+/* Change the link color to #111 (black) on hover */
+li.navitem > a:hover {
+    background-color : white;
+    color            : black;
+}
+
+.active {
+    background-color : var(--bleu-clair);
+}
