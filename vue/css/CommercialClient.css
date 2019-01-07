@@ -98,3 +98,34 @@ li a:hover:not(.active) {
 .active {
     background-color: #4CAF50;
 }
+@media (max-width : 768px) {
+    .ligne {
+        flex-flow : column wrap;
+        height    : 100%;
+    }
+
+    .header {order : 1;}
+
+    .col-gauche, .col-droite {
+        margin : 20px 0;
+        height : 500px;
+    }
+
+    .footer {order : 10;}
+}
+
+/* ------ Pour téléphone mobile ------ */
+@media (max-width : 576px) {
+    .ligne {
+        flex-flow : column wrap;
+        height    : 100%;
+    }
+
+    .header {order : 1;}
+
+    .col-gauche, .col-droite {
+        margin : 20px 0;
+    }
+
+    .footer {order : 10;}
+}
