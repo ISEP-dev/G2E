@@ -56,6 +56,13 @@ switch ($fonction) {
         $vue   = "home";
         $title = "Accueil";
         break;
+
+    case "faq":
+        $head  = '<link rel="stylesheet" href="vue/css/faq.css">';
+        $vue   = "faq";
+        $title = "Foire aux questions";
+        break;
+
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";

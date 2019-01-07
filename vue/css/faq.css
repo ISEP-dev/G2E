@@ -1,0 +1,34 @@
+.faq_question {
+/* border-style: dotted;
+position: relative;
+font-family: 'Sanchez', serif;
+font-size: 1.4em;
+line-height: 1.5em;
+font-style: italic;
+color: grey;
+cursor: pointer; */
+background-color: rgb(117, 187, 194);
+ /*color: #444;*/
+ color: #fff;
+ font-style: italic;
+ cursor: pointer;
+ padding: 18px;
+ width: 100%;
+ text-align: left;
+ border: none;
+ outline: none;
+ transition: 0.7s;
+
+
+}
+
+.active, .faq_question:hover {
+  background-color: rgb(62, 102, 108);
+}
+
+.faq_answer_container {
+    height: 0px;
+    overflow: hidden;
+    padding: 10xpx;
+    width: 100%;
+}

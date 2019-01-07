@@ -197,7 +197,7 @@
     <h1><a href="index.php?cible=Commercial&fonction=accueil">Commercial</a></h1>
     <br>
     <h1><a href="index.php?cible=Mairie&fonction=accueil">Publication</a></h1>
-
+    <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>
     <h1>Mettre les différents produits ici</h1>
     <!--  arroseur simple,   -->
 
