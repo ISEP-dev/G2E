@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 21 déc. 2018 à 08:53
+-- Généré le :  lun. 07 jan. 2019 à 09:21
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -36,24 +36,27 @@ CREATE TABLE IF NOT EXISTS `arroseur` (
   `etat_arr` int(1) NOT NULL,
   `etat_fonctionnement_arr` int(1) NOT NULL,
   `date_ajout_arr` datetime NOT NULL,
-  `id_habit` int(11) NOT NULL,
-  `id_zone` int(11) DEFAULT NULL,
+  `id_zone` int(11) NOT NULL,
+  `id_plante` int(11) NOT NULL,
   PRIMARY KEY (`id_arr`),
-  KEY `id_habit` (`id_habit`),
   KEY `id_zone` (`id_zone`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Arroseurs';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='Arroseurs';
 
 --
 -- Déchargement des données de la table `arroseur`
 --
 
-INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_habit`, `id_zone`) VALUES
-(1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1, 0),
-(3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 2, 0),
-(4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 5, 0),
-(5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 7, 0),
-(6, 'Cocotier', 'DOM14258', 1, 2, '2018-11-27 11:10:00', 5, 0),
-(7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 12, 0);
+INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_zone`, `id_plante`) VALUES
+(1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1, 1),
+(3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 0, 1),
+(4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 1, 1),
+(5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 3, 1),
+(6, 'Cocotier', 'DOM14258', 0, 2, '2018-11-27 11:10:00', 2, 1),
+(7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 0, 2),
+(8, 'Tomates', 'DOM15236', 0, 0, '2018-12-25 22:45:49', 1, 4),
+(9, 'Aubergines', 'DOM15237', 0, 0, '2018-12-25 22:46:29', 2, 4),
+(10, 'Plante grasse', 'DOM15278', 0, 0, '2018-12-26 18:46:57', 4, 3),
+(11, 'tomates', 'DOM12555', 0, 0, '2019-01-06 13:27:24', 4, 4);
 
 -- --------------------------------------------------------
 
@@ -206,7 +209,7 @@ DROP TABLE IF EXISTS `plante`;
 CREATE TABLE IF NOT EXISTS `plante` (
   `id_plante` int(11) NOT NULL AUTO_INCREMENT,
   `nom_plante` varchar(100) NOT NULL,
-  `fréquence_plante` varchar(100) NOT NULL,
+  `frequence_plante` varchar(100) NOT NULL,
   `saison_plante` varchar(100) NOT NULL,
   `temps_arrosage_plante` varchar(100) NOT NULL,
   PRIMARY KEY (`id_plante`)
@@ -216,11 +219,11 @@ CREATE TABLE IF NOT EXISTS `plante` (
 -- Déchargement des données de la table `plante`
 --
 
-INSERT INTO `plante` (`id_plante`, `nom_plante`, `fréquence_plante`, `saison_plante`, `temps_arrosage_plante`) VALUES
-(1, 'Arbres et Arbustes', '1 à 2 fois par semaine', 'Été, Printemps', '1 min'),
-(2, 'Pelouse', '1 fois par jour', 'Toute saison', '1 heure'),
-(3, 'Massif de fleurs', '1 fois par jour', 'Été ', '1 minutes'),
-(4, 'Potager', '1 à 2 fois par semaine', 'Été, Printemps', '30 secondes');
+INSERT INTO `plante` (`id_plante`, `nom_plante`, `frequence_plante`, `saison_plante`, `temps_arrosage_plante`) VALUES
+(1, 'Arbres et Arbustes', '1 fois par semaine', 'Été, Printemps, Automne', '1 min'),
+(2, 'Pelouse', '1 fois par jour', 'Toutes les saisons', '25 min'),
+(3, 'Massif de fleurs', '1 fois par jour', 'Été ', '45 sec'),
+(4, 'Légume', '1 à 2 fois par semaine', 'Été, Printemps', '30 sec');
 
 -- --------------------------------------------------------
 
@@ -274,7 +277,15 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   `id_util` int(11) NOT NULL,
   PRIMARY KEY (`id_ticket`),
   KEY `id_util` (`id_util`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Gestion des tickets pour les problèmes';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Gestion des tickets pour les problèmes';
+
+--
+-- Déchargement des données de la table `ticket`
+--
+
+INSERT INTO `ticket` (`id_ticket`, `numero_ticket`, `titre_ticket`, `contenu_ticket`, `fichier_ticket`, `date_ticket`, `id_util`) VALUES
+(1, '1', 'Problème arrosage plante salon', 'Bonjour, blablabla mon arroseur marche pas c\'est pas super ... et puis voilà [...] tout vas bien', '/chemin/fichier', '2019-01-04 00:53:31', 1),
+(2, '2', 'Seere en panne 5 arroseurs', 'Tous mes arroseurs dans ma serre sont en pannes', '/chemin/fichier/joint', '2019-01-04 20:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -339,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `creee_a_util` datetime NOT NULL,
   PRIMARY KEY (`id_util`),
   KEY `type_util` (`type_util`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -349,7 +360,8 @@ INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `
 (1, 'Grignon', 'Bastien', 'bastien@isep.fr', '$2y$10$u16FmRJH1pdLSxte9SOsZOEw69/xsAnK3nR6ZhSDx4IfUP8fjQC..', '0751247989', 1, '2018-12-03 11:38:08'),
 (2, 'Dupond', 'Jean', 'jean.dupond@gmail.com', '$2y$10$BdTk5xkQqnrJ7Mh8RgMeueAouJ88zg6Wi2LPSwOmE8vpz.pDIl4q6', '0123456789', 1, '2018-12-03 16:54:34'),
 (3, 'Jean ', 'Dupont', 'jeandupont@gmail.com', '$2y$10$V/3QdHQrJ7lAKTHeEFr02O6fLJbnV91VbtSX9QRQ.PFAm7XlONwoy', '0123456789', 3, '2018-12-10 01:44:48'),
-(4, 'Smith', 'Martin', 'martinsmith@gmail.com', '$2y$10$QLyt2CHmWDBICNAaHp4LJeJOgLc1JaGKQumuxk9rjn.SHzVYKoqg2', '0123456789', 2, '2018-12-10 01:54:33');
+(4, 'Smith', 'Martin', 'martinsmith@gmail.com', '$2y$10$QLyt2CHmWDBICNAaHp4LJeJOgLc1JaGKQumuxk9rjn.SHzVYKoqg2', '0123456789', 2, '2018-12-10 01:54:33'),
+(5, 'Dupond', 'Bastien', 'bastien.dupond@gmail.com', '$2y$10$Rgi.0HzxU8SO2rsFLIzVKeaVP0fiORHyXzDBegTJdyfubc2HTQKt.', '0123456987', 1, '2019-01-04 22:43:24');
 
 -- --------------------------------------------------------
 
@@ -364,7 +376,7 @@ CREATE TABLE IF NOT EXISTS `zone` (
   `id_habit` int(11) NOT NULL,
   PRIMARY KEY (`id_zone`),
   KEY `id_habit` (`id_habit`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='Zone à pour arroseur';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='Zone à pour arroseur';
 
 --
 -- Déchargement des données de la table `zone`
@@ -372,17 +384,14 @@ CREATE TABLE IF NOT EXISTS `zone` (
 
 INSERT INTO `zone` (`id_zone`, `nom_zone`, `id_habit`) VALUES
 (1, 'Potager', 1),
-(2, 'Serre', 1);
+(2, 'Serre', 1),
+(3, 'Salon', 5),
+(4, 'Salon', 1),
+(5, 'Jardin', 5);
 
 --
 -- Contraintes pour les tables déchargées
 --
-
---
--- Contraintes pour la table `arroseur`
---
-ALTER TABLE `arroseur`
-  ADD CONSTRAINT `id_habit` FOREIGN KEY (`id_habit`) REFERENCES `habitation` (`id_habit`);
 
 --
 -- Contraintes pour la table `arroseur_mode`
