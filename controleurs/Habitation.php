@@ -58,6 +58,11 @@ switch ($fonction) {
         $vue   = "arrosage";
         break;
 
+    case "client-stat":
+        $title = "Satistiques client";
+        $vue = "client-stats";
+        break;
+
     /*  fixme : à voir mais surement à supprimer
         case "infos-maison":
             $maisonInfo = getHouseInfoById($bdd, $tableHabitation, 1);

@@ -1,12 +1,11 @@
 <div>
     <ul>
         <li><a href="index.php?cible=Commercial&fonction=stat_temp">Statistiques temporelles</a></li>
-        <li><a href="">Statistiques géographiques</a></li><!-- index.php?cible=Commercial&fonction=stat_geo -->
+        <li><a href="index.php?cible=Commercial&fonction=stat_geo">Statistiques géographiques</a></li>
         <li><a href="index.php?cible=Commercial&fonction=accueil">Informations clients</a></li>
     </ul>
 </div>
-
-<h1>Statistiques temporelles</h1>
+<br>
 <div class="ligne">
     <div class="col-gauche">
         <form name="form0" action="index.php?cible=Commercial&fonction=stat_temp" method="post">
