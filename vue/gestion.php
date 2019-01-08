@@ -1,5 +1,9 @@
+<link rel="stylesheet" href="css/gestion.css">
+
+
 <div class="ligne">
     <div class="col-gauche">
+    
         <div class="maison">
             <div class="header-maisons">
                 Voici vos maisons :
@@ -27,17 +31,27 @@
             <div class="modal-body">
                 <table>
                     <tr>
-                        <td>Ceder une maison</td>
-                        <td>
                             <select>
                             <option value="id_habit">Maison 1</option>
                             <option value="id_habit">Maison Principale</option>
                             </select>
-                        </td>
+                        <form id ="formulaire" action="gestion.php" method="post">
+                            <h5>Nouveau propriétaire :</h5>
+                            <label for="prenom">Prenom :</label>
+                            <input type="prenom" id="prenom" name="prenom" />
+                            <br>
+                            <label for="mail">Nom :</label>
+                            <input type="nom" id="nom" name="nom" />
+                            <br>
+                            <label for="mail"> Adresse Mail :</label>
+                            <input type="mail" id="mail" name="mail" />
+                            <br>
+                        </form>
+                    
                 </table>
             </div>
             <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Ceder la maison">
+                <input type="submit" onclick="controle();" name="submit" value="Ceder la maison">
             </div>
         </form>
     </div>

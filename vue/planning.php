@@ -3,21 +3,37 @@
     <div class="triangle-up"></div>
     <div id="result-search-client" class="triangle"></div>
 </form>
+<script src="vue/js/planning.js" async></script>
 <br><br>
 <div class="ligne">
     <div class="col-gauche">
         <div class="rdv">
-            <h1 class="v-centre h3">Fiche client </h1>
-            <div class="space-between">
-                <h2 class="v-centre h3">Nom</h2>
-                <h2 class="v-centre h3">Prenom</h2>
-            </div>
-            <h4 class="v-centre h3">Adresse</h4>
-            <div class="space-between">
-                <h2 class="v-centre h3">Ville</h2>
-                <h2 class="v-centre h3">Code postal</h2>
-            </div>
-            <h4 class="v-centre h3">Numéro de téléphone</h4>
+            <div class="sticky-header-rendezvous">
+                <label>
+                    Selectionner une date :
+                    <form id="form-date" action="index.php?cible=utilisateurs&fonction=planning" method="post">
+                        <input id="calendrier" type="date" name="date">
+                    </form>
+                </label>
+              <hr>
+           </div>
+            <?php
+            foreach($tickets as $ticket){
+                ?>
+                <div class="rendezvous space-between">
+                    <div class="nom-rendezvous">
+                        <?= $ticket['titre_ticket']; ?>
+                    </div>
+                    <a href="" title="Supprimer">
+                        <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png"
+                             style="width:25px;height:25px;"/>
+                    </a>
+                </div>
+                <?php
+            } # End of for
+            ?>
+            <br>
+            
         </div>
     </div>
 

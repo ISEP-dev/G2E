@@ -14,12 +14,14 @@
  */
 
 include "modele/user.php";
+include "modele/planning.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
 } else {
     $fonction = $_GET['fonction'];
 }
+
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
@@ -37,6 +39,9 @@ switch ($fonction) {
 
     case "planning":
         $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
+        if(isset($_POST['date'])){
+            $tickets = getTicketByDate($bdd,"ticket", "2018-11-19");
+        }
         $title = "Gestion des incidents";
         $vue   = "planning";
         break;

@@ -81,3 +81,11 @@
 .ligne1{
     display: inline-flex;
 }
+
+label{
+    display:block;
+    float:left;
+    width:150px;
+    }
+    
+    input{float: left;}

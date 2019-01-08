@@ -16,3 +16,13 @@ btnCeder.addEventListener("click", function(){
 function resiliation() {
     confirm("Confirmer votre résiliation");
 }
+
+function controle()
+{
+var contenu=document.form.name.value;
+if(contenu=='')
+  {
+   alert('Le champ ne peut pas rester vide !');
+   document.form.name.focus();
+  }
+}
