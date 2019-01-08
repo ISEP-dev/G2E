@@ -8,8 +8,9 @@
 
 require "modele/fonctions.php";
 
-$tableHabitation = 'habitation';
-$tableZone       = "zone";
+$tableHabitation     = "habitation";
+$tableHabitationUser = "habitation_utilisateur";
+$tableZone           = "zone";
 
 function getHousebyUserId(PDO $bdd, string $table, int $idUser)
 {
@@ -46,7 +47,8 @@ function addHouse(PDO $bdd, string $table, int $idUser)
         'ville_habit'       => $_POST['house-city'],
         'code_postal_habit' => $_POST['house-postal'],
         'pays_habit'        => $_POST['house-country'],
-        'date_ajout_habit'  => date('Y-m-d H:i:s')
+        'date_ajout_habit'  => date('Y-m-d H:i:s'),
+        'order_habit'       => $_POST['house-select-principal']
     );
 //    Insertion nouvelle habitation
     insert($bdd, $table, $attributs);
@@ -66,6 +68,11 @@ function addHouse(PDO $bdd, string $table, int $idUser)
     }
 }
 
+function getNbHousesByUserId(PDO $bdd, string $table, $idUser): int
+{
+    return $bdd->query("SELECT COUNT(*) FROM " . $table . " WHERE id_util=" . $idUser)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
+}
+
 function removeHouse(PDO $bdd, string $table, $idUser, $idHouse)
 {
     $bdd->query("DELETE * FROM habitation_utilisateur WHERE id_util=" . $idUser . " AND id_habit=" . $idHouse .
@@ -77,6 +84,7 @@ function modifyHouse(PDO $bdd, string $table, $id_user)
 {
 
 }
+
 
 function addZone(PDO $bdd, string $table, $idHabit)
 {

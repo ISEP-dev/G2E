@@ -16,15 +16,14 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
-        $css = 'publication';
-        $title     = "Espace commune";
-        $vue       = "publication";
+        $head  = '<link rel="stylesheet" href="vue/css/publication.css">';
+        $title = "Espace commune";
+        $vue   = "publication";
         break;
 
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";
-//        $message = "Page inexistante";
 }
 
 include("vue/header.php");

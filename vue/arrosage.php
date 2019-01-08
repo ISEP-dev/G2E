@@ -20,7 +20,9 @@
     <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a> <!-- TODO : mettre dans le catalogue-->
 </div>
 <!-- S : Zone -->
-<?php $zones = getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
+<?php
+if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
+    $zones = getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
 foreach ($zones as $zone) {
     $idZone = $zone['id_zone']; ?>
     <fieldset class="zone">
@@ -42,8 +44,8 @@ foreach ($zones as $zone) {
                 $checked = "checked";
             } else { $checked = ""; }
 
-            $plante = new Plante();
-            $plante_infos = $plante->getPlantType($bdd, "plante", $arroseur['id_plante']);
+            $plante            = new Plante();
+                $plante_infos  = $plante->getPlantType($bdd, $plante->tablePlante, $arroseur['id_plante']);
             $prctTempsArrosage = rand(0,100);
             ?>
             <!-- S : Arroseur -->
@@ -110,6 +112,9 @@ foreach ($zones as $zone) {
         <img src="vue/images/add-zone.png" alt="Ajouter une zone">
     </a>
 </div>
+<?php } else {
+    echo "<br><br><br>";
+} ?>
 <!-- S : Popup add houses, zones, arroseurs -->
 <div class="modal centre" id="modal-add-maison">
     <div class="modal-content">
@@ -144,6 +149,15 @@ foreach ($zones as $zone) {
                     <tr>
                         <td><label for="house-country">Pays : </label></td>
                         <td><input type="text" id="house-country" name="house-country" placeholder="Pays" required></td>
+                    <tr>
+                        <td><label for="house-select-principal">Maison principale</label></td>
+                        <td><select name="house-select-principal" id="house-select-principal">
+                                <option value="1">Maison principale</option>
+                                <option value="2">Maison secondaire</option>
+                            </select>
+                            <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
+                                 title="Maison affichée par défaut">
+                        </td>
                 </table>
             </div>
             <div class="modal-footer droite">
@@ -157,7 +171,10 @@ foreach ($zones as $zone) {
     <div class="modal-content">
         <form action="index.php?cible=habitation&fonction=ajouter-zone" method="post">
             <div class="modal-header space-between">
-                <h3>Ajouter une nouvelle zone à votre maison (<?= getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'] ?>)</h3>
+                <h3>Ajouter une nouvelle zone à votre maison
+                    (<?php if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
+                        getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'];
+                    } ?>)</h3>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -203,7 +220,8 @@ foreach ($zones as $zone) {
                     <tr>
                         <td><label for="select-plante-type">Type de plante</label></td>
                         <td><select name="select-plante-type" id="select-plante-type">
-                                <?php $plantes_type = $plante->getAllPlantType($bdd, "plante");
+                                <?php $plante = new Plante();
+                                $plantes_type = $plante->getAllPlantType($bdd, "plante");
                                 foreach ($plantes_type as $plante_type) { ?>
                                     <option value="<?= $plante_type['id_plante'] ?>"><?= $plante_type['nom_plante'] ?></option>
                                 <?php } ?>

@@ -237,3 +237,16 @@ table, td, th {
     margin-top : 20px;
     font-size  : medium;
 }
+
+/* Separation infos-arroseur */
+td.td-centre {
+    width : 12%;
+}
+
+.text-on {
+    color : green;
+}
+
+.text-off {
+    color : var(--red);
+}

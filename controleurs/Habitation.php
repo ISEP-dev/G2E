@@ -33,8 +33,8 @@ switch ($fonction) {
             $maison                = getHousebyUserId($bdd, $tableHabitation, $_SESSION['user_id']);
             $_SESSION['id_maison'] = $maison['id_habit'];
         }
-        $title                 = $maison['nom_habit'];
-        $vue                   = "arrosage";
+        $title = $maison['nom_habit'];
+        $vue   = "arrosage";
         break;
 
     case "ajouter-maison":
@@ -45,7 +45,11 @@ switch ($fonction) {
 
 
     case "config-arroseur":
-        $vue = "infos-arroseur";
+        $plante    = new Plante();
+        $arr       = getArroseurInfoById($bdd, $tableArroseur, $_GET['id']);
+        $planteArr = $plante->getPlantType($bdd, $plante->tablePlante, $arr['id_plante']);
+        $title     = "Configuration de l'arroseur";
+        $vue       = "infos-arroseur";
         break;
 
     case "ajouter-zone":
@@ -60,7 +64,7 @@ switch ($fonction) {
 
     case "client-stat":
         $title = "Satistiques client";
-        $vue = "client-stats";
+        $vue   = "client-stats";
         break;
 
     /*  fixme : à voir mais surement à supprimer

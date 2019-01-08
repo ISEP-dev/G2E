@@ -363,14 +363,9 @@ select:focus, textarea:focus, input[type=text]:focus {
 }
 
 .back-button:hover {
-    content           : '< ';
-    background-color  : var(--bleu-clair);
-    color             : var(--noir);
-    -webkit-transform : rotate(20deg);
-    -moz-transform    : rotate(20deg);
-    -ms-transform     : rotate(20deg);
-    -o-transform      : rotate(20deg);
-    transform         : rotate(20deg);
+    content          : '< ';
+    background-color : var(--bleu-clair);
+    color            : var(--noir);
 }
 
 .back-button:hover:before {
@@ -428,4 +423,32 @@ li.navitem > a:hover {
 
 .active {
     background-color : var(--bleu-clair);
+}
+
+.btn {
+    font-size        : 20px;
+    text-decoration  : none;
+    background-color : var(--bleu-fonce);
+    color            : var(--blanc);
+    border-radius    : var(--input-radius);
+    padding          : 10px;
+}
+
+.btn:hover {
+    background-color : var(--bleu-clair);
+    color            : var(--noir);
+}
+
+.btn-red {
+    font-size        : 20px;
+    text-decoration  : none;
+    background-color : var(--red);
+    color            : var(--blanc);
+    border-radius    : var(--input-radius);
+    padding          : 10px;
+}
+
+.btn-red:hover {
+    opacity : 0.85;
+    color   : var(--noir);
 }
