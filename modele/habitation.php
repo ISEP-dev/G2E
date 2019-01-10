@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: bastien
- * Date: 20/11/2018
- * Time: 14:32
- */
 
 require "modele/fonctions.php";
 

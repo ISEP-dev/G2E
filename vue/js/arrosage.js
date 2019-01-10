@@ -54,3 +54,24 @@ function addArroseur(element) {
 function onSelectHouseChange() {
     document.getElementById('form-house-select').submit();
 }
+
+function updateStatusArroseur(element) {
+    let arroseurId = element.getAttribute("for").substring(element.getAttribute("for").indexOf('a') + 1);
+    let zoneId     = element.getAttribute("for").substring(1, element.getAttribute("for").indexOf('-'));
+    let checked;
+
+    if (document.getElementById(element.getAttribute("for")).checked === true) {
+        checked = 0;
+    } else {
+        checked = 1;
+    }
+    let xHttp = new XMLHttpRequest();
+    xHttp.open("POST", "modele/updateArroseur.php", true);
+    xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xHttp.addEventListener("readystatechange", function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("result").innerHTML = this.responseText;
+        }
+    });
+    xHttp.send("arroseur=" + arroseurId + "&zone=" + zoneId + "&state=" + checked);
+}

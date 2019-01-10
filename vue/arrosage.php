@@ -57,7 +57,8 @@ foreach ($zones as $zone) {
                     <div class="toggle-button">
                         <input id="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" type="checkbox"
                                class="arroseur-checkbox" name="button" <?= $checked ?>>
-                        <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" class="arroseur-label">
+                        <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" class="arroseur-label"
+                               onclick="updateStatusArroseur(this);">
                             <span class="arroseur-inner"></span>
                             <span class="arroseur-slider"></span>
                         </label>

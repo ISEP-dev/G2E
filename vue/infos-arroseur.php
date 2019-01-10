@@ -20,7 +20,7 @@
                             <option value="<?= $plante_type['id_plante'] ?>"><?= $plante_type['nom_plante'] ?></option>
                         <?php } ?>
                     </select>
-                    </form>
+                    <!--                    </form>-->
                 </td>
                 <td class="td-centre"></td>
                 <td>Nom de l'arroseur :</td>
