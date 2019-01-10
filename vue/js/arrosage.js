@@ -68,10 +68,5 @@ function updateStatusArroseur(element) {
     let xHttp = new XMLHttpRequest();
     xHttp.open("POST", "modele/updateArroseur.php", true);
     xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xHttp.addEventListener("readystatechange", function () {
-        if (this.readyState === 4 && this.status === 200) {
-            document.getElementById("result").innerHTML = this.responseText;
-        }
-    });
     xHttp.send("arroseur=" + arroseurId + "&zone=" + zoneId + "&state=" + checked);
 }
