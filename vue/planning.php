@@ -1,5 +1,6 @@
 <form method="post" autocomplete="off">
-    <input type="text" placeholder="Numéro client" id="search-client" name="search-client" style="margin-left: 50px" autofocus>
+    <input type="text" placeholder="Numéro client" id="search-client" name="search-client" style="margin-left: 50px"
+           autofocus>
     <div class="triangle-up"></div>
     <div id="result-search-client" class="triangle"></div>
 </form>
@@ -15,25 +16,26 @@
                         <input id="calendrier" type="date" name="date">
                     </form>
                 </label>
-              <hr>
-           </div>
-            <?php
-            foreach($tickets as $ticket){
-                ?>
-                <div class="rendezvous space-between">
-                    <div class="nom-rendezvous">
-                        <?= $ticket['titre_ticket']; ?>
+                <hr>
+            </div>
+            <?php if (!$noTickets) {
+                foreach ($tickets as $ticket) {
+                    ?>
+                    <div class="rendezvous space-between">
+                        <div class="nom-rendezvous">
+                            <?= $ticket['titre_ticket']; ?>
+                        </div>
+                        <a href="" title="Supprimer">
+                            <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png"
+                                 style="width:25px;height:25px;"/>
+                        </a>
                     </div>
-                    <a href="" title="Supprimer">
-                        <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png"
-                             style="width:25px;height:25px;"/>
-                    </a>
-                </div>
-                <?php
-            } # End of for
+                    <?php
+                }
+            }
             ?>
             <br>
-            
+
         </div>
     </div>
 

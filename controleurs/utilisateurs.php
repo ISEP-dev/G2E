@@ -41,6 +41,8 @@ switch ($fonction) {
         $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
         if(isset($_POST['date'])){
             $tickets = getTicketByDate($bdd,"ticket", "2018-11-19");
+        } else {
+            $noTickets = true;
         }
         $title = "Gestion des incidents";
         $vue   = "planning";

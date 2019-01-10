@@ -173,9 +173,9 @@ foreach ($zones as $zone) {
         <form action="index.php?cible=habitation&fonction=ajouter-zone" method="post">
             <div class="modal-header space-between">
                 <h3>Ajouter une nouvelle zone à votre maison
-                    (<?php if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
-                        getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'];
-                    } ?>)</h3>
+                    <?php if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
+                        echo "(" . getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'] . ")";
+                    } ?></h3>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -190,7 +190,6 @@ foreach ($zones as $zone) {
             </div>
             <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
             <div class="modal-footer droite">
-                <!-- <a href="" class="droite">Ajouter</a> -->
                 <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
             </div>
         </form>
