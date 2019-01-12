@@ -57,7 +57,7 @@ switch ($fonction) {
         break;
 
     case "ajouter-arroseur":
-        addArroseur($bdd, $tableArroseur, $_POST['zone-id'], $_POST['select-plante-type']);
+        addArroseur($bdd, $tableArroseur, $_POST['zone-id'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;

@@ -40,7 +40,8 @@ switch ($fonction) {
     case "planning":
         $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
         if(isset($_POST['date'])){
-            $tickets = getTicketByDate($bdd,"ticket", "2018-11-19");
+            $tickets   = getTicketByDate($bdd,"ticket", "2018-11-19");
+            $noTickets = false;
         } else {
             $noTickets = true;
         }

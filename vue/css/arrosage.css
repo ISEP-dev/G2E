@@ -250,3 +250,7 @@ td.td-centre {
 .text-off {
     color : var(--red);
 }
+
+.small-text {
+    font-size : 14px;
+}
