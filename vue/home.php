@@ -73,8 +73,9 @@
                     </select>
                     <br/>
                     <p>
-                        Accepter les <a id="link-to-cgu" href="#cgu" required>conditions générales d'utilisation</a>.
                         <input type="checkbox" id="cgu_check" name="cgu_check"/>
+                        <label for="cgu_check">Accepter les <a id="link-to-cgu" href="#cgu" required>conditions
+                                générales d'utilisation</a></label>
 
                     <div class="v-bas">
                         <input id="suivant" name="submit" class="boutonInscription" type="submit">
@@ -205,7 +206,21 @@
     <h1><a href="index.php?cible=Mairie&fonction=accueil">Publication</a></h1>
     <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>
     <h1>Mettre les différents produits ici</h1>
-    <!--  arroseur simple,   -->
+    <table class="gallery">
+        <tr>
+            <td>Arroseur multi surface <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Arroseur grande surface <br><img src="http://placehold.it/350x250" alt=""></td>
+        </tr>
+        <tr>
+            <td>Aspergeur classique <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Arroseur compte goutte d'extérieur<br><img src="http://placehold.it/350x250" alt=""></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Arroseur compte goutte d'intérieur <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td></td>
+        </tr>
+    </table>
 
 <?php }
 /*
