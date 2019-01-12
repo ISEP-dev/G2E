@@ -48,17 +48,23 @@
                         <input type="text" class='user-input' placeholder="Prenom" name="prenom-utilisateur" width="28"
                                required>*
                     </div>
-                    <input id="mail" type="text" class='user-input'
-                           placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur" width="28"
-                           required>
-                    <input type="text" class='user-input' placeholder="0123456789" name="numero-utilisateur" width="28"
-                           required>
+                    <div class="adresse ">
+                        <input id="mail" type="text" class='user-input'
+                               placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur"
+                               width="28"
+                               required>&nbsp;&nbsp;
+                        <input type="text" class='user-input' placeholder="0123456789" name="numero-utilisateur"
+                               width="28"
+                               required>
+                    </div>
                     <input type="password" class='user-input' placeholder="Entrez un mot de passe"
                            name="password-utilisateur" width="28"
                            required>
                     <input type="password" class='user-input' placeholder="Confirmez le mot de passe"
                            name="passwd-utilisateur2" width="28"
                            required>
+                    <input type="text" class="user-input" placeholder="Numéro de série du CeMac" name="cemac-number">
+                    <label for="type-utilisateur"></label>
                     <select id="type-utilisateur" name="type-utilisateur">
                         <option value="1"> Utilisateur</option>
                         <option value="2"> Technicien</option>
