@@ -41,6 +41,7 @@
             </button>
             <div id="user-dropdown" class="dropdown-content">
                 <a href="">Paramètres</a>
+                <a href="index.php?cible=utilisateurs&fonction=ticket">Tickets</a>
                 <a href="index.php?cible=utilisateurs&fonction=logout">Déconnexion</a>
             </div>
         </div>

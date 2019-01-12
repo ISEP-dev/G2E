@@ -71,6 +71,13 @@ switch ($fonction) {
         $title = "Foire aux questions";
         break;
 
+  case "ticket":
+       displayTicket($bdd,$tableTicket);
+       $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+       $vue = "ticket";
+       $title = "Création de ticket pour incident";
+       break;
+       
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";

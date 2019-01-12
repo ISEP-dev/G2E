@@ -8,6 +8,7 @@
 require "modele/fonctions.php";
 
 $tableUsers = 'utilisateur';
+$tableTicket = 'ticket';
 
 function connection_to_site(PDO $bdd, string $table)
 {
@@ -102,4 +103,10 @@ function addUsers(PDO $bdd, string $table)
         // puis on le redirige vers la page d'accueil
         echo '<meta http-equiv="refresh" content="0;URL=index.php">';
     }
+}
+
+function displayTicket(PDO $bdd, string $tableTicket){
+  //$idUtil = $_SESSION['user_id'];{
+      return $bdd->query("SELECT  * FROM " . $tableTicket . " WHERE id_util=".$_SESSION['user_id']);
+      // return selectAll($bdd, $table);
 }

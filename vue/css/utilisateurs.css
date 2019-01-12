@@ -7,6 +7,16 @@
     box-sizing: border-box;
 }
 
+.ticket {
+ background-color: grey;
+ color: #fff;
+ font-style: italic;
+ cursor: pointer;
+ padding: 18px;
+ width: 100%;
+ text-align: left;
+}
+
 .header-user {
     align-items: center;
     z-index: 1;
