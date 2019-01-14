@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 14 jan. 2019 à 10:22
+-- Généré le :  lun. 14 jan. 2019 à 10:26
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
+SET FOREIGN_KEY_CHECKS = 0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -176,11 +177,12 @@ CREATE TABLE IF NOT EXISTS `habitation_utilisateur` (
 -- Déchargement des données de la table `habitation_utilisateur`
 --
 
-INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`) VALUES (1, 5),
-                                                                    (1, 1),
-                                                                    (2, 7),
-                                                                    (2, 9),
-                                                                    (6, 13);
+INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`)
+VALUES (1, 5),
+       (1, 1),
+       (2, 7),
+       (2, 9),
+       (6, 13);
 
 -- --------------------------------------------------------
 
@@ -493,6 +495,7 @@ ALTER TABLE `utilisateur`
 --
 ALTER TABLE `zone`
   ADD CONSTRAINT `zone_ibfk_1` FOREIGN KEY (`id_habit`) REFERENCES `habitation` (`id_habit`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS = 1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
