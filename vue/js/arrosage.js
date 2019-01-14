@@ -70,3 +70,16 @@ function updateStatusArroseur(element) {
     xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xHttp.send("arroseur=" + arroseurId + "&zone=" + zoneId + "&state=" + checked);
 }
+
+function checkSeriallNumber(){
+    var inputserial = document.getElementById("arr-num-serie");
+    var patt = new RegExp("^DOM\d{5}$");
+    var res = patt.test(inputserial);
+    if(!res){
+        inputserial.style.background="red";
+    }
+    else{
+        inputserial.style.background="transparent";
+    }
+    
+}
