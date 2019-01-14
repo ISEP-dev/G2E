@@ -48,17 +48,23 @@
                         <input type="text" class='user-input' placeholder="Prenom" name="prenom-utilisateur" width="28"
                                required>*
                     </div>
-                    <input id="mail" type="text" class='user-input'
-                           placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur" width="28"
-                           required>
-                    <input type="text" class='user-input' placeholder="0123456789" name="numero-utilisateur" width="28"
-                           required>
+                    <div class="adresse ">
+                        <input id="mail" type="text" class='user-input'
+                               placeholder="Adresse mail de la forme : nom@domaine.fr" name="email-utilisateur"
+                               width="28"
+                               required>&nbsp;&nbsp;
+                        <input type="text" class='user-input' placeholder="0123456789" name="numero-utilisateur"
+                               width="28"
+                               required>
+                    </div>
                     <input type="password" class='user-input' placeholder="Entrez un mot de passe"
                            name="password-utilisateur" width="28"
                            required>
                     <input type="password" class='user-input' placeholder="Confirmez le mot de passe"
                            name="passwd-utilisateur2" width="28"
                            required>
+                    <input type="text" class="user-input" placeholder="Numéro de série du CeMac" name="cemac-number">
+                    <label for="type-utilisateur"></label>
                     <select id="type-utilisateur" name="type-utilisateur">
                         <option value="1"> Utilisateur</option>
                         <option value="2"> Technicien</option>
@@ -67,8 +73,9 @@
                     </select>
                     <br/>
                     <p>
-                        Accepter les <a id="link-to-cgu" href="#cgu" required>conditions générales d'utilisation</a>.
                         <input type="checkbox" id="cgu_check" name="cgu_check"/>
+                        <label for="cgu_check">Accepter les <a id="link-to-cgu" href="#cgu" required>conditions
+                                générales d'utilisation</a></label>
 
                     <div class="v-bas">
                         <input id="suivant" name="submit" class="boutonInscription" type="submit">
@@ -199,7 +206,21 @@
     <h1><a href="index.php?cible=Mairie&fonction=accueil">Publication</a></h1>
     <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>
     <h1>Mettre les différents produits ici</h1>
-    <!--  arroseur simple,   -->
+    <table class="gallery">
+        <tr>
+            <td>Arroseur multi surface <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Arroseur grande surface <br><img src="http://placehold.it/350x250" alt=""></td>
+        </tr>
+        <tr>
+            <td>Aspergeur classique <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Arroseur compte goutte d'extérieur<br><img src="http://placehold.it/350x250" alt=""></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Arroseur compte goutte d'intérieur <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td></td>
+        </tr>
+    </table>
 
 <?php }
 /*

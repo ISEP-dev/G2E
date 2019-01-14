@@ -43,21 +43,24 @@ foreach ($zones as $zone) {
             if ($arroseur['etat_arr']) {
                 $checked = "checked";
             } else { $checked = ""; }
-
             $plante            = new Plante();
                 $plante_infos  = $plante->getPlantType($bdd, $plante->tablePlante, $arroseur['id_plante']);
             $prctTempsArrosage = rand(0,100);
+
+                $arroseurType = getArroseurTypeByArroseurId($bdd, $tableArroseurType, $tableArroseur, $arroseur['id_arr']);
             ?>
             <!-- S : Arroseur -->
             <div class="arroseur">
                 <div class="space-between">
                     <div class="nom-arroseur">
                         <a href="index.php?cible=habitation&fonction=config-arroseur&id=<?= $arroseur['id_arr'] ?>"><?= $arroseur['nom_arr'] ?></a>
+                        <span class="small-text">(<?= $arroseurType['nom_type_arroseur'] ?>)</span>
                     </div>
                     <div class="toggle-button">
                         <input id="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" type="checkbox"
                                class="arroseur-checkbox" name="button" <?= $checked ?>>
-                        <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" class="arroseur-label">
+                        <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" class="arroseur-label"
+                               onclick="updateStatusArroseur(this);">
                             <span class="arroseur-inner"></span>
                             <span class="arroseur-slider"></span>
                         </label>
@@ -66,7 +69,8 @@ foreach ($zones as $zone) {
                 <div class="space-between">
                     <div class="progress">
                         <progress value="<?= $prctTempsArrosage ?>" max="100" class="progress-bar"></progress>
-                        <div class="progress-value strong"><?= $prctTempsArrosage ?>% de <?= $plante_infos['temps_arrosage_plante'] ?></div>
+                        <div class="progress-value strong"><?= $prctTempsArrosage ?>%
+                            / <?= $plante_infos['temps_arrosage_plante'] ?></div>
                     </div>
                     <div class="capteur-type">
                         Type de plante : <span class="italic"><?= $plante_infos['nom_plante'] ?></span>
@@ -172,9 +176,9 @@ foreach ($zones as $zone) {
         <form action="index.php?cible=habitation&fonction=ajouter-zone" method="post">
             <div class="modal-header space-between">
                 <h3>Ajouter une nouvelle zone à votre maison
-                    (<?php if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
-                        getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'];
-                    } ?>)</h3>
+                    <?php if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
+                        echo "(" . getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'] . ")";
+                    } ?></h3>
                 <span class="close">&times;</span>
             </div>
             <div class="modal-body">
@@ -189,7 +193,6 @@ foreach ($zones as $zone) {
             </div>
             <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
             <div class="modal-footer droite">
-                <!-- <a href="" class="droite">Ajouter</a> -->
                 <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
             </div>
         </form>
@@ -210,6 +213,7 @@ foreach ($zones as $zone) {
                             <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
                                  title="Nom explicite (affiché pour la gestion de vos différents arroseurs)">
                         </td>
+                    </tr>
                     <tr>
                         <td><label for="arr-num-serie">Numéro de série : </label></td>
                         <td><input type="text" id="arr-num-serie" name="arr-num-serie"
@@ -217,6 +221,7 @@ foreach ($zones as $zone) {
                             <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
                                  title="Vous le trouverez sur l'appareil (ex : DOM1111)">
                         </td>
+                    </tr>
                     <tr>
                         <td><label for="select-plante-type">Type de plante</label></td>
                         <td><select name="select-plante-type" id="select-plante-type">
@@ -227,6 +232,17 @@ foreach ($zones as $zone) {
                                 <?php } ?>
                             </select>
                         </td>
+                    </tr>
+                    <tr>
+                        <td><label for="select-arroseur-type">Type d'arroseur</label></td>
+                        <td><select name="select-arroseur-type" id="select-arroseur-type">
+                                <?php $types_arroseur = getAllArroseurType($bdd, $tableArroseurType);
+                                foreach ($types_arroseur as $type_arroseur) { ?>
+                                    <option value="<?= $type_arroseur['id_type_arroseur'] ?>"><?= $type_arroseur['nom_type_arroseur'] ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
                 </table>
             </div>
             <input type="hidden" id="zone-id" name="zone-id" value="">

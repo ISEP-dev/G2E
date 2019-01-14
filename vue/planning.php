@@ -23,16 +23,11 @@
                     <div class="nom-rendezvous">
                         <?= $ticket['titre_ticket']; ?>
                     </div>
-                    <a href="" title="Supprimer">
-                        <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png"
-                             style="width:25px;height:25px;"/>
-                    </a>
-                </div>
-                <?php
-            } # End of for
+                    <?php
+            }
             ?>
             <br>
-            
+
         </div>
     </div>
 

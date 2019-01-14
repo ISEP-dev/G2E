@@ -40,7 +40,10 @@ switch ($fonction) {
     case "planning":
         $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
         if(isset($_POST['date'])){
-            $tickets = getTicketByDate($bdd,"ticket", "2018-11-19");
+            $tickets   = getTicketByDate($bdd,"ticket", "2018-11-19");
+            $noTickets = false;
+        } else {
+            $noTickets = true;
         }
         $title = "Gestion des incidents";
         $vue   = "planning";
@@ -68,6 +71,13 @@ switch ($fonction) {
         $title = "Foire aux questions";
         break;
 
+  case "ticket":
+       displayTicket($bdd,$tableTicket);
+       $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+       $vue = "ticket";
+       $title = "Création de ticket pour incident";
+       break;
+       
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";
