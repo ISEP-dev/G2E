@@ -75,10 +75,10 @@ function checkSeriallNumber(element) {
     let patt = new RegExp("^DOM\\d{5}$");
     let res  = patt.test(element.value);
     if(!res){
-        element.style.background = "red";
+        element.style.background = "#FA6A6A";
     }
     else{
-        element.style.background = "green";
+        element.style.background = "#72F695";
     }
     
 }
