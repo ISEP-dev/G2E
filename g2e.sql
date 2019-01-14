@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 14 jan. 2019 à 10:10
+-- Généré le :  lun. 14 jan. 2019 à 10:22
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `g2e`
 --
+CREATE DATABASE IF NOT EXISTS `g2e` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `g2e`;
 
 -- --------------------------------------------------------
 
@@ -29,18 +31,19 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `arroseur`;
-CREATE TABLE IF NOT EXISTS `arroseur`(
-                                       `id_arr`                  int(11)      NOT NULL AUTO_INCREMENT,
-                                       `nom_arr`                 varchar(255) NOT NULL,
-                                       `numero_serie_arr`        varchar(255) NOT NULL,
-                                       `etat_arr`                int(1)       NOT NULL,
-                                       `etat_fonctionnement_arr` int(1)       NOT NULL,
-                                       `date_ajout_arr`          datetime     NOT NULL,
-                                       `id_zone`                 int(11)      NOT NULL,
-                                       `id_plante`               int(11)      NOT NULL,
-                                       `id_type_arroseur`        int(11)      NOT NULL,
-                                       PRIMARY KEY (`id_arr`),
-                                       KEY `id_zone` (`id_zone`)
+CREATE TABLE IF NOT EXISTS `arroseur`
+(
+  `id_arr`                  int(11)      NOT NULL AUTO_INCREMENT,
+  `nom_arr`                 varchar(255) NOT NULL,
+  `numero_serie_arr`        varchar(255) NOT NULL,
+  `etat_arr`                int(1)       NOT NULL,
+  `etat_fonctionnement_arr` int(1)       NOT NULL,
+  `date_ajout_arr`          datetime     NOT NULL,
+  `id_zone`                 int(11)      NOT NULL,
+  `id_plante`               int(11)      NOT NULL,
+  `id_type_arroseur`        int(11)      NOT NULL,
+  PRIMARY KEY (`id_arr`),
+  KEY `id_zone` (`id_zone`)
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 13
   DEFAULT CHARSET = utf8 COMMENT ='Arroseurs';
@@ -123,7 +126,8 @@ CREATE TABLE IF NOT EXISTS `donnee` (
 --
 
 DROP TABLE IF EXISTS `habitation`;
-CREATE TABLE IF NOT EXISTS `habitation`(
+CREATE TABLE IF NOT EXISTS `habitation`
+(
   `id_habit` int(11) NOT NULL AUTO_INCREMENT,
   `order_habit` tinyint(1) NOT NULL,
   `nom_habit` varchar(255) NOT NULL,
@@ -172,12 +176,11 @@ CREATE TABLE IF NOT EXISTS `habitation_utilisateur` (
 -- Déchargement des données de la table `habitation_utilisateur`
 --
 
-INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`) VALUES
-                                                               (1, 5),
-                                                               (1, 1),
-                                                               (2, 7),
-                                                               (2, 9),
-                                                               (6, 13);
+INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`) VALUES (1, 5),
+                                                                    (1, 1),
+                                                                    (2, 7),
+                                                                    (2, 9),
+                                                                    (6, 13);
 
 -- --------------------------------------------------------
 
@@ -375,7 +378,8 @@ INSERT INTO `type_utilisateur` (`id_type_util`, `user_type_util`) VALUES
 --
 
 DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE IF NOT EXISTS `utilisateur`(
+CREATE TABLE IF NOT EXISTS `utilisateur`
+(
   `id_util` int(11) NOT NULL AUTO_INCREMENT,
   `nom_util` varchar(255) NOT NULL,
   `prenom_util` varchar(255) NOT NULL,
