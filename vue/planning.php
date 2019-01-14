@@ -1,9 +1,8 @@
-<form method="post" autocomplete="off">
-    <input type="text" placeholder="Numéro client" id="search-client" name="search-client" style="margin-left: 50px"
-           autofocus>
+<!-- <form method="post" autocomplete="off">
+    <input type="text" placeholder="Numéro client" id="search-client" name="search-client" style="margin-left: 50px" autofocus>
     <div class="triangle-up"></div>
     <div id="result-search-client" class="triangle"></div>
-</form>
+</form> -->
 <script src="vue/js/planning.js" async></script>
 <br><br>
 <div class="ligne">
@@ -12,26 +11,19 @@
             <div class="sticky-header-rendezvous">
                 <label>
                     Selectionner une date :
-                    <form id="form-date" action="index.php?cible=utilisateurs&fonction=planning" method="post">
-                        <input id="calendrier" type="date" name="date">
-                    </form>
+                    <input id="calendrier" type="date" name="date">
                 </label>
-                <hr>
-            </div>
-            <?php if (!$noTickets) {
-                foreach ($tickets as $ticket) {
-                    ?>
-                    <div class="rendezvous space-between">
-                        <div class="nom-rendezvous">
-                            <?= $ticket['titre_ticket']; ?>
-                        </div>
-                        <a href="" title="Supprimer">
-                            <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png"
-                                 style="width:25px;height:25px;"/>
-                        </a>
+              <hr>
+           </div>
+           <div class="result"></div>
+            <?php
+            foreach($tickets as $ticket){
+                ?>
+                <div class="rendezvous space-between">
+                    <div class="nom-rendezvous">
+                        <?= $ticket['titre_ticket']; ?>
                     </div>
                     <?php
-                }
             }
             ?>
             <br>
