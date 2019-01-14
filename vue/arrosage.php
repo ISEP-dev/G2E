@@ -217,7 +217,8 @@ foreach ($zones as $zone) {
                     <tr>
                         <td><label for="arr-num-serie">Numéro de série : </label></td>
                         <td><input type="text" id="arr-num-serie" name="arr-num-serie"
-                                   placeholder="Entrez le numéro de série (DOM...)" onchange="checkSeriallNumber();" required>
+                                   placeholder="Entrez le numéro de série (DOM...)" onkeyup="checkSeriallNumber(this);"
+                                   required>
                             <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
                                  title="Vous le trouverez sur l'appareil (ex : DOM1111)">
                         </td>

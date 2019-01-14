@@ -71,15 +71,14 @@ function updateStatusArroseur(element) {
     xHttp.send("arroseur=" + arroseurId + "&zone=" + zoneId + "&state=" + checked);
 }
 
-function checkSeriallNumber(){
-    var inputserial = document.getElementById("arr-num-serie");
-    var patt = new RegExp("^DOM\d{5}$");
-    var res = patt.test(inputserial);
+function checkSeriallNumber(element) {
+    let patt = new RegExp("^DOM\\d{5}$");
+    let res  = patt.test(element.value);
     if(!res){
-        inputserial.style.background="red";
+        element.style.background = "red";
     }
     else{
-        inputserial.style.background="transparent";
+        element.style.background = "green";
     }
     
 }
