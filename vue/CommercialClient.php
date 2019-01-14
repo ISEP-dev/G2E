@@ -3,6 +3,7 @@
         <li><a href="index.php?cible=Commercial&fonction=stat_temp">Statistiques temporelles</a></li>
         <li><a href="">Statistiques géographiques</a></li>
         <li><a href="index.php?cible=Commercial&fonction=accueil">Informations clients</a></li>
+        <script type="text/javascript" src="vue/js/CommercialClient.js"></script>
     </ul>
 </div>
 <br><br>
@@ -27,8 +28,10 @@
             <div>
                 <textarea name="content" rows="8" cols="80" placeholder="Résultat recherches" required></textarea>
                 <div id="rechercher">
+
                     <div id=boutton_rechercher>
-                        <button class="rechercher" style="vertical-align:middle"><span>Rechercher</span></button>
+
+                        <button onclick="makeRequest('http://localhost/G2E/index.php?cible=CommercialClient')" class="rechercher" style="vertical-align:middle"><span>Rechercher</span></button>
                     </div>
                 </div>
             </div>
