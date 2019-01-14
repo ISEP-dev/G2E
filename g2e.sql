@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 07 jan. 2019 à 09:21
+-- Généré le :  lun. 14 jan. 2019 à 10:10
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -29,34 +29,39 @@ SET time_zone = "+00:00";
 --
 
 DROP TABLE IF EXISTS `arroseur`;
-CREATE TABLE IF NOT EXISTS `arroseur` (
-  `id_arr` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_arr` varchar(255) NOT NULL,
-  `numero_serie_arr` varchar(255) NOT NULL,
-  `etat_arr` int(1) NOT NULL,
-  `etat_fonctionnement_arr` int(1) NOT NULL,
-  `date_ajout_arr` datetime NOT NULL,
-  `id_zone` int(11) NOT NULL,
-  `id_plante` int(11) NOT NULL,
-  PRIMARY KEY (`id_arr`),
-  KEY `id_zone` (`id_zone`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='Arroseurs';
+CREATE TABLE IF NOT EXISTS `arroseur`(
+                                       `id_arr`                  int(11)      NOT NULL AUTO_INCREMENT,
+                                       `nom_arr`                 varchar(255) NOT NULL,
+                                       `numero_serie_arr`        varchar(255) NOT NULL,
+                                       `etat_arr`                int(1)       NOT NULL,
+                                       `etat_fonctionnement_arr` int(1)       NOT NULL,
+                                       `date_ajout_arr`          datetime     NOT NULL,
+                                       `id_zone`                 int(11)      NOT NULL,
+                                       `id_plante`               int(11)      NOT NULL,
+                                       `id_type_arroseur`        int(11)      NOT NULL,
+                                       PRIMARY KEY (`id_arr`),
+                                       KEY `id_zone` (`id_zone`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 13
+  DEFAULT CHARSET = utf8 COMMENT ='Arroseurs';
 
 --
 -- Déchargement des données de la table `arroseur`
 --
 
-INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`, `date_ajout_arr`, `id_zone`, `id_plante`) VALUES
-(1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1, 1),
-(3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 0, 1),
-(4, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 1, 1),
-(5, 'Acacia', 'DOM19630', 1, 0, '2018-11-27 15:13:00', 3, 1),
-(6, 'Cocotier', 'DOM14258', 0, 2, '2018-11-27 11:10:00', 2, 1),
-(7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 0, 2),
-(8, 'Tomates', 'DOM15236', 0, 0, '2018-12-25 22:45:49', 1, 4),
-(9, 'Aubergines', 'DOM15237', 0, 0, '2018-12-25 22:46:29', 2, 4),
-(10, 'Plante grasse', 'DOM15278', 0, 0, '2018-12-26 18:46:57', 4, 3),
-(11, 'tomates', 'DOM12555', 0, 0, '2019-01-06 13:27:24', 4, 4);
+INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`,
+                        `date_ajout_arr`, `id_zone`, `id_plante`, `id_type_arroseur`)
+VALUES (1, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1, 1, 4),
+       (3, 'Noyer', 'DOM15240', 1, 0, '2018-11-21 08:44:00', 0, 1, 1),
+       (4, 'Cerisier', 'DOM15245', 1, 1, '2018-11-15 13:17:10', 1, 1, 1),
+       (5, 'Acacia', 'DOM19630', 0, 0, '2018-11-27 15:13:00', 3, 1, 2),
+       (6, 'Cocotier', 'DOM14258', 0, 2, '2018-11-27 11:10:00', 2, 1, 1),
+       (7, 'Serre', 'DOM15295', 1, 2, '2018-09-25 08:35:08', 0, 2, 2),
+       (8, 'Tomates', 'DOM15236', 1, 0, '2018-12-25 22:45:49', 1, 4, 3),
+       (9, 'Aubergines', 'DOM15237', 0, 0, '2018-12-25 22:46:29', 2, 4, 3),
+       (10, 'Plante grasse', 'DOM15278', 0, 0, '2018-12-26 18:46:57', 4, 3, 5),
+       (11, 'tomates', 'DOM12555', 1, 0, '2019-01-06 13:27:24', 4, 4, 4),
+       (12, 'Potarroseur', 'DOM11111', 0, 0, '2019-01-11 11:02:13', 1, 3, 4);
 
 -- --------------------------------------------------------
 
@@ -118,7 +123,7 @@ CREATE TABLE IF NOT EXISTS `donnee` (
 --
 
 DROP TABLE IF EXISTS `habitation`;
-CREATE TABLE IF NOT EXISTS `habitation` (
+CREATE TABLE IF NOT EXISTS `habitation`(
   `id_habit` int(11) NOT NULL AUTO_INCREMENT,
   `order_habit` tinyint(1) NOT NULL,
   `nom_habit` varchar(255) NOT NULL,
@@ -129,7 +134,9 @@ CREATE TABLE IF NOT EXISTS `habitation` (
   `pays_habit` varchar(255) NOT NULL,
   `date_ajout_habit` datetime NOT NULL,
   PRIMARY KEY (`id_habit`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='Liste des habitations';
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 14
+  DEFAULT CHARSET = utf8 COMMENT ='Liste des habitations';
 
 --
 -- Déchargement des données de la table `habitation`
@@ -144,7 +151,8 @@ INSERT INTO `habitation` (`id_habit`, `order_habit`, `nom_habit`, `numero_habit`
 (8, 0, 'Maison 5', 9, 'Rue des vents', 'Paris', '75016', 'France', '2018-08-02 21:54:42'),
 (9, 0, 'Maison vacances', 55, 'Rue perdu', 'Pornic', '44250', 'France', '2018-11-24 16:21:34'),
 (10, 0, 'Maison deux', 154, 'Rue de test', 'Ville Test', '49630', 'France', '2018-11-25 04:50:43'),
-(12, 0, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34');
+(12, 0, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34'),
+(13, 1, 'Maisons Paris', 25, 'Rue du moulin', 'Issy', '92130', 'France', '2019-01-07 12:23:49');
 
 -- --------------------------------------------------------
 
@@ -165,10 +173,11 @@ CREATE TABLE IF NOT EXISTS `habitation_utilisateur` (
 --
 
 INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`) VALUES
-(1, 5),
-(1, 1),
-(2, 7),
-(2, 9);
+                                                               (1, 5),
+                                                               (1, 1),
+                                                               (2, 7),
+                                                               (2, 9),
+                                                               (6, 13);
 
 -- --------------------------------------------------------
 
@@ -312,6 +321,33 @@ INSERT INTO `type` (`id_type`, `nom_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `type_arroseur`
+--
+
+DROP TABLE IF EXISTS `type_arroseur`;
+CREATE TABLE IF NOT EXISTS `type_arroseur`
+(
+  `id_type_arroseur`  int(11)      NOT NULL AUTO_INCREMENT,
+  `nom_type_arroseur` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_type_arroseur`)
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 6
+  DEFAULT CHARSET = utf8;
+
+--
+-- Déchargement des données de la table `type_arroseur`
+--
+
+INSERT INTO `type_arroseur` (`id_type_arroseur`, `nom_type_arroseur`)
+VALUES (1, 'Arroseur multi-surface'),
+       (2, 'Arroseur grande surface'),
+       (3, 'Aspregeur classique'),
+       (4, 'Arroseur compte goutte d\'extérieur'),
+       (5, 'Arroseur compte goutte d\'intérieur');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `type_utilisateur`
 --
 
@@ -339,7 +375,7 @@ INSERT INTO `type_utilisateur` (`id_type_util`, `user_type_util`) VALUES
 --
 
 DROP TABLE IF EXISTS `utilisateur`;
-CREATE TABLE IF NOT EXISTS `utilisateur` (
+CREATE TABLE IF NOT EXISTS `utilisateur`(
   `id_util` int(11) NOT NULL AUTO_INCREMENT,
   `nom_util` varchar(255) NOT NULL,
   `prenom_util` varchar(255) NOT NULL,
@@ -350,7 +386,9 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `creee_a_util` datetime NOT NULL,
   PRIMARY KEY (`id_util`),
   KEY `type_util` (`type_util`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 7
+  DEFAULT CHARSET = utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -361,7 +399,10 @@ INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `
 (2, 'Dupond', 'Jean', 'jean.dupond@gmail.com', '$2y$10$BdTk5xkQqnrJ7Mh8RgMeueAouJ88zg6Wi2LPSwOmE8vpz.pDIl4q6', '0123456789', 1, '2018-12-03 16:54:34'),
 (3, 'Jean ', 'Dupont', 'jeandupont@gmail.com', '$2y$10$V/3QdHQrJ7lAKTHeEFr02O6fLJbnV91VbtSX9QRQ.PFAm7XlONwoy', '0123456789', 3, '2018-12-10 01:44:48'),
 (4, 'Smith', 'Martin', 'martinsmith@gmail.com', '$2y$10$QLyt2CHmWDBICNAaHp4LJeJOgLc1JaGKQumuxk9rjn.SHzVYKoqg2', '0123456789', 2, '2018-12-10 01:54:33'),
-(5, 'Dupond', 'Bastien', 'bastien.dupond@gmail.com', '$2y$10$Rgi.0HzxU8SO2rsFLIzVKeaVP0fiORHyXzDBegTJdyfubc2HTQKt.', '0123456987', 1, '2019-01-04 22:43:24');
+(5, 'Dupond', 'Bastien', 'bastien.dupond@gmail.com', '$2y$10$Rgi.0HzxU8SO2rsFLIzVKeaVP0fiORHyXzDBegTJdyfubc2HTQKt.',
+ '0123456987', 1, '2019-01-04 22:43:24'),
+(6, 'grignon', 'bastien', 'b@gmail.com', '$2y$10$awbNV0ehTIZLLsJutTr4qufl04YUg7dv4mxFHkaUiyCEtaL6L914W', '0278965423',
+ 1, '2019-01-07 11:44:31');
 
 -- --------------------------------------------------------
 
