@@ -77,7 +77,14 @@ switch ($fonction) {
        $vue = "ticket";
        $title = "Création de ticket pour incident";
        break;
-       
+
+  case "ajoutTicket":
+      createTicket($bdd,$tableTicket);
+      $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+      $vue = "infos-arroseur";
+      $title = "Configuration de l'arroseur";
+      break;
+
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";

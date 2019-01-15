@@ -71,8 +71,25 @@
             <a href="" class="btn-red">Supprimer l'arroseur</a>
         </div>
     </div>
-    <div class="col-droite centre">
-        <form action="">
+    <div class="col-droite">
+      <div class="v-haut header-user">
+        Créez votre ticket
+      </div>
+        <form method="POST" action="index.php?cible=utilisateurs&fonction=ajoutTicket" id="formticket">
+            <input type="text" class="user-input" placeholder="Libellé du ticket" name="titre-ticket" width="28" required>
+            <input type="text" class='user-input' placeholder="Prenom" name="prenom-utilisateur" value="<?php echo $_SESSION['user_name']; ?>" width="28" disabled>
+            <br>
+            <div class="adresse">
+              <input id="id-util" class='user-input' type="text" name="identifiant-utilisateur" value="<?php echo $_SESSION['user_id']; ?>" width="28" disabled>
+              <input type="text" class='user-input' value="<?php echo date('Y-m-d'); ?>" width="28"  disabled/>
+            </div>
+            <br>
+            <input type="file" class='user-input' name="fichier-ticket" width="28" required>
+            <textarea  rows="4" cols="50" class="areaticket" form="formticket" name="message-ticket" placeholder="entrez votre message"></textarea>
+
+            <div class="v-bas">
+                <input id="suivant" name="Transmettre" class="boutonConnexion" type="submit" >
+            </div>
         </form>
-    </div>
+</div>
 </div>

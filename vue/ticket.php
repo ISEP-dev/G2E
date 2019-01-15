@@ -2,7 +2,6 @@
  <? $date = date('Y-m-d H:i:s'); ?>
   <div class="ligne">
       <div class="col-gauche">
-
           <div class="v-haut header-user">
             Créez votre ticket
           </div>
@@ -25,7 +24,6 @@
                     <input id="suivant" name="Transmettre" class="boutonConnexion" type="submit" >
                 </div>
             </form>
-        </fieldset>
         </div>
 
         <div class="col-droite">
