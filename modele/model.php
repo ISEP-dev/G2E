@@ -76,20 +76,79 @@ class Model
 
     }
 
-function getInfo()   {//conn = PDO
+		//par josephbsslt
+	function getInfo($nom,$prenom,$ville,$numtel)   {//conn = PDO
 
-	$sql = 'SELECT * FROM utilisateur';
-	/*echo "qdsdqsd<br/>";
+		if (empty($nom)&&empty($prenom)&&empty($ville)&&empty($numtel))
+				return;
 
-	print_r($this->connexion);
-	//echo "qdsdqs1d<br/>";
-*/
-	foreach ($this->connexion->query($sql) as $row) {
-		print $row['prenom_util'];
+			$sql = 'SELECT * FROM utilisateur ';
+
+			if(!empty($nom) || !empty($prenom) || !empty($numtel)){
+					$sql = $sql . " WHERE ";
+			}
+
+			if (!empty($nom)){
+					$sql = $sql . " nom_util = '".$nom."'";
+			}
+
+			if (!empty($prenom)){
+					if(!empty($nom)){
+							$sql = $sql . " AND ";
+					}
+					$sql = $sql . " prenom_util = '".$prenom."'";
+			}
+
+			if (!empty($numtel)){
+					if(!empty($nom) || !empty($prenom)){
+							$sql = $sql . " AND ";
+					}
+					$sql = $sql . " tel_util = '".$numtel."'";
+			}
+
+			if (!empty($ville)){
+					$sql = $sql . " INNER JOIN habitation_utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util
+					INNER JOIN habitation ON habitation_utilisateur.id_habit = habitation.id_habit
+					WHERE habitation.order_habit = 1 AND ville_habit = '".$ville."'";
+			}
+
+//        echo $sql;
+
+			$req = $this->connexion->query($sql);
+			$rows = $req->fetchAll();
+
+
+//        '
+//                INNER JOIN habitation_utilisateur AS hu
+//                    ON u.id_util = hu.id_util
+//                INNER JOIN habitation AS h
+//                    ON h.id_habit = hu.id_habit
+//                WHERE h.order_habit = 1';
+//        /*echo "qdsdqsd<br/>";
+//
+//        print_r($this->connexion);
+//        //echo "qdsdqs1d<br/>";
+//    */
+//        $rows = $this->connexion->query($sql);
+//        echo"<script>
+//                document.getElementById('ResDeRecherche').innerHTML =' ";
+//        echo $rows;
+//        echo "';
+//             </script>";
+			return $rows;
 	}
 
+//"'.$mail.'"'
 
+	function getInfoParID($id){
+			$sql = 'SELECT * FROM utilisateur WHERE id_util ="'.$id.'"' ;
+			$req = $this->connexion->query($sql);
+			$rep = $req->fetch();
+
+			return $rep;
+	}
 }
-}
+
+?>
 
 ?>

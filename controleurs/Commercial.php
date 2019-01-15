@@ -13,11 +13,18 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 // Choix de la vue à afficher
+$model = new Model();
 switch ($fonction) {
 
     case "accueil":
     $head  = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
         //$css   = 'CommercialClient';
+        if (isset($_POST['NumTel']) || isset($_POST['Ville']) || isset($_POST['Prenom']) || isset($_POST['Nom'])){
+            $rows = $model->getInfo($_POST['Nom'],$_POST['Prenom'],$_POST['Ville'],$_POST['NumTel']);
+        }
+        if (isset($_GET['id'])){
+            $infos = $model->getInfoParID($_GET['id']);
+        }
         $title = "Informations Client";
         $vue   = "CommercialClient";
         break;
@@ -34,7 +41,6 @@ switch ($fonction) {
             $Xaxis = $_POST['Xaxis'];
             $Yaxis = $_POST['Yaxis'];
         }
-        $model = new Model();
         $graph = $model->getGraph($Xaxis, $Yaxis);
         break;
     case "stat_geo":
@@ -48,5 +54,5 @@ switch ($fonction) {
 }
 
 include("vue/header.php");
-include("vue/" . $vue . ".php");
+require("vue/" . $vue . ".php");
 include("vue/footer.php");
