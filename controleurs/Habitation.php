@@ -48,6 +48,7 @@ switch ($fonction) {
         $plante    = new Plante();
         $arr       = getArroseurInfoById($bdd, $tableArroseur, $_GET['id']);
         $planteArr = $plante->getPlantType($bdd, $plante->tablePlante, $arr['id_plante']);
+        $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         $title     = "Configuration de l'arroseur";
         $vue       = "infos-arroseur";
         break;

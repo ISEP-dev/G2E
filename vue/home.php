@@ -73,8 +73,8 @@
                     </select>
                     <br/>
                     <p>
-                        <input type="checkbox" id="cgu_check" name="cgu_check"/>
-                        <label for="cgu_check">Accepter les <a id="link-to-cgu" href="#cgu" required>conditions
+                        <input type="checkbox" id="cgu_check" name="cgu_check"  required/>
+                        <label for="cgu_check">Accepter les <a id="link-to-cgu" href="#cgu">conditions
                                 générales d'utilisation</a></label>
 
                     <div class="v-bas">
