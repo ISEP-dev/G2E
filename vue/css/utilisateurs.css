@@ -8,8 +8,10 @@
     box-sizing: border-box;
 }
 
+
+
 .ticket {
- background-color: grey;
+ background-color: #B0C4DE;
  color: #fff;
  font-style: italic;
  cursor: pointer;

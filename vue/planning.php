@@ -17,14 +17,14 @@
            </div>
            <div class="result"></div>
             <?php
-            foreach($tickets as $ticket){
-                ?>
+            /*foreach($tickets as $ticket){
+                */ ?><!--
                 <div class="rendezvous space-between">
                     <div class="nom-rendezvous">
-                        <?= $ticket['titre_ticket']; ?>
+                        <? /*= $ticket['titre_ticket']; */ ?>
                     </div>
-                    <?php
-            }
+                    --><?php
+            /*            }*/
             ?>
             <br>
 
@@ -34,22 +34,22 @@
     <div class="col-droite">
         <h1 class="centre">Gestion des tickets</h1>
         <?php
-
-        $mysqli = new mysqli("localhost", "root", "", "g2e") or die("Erreur : " . $mysqli->error);
-        $ticketQuery = $mysqli->query("SELECT * FROM ticket WHERE id_util = " . $_SESSION['user_id']);
-        while ($tickets = $ticketQuery->fetch_assoc()) {
-            ?>
+        /*
+                $mysqli = new mysqli("localhost", "root", "", "g2e") or die("Erreur : " . $mysqli->error);
+                $ticketQuery = $mysqli->query("SELECT * FROM ticket WHERE id_util = " . $_SESSION['user_id']);
+                while ($tickets = $ticketQuery->fetch_assoc()) {
+                    */ ?><!--
             <div class="rendezvous space-between">
                 <div class="nom-rendezvous">
-                    <?= $tickets['titre_ticket']; ?>
+                    <? /*= $tickets['titre_ticket']; */ ?>
                 </div>
                 <a href="" title="Supprimer">
                     <img class="poubelle" src="vue/images/poubelle.png" alt="poubelle.png"
                          style="width:25px;height:25px;"/>
                 </a>
             </div>
-            <?php
-        } # End of while
+            --><?php
+        /*        } # End of while*/
         ?>
     </div>
 </div>

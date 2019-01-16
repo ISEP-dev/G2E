@@ -62,8 +62,16 @@ div.arroseur {
     font-size     : 1.5rem;
 }
 
-div.nom-arroseur {
-    font-size : 1.1em;
+div.nom-arroseur > a {
+    font-size       : 1.1em;
+    text-decoration : none;
+    color           : var(--bleu-clair);
+}
+
+div.nom-arroseur > a:hover {
+    font-size       : 1.2em;
+    text-decoration : none;
+    color           : var(--bleu-fonce);
 }
 
 .capteur-type {

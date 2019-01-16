@@ -106,8 +106,6 @@ function addUsers(PDO $bdd, string $table)
 }
 
 function createTicket(PDO $bdd, string $tableTicket){
-      //$numeroTicket = numTicket();
-      //$tickets = displayTicket($bdd, $tableTicket);
       $titreTicket      = $_POST['titre-ticket'];
       $contenuTicket    = $_POST['message-ticket'];
       $fichierTicket    = $_POST['fichier-ticket'];

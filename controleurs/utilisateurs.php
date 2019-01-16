@@ -75,7 +75,7 @@ switch ($fonction) {
        displayTicket($bdd,$tableTicket);
        $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
        $vue = "ticket";
-       $title = "Création de ticket pour incident";
+       $title = "Historique de vos incidents";
        break;
 
   case "ajoutTicket":

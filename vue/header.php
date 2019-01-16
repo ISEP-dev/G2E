@@ -14,6 +14,8 @@
     <title>
         <?php if (isset($title)) {
             echo $title;
+        } else {
+            echo "EcoRain";
         } ?>
     </title>
 </head>

@@ -68,7 +68,8 @@
         <div class="centre">
             <a href="" class="btn">Enregistrer les modifications</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="" class="btn-red">Supprimer l'arroseur</a>
+            <a href="index.php?cible=habitation&fonction=supprimer-arroseur&id=<?= $arr['id_arr'] ?>" class="btn-red">Supprimer
+                l'arroseur</a>
         </div>
     </div>
     <div class="col-droite">
