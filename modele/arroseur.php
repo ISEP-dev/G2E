@@ -52,7 +52,7 @@ function getArroseurTypeByArroseurId(PDO $bdd, string $table, string $table2, $i
         " INNER JOIN arroseur ON arroseur.id_type_arroseur = type_arroseur.id_type_arroseur WHERE arroseur.id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);
 }
 
-function removeArroseur(PDO $bdd, string $table)
+function removeArroseur(PDO $bdd, string $table, $idArr)
 {
-
+    $bdd->query("DELETE FROM " . $table . " WHERE id_arr=" . $idArr);
 }
