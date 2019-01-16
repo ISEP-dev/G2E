@@ -98,3 +98,8 @@ function getZonesByHouseId(PDO $bdd, string $table, int $idHouse)
 {
     return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHouse);
 }
+
+function removeZone(PDO $bdd, string $table, $idZone)
+{
+    $bdd->query("DELETE FROM " . $table . " WHERE id_zone=" . $idZone);
+}
