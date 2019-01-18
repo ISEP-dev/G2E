@@ -297,3 +297,8 @@ td.td-centre {
     display         : flex;
     justify-content : flex-end;
 }
+
+.icon-question {
+    width  : 20px;
+    height : 20px;
+}

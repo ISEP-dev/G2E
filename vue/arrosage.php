@@ -168,7 +168,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                                 <option value="1">Maison principale</option>
                                 <option value="2">Maison secondaire</option>
                             </select>
-                            <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
+                            <img src="vue/images/icon_question_1024x1024.png" alt="question.png" class="icon-question"
                                  title="Maison affichée par défaut">
                         </td>
                 </table>
@@ -195,7 +195,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                     <tr>
                         <td><label for="arr-name">Nom de la zone : </label></td>
                         <td><input type="text" id="zone-name" name="zone-name" placeholder="Entrez le nom" required>
-                            <img src="vue/images/icon_question_1024x1024.png" alt="question.png" width="20"
+                            <img src="vue/images/icon_question_1024x1024.png" alt="question.png" class="icon-question"
                                  title="Entrez un nom de zone ex: Potager, Serre, ...">
                         </td>
                 </table>
@@ -219,7 +219,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                     <tr>
                         <td><label for="arr-name">Nom de l'arroseur : </label></td>
                         <td><input type="text" id="arr-name" name="arr-name" placeholder="Entrez le nom" required>
-                            <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
+                            <img src="vue/images/icon_question_1024x1024.png" alt="question.png" class="icon-question"
                                  title="Nom explicite (affiché pour la gestion de vos différents arroseurs)">
                         </td>
                     </tr>
@@ -228,7 +228,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                         <td><input type="text" id="arr-num-serie" name="arr-num-serie"
                                    placeholder="Entrez le numéro de série (DOM...)" onkeyup="checkSeriallNumber();"
                                    required>
-                            <img src="vue/images/icon_question_1024x1024.png" alt="" width="20"
+                            <img src="vue/images/icon_question_1024x1024.png" alt="question.png" class="icon-question"
                                  title="Vous le trouverez sur l'appareil (ex : DOM1111)">
                         </td>
                     </tr>
