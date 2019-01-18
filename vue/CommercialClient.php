@@ -36,7 +36,7 @@
                             <?php
                         }
                     }
-                }
+                
                 ?>
             </div>
             <br><br>
@@ -63,7 +63,7 @@
             <input type="submit" name="submitExport" value="Exporter">
             <input type="submit" name="submitPrint" value="Imrpimer" >
         </div>
-        <div id="ResDeRecherche">                                                       
+        <div id="ResDeRecherche">
             <?php
             if (isset($infos)) {
                 echo "<br/>
