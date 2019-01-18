@@ -5,6 +5,7 @@ ini_set('display_errors', 1);
 if (empty($_SESSION)) {
     session_start();
 }
+setlocale(LC_ALL, "fr_FR");
 
 include("controleurs/fonctions.php");
 
