@@ -1,4 +1,6 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/translations/fr.js"></script>
+
 <body>
 <div class="ligne">
     <div class="col-gauche">
@@ -18,23 +20,26 @@
         </form>
     </div>
     <div class="col-droite">
-        <div class="footer-publication centre">
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&raquo;</a>
-            </div>
-        </div>
+        <h2 class="centre recent-pub">Publications récentes</h2>
         <div class="publications">
             <?php $publication = new Publication();
             $allPublications   = $publication->getAllPublications($bdd, $publication->tablePublication);
             foreach ($allPublications as $publication) { ?>
-                <h3><?= $publication['titre_pub'] ?></h3><br>
-                <?=$publication['contenu_pub'] ?>
+                <h3><?= $publication['titre_pub'] ?></h3>
+                <?= $publication['contenu_pub'] ?>
                 <hr>
-          <?php } ?>
+            <?php } ?>
+        </div>
+        <div class="pub centre">
+            <div class="footer-publication">
+                <div class="pagination v-bas">
+                    <a href="#">&laquo;</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">&raquo;</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

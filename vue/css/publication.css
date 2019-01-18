@@ -1,78 +1,115 @@
 @import "./style.css";
+
 .pagination {
-    display: inline-block;
-}
-.pagination > a {
-    color: var(--noir);
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-}
-.pagination > a.active {
-    background-color: var(--vert);
-    color: var(--blanc);
-    border-radius: 100%;
-}
-.pagination > a:hover:not(.active) {
-    background-color: rgba(221, 221, 221, 0.8);
-    border-radius: 100%;
-}
-#boutton_publier{
-    text-align: right;
-    margin-right: 2%;
-}
-.boutton_publier {
-    display: inline-block;
-    border-radius: 2px;
-    background-color: #3873b1;
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 15px;
-    padding: 7px;
-    width: 100px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-}
-.boutton_publier span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-}
-.boutton_publier span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-}
-.boutton_publier:hover span {
-    padding-right: 15px;
-}
-.boutton_publier:hover span:after {
-    opacity: 1;
-    right: 0;
-}
-#message{
-    resize: none;
-    width: 97%;
-    height: 75%;
-}
-#boutton_option{
-    margin-left: 10px;
-    margin-top: -30px;
-}
-#toolbar-editor{
-    background-color: var(--gris-clair);
-    border-bottom-left-radius: var(--input-radius);
-    border-bottom-right-radius: var(--input-radius);
-    padding: 0 var(--padding);
+    display : inline-block;
 }
 
-.publications{
-    padding-left: 20px;
-    padding-top: 20px;
+.pagination > a {
+    color           : var(--noir);
+    float           : left;
+    padding         : 8px 16px;
+    text-decoration : none;
+}
+
+.pagination > a.active {
+    background-color : var(--vert);
+    color            : var(--blanc);
+    border-radius    : 100%;
+}
+
+.pagination > a:hover:not(.active) {
+    background-color : rgba(221, 221, 221, 0.8);
+    border-radius    : 100%;
+}
+
+#boutton_publier {
+    text-align   : right;
+    margin-right : 2%;
+}
+
+.boutton_publier {
+    display          : inline-block;
+    border-radius    : 2px;
+    background-color : #3873b1;
+    border           : none;
+    color            : #FFFFFF;
+    text-align       : center;
+    font-size        : 15px;
+    padding          : 7px;
+    width            : 100px;
+    transition       : all 0.5s;
+    cursor           : pointer;
+    margin           : 5px;
+}
+
+.boutton_publier span {
+    cursor     : pointer;
+    display    : inline-block;
+    position   : relative;
+    transition : 0.5s;
+}
+
+.boutton_publier span:after {
+    content    : '\00bb';
+    position   : absolute;
+    opacity    : 0;
+    top        : 0;
+    right      : -20px;
+    transition : 0.5s;
+}
+
+.boutton_publier:hover span {
+    padding-right : 15px;
+}
+
+.boutton_publier:hover span:after {
+    opacity : 1;
+    right   : 0;
+}
+
+#message {
+    resize : none;
+    width  : 97%;
+    height : 75%;
+}
+
+#boutton_option {
+    margin-left : 10px;
+    margin-top  : -30px;
+}
+
+#toolbar-editor {
+    background-color           : var(--gris-clair);
+    border-bottom-left-radius  : var(--input-radius);
+    border-bottom-right-radius : var(--input-radius);
+    padding                    : 0 var(--padding);
+}
+
+.recent-pub {
+    position   : sticky;
+    margin-top : -10px;
+    background-color : var(--blanc);
+}
+
+.pub {
+    position : relative;
+}
+
+.publications {
+    padding-left : 20px;
+    padding-top  : 20px;
+    margin-top   : -52px;
+    height       : inherit;
+    overflow-y   : auto;
+}
+
+.footer-publication {
+    position : absolute;
+    bottom   : 10px;
+    background-color : var(--blanc);
+}
+
+.ck-editor__editable {
+    min-height : 180px;
+    max-height : 180px;
 }
