@@ -3,13 +3,6 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
 }
 
-/**
- * Contrôleur des maisons
- * User: bastien
- * Date: 25/11/2018
- * Time: 00:42
- */
-
 include "modele/habitation.php";
 include "modele/arroseur.php";
 include "modele/Plante.php";
