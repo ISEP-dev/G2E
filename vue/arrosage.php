@@ -23,11 +23,17 @@
 <?php
 if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
     $zones = getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
-foreach ($zones as $zone) {
-    $idZone = $zone['id_zone']; ?>
+    foreach ($zones as $zone) { ?>
     <fieldset class="zone">
         <legend class="zone-titre b"><?= $zone['nom_zone'] ?></legend>
+        <div class="delete-zone">
+            <a class="cursor" id="delete-zone" data-idzone="<?= $zone['id_zone'] ?>" title="Supprimer la zone"
+               onclick="deleteZone(this);">
+                <div class="circle-delete"></div>
+            </a>
+        </div>
         <div class="container-zone">
+
             <?php $arroseurs = getArroseurByZoneId($bdd, $tableArroseur, $zone['id_zone']);
             foreach ($arroseurs as $arroseur) {
             if ($arroseur['etat_fonctionnement_arr'] == 0) {
@@ -111,10 +117,13 @@ foreach ($zones as $zone) {
 <?php } ?>
 
 <!-- S : Add new zone -->
-<div class="col-droite centre v-centre column">
+    <div class="col-droite centre v-centre space-around">
     <a id="add-zone" title="Ajouter une nouvelle zone" class="cursor">
         <img src="vue/images/add-zone.png" alt="Ajouter une zone">
     </a>
+        <a id="delete-maison" class="cursor">
+            <img src="vue/images/no-home.png" alt="Supprimer la maison">
+        </a>
 </div>
 <?php } else {
     echo "<br><br><br>";
@@ -246,9 +255,41 @@ foreach ($zones as $zone) {
                     </tr>
                 </table>
             </div>
-            <input type="hidden" id="zone-id" name="zone-id" value="">
+            <input type="hidden" id="zone-id-add-arr" name="zone-id-add-arr" value="">
             <div class="modal-footer droite">
                 <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal centre" id="modal-delete-maison">
+    <div class="modal-content">
+        <form action="index.php?cible=habitation&fonction=supprimer-maison" method="post">
+            <div class="modal-header space-between">
+                <h3>Voulez-vous vraiment supprimer cette maison ? </h3>
+                <span class="close">&times;</span>
+            </div>
+            <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
+            <div class="modal-footer droite">
+                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge">
+                <input type="button" value="Annuler" class="btn-modal-submit"
+                       onclick="document.getElementById('modal-delete-maison').style.display = 'none';">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal centre" id="modal-delete-zone">
+    <div class="modal-content">
+        <form action="index.php?cible=habitation&fonction=supprimer-zone" method="post">
+            <div class="modal-header space-between">
+                <h3>Voulez-vous vraiment supprimer cette zone ? </h3>
+                <span class="close">&times;</span>
+            </div>
+            <input type="hidden" id="zone-id-delete-zone" name="zone-id-delete-zone" value="">
+            <div class="modal-footer droite">
+                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge">
+                <input type="button" value="Annuler" class="btn-modal-submit"
+                       onclick="document.getElementById('modal-delete-zone').style.display = 'none';">
             </div>
         </form>
     </div>

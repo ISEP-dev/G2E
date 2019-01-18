@@ -67,10 +67,9 @@ function getNbHousesByUserId(PDO $bdd, string $table, $idUser): int
     return $bdd->query("SELECT COUNT(*) FROM " . $table . " WHERE id_util=" . $idUser)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
 }
 
-function removeHouse(PDO $bdd, string $table, $idUser, $idHouse)
+function removeHouse(PDO $bdd, string $table, $idHouse)
 {
-    $bdd->query("DELETE * FROM habitation_utilisateur WHERE id_util=" . $idUser . " AND id_habit=" . $idHouse .
-        "; DELETE * FROM " . $table . " WHERE id_habit = " . $idHouse . ";");
+    $bdd->query("DELETE FROM " . $table . " WHERE id_habit=" . $idHouse);
 
 }
 

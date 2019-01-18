@@ -13,6 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 include "modele/habitation.php";
 include "modele/arroseur.php";
 include "modele/Plante.php";
+include "modele/Capteur.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -48,7 +49,7 @@ switch ($fonction) {
         $plante    = new Plante();
         $arr       = getArroseurInfoById($bdd, $tableArroseur, $_GET['id']);
         $planteArr = $plante->getPlantType($bdd, $plante->tablePlante, $arr['id_plante']);
-        $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $head      = '<link rel="stylesheet" href="vue/css/utilisateurs.css">' . '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title     = "Configuration de l'arroseur";
         $vue       = "infos-arroseur";
         break;
@@ -58,7 +59,7 @@ switch ($fonction) {
         break;
 
     case "ajouter-arroseur":
-        addArroseur($bdd, $tableArroseur, $_POST['zone-id'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
+        addArroseur($bdd, $tableArroseur, $_POST['zone-id-add-arr'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
@@ -70,17 +71,20 @@ switch ($fonction) {
         break;
 
     case "supprimer-arroseur":
-        removeArroseur($bdd, $tableArroseur, $_GET['id']);
+        removeArroseur($bdd, $tableArroseur, $_POST['arr-id-delete-arr']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
 
     case "supprimer-zone":
+        removeZone($bdd, $tableZone, $_POST['zone-id-delete-zone']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
 
     case "supprimer-maison":
+        removeHouse($bdd, $tableHabitation, $_POST['id-house']);
+        header("Location: index.php?cible=habitation&fonction=accueil");
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;

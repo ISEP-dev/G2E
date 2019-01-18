@@ -1,16 +1,17 @@
-let PopUpMaison   = document.getElementById('modal-add-maison');
-let PopUpZone     = document.getElementById('modal-add-zone');
-let PopUpArroseur = document.getElementById('modal-add-arroseur');
+let popUpMaison         = document.getElementById('modal-add-maison');
+let popUpZone           = document.getElementById('modal-add-zone');
+let popUpArroseur       = document.getElementById('modal-add-arroseur');
+let popUpDeleteHouse    = document.getElementById('modal-delete-maison');
+let popUpDeleteZone     = document.getElementById('modal-delete-zone');
+let popUpDeleteArroseur = document.getElementById('modal-delete-arroseur');
 
-let btnAddHouse = document.getElementById('add-house');
-let btnAddZone  = document.getElementById('add-zone');
+let btnAddHouse    = document.getElementById('add-house');
+let btnAddZone     = document.getElementById('add-zone');
+let btnDeleteHouse = document.getElementById('delete-maison');
 
-function onSelectPlanteChangeArroseurInfo() {
-    document.getElementById('form-plante-select-arr').submit();
-}
-
-showPopup(btnAddHouse, PopUpMaison);
-showPopup(btnAddZone, PopUpZone);
+showPopup(btnAddHouse, popUpMaison);
+showPopup(btnAddZone, popUpZone);
+showPopup(btnDeleteHouse, popUpDeleteHouse);
 modalEscape();
 
 function showPopup(BtnId, PopUpId) {
@@ -23,13 +24,22 @@ function modalEscape() {
     document.addEventListener("click", function (event) {
         switch (event.target.id) {
             case 'modal-add-maison':
-                PopUpMaison.style.display = "none";
+                popUpMaison.style.display = "none";
                 break;
             case 'modal-add-zone':
-                PopUpZone.style.display = "none";
+                popUpZone.style.display = "none";
                 break;
             case 'modal-add-arroseur':
-                PopUpArroseur.style.display = "none";
+                popUpArroseur.style.display = "none";
+                break;
+            case 'modal-delete-maison':
+                popUpDeleteHouse.style.display = "none";
+                break;
+            case 'modal-delete-zone':
+                popUpDeleteZone.style.display = "none";
+                break;
+            case 'modal-delete-arroseur':
+                popUpDeleteArroseur.style.display = "none";
                 break;
         }
     });
@@ -38,17 +48,29 @@ function modalEscape() {
             return;
         }
         if (event.keyCode === 27) {
-            PopUpArroseur.style.display = "none";
-            PopUpMaison.style.display   = "none";
-            PopUpZone.style.display     = "none";
+            popUpArroseur.style.display       = "none";
+            popUpMaison.style.display         = "none";
+            popUpZone.style.display           = "none";
+            popUpDeleteHouse.style.display    = "none";
+            popUpDeleteZone.style.display     = "none";
+            popUpDeleteArroseur.style.display = "none";
         }
     });
 }
 
+function deleteZone(element) {
+    document.getElementById("zone-id-delete-zone").setAttribute('value', element.dataset.idzone);
+    popUpDeleteZone.style.display = "block";
+}
+
+function deleteArroseur(element) {
+    document.getElementById("arr-id-delete-arr").setAttribute('value', element.dataset.idarr);
+    popUpDeleteArroseur.style.display = "block";
+}
 
 function addArroseur(element) {
-    document.getElementById('zone-id').setAttribute('value', element.id.substring(14));
-    PopUpArroseur.style.display = "block";
+    document.getElementById('zone-id-add-arr').setAttribute('value', element.id.substring(14));
+    popUpArroseur.style.display = "block";
 }
 
 function onSelectHouseChange() {
@@ -58,9 +80,9 @@ function onSelectHouseChange() {
 function updateStatusArroseur(element) {
     let arroseurId = element.getAttribute("for").substring(element.getAttribute("for").indexOf('a') + 1);
     let zoneId     = element.getAttribute("for").substring(1, element.getAttribute("for").indexOf('-'));
-    let checked;
+    let checked    = document.getElementById(element.getAttribute("for")).checked;
 
-    if (document.getElementById(element.getAttribute("for")).checked === true) {
+    if (checked === true) {
         checked = 0;
     } else {
         checked = 1;
@@ -74,11 +96,25 @@ function updateStatusArroseur(element) {
 function checkSeriallNumber(element) {
     let patt = new RegExp("^DOM\\d{5}$");
     let res  = patt.test(element.value);
-    if(!res){
+    if (!res) {
         element.style.background = "#FA6A6A";
-    }
-    else{
+    } else {
         element.style.background = "#72F695";
     }
-    
+
+}
+
+function updateAvailableCapteurArroseur(element) {
+    let idArroseur  = document.getElementById("id-arr").dataset.idarr;
+    let idCapteur   = element.id.substring(17);
+    let etatCapteur = element.checked;
+    if (etatCapteur === true) {
+        etatCapteur = 1;
+    } else {
+        etatCapteur = 0;
+    }
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "modele/addCapteurToArroseur.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("arroseur=" + idArroseur + "&capteur=" + idCapteur + "&state=" + etatCapteur);
 }
