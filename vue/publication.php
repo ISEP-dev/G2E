@@ -17,13 +17,6 @@
         </form>
     </div>
     <div class="col-droite">
-        <div class="publications">
-            <?php $publication = new Publication();
-            $allPublications   = $publication->getAllPublications($bdd, $publication->tablePublication);
-            foreach ($allPublications as $publication) {
-                echo "Titre : " . $publication['titre_pub'] . "\n\nContenu : " . $publication['contenu_pub'];
-            } ?>
-        </div>
         <div class="footer-publication centre">
             <div class="pagination">
                 <a href="#">&laquo;</a>
@@ -32,6 +25,15 @@
                 <a href="#">3</a>
                 <a href="#">&raquo;</a>
             </div>
+        </div>
+        <div class="publications">
+            <?php $publication = new Publication();
+            $allPublications   = $publication->getAllPublications($bdd, $publication->tablePublication);
+            foreach ($allPublications as $publication) { ?>
+                <h3><?= $publication['titre_pub'] ?></h3><br>
+                <?=$publication['contenu_pub'] ?>
+                <hr>
+          <?php } ?>
         </div>
     </div>
 </div>
