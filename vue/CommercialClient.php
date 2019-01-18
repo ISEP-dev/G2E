@@ -12,31 +12,6 @@
         <form id="" class="" action="index.php?cible=Commercial&fonction=accueil" method="post" accept-charset="UTF-8" enctype="multipart/form-data">
             <h1 class="centre test" id="titreChamps">Chercher un client</h1>
 
-<<<<<<< HEAD
-<!--            <div style="display:none;" class="champs1" id="champs">-->
-                <div class="champs1" id="champs">
-            <label for="Nom"> &nbsp;</label>
-            <input type="text" id="Nom" name="Nom" placeholder="Nom">
-            <label for="Prenom"> &nbsp;</label>
-            <input type="text" id="Prenom" name="Prenom" placeholder="Prénom" >
-            <label for="NumTel"> &nbsp;</label>
-            <input type="text" id="NumTel" name="NumTel" placeholder="Numéro téléphone" >
-            <label for="Ville"> &nbsp;</label>
-            <input type="text" id="Ville" name="Ville" placeholder="Ville" >
-          </div>                                                                                   // premiere recherche
-                <div>
-                    <?php
-                    if(isset($rows)) {
-                    foreach ($rows as $row){ ?>
-                            <br/>
-                            <a href="index.php?cible=Commercial&fonction=accueil&id=<?php echo $row['id_util'];?>">
-                                <?php echo $row['nom_util'];
-                                echo " ";
-                                echo $row['prenom_util'];?>
-                            </a><br/>
-                            <?php
-                        }
-||||||| merged common ancestors
 <!--            <div style="display:none;" class="champs1" id="champs">-->
                 <div class="champs1" id="champs">
             <label for="Nom"> &nbsp;</label>
@@ -51,7 +26,7 @@
                 <div>
                     <?php
                     if(isset($rows)) {
-                        foreach ($rows as $row){ ?>
+                    foreach ($rows as $row){ ?>
                             <br/>
                             <a href="index.php?cible=Commercial&fonction=accueil&id=<?php echo $row['id_util'];?>">
                                 <?php echo $row['nom_util'];
@@ -60,30 +35,6 @@
                             </a><br/>
                             <?php
                         }
-=======
-            <!--            <div style="display:none;" class="champs1" id="champs">-->
-            <div class="champs1" id="champs">
-                <label for="Nom"> &nbsp;</label>
-                <input type="text" id="Nom" name="Nom" placeholder="Nom">
-                <label for="Prenom"> &nbsp;</label>
-                <input type="text" id="Prenom" name="Prenom" placeholder="Prénom" >
-                <label for="NumTel"> &nbsp;</label>
-                <input type="text" id="NumTel" name="NumTel" placeholder="Numéro téléphone" >
-                <label for="Ville"> &nbsp;</label>
-                <input type="text" id="Ville" name="Ville" placeholder="Ville" >
-            </div>
-            <div>
-                <?php
-                if(isset($rows)) {
-                    foreach ($rows as $row){ ?>
-                        <br/>
-                        <a href="index.php?cible=Commercial&fonction=accueil&id=<?php echo $row['id_util'];?>">
-                            <?php echo $row['nom_util'];
-                            echo " ";
-                            echo $row['prenom_util'];?>
-                        </a><br/>
-                        <?php
->>>>>>> 6d17bfd4f0bd377e74d55579709c8f7d639fef52
                     }
                 }
                 ?>
@@ -112,7 +63,7 @@
             <input type="submit" name="submitExport" value="Exporter">
             <input type="submit" name="submitPrint" value="Imrpimer" >
         </div>
-        <div id="ResDeRecherche">                                                       //result recherche
+        <div id="ResDeRecherche">                                                       
             <?php
             if (isset($infos)) {
                 echo "<br/>
