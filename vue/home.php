@@ -205,19 +205,17 @@
     <br>
     <h1><a href="index.php?cible=Mairie&fonction=accueil">Publication</a></h1>
     <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>
-    <h1>Mettre les différents produits ici</h1>
-    <table class="gallery">
+    <table class="gallery" cellpadding="30px">
         <tr>
-            <td>Arroseur multi surface <br><img src="http://placehold.it/350x250" alt=""></td>
-            <td>Arroseur grande surface <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Arroseur multi surface <br><img src="vue/images/multisurface.png" alt=""><br>  <button class="prix" style="vertical-align:middle">15€</td>
+            <td>Arroseur grande surface <br><img src="vue/images/grandesurface.png" alt=""><br>  <button class="prix" style="vertical-align:middle">10€</td>
         </tr>
         <tr>
-            <td>Aspergeur classique <br><img src="http://placehold.it/350x250" alt=""></td>
-            <td>Arroseur compte goutte d'extérieur<br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Aspergeur classique <br><img src="vue/images/aspergeurclassique.png" alt=""><br>  <button class="prix" style="vertical-align:middle">7.5€</td>
+            <td>Arroseur compte goutte d'extérieur<br><img src="vue/images/comptegoutteexte.png" alt=""><br> <button class="prix" style="vertical-align:middle">5€</td>
         </tr>
         <tr>
-            <td></td>
-            <td>Arroseur compte goutte d'intérieur <br><img src="http://placehold.it/350x250" alt=""></td>
+            <td>Arroseur compte goutte d'intérieur <br><img src="vue/images/comptegoutteinte.jpg" alt=""><br> <button class="prix" style="vertical-align:middle">5€</td>
             <td></td>
         </tr>
     </table>
