@@ -56,7 +56,7 @@
                       </div>
                </div>
         </div>
-        <div class="col-droite">
+        <div class="col-droite" style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
              <div class="faq">
                 <div class="faq_question"><strong>Question 5: Quelles sont vos fonctionnalités ?</strong></div>
                      <div class="faq_answer_container">
