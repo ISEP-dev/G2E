@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
 <body>
 <div class="ligne">
     <div class="col-gauche">
