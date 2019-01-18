@@ -48,6 +48,7 @@ switch ($fonction) {
         $plante    = new Plante();
         $arr       = getArroseurInfoById($bdd, $tableArroseur, $_GET['id']);
         $planteArr = $plante->getPlantType($bdd, $plante->tablePlante, $arr['id_plante']);
+        $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         $title     = "Configuration de l'arroseur";
         $vue       = "infos-arroseur";
         break;
@@ -62,9 +63,26 @@ switch ($fonction) {
         $vue   = "arrosage";
         break;
 
+    /*fixme : not used here */
     case "client-stat":
         $title = "Satistiques client";
         $vue   = "client-stats";
+        break;
+
+    case "supprimer-arroseur":
+        removeArroseur($bdd, $tableArroseur, $_GET['id']);
+        $title = "Gestion de l'arrosage";
+        $vue   = "arrosage";
+        break;
+
+    case "supprimer-zone":
+        $title = "Gestion de l'arrosage";
+        $vue   = "arrosage";
+        break;
+
+    case "supprimer-maison":
+        $title = "Gestion de l'arrosage";
+        $vue   = "arrosage";
         break;
 
     /*  fixme : à voir mais surement à supprimer
@@ -79,19 +97,10 @@ switch ($fonction) {
             $title = $_GET['name_maison'];
             $vue   = "param-maison";
             break;
-
-
-
-        case "infos-arroseur":
-            $arr   = getArroseurInfoById($bdd, $tableArroseur, $_GET['name_arroseur']);
-            $title = $arr['nom_arr'];
-            $vue   = "infos-arroseur";
-            break;
     */
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";
-//        $message = "Page inexistante";
 }
 
 include("vue/header.php");

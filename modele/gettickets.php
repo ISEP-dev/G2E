@@ -3,7 +3,10 @@ require 'connexion.php';
 
 $date = $_POST['date'];
 $allTicket = $bdd->query("SELECT * FROM ticket WHERE date_ticket='" . $date ."'");
-foreach($allTicket as $oneTicket){
-    $jsonArray[] = array();
+
+while ($allTicket->rowCount() > 0) {
+    echo "string";
 }
-echo $allTicket->fetch(PDO::FETCH_ASSOC);
+// foreach ($allTicket as $oneTicket) {
+//     echo $oneTicket['numero_ticket'];
+// }
