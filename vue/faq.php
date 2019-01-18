@@ -6,7 +6,7 @@
 
         if ($(this).parent().is('.open')){
             $(this).closest('.faq').find('.faq_answer_container').animate({'height':'0'},500);
-            //$(this).closest('.faq').removeClass('open');
+            $(this).closest('.faq').removeClass('open');
 
             }else{
                 var newHeight =$(this).closest('.faq').find('.faq_answer').height() +'px';
@@ -21,7 +21,7 @@
 </script>
 <div class="faq_container">
   <div class="ligne">
-      <div class="col-gauche">
+      <div class="col-gauche" style="overflow-y: scroll; -webkit-overflow-scrolling: touch;">
            <div class="faq">
               <div class="faq_question"><strong>Question1 : Que permet l'application web ? </strong><br/></div>
                    <div class="faq_answer_container">

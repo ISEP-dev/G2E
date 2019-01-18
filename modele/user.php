@@ -91,17 +91,19 @@ function addUsers(PDO $bdd, string $table)
                 die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n" . $bdd->errorInfo());
             } else {
                 // Tout s'est bien passé on redirige où on veut
-                header("Location: index.php?cible=utilisateurs&fonction=accueil");
+                //header("Location: index.php?cible=utilisateurs&fonction=accueil");
+                //echo '<body onLoad="alert(\'Entre un mail valide\')">';
+                echo '<script> alert("Votre compte a bien été créé.")</script>';
             }
         } else {
             echo '<body onload="alert(\'Entrez un numéro de téléphone valide\')">';
             // puis on le redirige vers la page d'accueil
-            echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+            //echo '<meta http-equiv="refresh" content="0;URL=index.php">';
         }
     } else {
         echo '<body onLoad="alert(\'Entre un mail valide\')">';
         // puis on le redirige vers la page d'accueil
-        echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+        //echo '<meta http-equiv="refresh" content="0;URL=index.php">';
     }
 }
 
