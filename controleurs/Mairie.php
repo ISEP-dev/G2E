@@ -13,7 +13,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 switch ($fonction) {
     case "accueil":
         $head  = '<link rel="stylesheet" href="vue/css/publication.css">';
-        $js    = '<script src="vue/js/publication.js"></script>';
+        $js    = '<script src="vue/js/publication.js"></script>' . '<script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>';
         $title = "Espace commune";
         $vue   = "publication";
         break;
