@@ -71,3 +71,8 @@
     border-bottom-right-radius: var(--input-radius);
     padding: 0 var(--padding);
 }
+
+.publications{
+    padding-left: 20px;
+    padding-top: 20px;
+}
