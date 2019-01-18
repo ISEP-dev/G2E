@@ -1,10 +1,6 @@
 <?php
-/**
- * Contrôleur des maisons
- * User: bastien
- * Date: 25/11/2018
- * Time: 00:42
- */
+
+require "modele/Publication.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -17,8 +13,15 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 switch ($fonction) {
     case "accueil":
         $head  = '<link rel="stylesheet" href="vue/css/publication.css">';
+        $js    = '<script src="vue/js/publication.js"></script>';
         $title = "Espace commune";
         $vue   = "publication";
+        break;
+
+    case "ajouter-publication":
+        $publication = new Publication();
+        $publication->addPublication($bdd, $publication->tablePublication, $_POST['titre-publication'], $_POST['content-publication'], $_SESSION['user_id']);
+        header("Location: index.php?cible=mairie&fonction=accueil");
         break;
 
     default:
