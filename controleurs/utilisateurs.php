@@ -21,7 +21,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 } else {
     $fonction = $_GET['fonction'];
 }
-$js   = '<script src="vue/js/faq.js"></script>';
+
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
