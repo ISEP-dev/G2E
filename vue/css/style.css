@@ -48,6 +48,10 @@ a {
     text-decoration : none;
 }
 
+.rouge {
+    background-color : var(--red) !important;
+}
+
 /* Texte gras */
 b, .b, .strong {
     font-weight : bolder;
@@ -144,6 +148,10 @@ b, .b, .strong {
     justify-content : space-between;
 }
 
+.space-around {
+    display         : flex;
+    justify-content : space-around;
+}
 /* Alignement vertical : https://css-tricks.com/snippets/css/a-guide-to-flexbox/#article-header-id-7 */
 /* Alignement vertical en haut */
 .v-haut {
