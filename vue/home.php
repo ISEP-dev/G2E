@@ -1,4 +1,5 @@
 <script src="vue/js/cgu.js" defer async></script>
+<script src="vue/js/accueil.js" defer async></script>
 <?php if (!isset($_SESSION['user_id'])) { ?>
     <div class="ligne">
         <div class="col-gauche">
