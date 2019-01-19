@@ -60,19 +60,19 @@
             $capteursType = $capteur->getCapteurType($bdd);
             /*Todo : refactoring for test checked and checkbox*/
             // Check température (id = 3)
-            if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 3)->fetch(PDO::FETCH_ASSOC)['COUNT(1)'] == 1) {
+            if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 3)['COUNT(1)'] == 1) {
                 $checkedTemp = "checked";
             } else {
                 $checkedTemp = "";
             }
             // Check humidité (id = 4)
-            if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 4)->fetch(PDO::FETCH_ASSOC)['COUNT(1)'] == 1) {
+            if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 4)['COUNT(1)'] == 1) {
                 $checkedHumi = "checked";
             } else {
                 $checkedHumi = "";
             }
             // Check présence (id = 7)
-            if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 7)->fetch(PDO::FETCH_ASSOC)['COUNT(1)'] == 1) {
+            if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 7)['COUNT(1)'] == 1) {
                 $checkedPres = "checked";
             } else {
                 $checkedPres = "";
