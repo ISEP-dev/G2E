@@ -1,6 +1,6 @@
 <?php
 
-require "modele/fonctions.php";
+require_once "modele/fonctions.php";
 
 $tableHabitation     = "habitation";
 $tableHabitationUser = "habitation_utilisateur";

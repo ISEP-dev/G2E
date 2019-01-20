@@ -1,5 +1,5 @@
 <?php
-require 'connexion.php';
+require_once 'connexion.php';
 
 $date = $_POST['date'];
 $allTicket = $bdd->query("SELECT * FROM ticket WHERE date_ticket='" . $date ."'");

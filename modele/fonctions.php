@@ -1,10 +1,6 @@
 <?php
 
-/*
- * Fonctions utiles pour la base de donnée
- */
-
-include("modele/connexion.php");
+include_once "modele/connexion.php";
 
 /**
  * @param PDO $bdd

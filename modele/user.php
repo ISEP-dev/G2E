@@ -5,7 +5,7 @@
  * Date: 03/12/2018
  * Time: 16:36
  */
-require "modele/fonctions.php";
+require_once "modele/fonctions.php";
 
 $tableUsers = 'utilisateur';
 $tableTicket = 'ticket';
