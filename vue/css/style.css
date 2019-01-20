@@ -181,6 +181,14 @@ b, .b, .strong {
     display : block !important;
 }
 
+.cursor {
+    cursor : pointer;
+}
+
+.text-medium {
+    font-size : 1.2em !important;
+}
+
 /* ------ Données formulaire général ------ */
 textarea {
     border-top-left-radius  : var(--radius); /* WARNING: à revoir pour autres form */
@@ -198,7 +206,7 @@ select {
     margin             : 10px 0;
 }
 
-input[type=text], input[type=number], input[type=password] {
+input[type=text], input[type=number], input[type=password], input[type=email] {
     border-radius : var(--input-radius);
     height        : 30px;
 }
@@ -252,7 +260,7 @@ select:focus, textarea:focus, input[type=text]:focus {
     border-bottom-left-radius  : var(--radius);
     border-bottom-right-radius : var(--radius);
     background-color           : var(--gris-clair);
-    height                     : 50px;
+    height                     : max-content;
     padding                    : 10px;
 }
 
@@ -264,10 +272,11 @@ select:focus, textarea:focus, input[type=text]:focus {
 }
 
 .btn-modal-submit {
+    padding          : 8px;
     border-radius    : 5px;
     background-color : var(--vert);
     color            : var(--blanc);
-    width            : 10%;
+    width            : max-content;
 }
 
 .btn-modal-submit:hover, .btn-modal-submit:focus {
@@ -449,7 +458,7 @@ li.navitem > a:hover {
 }
 
 .btn-red {
-    font-size        : 20px;
+    font-size        : 1.2em;
     text-decoration  : none;
     background-color : var(--red);
     color            : var(--blanc);
