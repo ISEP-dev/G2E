@@ -14,18 +14,4 @@ class Capteur
     {
         return $bdd->query("SELECT * FROM type_capteur");
     }
-
-    public function checkAllCapteur(PDO $bdd, $idArr)
-    {
-        $capteur = new Capteur();
-        if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $idArr, 3)['COUNT(1)']) {
-            echo "température";
-        }
-        if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $idArr, 4)['COUNT(1)']) {
-            echo "humidité";
-        }
-        if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $idArr, 7)['COUNT(1)']) {
-            echo "présence";
-        }
-    }
 }

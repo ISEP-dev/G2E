@@ -7,17 +7,19 @@
 </nav>
 <!-- S : Client house select -->
 <div class="space-between">
-    <form id="form-house-select" action="index.php?cible=Habitation&fonction=accueil" method="post">
-        <label for="house-select"></label>
-        <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange()">
-            <option selected disabled>-- Selectionner votre maison --</option>
-            <?php $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
-            foreach ($maisonSelect as $maisonUser) { ?>
-                <option value="<?= $maisonUser['id_habit'] ?>"><?= $maisonUser['nom_habit'] ?></option>
-            <?php } ?>
-        </select>
-    </form>
-    <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a> <!-- TODO : mettre dans le catalogue-->
+    <div>
+        <form id="form-house-select" action="index.php?cible=Habitation&fonction=accueil" method="post">
+            <label for="house-select"></label>
+            <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange(this)">
+                <option selected disabled>-- Selectionner votre maison --</option>
+                <?php $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
+                foreach ($maisonSelect as $maisonUser) { ?>
+                    <option value="<?= $maisonUser['id_habit'] ?>"><?= $maisonUser['nom_habit'] ?></option>
+                <?php } ?>
+            </select>
+        </form>
+    </div>
+    <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a>
 </div>
 <!-- S : Zone -->
 <?php
@@ -163,7 +165,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
 <?php } else {
     echo "<br><br><br>";
 } ?>
-<!-- S : Popup add houses, zones, arroseurs -->
+<!-- S : Popups -->
 <div class="modal centre" id="modal-add-maison">
     <div class="modal-content">
         <form action="index.php?cible=habitation&fonction=ajouter-maison" method="post">
@@ -210,7 +212,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <div class="modal-footer droite">
                 <!-- <a href="" class="droite">Ajouter</a> -->
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>
@@ -237,7 +239,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
             <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>
@@ -292,7 +294,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <input type="hidden" id="zone-id-add-arr" name="zone-id-add-arr" value="">
             <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>
@@ -305,9 +307,9 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                 <span class="close">&times;</span>
             </div>
             <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
-            <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge">
-                <input type="button" value="Annuler" class="btn-modal-submit"
+            <div class="modal-footer centre">
+                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge text-medium">
+                <input type="button" value="Annuler" class="btn-modal-submit text-medium"
                        onclick="document.getElementById('modal-delete-maison').style.display = 'none';">
             </div>
         </form>
@@ -321,9 +323,9 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                 <span class="close">&times;</span>
             </div>
             <input type="hidden" id="zone-id-delete-zone" name="zone-id-delete-zone" value="">
-            <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge">
-                <input type="button" value="Annuler" class="btn-modal-submit"
+            <div class="modal-footer centre">
+                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge text-medium">
+                <input type="button" value="Annuler" class="btn-modal-submit text-medium"
                        onclick="document.getElementById('modal-delete-zone').style.display = 'none';">
             </div>
         </form>

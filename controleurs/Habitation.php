@@ -81,20 +81,6 @@ switch ($fonction) {
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
-
-    /*  fixme : à voir mais surement à supprimer
-        case "infos-maison":
-            $maisonInfo = getHouseInfoById($bdd, $tableHabitation, 1);
-            $title      = $_GET['name_maison'];
-            $vue        = "infos-maison";
-            break;
-
-        case "param-maison":
-            //$maisonInfo = getHouseInfoById($bdd, $tableHabitation, 1);
-            $title = $_GET['name_maison'];
-            $vue   = "param-maison";
-            break;
-    */
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";
