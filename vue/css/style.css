@@ -185,6 +185,10 @@ b, .b, .strong {
     cursor : pointer;
 }
 
+.overflow-y {
+    overflow-y : auto;
+}
+
 .text-medium {
     font-size : 1.2em !important;
 }

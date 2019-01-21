@@ -71,3 +71,30 @@ li.dropdown-search-client {
     font-size       : large;
     z-index         : 5;
 }
+
+.titre-ticket:first-child {
+    padding-top : 20px;
+}
+
+
+.titre-ticket {
+    padding-left    : 10px;
+    text-decoration : none;
+    color           : var(--bleu-fonce);
+}
+
+.time-ticket {
+    margin-right : 45px;
+}
+
+.info-ticket-block {
+    padding    : 0 15px;
+    height     : max-content;
+    overflow-y : auto;
+}
+
+.contenu-ticket {
+    background-color : var(--gris-clair);
+    padding          : 20px;
+    border-radius    : 15px;
+}

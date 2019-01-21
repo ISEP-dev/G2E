@@ -272,15 +272,7 @@ td.td-centre {
     text-decoration : none;
 }
 
-.delete-zone:hover:before {
-    margin-top   : -8px;
-    margin-right : -30px;
-    content      : 'Supprimer la zone';
-    font-size    : 20px;
-    display      : flex;
-    color        : var(--bleu-fonce);
 
-}
 
 .circle-delete:after {
     content         : '-';
@@ -292,6 +284,16 @@ td.td-centre {
 .delete-zone {
     display         : flex;
     justify-content : flex-end;
+}
+
+.delete-zone:hover:before {
+    margin-top   : -8px;
+    margin-right : -30px;
+    content      : 'Supprimer la zone';
+    font-size    : 20px;
+    display      : flex;
+    color        : var(--bleu-fonce);
+
 }
 
 .icon-question {
