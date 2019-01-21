@@ -29,6 +29,14 @@ switch ($fonction) {
         $vue   = "erreur404";
 }
 
-include("vue/header.php");
-include("vue/" . $vue . ".php");
-include("vue/footer.php");
+if (isset($vue)) {
+    include("vue/header.php");
+    include("vue/" . $vue . ".php");
+    include("vue/footer.php");
+} elseif ($vue == null) {
+
+} else {
+    include("vue/header.php");
+    include("vue/erreur404.php");
+    include("vue/footer.php");
+}

@@ -1,20 +1,14 @@
 <?php
-/**
- * Contrôleur des utilisateurs
- * User: bastien
- * Date: 25/11/2018
- * Time: 00:42
- */
-
 /* info : Explication des variables
  * $title -> Titre de la page et de l'onglet
  * $css   -> Ajout de fichiers CSS juste le nom de fichier sans .Css (optionnel)
  * $js    ->  Ajout de fichiers JS (optionnel)
  * $vue   -> Vue HTML à afficher
  */
-
+include "modele/model.php";
 include "modele/user.php";
 include "modele/planning.php";
+
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -35,18 +29,6 @@ switch ($fonction) {
     case "connexion":
         connection_to_site($bdd, $tableUsers);
         $head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
-        break;
-
-    case "planning":
-        $head = '<link rel="stylesheet" href="vue/css/planning.css">';
-        if (isset($_POST['date'])) {
-            $tickets   = getTicketByDate($bdd, "ticket", "2018-11-19");
-            $noTickets = false;
-        } else {
-            $noTickets = true;
-        }
-        $title = "Gestion des incidents";
-        $vue   = "planning";
         break;
 
     /* ajout d'un utilisateur */
@@ -78,6 +60,12 @@ switch ($fonction) {
         $title = "Historique de vos incidents";
         break;
 
+    case "get-ticket":
+        $idTicket = $_POST['id'];
+        getUserTicket($bdd, $tableTicket, $idTicket);
+        $vue = null;
+        break;
+
     case "ajoutTicket":
         createTicket($bdd, $tableTicket);
         $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
@@ -92,7 +80,14 @@ switch ($fonction) {
         break;
 }
 
-include("vue/header.php");
-include("vue/" . $vue . ".php");
-include("vue/footer.php");
-?>
+if (isset($vue)) {
+    include("vue/header.php");
+    include("vue/" . $vue . ".php");
+    include("vue/footer.php");
+} elseif ($vue == null) {
+
+} else {
+    include("vue/header.php");
+    include("vue/erreur404.php");
+    include("vue/footer.php");
+}

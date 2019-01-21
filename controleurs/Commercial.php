@@ -52,7 +52,14 @@ switch ($fonction) {
         $vue   = "erreur404";
 //        $message = "Page inexistante";
 }
+if (isset($vue)) {
+    include("vue/header.php");
+    include("vue/" . $vue . ".php");
+    include("vue/footer.php");
+} elseif ($vue == null) {
 
-include("vue/header.php");
-require("vue/" . $vue . ".php");
-include("vue/footer.php");
+} else {
+    include("vue/header.php");
+    include("vue/erreur404.php");
+    include("vue/footer.php");
+}
