@@ -1,5 +1,5 @@
 function showTicket(str) {
-    if (str == "") {
+    if (str === "") {
         document.getElementById("showTick").innerHTML = "";
         return;
     }
@@ -10,10 +10,11 @@ function showTicket(str) {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
     }
     xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             document.getElementById("showTick").innerHTML = this.responseText;
         }
     }
-    xmlhttp.open("GET", "modele/getusertickets.php?q=" + str, true);
-    xmlhttp.send();
+    xmlhttp.open("POST", "index.php?cible=utilisateurs&fonction=get-ticket", true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send("&id=" + str);
 }

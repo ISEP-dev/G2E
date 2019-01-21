@@ -34,7 +34,6 @@ function closePopup(nbBtnClass) {
     }
 }
 
-
 function modalEscape() {
     document.addEventListener("click", function (event) {
         switch (event.target.id) {
@@ -87,7 +86,7 @@ function addArroseur(element) {
 function onSelectHouseChange(element) {
     document.getElementById('form-house-select').submit();
     // let xHttp = new XMLHttpRequest();
-    // xHttp.open("POST", "modele/changeHouse.php", true);
+    // xHttp.open("POST", "index.php?cible=habitation&fonction=accueil", true);
     // xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     // xHttp.send("house-select=" + element.options[element.selectedIndex].value);
 }
@@ -103,7 +102,7 @@ function updateStatusArroseur(element) {
         checked = 1;
     }
     let xHttp = new XMLHttpRequest();
-    xHttp.open("POST", "modele/updateArroseur.php", true);
+    xHttp.open("POST", "index.php?cible=habitation&fonction=update-arroseur", true);
     xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xHttp.send("arroseur=" + arroseurId + "&zone=" + zoneId + "&state=" + checked);
 }
@@ -130,7 +129,7 @@ function updateAvailableCapteurArroseur(element) {
         etatCapteur = 0;
     }
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "modele/addCapteurToArroseur.php", true);
+    xhttp.open("POST", "index.php?cible=habitation&fonction=add-capteur-to-arroseur", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("arroseur=" + idArroseur + "&capteur=" + idCapteur + "&state=" + etatCapteur);
 }

@@ -36,7 +36,7 @@ function resiliation() {
 function showHouseInfo(idMaison) {
     if (idMaison !== null) {
         let xHttp = new XMLHttpRequest();
-        xHttp.open("POST", "modele/getHouseInfo.php", true);
+        xHttp.open("POST", "index.php?cible=habitation&fonction=get-house-info", true);
         xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xHttp.send("idmaison=" + idMaison.toString());
         xHttp.addEventListener("readystatechange", function () {

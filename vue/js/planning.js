@@ -1,7 +1,8 @@
-let dateSelect = document.getElementById('calendrier');
+let dateSelect         = document.getElementById('calendrier');
+dateSelect.valueAsDate = new Date();
 
 
-let search       = document.getElementById('search-client'),
+/*let search       = document.getElementById('search-client'),
     searchResult = document.getElementById('result-search-client'),
     triangle     = document.getElementsByClassName('triangle-up')[0];
 if (searchResult !== null) {
@@ -33,21 +34,33 @@ search.addEventListener("keyup", function () {
         }
     });
     xhr.send();
-});
+});*/
 
 dateSelect.addEventListener("change", function () {
     console.log(dateSelect.value);
     let xhr = new XMLHttpRequest();
-    xhr.open('POST', "modele/gettickets.php", true);
+    xhr.open('POST', "index.php?cible=planning&fonction=get-today-ticket", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send("date=2019-01-04");
+    xhr.send("date=" + dateSelect.value.toString());
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === 4 && this.status === 200) {
-            let result = document.getElementById('result');
-            console.log("Reponse : " + this.responseText);
+            document.getElementById('today-ticket').innerHTML = this.responseText;
         }
     });
 });
 
-
- 
+function showTicketInfos(idTicket) {
+    if (idTicket !== null) {
+        let xHttp = new XMLHttpRequest();
+        xHttp.open("POST", "index.php?cible=planning&fonction=get-ticket-info", true);
+        xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xHttp.send("idticket=" + idTicket.toString());
+        xHttp.addEventListener("readystatechange", function () {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("info-ticket").innerHTML = this.responseText;
+            }
+        });
+    } else {
+        document.getElementById("info-ticket").innerHTML = "";
+    }
+}
