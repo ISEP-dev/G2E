@@ -56,3 +56,18 @@ function removeArroseur(PDO $bdd, string $table, $idArr)
 {
     $bdd->query("DELETE FROM " . $table . " WHERE id_arr=" . $idArr);
 }
+
+function updateArroseur(PDO $bdd, string $table, $checked, $arroseurId, $zoneId)
+{
+    return $bdd->query("UPDATE " . $table . " SET etat_arr=" . $checked . " WHERE id_arr=" . $arroseurId . " AND id_zone=" . $zoneId);
+}
+
+function addCapteurToArroseur(PDO $bdd, string $table, $idArroseur, $idCapteur, $capteurState)
+{
+    if ($capteurState == 1) {
+        $bdd->query("INSERT INTO " . $table . "(type_capt, id_arr) VALUES('$idCapteur', '$idArroseur')");
+    } else {
+        $bdd->query("DELETE FROM " . $table . " WHERE id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
+    }
+
+}

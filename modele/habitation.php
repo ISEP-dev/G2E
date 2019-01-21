@@ -73,32 +73,34 @@ function removeHouse(PDO $bdd, string $table, $idHouse)
 
 }
 
-function modifyHouse(PDO $bdd, string $table, $id_user)
+function getHouseInfos(PDO $bdd, string $table, $idMaison)
 {
-
-}
-
-
-function addZone(PDO $bdd, string $table, $idHabit)
-{
-    $attributs = array(
-        "nom_zone" => $_POST['zone-name'],
-        "id_habit" => $idHabit
-    );
-    $insertOk  = insert($bdd, $table, $attributs);
-    if (!$insertOk) {
-        die("Impossible d'ajouter une nouvelle zone : " . $bdd->errorInfo());
-    } else {
-        header("Location: index.php?cible=habitation&fonction=accueil");
+    $query = $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idMaison);
+    foreach ($query as $maison) {
+        if ($maison['order_habit'] == 1) {
+            $status = "principale";
+        } else {
+            $status = "secondaire";
+        }
+        echo "<div class='centre info-maison-nom b'> " . $maison['nom_habit'] . "</div><br><br>"
+            . "<div class='info-maison-date'>Vous avez ajouté cette maison le "
+            . strftime("%d %B %G, à %H:%M", strtotime($maison['date_ajout_habit']))
+            . "</div><br>"
+            . "<div class='info-maison-adresse'><b>Votre adresse :  </b><i>"
+            . $maison['numero_habit'] . ", "
+            . $maison['rue_habit'] . ", "
+            . $maison['code_postal_habit'] . " "
+            . $maison['ville_habit']
+            . "</i></div><br>"
+            . "<div class='info-maison-status'>C'est votre maison $status</div><br><br>"
+            . "<div class='centre'>"
+            . "<button class='gestion-button' onclick='cederMaison(" . $maison['id_habit'] . ");'>Céder votre maison</button>"
+            . "<button class='gestion-button' onclick='resiliation();'>Résilier l'abonnement</button>"
+            . "</div>";
     }
 }
 
-function getZonesByHouseId(PDO $bdd, string $table, int $idHouse)
+function modifyHouse(PDO $bdd, string $table, $id_user)
 {
-    return $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idHouse);
-}
 
-function removeZone(PDO $bdd, string $table, $idZone)
-{
-    $bdd->query("DELETE FROM " . $table . " WHERE id_zone=" . $idZone);
 }

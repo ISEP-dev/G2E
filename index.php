@@ -7,14 +7,10 @@ if (empty($_SESSION)) {
 }
 setlocale(LC_ALL, "fr_FR");
 
-include("controleurs/fonctions.php");
-
 if (isset($_GET['cible']) && !empty($_GET['cible'])) {
-    // Si la variable cible est passé en GET
     $urlControleur = $_GET['cible']; //Controleur appelé : habitation, arroseur, ...
 } else {
     $urlControleur = 'utilisateurs'; // Controleur de base :  utilisateurs
 }
 
-// On appelle le contrôleur
 include('controleurs/' . $urlControleur . '.php');

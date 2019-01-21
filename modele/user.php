@@ -42,7 +42,7 @@ function connection_to_site(PDO $bdd, string $table)
                     break;
                 case 2:
                     // Technicien
-                    header("Location: index.php?cible=utilisateurs&fonction=planning");
+                    header("Location: index.php?cible=planning&fonction=accueil");
                     break;
                 case 3:
                     // Commercial
@@ -131,4 +131,22 @@ function displayTicket(PDO $bdd, string $tableTicket)
     //$idUtil = $_SESSION['user_id'];{
     return $bdd->query("SELECT  * FROM " . $tableTicket . " WHERE id_util=" . $_SESSION['user_id']);
     // return selectAll($bdd, $table);
+}
+
+function getUserTicket(PDO $bdd, string $table, $idTicket)
+{
+    $resultQuery = $bdd->query("SELECT * FROM " . $table . " WHERE id_ticket='" . $idTicket . "'");
+
+    foreach ($resultQuery as $ticket) {
+        echo "<div class='v-haut header-user'>ticket n°000" . $ticket['id_ticket'] . "</div>";
+        echo "<br/><br/>";
+        echo "<strong> Date de création de l'incident :</strong>" . date(' \L\e d M Y à H:m', strtotime($ticket['date_ticket'])) . "";
+        echo "<br/><br/>";
+        echo "<h3> Intitulé du ticket: </h3>" . $ticket['titre_ticket'];
+        echo "<br/><br/>";
+        echo "<blockquote>" . $ticket['contenu_ticket'] . "</blockquote>";
+        echo "<br/><br/>";
+        echo $ticket['fichier_ticket'];
+        echo "<br/><br/>";
+    }
 }
