@@ -25,7 +25,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
-        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         // '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAteeaTGDmHd0ECWPah2EIPMJksVSW5IyI"></script>'.
         // '<script type="text/javascript" src="vue/js/autocomplete.js"></script>';
         $vue   = "home";
@@ -34,13 +34,13 @@ switch ($fonction) {
 
     case "connexion":
         connection_to_site($bdd, $tableUsers);
-        $head     = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+        $head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
         break;
 
     case "planning":
-        $head  = '<link rel="stylesheet" href="vue/css/planning.css">';
-        if(isset($_POST['date'])){
-            $tickets   = getTicketByDate($bdd,"ticket", "2018-11-19");
+        $head = '<link rel="stylesheet" href="vue/css/planning.css">';
+        if (isset($_POST['date'])) {
+            $tickets   = getTicketByDate($bdd, "ticket", "2018-11-19");
             $noTickets = false;
         } else {
             $noTickets = true;
@@ -71,19 +71,19 @@ switch ($fonction) {
         $title = "Foire aux questions";
         break;
 
-  case "ticket":
-       displayTicket($bdd,$tableTicket);
-       $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
-       $vue = "ticket";
-       $title = "Historique de vos incidents";
-       break;
+    case "ticket":
+        displayTicket($bdd, $tableTicket);
+        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $vue   = "ticket";
+        $title = "Historique de vos incidents";
+        break;
 
-  case "ajoutTicket":
-      createTicket($bdd,$tableTicket);
-      $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
-      $vue = "infos-arroseur";
-      $title = "Configuration de l'arroseur";
-      break;
+    case "ajoutTicket":
+        createTicket($bdd, $tableTicket);
+        $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $vue   = "infos-arroseur";
+        $title = "Configuration de l'arroseur";
+        break;
 
     default:
         $title = "Erreur 404";

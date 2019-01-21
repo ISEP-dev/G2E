@@ -1,5 +1,3 @@
-
-
 <?php
 /**
  * Contrôleur des commerciaux
@@ -19,12 +17,12 @@ $model = new Model();
 switch ($fonction) {
 
     case "accueil":
-    $head  = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
+        $head = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
         //$css   = 'CommercialClient';
-        if (isset($_POST['NumTel']) || isset($_POST['Ville']) || isset($_POST['Prenom']) || isset($_POST['Nom'])){
-            $rows = $model->getInfo($_POST['Nom'],$_POST['Prenom'],$_POST['Ville'],$_POST['NumTel']);
+        if (isset($_POST['NumTel']) || isset($_POST['Ville']) || isset($_POST['Prenom']) || isset($_POST['Nom'])) {
+            $rows = $model->getInfo($_POST['Nom'], $_POST['Prenom'], $_POST['Ville'], $_POST['NumTel']);
         }
-        if (isset($_GET['id'])){
+        if (isset($_GET['id'])) {
             $infos = $model->getInfoParID($_GET['id']);
         }
         $title = "Informations Client";
@@ -47,7 +45,7 @@ switch ($fonction) {
         break;
     case "stat_geo":
         $title = "Statistiques géographiques";
-        $vue = "";
+        $vue   = "";
         break;
     default:
         $title = "Erreur 404";

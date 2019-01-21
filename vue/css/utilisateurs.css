@@ -1,84 +1,85 @@
 @import "./style.css";
-.user-input{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+
+.user-input {
+    width      : 100%;
+    padding    : 12px 20px;
+    margin     : 8px 0;
+    display    : inline-block;
+    border     : 1px solid #ccc;
+    box-sizing : border-box;
 }
 
 #table_ticket {
-  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+    font-family     : "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse : collapse;
+    width           : 100%;
 }
 
 #table_ticket td, #table_ticket th {
-  border: 1px solid #ddd;
-  padding: 8px;
+    border  : 1px solid #ddd;
+    padding : 8px;
 }
 
-#table_ticket tr:nth-child(even){background-color: #f2f2f2;}
+#table_ticket tr:nth-child(even) {background-color : #f2f2f2;}
 
-#table_tickettr:hover {background-color: #ddd;}
+#table_tickettr:hover {background-color : #ddd;}
 
 #table_ticket th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
+    padding-top      : 12px;
+    padding-bottom   : 12px;
+    text-align       : left;
+    background-color : #4CAF50;
+    color            : white;
 }
 
 
 .ticket {
- background-color: #B0C4DE;
- color: #fff;
- font-style: italic;
- cursor: pointer;
- padding: 18px;
- width: 100%;
- text-align: left;
+    background-color : #B0C4DE;
+    color            : #fff;
+    font-style       : italic;
+    cursor           : pointer;
+    padding          : 18px;
+    width            : 100%;
+    text-align       : left;
 }
 
 .header-user {
-    align-items: center;
-    z-index: 1;
-    top: 0;
-    height: 3rem;
-    padding: 0 30px;
-    border-radius: var(--radius);
-    background-color: var(--bleu-clair);
-    color: var(--blanc);
-    font-size: 1.1em;
+    align-items      : center;
+    z-index          : 1;
+    top              : 0;
+    height           : 3rem;
+    padding          : 0 30px;
+    border-radius    : var(--radius);
+    background-color : var(--bleu-clair);
+    color            : var(--blanc);
+    font-size        : 1.1em;
 }
 
 .adresse {
-    display: flex;
-    flex-wrap: nowrap;
+    display   : flex;
+    flex-wrap : nowrap;
 }
 
 .boutonConnexion {
-    background-color: #4CAF50;
+    background-color : #4CAF50;
 }
 
 .boutonInscription {
-    background-color: var(--red);
+    background-color : var(--red);
 }
 
 .boutonConnexion, .boutonInscription {
-    width: 25%;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: var(--input-radius);
-    cursor: pointer;
+    width         : 25%;
+    color         : white;
+    padding       : 14px 20px;
+    margin        : 8px 0;
+    border        : none;
+    border-radius : var(--input-radius);
+    cursor        : pointer;
 }
 
 .boutonConnexion:hover, .boutonInscription:hover {
-    opacity: 0.8;
+    opacity : 0.8;
 }
 
 .user-select {
@@ -87,8 +88,8 @@
 }
 
 .close-passwd .close-cgu {
-    color: var(--gris-noir);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+    color       : var(--gris-noir);
+    float       : right;
+    font-size   : 28px;
+    font-weight : bold;
 }

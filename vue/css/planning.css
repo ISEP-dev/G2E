@@ -68,6 +68,6 @@ div.rdv {
 li.dropdown-search-client {
     list-style-type : none;
     padding         : 2px 8px;
-    font-size: large;
-    z-index : 5;
+    font-size       : large;
+    z-index         : 5;
 }
