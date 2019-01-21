@@ -9,6 +9,7 @@
 class Plante
 {
     public $tablePlante = "plante";
+
     public function getPlantType(PDO $bdd, string $table, int $idPlante)
     {
         return $bdd->query("SELECT * FROM " . $table . " WHERE id_plante=" . $idPlante)->fetch(PDO::FETCH_ASSOC);

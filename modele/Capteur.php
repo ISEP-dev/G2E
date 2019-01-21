@@ -7,7 +7,7 @@ class Capteur
 
     public function checkCapteurStatus(PDO $bdd, string $table, $idArr, $idCapt)
     {
-        return $bdd->query("SELECT COUNT(1) FROM " . $table . " WHERE id_arr=" . $idArr . " AND type_capt=" . $idCapt . " ");
+        return $bdd->query("SELECT COUNT(1) FROM " . $table . " WHERE id_arr=" . $idArr . " AND type_capt=" . $idCapt . " ")->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getCapteurType(PDO $bdd)

@@ -9,7 +9,9 @@ let btnAddHouse    = document.getElementById('add-house');
 let btnAddZone     = document.getElementById('add-zone');
 let btnDeleteHouse = document.getElementById('delete-maison');
 
-showPopup(btnAddHouse, popUpMaison);
+if (typeof btnAddHouse !== "undefined") {
+    showPopup(btnAddHouse, popUpMaison);
+}
 showPopup(btnAddZone, popUpZone);
 showPopup(btnDeleteHouse, popUpDeleteHouse);
 modalEscape();
@@ -19,6 +21,19 @@ function showPopup(BtnId, PopUpId) {
         PopUpId.style.display = "block";
     });
 }
+
+closePopup(document.getElementsByClassName('close'));
+
+function closePopup(nbBtnClass) {
+    for (let i = 0; i < nbBtnClass.length; i++) {
+        let btnClose = nbBtnClass.item(i);
+        btnClose.addEventListener("click", function () {
+            // Close button need to be 4 child from modalId
+            document.getElementById(btnClose.parentNode.parentNode.parentNode.parentNode.id).style.display = "none";
+        });
+    }
+}
+
 
 function modalEscape() {
     document.addEventListener("click", function (event) {
@@ -38,9 +53,6 @@ function modalEscape() {
             case 'modal-delete-zone':
                 popUpDeleteZone.style.display = "none";
                 break;
-            case 'modal-delete-arroseur':
-                popUpDeleteArroseur.style.display = "none";
-                break;
         }
     });
     document.addEventListener("keydown", function (event) {
@@ -48,12 +60,11 @@ function modalEscape() {
             return;
         }
         if (event.keyCode === 27) {
-            popUpArroseur.style.display       = "none";
-            popUpMaison.style.display         = "none";
-            popUpZone.style.display           = "none";
-            popUpDeleteHouse.style.display    = "none";
-            popUpDeleteZone.style.display     = "none";
-            popUpDeleteArroseur.style.display = "none";
+            popUpArroseur.style.display    = "none";
+            popUpMaison.style.display      = "none";
+            popUpZone.style.display        = "none";
+            popUpDeleteHouse.style.display = "none";
+            popUpDeleteZone.style.display  = "none";
         }
     });
 }
@@ -73,8 +84,12 @@ function addArroseur(element) {
     popUpArroseur.style.display = "block";
 }
 
-function onSelectHouseChange() {
+function onSelectHouseChange(element) {
     document.getElementById('form-house-select').submit();
+    // let xHttp = new XMLHttpRequest();
+    // xHttp.open("POST", "modele/changeHouse.php", true);
+    // xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xHttp.send("house-select=" + element.options[element.selectedIndex].value);
 }
 
 function updateStatusArroseur(element) {
@@ -95,8 +110,8 @@ function updateStatusArroseur(element) {
 
 function checkSeriallNumber() {
     let element = document.getElementById("arr-num-serie");
-    let patt = new RegExp("^DOM\\d{5}$");
-    let res  = patt.test(element.value);
+    let patt    = new RegExp("^DOM\\d{5}$");
+    let res     = patt.test(element.value);
     if (!res) {
         element.style.background = "#FA6A6A";
     } else {

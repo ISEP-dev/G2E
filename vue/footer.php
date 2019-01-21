@@ -15,6 +15,8 @@
         <a href=""><img class="img-footer" src="vue/images/facebook.png" alt="facebook"></a>
     </div>
 </footer>
-<?php if (isset($js)) echo $js; ?>
+<?php if (isset($js)) {
+    echo $js;
+} ?>
 </body>
 </html>

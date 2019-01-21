@@ -1,6 +1,9 @@
 <?php
 
 include "modele/user.php";
+include "modele/habitation.php";
+require "modele/Gestion.php";
+
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
 } else {
@@ -9,10 +12,17 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 
 switch ($fonction) {
     case "accueil":
-        $head  = '<link rel="stylesheet" href="vue/css/gestion.css">';
-        $js    = '<script src="vue/js/gestion.js"></script>';
-        $title = "Gestion des maisons";
-        $vue   = "gestion";
+        $head    = '<link rel="stylesheet" href="vue/css/gestion.css">';
+        $js      = '<script src="vue/js/gestion.js"></script>';
+        $maisons = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
+        $title   = "Gestion de vos maisons";
+        $vue     = "gestion";
+        break;
+
+    case "ceder-maison":
+        $gestion = new Gestion();
+        $gestion->cederMaison($bdd, "utilisateur", $_POST['id-maison-ceder'], $_POST['mail']);
+        header("Location: index.php?cible=gestion&fonction=accueil");
         break;
 
     default:
@@ -23,4 +33,3 @@ switch ($fonction) {
 include("vue/header.php");
 include("vue/" . $vue . ".php");
 include("vue/footer.php");
-?>

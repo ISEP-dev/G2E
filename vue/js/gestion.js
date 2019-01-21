@@ -1,28 +1,50 @@
-let PopUpCeder  = document.getElementById('modal-ceder-maison');
-let btnCeder  = document.getElementById('ceder-maison');
+let popUpCeder = document.getElementById('modal-ceder-maison');
 
-let closeCeder = document.getElementsByClassName('close');
-for (let i = 0; i < closeCeder.length; i++) {
-    let btnClose = closeCeder.item(i);
-    btnClose.addEventListener("click", function () {
-        PopUpCeder.style.display = "none";
+function cederMaison(idMaison) {
+    popUpCeder.style.display = "block";
+    document.getElementById('id-maison-ceder').setAttribute('value', idMaison.toString());
+}
+
+modalEscape();
+
+function modalEscape() {
+    document.addEventListener("click", function (event) {
+        switch (event.target.id) {
+            case 'modal-ceder-maison':
+                popUpCeder.style.display = "none";
+                break;
+        }
+    });
+    document.addEventListener("keydown", function (event) {
+        if (event.defaultPrevented) {
+            return;
+        }
+        if (event.keyCode === 27) {
+            popUpCeder.style.display = "none";
+        }
     });
 }
 
-btnCeder.addEventListener("click", function(){
-    PopUpCeder.style.display = "block";
-});
-
 function resiliation() {
-    confirm("Confirmer votre résiliation");
+    if (confirm("Confirmer votre résiliation")) {
+        alert("résilié");
+    } else {
+        alert("abandonné");
+    }
 }
 
-function controle()
-{
-var contenu=document.form.name.value;
-if(contenu=='')
-  {
-   alert('Le champ ne peut pas rester vide !');
-   document.form.name.focus();
-  }
+function showHouseInfo(idMaison) {
+    if (idMaison !== null) {
+        let xHttp = new XMLHttpRequest();
+        xHttp.open("POST", "modele/getHouseInfo.php", true);
+        xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xHttp.send("idmaison=" + idMaison.toString());
+        xHttp.addEventListener("readystatechange", function () {
+            if (this.readyState === 4 && this.status === 200) {
+                document.getElementById("info-maison").innerHTML = this.responseText;
+            }
+        });
+    } else {
+        document.getElementById("info-maison").innerHTML = "";
+    }
 }

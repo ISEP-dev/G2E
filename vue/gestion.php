@@ -1,22 +1,28 @@
-<link rel="stylesheet" href="css/gestion.css">
-
-
+<div>
+    <a class="back-button" href="index.php">Retour</a>
+    <br><br>
+</div>
 <div class="ligne">
     <div class="col-gauche">
-    
         <div class="maison">
             <div class="header-maisons">
                 Voici vos maisons :
             </div>
-                <?php include('../vue/db/process_gestion.php'); ?>
-            <?php//$habitation['nom_habit']; ?>
-        </div>        
+            <br>
+            <?php foreach ($maisons as $maison) { ?>
+                <a class="user-maison cursor" onclick="showHouseInfo(<?= $maison['id_habit'] ?>);">
+                    <div class="space-between">
+                        <h2 class="titre-maison"><?= $maison['nom_habit'] ?> </h2>
+                        <div class="v-centre arrow-maison"> ></div>
+                    </div>
+                    <hr>
+                </a>
+            <?php } ?>
+        </div>
     </div>
-
-    <div class="col-droite v-centre column centre">
-            <button id="ceder-maison" class="gestionbutton">Céder votre maison</button>
-            <button class="gestionbutton" onclick="resiliation();">Résilier votre abonnement</button>
-            <button class="gestionbutton">Accepter la gestion</button>
+    <div class="col-droite">
+        <div id="info-maison"></div>
+        <div class="hide">
         </div>
     </div>
 </div>
@@ -24,35 +30,22 @@
 <div class="modal centre" id="modal-ceder-maison">
     <div class="modal-content">
         <form action="index.php?cible=gestion&fonction=ceder-maison" method="post">
-            <div class="modal-header">
+            <div class="modal-header space-between">
+                <h3>Ceder cette maison</h3>
                 <span class="close">&times;</span>
-                <h3>Ceder une maison</h3>
             </div>
             <div class="modal-body">
-                <table>
-                    <tr>
-                            <select>
-                            <option value="id_habit">Maison 1</option>
-                            <option value="id_habit">Maison Principale</option>
-                            </select>
-                        <form id ="formulaire" action="gestion.php" method="post">
-                            <h5>Nouveau propriétaire :</h5>
-                            <label for="prenom">Prenom :</label>
-                            <input type="prenom" id="prenom" name="prenom" />
-                            <br>
-                            <label for="mail">Nom :</label>
-                            <input type="nom" id="nom" name="nom" />
-                            <br>
-                            <label for="mail"> Adresse Mail :</label>
-                            <input type="mail" id="mail" name="mail" />
-                            <br>
-                        </form>
-                    
-                </table>
+                <div class="centre column new-owner">
+                    <h2 class="centre">Nouveau propriétaire</h2>
+                    <label for="mail"> Adresse mail :</label>
+                    <input type="email" id="mail" name="mail" required>
+                    <br>
+                </div>
             </div>
-            <div class="modal-footer droite">
-                <input type="submit" onclick="controle();" name="submit" value="Ceder la maison">
+            <div class="modal-footer centre">
+                <input type="submit" name="submit" class="btn-red" value="Ceder votre maison">
             </div>
+            <input type="hidden" id="id-maison-ceder" name="id-maison-ceder" value="">
         </form>
     </div>
 </div>

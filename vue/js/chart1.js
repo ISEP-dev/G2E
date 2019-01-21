@@ -66,21 +66,20 @@ var ctx = document.getElementById("myChart").getContext('2d');
 var aspecR = 1.3;
 
 var myChart = new Chart(ctx, {
-    
-    type: 'line',    
+
+    type: 'line',
 
     data: {
         labels: Xaxis,
-        
+
         datasets: [
             {
-            label: titre,            
-            data: Yaxis              
+                label: titre,
+                data: Yaxis
             }]
     },
-    
-    
-    
+
+
     options: {
         responsive:true,
         aspectRatio:aspecR,
@@ -90,7 +89,7 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true
                 }
             }]
         }

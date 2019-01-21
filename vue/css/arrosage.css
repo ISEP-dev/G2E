@@ -221,10 +221,6 @@ div.progress-value {
     width   : 30px;
 }
 
-.cursor {
-    cursor : pointer;
-}
-
 .arroseur-info {
     padding-bottom : 35px;
     padding-top    : 35px;
@@ -301,4 +297,9 @@ td.td-centre {
 .icon-question {
     width  : 20px;
     height : 20px;
+}
+
+.infos-capteur {
+    height     : inherit;
+    overflow-y : auto;
 }

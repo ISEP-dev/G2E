@@ -5,42 +5,42 @@ html, body {
     }
 /*Menu du haut */
 ul {
-    height:20%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    font-weight: bold;
-    font-size: 110%;
-    font-family: Arial;
+    height           : 20%;
+    list-style-type  : none;
+    margin           : 0;
+    padding          : 0;
+    overflow         : hidden;
+    background-color : #333;
+    font-weight      : bold;
+    font-size        : 110%;
+    font-family      : Arial;
 }
 
 li {
-    float: left;
+    float : left;
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    display         : block;
+    color           : white;
+    text-align      : center;
+    padding         : 14px 16px;
+    text-decoration : none;
 
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+    background-color : #111;
 }
 
 .active {
-    background-color: #4CAF50;
+    background-color : #4CAF50;
 }
 
 
 h1 {
-    font-family: 'Calibri';
-    
+    font-family : 'Calibri';
+
 }
 
 
@@ -67,6 +67,7 @@ h1 {
     
 }
 
+}
 
 /*-----------------------------------------------------------------------------------------*/
 
@@ -112,40 +113,32 @@ h1 {
     background-color:rgba(106, 126, 101, 0.651);
     
 }
+
 .element-bas:hover:not(.active) {
-    background-color: rgba(216, 8, 8, 0.678);
+    background-color : rgba(216, 8, 8, 0.678);
 }
 
 
-
-#pers{
-    margin-top:3%;
-}
-#Xabsis{
-    margin-bottom:1%;
-}
 h3 {
-    margin:3%;
-    margin-top: 0%;
-    background-color: #333;
-    color:white;
-    font-family: Arial;
-    border-radius:9px;
-    padding: 1%;
-    width:94%;
-    
+    margin           : 3%;
+    background-color : #333;
+    color            : white;
+    font-family      : Arial;
+    border-radius    : 9px;
+    padding          : 1%;
+
 }
 
-.element-haut{
-    align-content:center;
-    width: 94%;
-    max-height: 8%;
-    margin:3%;
-    margin-top:0%;
-    
-    border-radius: 9px;
-    border:1px solid black;
-    
-    
-    
+.element-haut {
+    align-content : center;
+    width         : 92%;
+    margin-bottom : 1%;
+    height        : 3em;
+    margin-top    : 1%;
+    margin-left   : 5%;
+    font-size     : 12px;
+    border-radius : 9px;
+    border        : 1px solid black;
+
+
 }

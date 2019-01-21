@@ -1,91 +1,107 @@
-.gestionbutton {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: var(--gris-noir);
-    border: none;
-    color: #FFFFFF;
-    text-align: center;
-    font-size: 18px;
-    padding: 10px;
-    width: 90%;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: 5px;
-    height: 20%;
-    vertical-align: middle;
-  }
-  
-  .gestionbutton span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-  }
-  
-  .gestionbutton span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  }
-  
-  .gestionbutton:hover span {
-    padding-right: 25px;
-  }
-  
-  .gestionbutton:hover span:after {
-    opacity: 1;
-    right: 0;
-  }
-
-.maison{
-    height: 100%;
-    overflow-y: auto;
+.gestion-button {
+    display          : inline-block;
+    border-radius    : 4px;
+    background-color : var(--gris-noir);
+    border           : none;
+    color            : var(--blanc);
+    text-align       : center;
+    font-size        : 1vw;
+    padding          : 10px;
+    width            : 100%;
+    cursor           : pointer;
+    margin           : 5px;
+    height           : 20%;
 }
 
-.header-maisons{
-    display:          flex;
-    clear:            right;
-    position:         sticky;
-    position:         -webkit-sticky;
-    justify-content:  space-between;
-    align-items:      center;
-    z-index:          1;
-    top:              0;
-    height:           3rem;
-    padding:          0 30px;
-    border-radius:    var(--radius);
-    background-color: var(--bleu-clair);
-    color:            var(--blanc);
-    font-size:        1.1em;
+.gestion-button:hover:after {
+    content : ' >';
+    width   : 50px;
 }
 
-.nom-maison{
-    border:        1px solid var(--bleu-fonce);
-    border-radius: var(--radius);
-    padding:       25px;
-    font-size:     1.5rem;
-    margin:        var(--padding) auto;
+.maison {
+    height     : 100%;
+    overflow-y : auto;
 }
 
-.details{
-    font-size:        0.6em;
+.header-maisons {
+    display          : flex;
+    clear            : right;
+    position         : sticky;
+    position         : -webkit-sticky;
+    justify-content  : space-between;
+    align-items      : center;
+    z-index          : 1;
+    top              : 0;
+    height           : 3rem;
+    padding          : 0 30px;
+    border-radius    : var(--radius);
+    background-color : var(--bleu-clair);
+    color            : var(--blanc);
+    font-size        : 1.5em;
 }
 
-.checkbox{
-    display: flex;
-    justify-content: flex-end;
-}
-.ligne1{
-    display: inline-flex;
+.nom-maison {
+    border        : 1px solid var(--bleu-fonce);
+    border-radius : var(--radius);
+    padding       : 25px;
+    font-size     : 1.5rem;
+    margin        : var(--padding) auto;
 }
 
-label{
-    display:block;
-    float:left;
-    width:150px;
-    }
-    
-    input{float: left;}
+.details {
+    font-size : 0.6em;
+}
+
+.checkbox {
+    display         : flex;
+    justify-content : flex-end;
+}
+
+.ligne1 {
+    display : inline-flex;
+}
+
+label {
+    display : block;
+    float   : left;
+    width   : 150px;
+}
+
+.titre-maison {
+    margin-left : 35px;
+}
+
+.user-maison {
+    text-decoration : none;
+    color           : var(--bleu-fonce);
+}
+
+.arrow-maison {
+    color     : var(--bleu-fonce);
+    font-size : 25px;
+}
+
+.info-maison-nom {
+    padding          : 20px;
+    background-color : var(--bleu-clair);
+    color            : var(--blanc);
+    border-radius    : 10px;
+    font-size        : 1.5vw;
+}
+
+.info-maison-date {
+    padding-left : 10px;
+}
+
+.info-maison-adresse {
+    padding-left : 10px;
+    font-size    : 1.1vw;
+}
+
+.info-maison-status {
+    padding-left : 10px;
+}
+
+.new-owner {
+    padding : 0 20%;
+}

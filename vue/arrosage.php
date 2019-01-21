@@ -7,128 +7,165 @@
 </nav>
 <!-- S : Client house select -->
 <div class="space-between">
-    <form id="form-house-select" action="index.php?cible=Habitation&fonction=accueil" method="post">
-        <label for="house-select"></label>
-        <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange()">
-            <option selected disabled>-- Selectionner votre maison --</option>
-            <?php $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
-            foreach ($maisonSelect as $maisonUser) { ?>
-                <option value="<?= $maisonUser['id_habit'] ?>"><?= $maisonUser['nom_habit'] ?></option>
-            <?php } ?>
-        </select>
-    </form>
-    <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a> <!-- TODO : mettre dans le catalogue-->
+    <div>
+        <form id="form-house-select" action="index.php?cible=Habitation&fonction=accueil" method="post">
+            <label for="house-select"></label>
+            <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange(this)">
+                <option selected disabled>-- Selectionner votre maison --</option>
+                <?php $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
+                foreach ($maisonSelect as $maisonUser) { ?>
+                    <option value="<?= $maisonUser['id_habit'] ?>"><?= $maisonUser['nom_habit'] ?></option>
+                <?php } ?>
+            </select>
+        </form>
+    </div>
+    <a id="add-house" class="add-house b cursor">+ Nouvelle maison</a>
 </div>
 <!-- S : Zone -->
 <?php
 if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
     $zones = getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
     foreach ($zones as $zone) { ?>
-    <fieldset class="zone">
-        <legend class="zone-titre b"><?= $zone['nom_zone'] ?></legend>
-        <div class="delete-zone">
-            <a class="cursor" id="delete-zone" data-idzone="<?= $zone['id_zone'] ?>" title="Supprimer la zone"
-               onclick="deleteZone(this);">
-                <div class="circle-delete"></div>
-            </a>
-        </div>
-        <div class="container-zone">
-
-            <?php $arroseurs = getArroseurByZoneId($bdd, $tableArroseur, $zone['id_zone']);
-            foreach ($arroseurs as $arroseur) {
-            if ($arroseur['etat_fonctionnement_arr'] == 0) {
-                $state_arr   = "green";
-                $title_state = "";
-            } else if ($arroseur['etat_fonctionnement_arr'] == 1) {
-                $state_arr   = "orange";
-                $title_state = "Problème détecté";
-            } else if ($arroseur['etat_fonctionnement_arr'] == 2) {
-                $state_arr   = "red";
-                $title_state = "Arroseur " . $arroseur['nom_arr'] . " en panne";
-            }
-            if ($arroseur['etat_arr']) {
-                $checked = "checked";
-            } else { $checked = ""; }
-            $plante            = new Plante();
-                $plante_infos  = $plante->getPlantType($bdd, $plante->tablePlante, $arroseur['id_plante']);
-            $prctTempsArrosage = rand(0,100);
-
-                $arroseurType = getArroseurTypeByArroseurId($bdd, $tableArroseurType, $tableArroseur, $arroseur['id_arr']);
-            ?>
-            <!-- S : Arroseur -->
-            <div class="arroseur">
-                <div class="space-between">
-                    <div class="nom-arroseur">
-                        <a href="index.php?cible=habitation&fonction=config-arroseur&id=<?= $arroseur['id_arr'] ?>"><?= $arroseur['nom_arr'] ?></a>
-                        <span class="small-text">(<?= $arroseurType['nom_type_arroseur'] ?>)</span>
-                    </div>
-                    <div class="toggle-button">
-                        <input id="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" type="checkbox"
-                               class="arroseur-checkbox" name="button" <?= $checked ?>>
-                        <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" class="arroseur-label"
-                               onclick="updateStatusArroseur(this);">
-                            <span class="arroseur-inner"></span>
-                            <span class="arroseur-slider"></span>
-                        </label>
-                    </div>
-                </div>
-                <div class="space-between">
-                    <div class="progress">
-                        <progress value="<?= $prctTempsArrosage ?>" max="100" class="progress-bar"></progress>
-                        <div class="progress-value strong"><?= $prctTempsArrosage ?>%
-                            / <?= $plante_infos['temps_arrosage_plante'] ?></div>
-                    </div>
-                    <div class="capteur-type">
-                        Type de plante : <span class="italic"><?= $plante_infos['nom_plante'] ?></span>
-                    </div>
-                </div>
-                <svg class="arroseur-status">
-                    <title><?= $title_state ?></title>
-                    <circle cx="15" cy="10" r="10" fill="<?= $state_arr ?>"></circle>
-                </svg>
-                <div class="space-between">
-                    <div class="capteur-type">
-                        <table>
-                            <tr>
-                                <td>Température :</td>
-                                <td class="italic"><?= rand(10,35) ?>°C</td>
-                            <tr>
-                                <td>Humidité :</td>
-                                <td class="italic"><?= rand(0,100) ?>%</td>
-                        </table>
-                    </div>
-                    <div>
-                        <div class="freq_plante">
-                            Arroser <i class="b"><?= $plante_infos['frequence_plante'] ?></i>
-                        </div>
-                        <div class="saison_plante">
-                            Arroser pendant <?= $plante_infos['saison_plante'] ?>
-                        </div>
-                    </div>
-                </div>
+        <fieldset class="zone">
+            <legend class="zone-titre b"><?= $zone['nom_zone'] ?></legend>
+            <div class="delete-zone">
+                <a class="cursor" id="delete-zone" data-idzone="<?= $zone['id_zone'] ?>" title="Supprimer la zone"
+                   onclick="deleteZone(this);">
+                    <div class="circle-delete"></div>
+                </a>
             </div>
-            <?php } ?>
-            <a id="add-arroseur-z<?= $zone['id_zone'] ?>" class="add-arroseur cursor" onclick="addArroseur(this);">
-                <div class="arroseur"><img src="vue/images/add-sprinkler.png" alt="vue/images/add-sprinkler.png"
-                                           width="210"></div>
-            </a>
-        </div>
-    </fieldset>
-<?php } ?>
+            <div class="container-zone">
 
-<!-- S : Add new zone -->
+                <?php $arroseurs = getArroseurByZoneId($bdd, $tableArroseur, $zone['id_zone']);
+                foreach ($arroseurs as $arroseur) {
+                    if ($arroseur['etat_fonctionnement_arr'] == 0) {
+                        $state_arr   = "green";
+                        $title_state = "";
+                    } else {
+                        if ($arroseur['etat_fonctionnement_arr'] == 1) {
+                            $state_arr   = "orange";
+                            $title_state = "Problème détecté";
+                        } else {
+                            if ($arroseur['etat_fonctionnement_arr'] == 2) {
+                                $state_arr   = "red";
+                                $title_state = "Arroseur " . $arroseur['nom_arr'] . " en panne";
+                            }
+                        }
+                    }
+                    if ($arroseur['etat_arr']) {
+                        $checked = "checked";
+                    } else {
+                        $checked = "";
+                    }
+                    $plante            = new Plante();
+                    $plante_infos      = $plante->getPlantType($bdd, $plante->tablePlante, $arroseur['id_plante']);
+                    $prctTempsArrosage = rand(0, 100);
+
+                    $arroseurType = getArroseurTypeByArroseurId($bdd, $tableArroseurType, $tableArroseur, $arroseur['id_arr']);
+                    ?>
+                    <!-- S : Arroseur -->
+                    <div class="arroseur">
+                        <div class="space-between">
+                            <div class="nom-arroseur">
+                                <a href="index.php?cible=habitation&fonction=config-arroseur&id=<?= $arroseur['id_arr'] ?>"><?= $arroseur['nom_arr'] ?></a>
+                                <span class="small-text">(<?= $arroseurType['nom_type_arroseur'] ?>)</span>
+                            </div>
+                            <div class="toggle-button">
+                                <input id="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" type="checkbox"
+                                       class="arroseur-checkbox" name="button" <?= $checked ?>>
+                                <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>"
+                                       class="arroseur-label"
+                                       onclick="updateStatusArroseur(this);">
+                                    <span class="arroseur-inner"></span>
+                                    <span class="arroseur-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="space-between">
+                            <div class="progress">
+                                <progress value="<?= $prctTempsArrosage ?>" max="100" class="progress-bar"></progress>
+                                <div class="progress-value strong"><?= $prctTempsArrosage ?>%
+                                    / <?= $plante_infos['temps_arrosage_plante'] ?></div>
+                            </div>
+                            <div class="capteur-type">
+                                Type de plante : <span class="italic"><?= $plante_infos['nom_plante'] ?></span>
+                            </div>
+                        </div>
+                        <svg class="arroseur-status">
+                            <title><?= $title_state ?></title>
+                            <circle cx="15" cy="10" r="10" fill="<?= $state_arr ?>"></circle>
+                        </svg>
+                        <div class="space-between">
+                            <div class="capteur-type">
+                                <table>
+                                    <?php $capteur = new Capteur();
+                                    if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arroseur['id_arr'], 3)['COUNT(1)']) {
+                                        $visibilityTemp = true;
+                                    } else {
+                                        $visibilityTemp = false;
+                                    }
+                                    if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arroseur['id_arr'], 4)['COUNT(1)']) {
+                                        $visibilityHumi = true;
+                                    } else {
+                                        $visibilityHumi = false;
+                                    }
+                                    if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arroseur['id_arr'], 7)['COUNT(1)']) {
+                                        $visibilityPres = true;
+                                    } else {
+                                        $visibilityPres = false;
+                                    }
+                                    if ($visibilityTemp) { ?>
+                                        <tr>
+                                            <td>Température :</td>
+                                            <td class="italic"><?= rand(10, 35) ?>°C</td>
+                                        </tr>
+                                    <?php }
+                                    if ($visibilityHumi == 2) { ?>
+                                        <tr>
+                                            <td>Humidité :</td>
+                                            <td class="italic"><?= rand(0, 100) ?>%</td>
+                                        </tr>
+                                    <?php }
+                                    if ($visibilityPres == 3) { ?>
+                                        <tr>
+                                            <td>Présence :</td>
+                                            <td class="italic"><?= rand(0, 1) ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </table>
+                            </div>
+                            <div>
+                                <div class="freq_plante">
+                                    Arroser <i class="b"><?= $plante_infos['frequence_plante'] ?></i>
+                                </div>
+                                <div class="saison_plante">
+                                    Arroser pendant <?= $plante_infos['saison_plante'] ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <a id="add-arroseur-z<?= $zone['id_zone'] ?>" class="add-arroseur cursor" onclick="addArroseur(this);">
+                    <div class="arroseur"><img src="vue/images/add-sprinkler.png" alt="vue/images/add-sprinkler.png"
+                                               width="210"></div>
+                </a>
+            </div>
+        </fieldset>
+    <?php } ?>
+
+    <!-- S : Add new zone -->
     <div class="col-droite centre v-centre space-around">
-    <a id="add-zone" title="Ajouter une nouvelle zone" class="cursor">
-        <img src="vue/images/add-zone.png" alt="Ajouter une zone">
-    </a>
+        <a id="add-zone" title="Ajouter une nouvelle zone" class="cursor">
+            <img src="vue/images/add-zone.png" alt="Ajouter une zone">
+        </a>
         <a id="delete-maison" class="cursor">
             <img src="vue/images/no-home.png" alt="Supprimer la maison">
         </a>
-</div>
+    </div>
 <?php } else {
     echo "<br><br><br>";
 } ?>
-<!-- S : Popup add houses, zones, arroseurs -->
+<!-- S : Popups -->
 <div class="modal centre" id="modal-add-maison">
     <div class="modal-content">
         <form action="index.php?cible=habitation&fonction=ajouter-maison" method="post">
@@ -175,7 +212,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <div class="modal-footer droite">
                 <!-- <a href="" class="droite">Ajouter</a> -->
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>
@@ -202,7 +239,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
             <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>
@@ -257,7 +294,7 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <input type="hidden" id="zone-id-add-arr" name="zone-id-add-arr" value="">
             <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>
@@ -270,9 +307,9 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                 <span class="close">&times;</span>
             </div>
             <input type="hidden" name="id-house" value="<?= $_SESSION['id_maison'] ?>">
-            <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge">
-                <input type="button" value="Annuler" class="btn-modal-submit"
+            <div class="modal-footer centre">
+                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge text-medium">
+                <input type="button" value="Annuler" class="btn-modal-submit text-medium"
                        onclick="document.getElementById('modal-delete-maison').style.display = 'none';">
             </div>
         </form>
@@ -286,9 +323,9 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                 <span class="close">&times;</span>
             </div>
             <input type="hidden" id="zone-id-delete-zone" name="zone-id-delete-zone" value="">
-            <div class="modal-footer droite">
-                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge">
-                <input type="button" value="Annuler" class="btn-modal-submit"
+            <div class="modal-footer centre">
+                <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge text-medium">
+                <input type="button" value="Annuler" class="btn-modal-submit text-medium"
                        onclick="document.getElementById('modal-delete-zone').style.display = 'none';">
             </div>
         </form>

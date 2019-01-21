@@ -1,6 +1,6 @@
 <?php
 
-include "connexion.php";
+require_once "connexion.php";
 
 $jsonArray    = array();
 $searchClient = $_GET['term'];
