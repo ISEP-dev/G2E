@@ -2,13 +2,13 @@
     <ul class="navbar">
         <li class="navitem"><a href="index.php">Catalogue</a></li>
         <li class="navitem active"><a href="index.php?cible=habitation&fonction=accueil">Maison</a></li>
-        <li class="navitem"><a href="index.php?cible=utilisateurs&fonction=stats">Statistiques</a></li>
+        <li class="navitem"><a href="index.php?cible=habitation&fonction=stats">Statistiques</a></li>
     </ul>
 </nav>
 <!-- S : Client house select -->
 <div class="space-between">
     <div>
-        <form id="form-house-select" action="index.php?cible=Habitation&fonction=accueil" method="post">
+        <form id="form-house-select" action="" method="post">
             <label for="house-select"></label>
             <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange(this)">
                 <option selected disabled>-- Selectionner votre maison --</option>
@@ -24,7 +24,8 @@
 <!-- S : Zone -->
 <?php
 if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
-    $zones = getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
+    $zoneClass = new Zone();
+    $zones     = $zoneClass->getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
     foreach ($zones as $zone) { ?>
         <fieldset class="zone">
             <legend class="zone-titre b"><?= $zone['nom_zone'] ?></legend>
