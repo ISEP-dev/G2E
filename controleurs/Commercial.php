@@ -29,7 +29,7 @@ switch ($fonction) {
         $vue   = "CommercialClient";
         break;
     case "stat_temp":
-        $head  = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
+        $head  = '<link rel="stylesheet" href="vue/css/commercial.css">';
         $js    = '<script src="vue/js/chart1.js" defer></script>' .
             '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>';
         $title = "Statistiques temporelles de ventes";
