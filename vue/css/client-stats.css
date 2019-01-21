@@ -1,17 +1,4 @@
-html, body {
-    padding : 0;
-    margin  : 0;
-    /*height : 100%;*/
-}
-
-
-* {
-    box-sizing : border-box;
-}
-
-
 @media screen and (min-width : 780px) {
-
     .can {
         float         : left;
         border        : 2px solid grey;
@@ -19,48 +6,32 @@ html, body {
         margin        : 2%;
         border-radius : 15px;
         box-shadow    : 6px 6px 10px grey;
-
-
     }
-
-
 }
 
 
 /*-----------------------------------------------------------------------------------------*/
 
 #haut {
-
     /*border: 1px solid black;*/
     border-radius : 12px;
-
-
 }
 
 #bas {
-
     display     : flex;
     align-items : stretch;
-
     /*border: 1px solid black;
     border-radius: 12px;*/
-
-
 }
 
 .element-bas {
     width            : 30%;
     margin           : 1%;
-
-
     align-content    : center;
     margin-block-end : 3px;
     border           : 2px solid black;
     border-radius    : 12px;
-
-
     background-color : rgba(106, 126, 101, 0.651);
-
 }
 
 .element-bas:hover:not(.active) {
@@ -72,13 +43,9 @@ html, body {
     align-content : center;
     width         : 94%;
     max-height    : 8%;
-    margin        : 3%;
-    margin-top    : 0%;
-
+    margin        : 0 3% 3%;
     border-radius : 9px;
     border        : 1px solid black;
-
-
 }
 
 
@@ -87,15 +54,13 @@ html, body {
 }
 
 h3 {
-    margin           : 3%;
-    margin-top       : 0%;
+    margin           : 0 3% 3%;
     background-color : #333;
     color            : white;
-    font-family      : Arial;
+    font-family      : Arial, serif;
     border-radius    : 9px;
     padding          : 1%;
     width            : 94%;
-
 }
 
 
