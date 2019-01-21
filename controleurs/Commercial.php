@@ -31,7 +31,7 @@ switch ($fonction) {
         $vue   = "CommercialClient";
         break;
     case "stat_temp":
-        $head  = '<link rel="stylesheet" href="vue/css/CommercialClient.css">';
+        $head  = '<link rel="stylesheet" href="vue/css/commercial.css">';
         $js    = '<script src="vue/js/chart1.js" defer></script>' .
             '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>';
         $title = "Statistiques temporelles de ventes";
@@ -40,10 +40,11 @@ switch ($fonction) {
             $Xaxis = "toujours";
             $Yaxis = "clients";
         } else {
-            $Xaxis = $_POST['Xaxis'];
-            $Yaxis = $_POST['Yaxis'];
+            $Xaxis = $_POST['Yaxis'];
+            $Yaxis = $_POST['Xaxis'];
         }
-        $graph = $model->getGraph($Xaxis, $Yaxis);
+        
+        $graph = $model->getGraph($Yaxis, $Xaxis);
         break;
     case "stat_geo":
         $title = "Statistiques géographiques";
@@ -58,3 +59,4 @@ switch ($fonction) {
 include("vue/header.php");
 require("vue/" . $vue . ".php");
 include("vue/footer.php");
+/*include("vue/js/chart1.js");*/

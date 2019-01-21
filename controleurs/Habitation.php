@@ -7,6 +7,7 @@ include "modele/habitation.php";
 include "modele/arroseur.php";
 include "modele/Plante.php";
 include "modele/Capteur.php";
+include "modele/model.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -29,7 +30,7 @@ switch ($fonction) {
         }
         $title = $maison['nom_habit'];
         $vue   = "arrosage";
-        break;
+        break;    
 
     case "ajouter-maison":
         addHouse($bdd, $tableHabitation, $_SESSION['user_id']);
@@ -61,7 +62,14 @@ switch ($fonction) {
     case "client-stat":
         $title = "Satistiques client";
         $vue   = "client-stats";
+    case "stats":
+        $head = '<link rel="stylesheet" href="vue/css/client-stats.css">'; 
+        $vue = "client-stats";
+        $js =  '<script src="vue/js/chart2.js" defer></script>' .
+        '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>';
+        $title = "Statistique de consommation, votre solution personalisée";                
         break;
+    
 
     case "supprimer-arroseur":
         removeArroseur($bdd, $tableArroseur, $_POST['arr-id-delete-arr']);

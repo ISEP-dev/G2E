@@ -12,9 +12,10 @@
  * $js    ->  Ajout de fichiers JS (optionnel)
  * $vue   -> Vue HTML à afficher
  */
-
+include "modele/model.php";
 include "modele/user.php";
 include "modele/planning.php";
+
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
