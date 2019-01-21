@@ -1,6 +1,5 @@
 <?php
-try
-{
+try {
     $dataSourceName = "mysql:host=localhost;dbname=g2e;charset=utf8";
     $user           = "root";
     $password       = "root";
@@ -8,7 +7,6 @@ try
     $bdd            = new PDO($dataSourceName, $user, $password, $options);
     date_default_timezone_set('Europe/Paris');
 }
-catch (\Exception $e)
-{
-    die('Erreur de connexion : '.$e->getMessage());
+catch (\Exception $e) {
+    die('Erreur de connexion : ' . $e->getMessage());
 }

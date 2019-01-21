@@ -1,37 +1,34 @@
-
 var ctx = document.getElementById("myChart").getContext('2d');
 
 
-
 var myChart = new Chart(ctx, {
-    
-    type: 'line',    
+
+    type: 'line',
 
     data: {
         labels: Xaxis,
-        
+
         datasets: [
             {
-            label: titre,            
-            data: Yaxis              
+                label: titre,
+                data: Yaxis
             }]
     },
-    
-    
-    
+
+
     options: {
-        responsive:false,
+        responsive: false,
         //aspectRatio:1,
-        maintainAspectRatio:true,
+        maintainAspectRatio: true,
 
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true
                 }
             }]
         }
     }
-    
-    
+
+
 });

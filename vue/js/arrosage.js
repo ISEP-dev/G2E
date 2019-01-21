@@ -60,11 +60,11 @@ function modalEscape() {
             return;
         }
         if (event.keyCode === 27) {
-            popUpArroseur.style.display       = "none";
-            popUpMaison.style.display         = "none";
-            popUpZone.style.display           = "none";
-            popUpDeleteHouse.style.display    = "none";
-            popUpDeleteZone.style.display     = "none";
+            popUpArroseur.style.display    = "none";
+            popUpMaison.style.display      = "none";
+            popUpZone.style.display        = "none";
+            popUpDeleteHouse.style.display = "none";
+            popUpDeleteZone.style.display  = "none";
         }
     });
 }

@@ -5,7 +5,7 @@ ClassicEditor
         language: 'fr',
         // plugins: [ Alignment ],
         alignment: {
-            options: [ 'left', 'right', 'center', 'justify' ]
+            options: ['left', 'right', 'center', 'justify']
         },
         highlight: {
             options: [
@@ -26,9 +26,9 @@ ClassicEditor
             ]
         },
         toolbar: [
-            'heading', '|', 'bold', 'italic', 'underline', 'highlight:yellowMarker', 'alignment', 'bulletedList', 'numberedList','link',
+            'heading', '|', 'bold', 'italic', 'underline', 'highlight:yellowMarker', 'alignment', 'bulletedList', 'numberedList', 'link',
             '|', 'imageUpload', 'mediaEmbed', 'insertTable',
-            '|', 'undo', 'redo' ]
+            '|', 'undo', 'redo']
     })
     .then(editor => {
 

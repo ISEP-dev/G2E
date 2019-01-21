@@ -74,7 +74,7 @@
                     </select>
                     <br/>
                     <p>
-                        <input type="checkbox" id="cgu_check" name="cgu_check"  required/>
+                        <input type="checkbox" id="cgu_check" name="cgu_check" required/>
                         <label for="cgu_check">Accepter les <a id="link-to-cgu" href="#cgu">conditions
                                 générales d'utilisation</a></label>
 
@@ -88,24 +88,22 @@
     <!-- MOT DE PASSE OUBLIE -->
     <div class="modal centre" id="forget_passwd">
         <div class="modal-content">
-            <!--    <script>console.log(document.getElementById("test").textContent)</script>-->
-            <div class="modal-header">
-                <span class="close-passwd">&times;</span>
-                <div class="centre">
-                    <h5>Récupérez votre mot de passe</h5>
+            <form method="POST" action="#">
+                <div class="modal-header space-between">
+                    <h5 class="centre">Récupérez votre mot de passe</h5>
+                    <span class="close">&times;</span>
                 </div>
-            </div>
-            <div class="modal-body">
-                <p> afin de récupérer votre mot de passe, entrez votre adresse mail.</br>
-                    Un mot de passe vous sera envoyé par mail</p>
-                <form method="POST" action="#">
+                <div class="modal-body">
+                    <p> Afin de récupérer votre mot de passe, entrez votre adresse mail.<br>
+                        Un mot de passe vous sera envoyé par mail</p>
                     <input type="text" placeholder="entrez votre adresse mail" name="mail-user"/>
-                    <input type="submit" class="boutonConnexion"/>
-                </form>
-            </div>
-            <div class="modal-footer droite">
-                Cliquez à l'extérieur de la popup pour quitter les CGU.
-            </div>
+                    <br>
+                    <input type="submit" class="boutonConnexion">
+                </div>
+                <div class="modal-footer droite">
+                    <input type="button" value="Annuler" class="btn-modal-submit"
+                           onclick="document.getElementById('forget_passwd').style.display = 'none';">
+                </div>
             </form>
         </div>
     </div>
@@ -208,15 +206,25 @@
     <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>
     <table class="gallery" cellpadding="30px">
         <tr>
-            <td>Arroseur multi surface <br><img src="vue/images/multisurface.png" alt=""><br>  <button class="prix" style="vertical-align:middle">15€</td>
-            <td>Arroseur grande surface <br><img src="vue/images/grandesurface.png" alt=""><br>  <button class="prix" style="vertical-align:middle">10€</td>
+            <td>Arroseur multi surface <br><img src="vue/images/multisurface.png" alt=""><br>
+                <button class="prix" style="vertical-align:middle">15€
+            </td>
+            <td>Arroseur grande surface <br><img src="vue/images/grandesurface.png" alt=""><br>
+                <button class="prix" style="vertical-align:middle">10€
+            </td>
         </tr>
         <tr>
-            <td>Aspergeur classique <br><img src="vue/images/aspergeurclassique.png" alt=""><br>  <button class="prix" style="vertical-align:middle">7.5€</td>
-            <td>Arroseur compte goutte d'extérieur<br><img src="vue/images/comptegoutteexte.png" alt=""><br> <button class="prix" style="vertical-align:middle">5€</td>
+            <td>Aspergeur classique <br><img src="vue/images/aspergeurclassique.png" alt=""><br>
+                <button class="prix" style="vertical-align:middle">7.5€
+            </td>
+            <td>Arroseur compte goutte d'extérieur<br><img src="vue/images/comptegoutteexte.png" alt=""><br>
+                <button class="prix" style="vertical-align:middle">5€
+            </td>
         </tr>
         <tr>
-            <td>Arroseur compte goutte d'intérieur <br><img src="vue/images/comptegoutteinte.jpg" alt=""><br> <button class="prix" style="vertical-align:middle">5€</td>
+            <td>Arroseur compte goutte d'intérieur <br><img src="vue/images/comptegoutteinte.jpg" alt=""><br>
+                <button class="prix" style="vertical-align:middle">5€
+            </td>
             <td></td>
         </tr>
     </table>

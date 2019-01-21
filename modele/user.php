@@ -7,7 +7,7 @@
  */
 require_once "modele/fonctions.php";
 
-$tableUsers = 'utilisateur';
+$tableUsers  = 'utilisateur';
 $tableTicket = 'ticket';
 
 function connection_to_site(PDO $bdd, string $table)
@@ -107,26 +107,28 @@ function addUsers(PDO $bdd, string $table)
     }
 }
 
-function createTicket(PDO $bdd, string $tableTicket){
-      $titreTicket      = $_POST['titre-ticket'];
-      $contenuTicket    = $_POST['message-ticket'];
-      $fichierTicket    = $_POST['fichier-ticket'];
-      $dateTicket       = date('Y-m-d H:i:s');
-      $idUtil           = $_SESSION['user_id'];
-      $addTicketQuery   = $bdd->exec("INSERT INTO ticket(titre_ticket,contenu_ticket,fichier_ticket,date_ticket,id_util)
+function createTicket(PDO $bdd, string $tableTicket)
+{
+    $titreTicket    = $_POST['titre-ticket'];
+    $contenuTicket  = $_POST['message-ticket'];
+    $fichierTicket  = $_POST['fichier-ticket'];
+    $dateTicket     = date('Y-m-d H:i:s');
+    $idUtil         = $_SESSION['user_id'];
+    $addTicketQuery = $bdd->exec("INSERT INTO ticket(titre_ticket,contenu_ticket,fichier_ticket,date_ticket,id_util)
                                             VALUES('$titreTicket', '$contenuTicket', '$fichierTicket', '$dateTicket ', '$idUtil');"
-                                  );
-      if (!$addTicketQuery) {
-          // Erreur d'ajout d'un utilisateur
-          die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n");
-      } else {
+    );
+    if (!$addTicketQuery) {
+        // Erreur d'ajout d'un utilisateur
+        die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n");
+    } else {
         // Tout s'est bien passé on redirige où on veut
         header("Location: index.php?cible=habitation&fonction=accueil");
     }
 }
 
-function displayTicket(PDO $bdd, string $tableTicket){
-  //$idUtil = $_SESSION['user_id'];{
-      return $bdd->query("SELECT  * FROM " . $tableTicket . " WHERE id_util=".$_SESSION['user_id']);
-      // return selectAll($bdd, $table);
+function displayTicket(PDO $bdd, string $tableTicket)
+{
+    //$idUtil = $_SESSION['user_id'];{
+    return $bdd->query("SELECT  * FROM " . $tableTicket . " WHERE id_util=" . $_SESSION['user_id']);
+    // return selectAll($bdd, $table);
 }

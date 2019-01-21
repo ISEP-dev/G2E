@@ -86,8 +86,8 @@
 }
 
 .recent-pub {
-    position   : sticky;
-    margin-top : -10px;
+    position         : sticky;
+    margin-top       : -10px;
     background-color : var(--blanc);
 }
 
@@ -104,8 +104,8 @@
 }
 
 .footer-publication {
-    position : absolute;
-    bottom   : 10px;
+    position         : absolute;
+    bottom           : 10px;
     background-color : var(--blanc);
 }
 

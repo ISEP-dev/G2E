@@ -13,9 +13,9 @@
                     Selectionner une date :
                     <input id="calendrier" type="date" name="date">
                 </label>
-              <hr>
-           </div>
-           <div class="result"></div>
+                <hr>
+            </div>
+            <div class="result"></div>
             <?php
             /*foreach($tickets as $ticket){
                 */ ?><!--

@@ -1,10 +1,10 @@
-let btnAddPass    = document.getElementById('link-to-passwd');
-let btnAddCgu     = document.getElementById('link-to-cgu');
+let btnAddPass = document.getElementById('link-to-passwd');
+let btnAddCgu  = document.getElementById('link-to-cgu');
 
-let popUpAddPass    = document.getElementById('forget_passwd');
-let popUpAddCgu = document.getElementById('cgu');
+let popUpAddPass = document.getElementById('forget_passwd');
+let popUpAddCgu  = document.getElementById('cgu');
 
-showPopup(btnAddPass , popUpAddPass);
+showPopup(btnAddPass, popUpAddPass);
 showPopup(btnAddCgu, popUpAddCgu);
 modalEscape();
 
@@ -31,7 +31,7 @@ function modalEscape() {
         }
         if (event.keyCode === 27) {
             popUpAddPass.style.display = "none";
-            popUpAddCgu.style.display = "none";
+            popUpAddCgu.style.display  = "none";
         }
     });
 }

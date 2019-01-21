@@ -1,7 +1,7 @@
 <div>
     <ul>
         <li><a href="index.php?cible=Commercial&fonction=stat_temp">Statistiques temporelles</a></li>
-        <li><a href="index.php?cible=Commercial&fonction=stat_geo">Statistiques géographiques</a></li>
+        <li><a href="">Statistiques géographiques</a></li>
         <li><a href="index.php?cible=Commercial&fonction=accueil">Informations clients</a></li>
     </ul>
 </div>

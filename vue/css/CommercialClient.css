@@ -1,103 +1,105 @@
-h1{
-    align-items:      center;
-    height:           3rem;
+h1 {
+    align-items      : center;
+    height           : 3rem;
 
-    padding-left:     30px;
-    padding-right:    30px;
-    border-radius:    var(--radius);
-    background-color: var(--bleu-clair);
-    color:            var(--blanc);
-    font-size:        1.1em;
+    padding-left     : 30px;
+    padding-right    : 30px;
+    border-radius    : var(--radius);
+    background-color : var(--bleu-clair);
+    color            : var(--blanc);
+    font-size        : 1.1em;
 }
 
 
-.champs{
-  padding-left:     0px;
-  padding-right:    0px;
-  margin-left:      150px;
+.champs {
+    padding-left  : 0px;
+    padding-right : 0px;
+    margin-left   : 150px;
 }
 
 .droite {
-  align-items:      center;
-  height:           3rem;
-  padding:          0 40px;
-  border-radius:    var(--radius);
-  background-color: var(--bleu-clair);
-  color:            var(--blanc);
-  font-size:        1.1em;
+    align-items      : center;
+    height           : 3rem;
+    padding          : 0 40px;
+    border-radius    : var(--radius);
+    background-color : var(--bleu-clair);
+    color            : var(--blanc);
+    font-size        : 1.1em;
 }
+
 .rechercher {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: var(--bleu-clair);
-  border: none;
-  color: #FFFFFF;
-  text-align: center;
-  font-size: 18px;
-  padding: 10px;
-  width: 35%;
-  transition: all 0.5s;
-  cursor: pointer;
-  margin: 15px;
+    display          : inline-block;
+    border-radius    : 4px;
+    background-color : var(--bleu-clair);
+    border           : none;
+    color            : #FFFFFF;
+    text-align       : center;
+    font-size        : 18px;
+    padding          : 10px;
+    width            : 35%;
+    transition       : all 0.5s;
+    cursor           : pointer;
+    margin           : 15px;
 }
 
 .rechercher span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
+    cursor     : pointer;
+    display    : inline-block;
+    position   : relative;
+    transition : 0.5s;
 }
 
 .rechercher span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
+    content    : '\00bb';
+    position   : absolute;
+    opacity    : 0;
+    top        : 0;
+    right      : -20px;
+    transition : 0.5s;
 }
 
 .rechercher:hover span {
-  padding-right: 25px;
+    padding-right : 25px;
 }
 
 .rechercher:hover span:after {
-  opacity: 1;
-  right: 0;
+    opacity : 1;
+    right   : 0;
 }
 
 ul {
-    height:20%;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-    font-weight: bold;
-    font-size: 110%;
-    font-family: Arial;
+    height           : 20%;
+    list-style-type  : none;
+    margin           : 0;
+    padding          : 0;
+    overflow         : hidden;
+    background-color : #333;
+    font-weight      : bold;
+    font-size        : 110%;
+    font-family      : Arial;
 }
 
 li {
-    float: left;
+    float : left;
 }
 
 li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
+    display         : block;
+    color           : white;
+    text-align      : center;
+    padding         : 14px 16px;
+    text-decoration : none;
 
 }
 
 li a:hover:not(.active) {
-    background-color: #111;
+    background-color : #111;
 }
 
 .active {
-    background-color: #4CAF50;
+    background-color : #4CAF50;
 }
+
 @media (max-width : 768px) {
     .ligne {
         flex-flow : column wrap;
