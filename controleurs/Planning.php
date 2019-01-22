@@ -17,7 +17,7 @@ switch ($fonction) {
 
     case "get-today-ticket":
         $Todaydate = $_POST['date'];
-        getTicketByDate($bdd, $tablePlanning, "2019-01-04");
+        getTicketByDate($bdd, $tablePlanning, $Todaydate);
         $vue = null;
         break;
 
