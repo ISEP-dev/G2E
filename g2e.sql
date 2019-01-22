@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 18 jan. 2019 à 09:56
+-- Généré le :  mar. 22 jan. 2019 à 22:36
 -- Version du serveur :  5.7.19
 -- Version de PHP :  7.1.9
 
@@ -50,21 +50,6 @@ CREATE TABLE IF NOT EXISTS `arroseur`
   AUTO_INCREMENT = 32
   DEFAULT CHARSET = utf8 COMMENT ='Arroseurs';
 
---
--- Déchargement des données de la table `arroseur`
---
-
-INSERT INTO `arroseur` (`id_arr`, `nom_arr`, `numero_serie_arr`, `etat_arr`, `etat_fonctionnement_arr`,
-                        `date_ajout_arr`, `id_zone`, `id_plante`, `id_type_arroseur`)
-VALUES (14, 'Poirier', 'DOM14250', 1, 0, '2018-11-25 17:05:00', 1, 1, 4),
-       (16, 'Cerisier', 'DOM15245', 0, 1, '2018-11-15 13:17:10', 1, 1, 1),
-       (17, 'Acacia', 'DOM19630', 0, 0, '2018-11-27 15:13:00', 3, 1, 2),
-       (18, 'Tomates', 'DOM15236', 1, 0, '2018-12-25 22:45:49', 1, 4, 3),
-       (20, 'Plante grasse', 'DOM15278', 1, 0, '2018-12-26 18:46:57', 6, 3, 5),
-       (21, 'Tomates', 'DOM12555', 1, 0, '2019-01-06 13:27:24', 6, 4, 4),
-       (22, 'Potarosseur', 'DOM11111', 0, 0, '2019-01-11 11:02:13', 1, 3, 4),
-       (31, 'test arroseur 2595', 'DOM95738', 0, 0, '2019-01-17 19:50:57', 3, 3, 3);
-
 -- --------------------------------------------------------
 
 --
@@ -86,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `arroseur_mode` (
 --
 
 DROP TABLE IF EXISTS `capteur`;
-CREATE TABLE IF NOT EXISTS `capteur`(
+CREATE TABLE IF NOT EXISTS `capteur`
+(
   `id_capt` int(11) NOT NULL AUTO_INCREMENT,
   `type_capt` int(11) NOT NULL,
   `id_arr` int(11) NOT NULL,
@@ -94,17 +80,8 @@ CREATE TABLE IF NOT EXISTS `capteur`(
   KEY `id_arr` (`id_arr`),
   KEY `type_capt` (`type_capt`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 18
+  AUTO_INCREMENT = 37
   DEFAULT CHARSET = utf8;
-
---
--- Déchargement des données de la table `capteur`
---
-
-INSERT INTO `capteur` (`id_capt`, `type_capt`, `id_arr`)
-VALUES (3, 3, 14),
-       (5, 7, 14),
-       (17, 3, 18);
 
 -- --------------------------------------------------------
 
@@ -149,22 +126,6 @@ CREATE TABLE IF NOT EXISTS `habitation`
   AUTO_INCREMENT = 14
   DEFAULT CHARSET = utf8 COMMENT ='Liste des habitations';
 
---
--- Déchargement des données de la table `habitation`
---
-
-INSERT INTO `habitation` (`id_habit`, `order_habit`, `nom_habit`, `numero_habit`, `rue_habit`, `ville_habit`, `code_postal_habit`, `pays_habit`, `date_ajout_habit`) VALUES
-(1, 1, 'Maison principale', 25, 'Rue de vanves', 'Paris', '75000', 'France', '2018-09-12 10:30:00'),
-(2, 0, 'Maison secondaire', 55, 'Boulevard Foch', 'Angers', '49100', 'France', '2017-05-25 08:09:31'),
-(3, 0, 'Maison principale ', 40, 'Rue Saint Aubin', 'Angers', '49100', 'France', '2018-02-05 15:39:10'),
-(5, 0, 'Maison de vacances', 13, 'Boulevard Raspail', 'Paris', '75000', 'France', '2018-11-24 11:33:00'),
-(7, 0, 'Maison 2', 6, 'Rue de paradis', 'Paris', '75010', 'France', '2018-11-24 17:02:42'),
-(8, 0, 'Maison 5', 9, 'Rue des vents', 'Paris', '75016', 'France', '2018-08-02 21:54:42'),
-(9, 0, 'Maison vacances', 55, 'Rue perdu', 'Pornic', '44250', 'France', '2018-11-24 16:21:34'),
-(10, 0, 'Maison deux', 154, 'Rue de test', 'Ville Test', '49630', 'France', '2018-11-25 04:50:43'),
-(12, 0, 'Maison test user', 96, 'rue travolta', 'Le Havre', '56000', 'France', '2018-12-04 09:43:34'),
-(13, 1, 'Maisons Paris', 25, 'Rue du moulin', 'Issy', '92130', 'France', '2019-01-07 12:23:49');
-
 -- --------------------------------------------------------
 
 --
@@ -178,17 +139,6 @@ CREATE TABLE IF NOT EXISTS `habitation_utilisateur` (
   KEY `id_util` (`id_util`),
   KEY `id_habit` (`id_habit`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `habitation_utilisateur`
---
-
-INSERT INTO `habitation_utilisateur` (`id_util`, `id_habit`)
-VALUES (1, 5),
-       (1, 1),
-       (2, 7),
-       (2, 9),
-       (6, 13);
 
 -- --------------------------------------------------------
 
@@ -235,16 +185,6 @@ CREATE TABLE IF NOT EXISTS `plante` (
   PRIMARY KEY (`id_plante`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
---
--- Déchargement des données de la table `plante`
---
-
-INSERT INTO `plante` (`id_plante`, `nom_plante`, `frequence_plante`, `saison_plante`, `temps_arrosage_plante`) VALUES
-(1, 'Arbres et Arbustes', '1 fois par semaine', 'Été, Printemps, Automne', '1 min'),
-(2, 'Pelouse', '1 fois par jour', 'Toutes les saisons', '25 min'),
-(3, 'Massif de fleurs', '1 fois par jour', 'Été ', '45 sec'),
-(4, 'Légume', '1 à 2 fois par semaine', 'Été, Printemps', '30 sec');
-
 -- --------------------------------------------------------
 
 --
@@ -270,24 +210,17 @@ CREATE TABLE IF NOT EXISTS `programme` (
 
 DROP TABLE IF EXISTS `publication`;
 CREATE TABLE IF NOT EXISTS `publication` (
-                                           `id_pub`         int(11) NOT NULL AUTO_INCREMENT,
+                                           `id_pub`         int(11)      NOT NULL AUTO_INCREMENT,
                                            `titre_pub`      varchar(255) NOT NULL,
-                                           `contenu_pub`    text NOT NULL,
+                                           `contenu_pub`    text         NOT NULL,
                                            `fichier_pub`    varchar(255) DEFAULT NULL,
-                                           `date_envoi_pub` datetime NOT NULL,
-                                           `id_util`        int(11) NOT NULL,
+                                           `date_envoi_pub` datetime     NOT NULL,
+                                           `id_util`        int(11)      NOT NULL,
                                            PRIMARY KEY (`id_pub`),
                                            KEY `publication_utilisateur_id_util_fk` (`id_util`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 2
+  AUTO_INCREMENT = 7
   DEFAULT CHARSET = utf8;
-
---
--- Déchargement des données de la table `publication`
---
-
-INSERT INTO `publication` (`id_pub`, `titre_pub`, `contenu_pub`, `fichier_pub`, `date_envoi_pub`, `id_util`)
-VALUES (1, 'Test', '<p>New test <strong>here</strong></p>', NULL, '2019-01-18 10:12:39', 1);
 
 -- --------------------------------------------------------
 
@@ -311,18 +244,6 @@ CREATE TABLE IF NOT EXISTS `ticket` (
   AUTO_INCREMENT = 5
   DEFAULT CHARSET = utf8 COMMENT ='Gestion des tickets pour les problèmes';
 
---
--- Déchargement des données de la table `ticket`
---
-
-INSERT INTO `ticket` (`id_ticket`, `titre_ticket`, `status_ticket`, `contenu_ticket`, `fichier_ticket`, `date_ticket`,
-                      `id_util`)
-VALUES (3, 'Problème arrosage plante salon', 1,
-        'Bonjour, blablabla mon arroseur marche pas c\\\'est pas super ... et puis voilà [...] tout vas bien',
-        '/chemin/fichier', '2019-01-04 00:53:31', 1),
-       (4, 'Serre en panne 5 arroseurs', 2, 'Tous mes arroseurs dans ma serre sont en pannes', '/chemin/fichier/joint',
-        '2019-01-04 20:00:00', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -339,17 +260,6 @@ CREATE TABLE IF NOT EXISTS `type_arroseur`
   AUTO_INCREMENT = 6
   DEFAULT CHARSET = utf8;
 
---
--- Déchargement des données de la table `type_arroseur`
---
-
-INSERT INTO `type_arroseur` (`id_type_arroseur`, `nom_type_arroseur`)
-VALUES (1, 'Arroseur multi-surface'),
-       (2, 'Arroseur grande surface'),
-       (3, 'Aspregeur classique'),
-       (4, 'Arroseur compte goutte d\'extérieur'),
-       (5, 'Arroseur compte goutte d\'intérieur');
-
 -- --------------------------------------------------------
 
 --
@@ -364,15 +274,6 @@ CREATE TABLE IF NOT EXISTS `type_capteur`
   PRIMARY KEY (`id_type_capteur`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
-
---
--- Déchargement des données de la table `type_capteur`
---
-
-INSERT INTO `type_capteur` (`id_type_capteur`, `nom_type_capteur`)
-VALUES (3, 'température'),
-       (4, 'humidité'),
-       (7, 'présence');
 
 -- --------------------------------------------------------
 
@@ -390,16 +291,6 @@ CREATE TABLE IF NOT EXISTS `type_ticket`
   AUTO_INCREMENT = 5
   DEFAULT CHARSET = utf8 COMMENT ='Les types de tickets clients';
 
---
--- Déchargement des données de la table `type_ticket`
---
-
-INSERT INTO `type_ticket` (`id_type_ticket`, `nom_type_ticket`)
-VALUES (1, 'Initialisé'),
-       (2, 'Validé'),
-       (3, 'En cours'),
-       (4, 'Finalisé');
-
 -- --------------------------------------------------------
 
 --
@@ -412,16 +303,6 @@ CREATE TABLE IF NOT EXISTS `type_utilisateur` (
   `user_type_util` varchar(100) NOT NULL,
   PRIMARY KEY (`id_type_util`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `type_utilisateur`
---
-
-INSERT INTO `type_utilisateur` (`id_type_util`, `user_type_util`) VALUES
-(1, 'Utilisateur'),
-(2, 'Technicien'),
-(3, 'Commercial'),
-(4, 'Mairie');
 
 -- --------------------------------------------------------
 
@@ -446,20 +327,6 @@ CREATE TABLE IF NOT EXISTS `utilisateur`
   AUTO_INCREMENT = 7
   DEFAULT CHARSET = utf8;
 
---
--- Déchargement des données de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `mdp_util`, `tel_util`, `type_util`, `creee_a_util`) VALUES
-(1, 'Grignon', 'Bastien', 'bastien@isep.fr', '$2y$10$u16FmRJH1pdLSxte9SOsZOEw69/xsAnK3nR6ZhSDx4IfUP8fjQC..', '0751247989', 1, '2018-12-03 11:38:08'),
-(2, 'Dupond', 'Jean', 'jean.dupond@gmail.com', '$2y$10$BdTk5xkQqnrJ7Mh8RgMeueAouJ88zg6Wi2LPSwOmE8vpz.pDIl4q6', '0123456789', 1, '2018-12-03 16:54:34'),
-(3, 'Jean ', 'Dupont', 'jeandupont@gmail.com', '$2y$10$V/3QdHQrJ7lAKTHeEFr02O6fLJbnV91VbtSX9QRQ.PFAm7XlONwoy', '0123456789', 3, '2018-12-10 01:44:48'),
-(4, 'Smith', 'Martin', 'martinsmith@gmail.com', '$2y$10$QLyt2CHmWDBICNAaHp4LJeJOgLc1JaGKQumuxk9rjn.SHzVYKoqg2', '0123456789', 2, '2018-12-10 01:54:33'),
-(5, 'Dupond', 'Bastien', 'bastien.dupond@gmail.com', '$2y$10$Rgi.0HzxU8SO2rsFLIzVKeaVP0fiORHyXzDBegTJdyfubc2HTQKt.',
- '0123456987', 1, '2019-01-04 22:43:24'),
-(6, 'grignon', 'bastien', 'b@gmail.com', '$2y$10$awbNV0ehTIZLLsJutTr4qufl04YUg7dv4mxFHkaUiyCEtaL6L914W', '0278965423',
- 1, '2019-01-07 11:44:31');
-
 -- --------------------------------------------------------
 
 --
@@ -467,7 +334,8 @@ INSERT INTO `utilisateur` (`id_util`, `nom_util`, `prenom_util`, `email_util`, `
 --
 
 DROP TABLE IF EXISTS `zone`;
-CREATE TABLE IF NOT EXISTS `zone`(
+CREATE TABLE IF NOT EXISTS `zone`
+(
   `id_zone` int(11) NOT NULL AUTO_INCREMENT,
   `nom_zone` varchar(50) NOT NULL,
   `id_habit` int(11) NOT NULL,
@@ -476,15 +344,6 @@ CREATE TABLE IF NOT EXISTS `zone`(
 ) ENGINE = InnoDB
   AUTO_INCREMENT = 7
   DEFAULT CHARSET = utf8 COMMENT ='Zone à pour arroseur';
-
---
--- Déchargement des données de la table `zone`
---
-
-INSERT INTO `zone` (`id_zone`, `nom_zone`, `id_habit`) VALUES
-                                                         (1, 'Potager', 1),
-                                                         (3, 'Salon', 5),
-                                                         (6, 'test', 1);
 
 --
 -- Contraintes pour les tables déchargées
