@@ -8,7 +8,7 @@ class Model
     {
         $servername = "localhost";
         $username   = "root";
-        $password   = "root";
+        $password   = "";
 
         try {
             $conn = new PDO("mysql:host=$servername;dbname=g2e", $username, $password);
@@ -92,9 +92,7 @@ class Model
         $anneeC  = date('Y');
         $moisC   = date('m');
 
-        
 
-        
         switch ($Xaxis) {
             case 'année':
                 $x = $mois;
@@ -107,7 +105,7 @@ class Model
                     $tab_dat[$a]     = $date1;
                     $tab_dat[$a + 1] = $date2;
                     $i++;
-                }                
+                }
                 break;
             case 'toujours':
                 $x   = $annee;
@@ -122,7 +120,7 @@ class Model
                     $tab_dat[$a + 1] = $date2;
                     $ind             = $ind + 1;
                 }
-                break;                
+                break;
             case 'mois':
                 $x = $semaine;
                 $i = 0;
@@ -235,8 +233,6 @@ class Model
                 break;
         }
 
-        
-
 
         include_once "modele/graph.php";
         include_once "graph.php";
@@ -288,33 +284,11 @@ class Model
 					WHERE habitation.order_habit = 1 AND ville_habit = '" . $ville . "'";
         }
 
-//        echo $sql;
-
         $req  = $this->connexion->query($sql);
         $rows = $req->fetchAll();
-
-
-//        '
-//                INNER JOIN habitation_utilisateur AS hu
-//                    ON u.id_util = hu.id_util
-//                INNER JOIN habitation AS h
-//                    ON h.id_habit = hu.id_habit
-//                WHERE h.order_habit = 1';
-//        /*echo "qdsdqsd<br/>";
-//
-//        print_r($this->connexion);
-//        //echo "qdsdqs1d<br/>";
-//    */
-//        $rows = $this->connexion->query($sql);
-//        echo"<script>
-//                document.getElementById('ResDeRecherche').innerHTML =' ";
-//        echo $rows;
-//        echo "';
-//             </script>";
         return $rows;
     }
 
-//"'.$mail.'"'
 
     function getInfoParID($id)
     {
@@ -325,5 +299,3 @@ class Model
         return $rep;
     }
 }
-
-?>
