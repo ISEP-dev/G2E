@@ -25,7 +25,7 @@ function getTicketInfos(PDO $bdd, string $table, $idTicket)
             . "<p>Vous pouvez contacter ce client par <span class='italic b'>mail </span> : "
             . $user['email'] . " <br> et par <span class='italic b'>téléphone</span> : " . $user['telephone'] . " </p><br>"
             . "<h1>Titre : " . $ticket['titre_ticket'] . "</h1>"
-            . "<p class='text-medium contenu-ticket'> " . $ticket['contenu_ticket'] . "ezhgfbjdg usfioedtyfvueiksjbficevfdsbc ziehflbe" . "</p>"
+            . "<p class='text-medium contenu-ticket'> " . $ticket['contenu_ticket'] . "</p>"
             . "</div>";
     }
 }
