@@ -195,15 +195,15 @@
             <li class="navitem"><a href="index.php?cible=habitation&fonction=stats">Statistiques</a></li>
         </ul>
     </nav>
-
-    <h1><a href="index.php?cible=planning&fonction=accueil">Planning</a></h1>
-    <br>
-    <h1><a href="index.php?cible=habitation&fonction=accueil">Arrosage</a></h1>
-    <br>
-    <h1><a href="index.php?cible=Commercial&fonction=accueil">Commercial</a></h1>
-    <br>
-    <h1><a href="index.php?cible=Mairie&fonction=accueil">Publication</a></h1>
-    <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>
+    <!--
+        <h1><a href="index.php?cible=planning&fonction=accueil">Planning</a></h1>
+        <br>
+        <h1><a href="index.php?cible=habitation&fonction=accueil">Arrosage</a></h1>
+        <br>
+        <h1><a href="index.php?cible=Commercial&fonction=accueil">Commercial</a></h1>
+        <br>
+        <h1><a href="index.php?cible=Mairie&fonction=accueil">Publication</a></h1>
+        <h1><a href="index.php?cible=utilisateurs&fonction=faq">Faq</a></h1>-->
     <table class="gallery" cellpadding="30px">
         <tr>
             <td>Arroseur multi surface <br><img src="vue/images/multisurface.png" alt=""><br>
