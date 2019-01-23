@@ -1,6 +1,7 @@
 <?php
 
-require "connexion.php";
+require_once "connexion.php";
+require_once "fonctions.php";
 
 class Publication
 {
@@ -8,7 +9,13 @@ class Publication
 
     public function addPublication(PDO $bdd, string $table, $titre, $contenu, $idUser)
     {
-        return $bdd->query("INSERT INTO " . $table . "(titre_pub, contenu_pub, date_envoi_pub, id_util) VALUES('$titre', '$contenu', NOW(), $idUser);");
+        $insertArray = array(
+            'titre_pub'      => $titre,
+            'contenu_pub'    => $contenu,
+            'date_envoi_pub' => date('Y-m-d H:i:s'),
+            'id_util'        => $idUser
+        );
+        return insert($bdd, $table, $insertArray);
     }
 
     public function getAllPublications(PDO $bdd, string $table)

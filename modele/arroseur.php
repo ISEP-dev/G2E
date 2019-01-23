@@ -65,7 +65,11 @@ function updateArroseur(PDO $bdd, string $table, $checked, $arroseurId, $zoneId)
 function addCapteurToArroseur(PDO $bdd, string $table, $idArroseur, $idCapteur, $capteurState)
 {
     if ($capteurState == 1) {
-        $bdd->query("INSERT INTO " . $table . "(type_capt, id_arr) VALUES('$idCapteur', '$idArroseur')");
+        $insertArray = array(
+            'type_capt' => $idCapteur,
+            'id_arr'    => $idArroseur
+        );
+        insert($bdd, $table, $insertArray);
     } else {
         $bdd->query("DELETE FROM " . $table . " WHERE id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
     }

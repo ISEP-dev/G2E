@@ -72,5 +72,5 @@ function insert(PDO $bdd, string $table, array $values): bool
 
 function delete(PDO $bdd, string $table, string $where)
 {
-    $bdd->query("DELETE FROM " . $table . "WHERE " . $where);
+    $bdd->query("DELETE FROM " . $table . " WHERE " . $where);
 }

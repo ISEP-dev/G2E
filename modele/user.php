@@ -71,21 +71,23 @@ function connection_to_site(PDO $bdd, string $table)
 
 function addUsers(PDO $bdd, string $table)
 {
-    $userFirstName    = $_POST['nom-utilisateur'];
-    $userLastName     = $_POST['prenom-utilisateur'];
-    $userEmail        = $_POST['email-utilisateur'];
-    $userPassword     = password_hash($_POST['password-utilisateur'], PASSWORD_BCRYPT);
-    $userPhoneNumber  = $_POST['numero-utilisateur'];
-    $userType         = $_POST['type-utilisateur'];
-    $userCreationDate = date('Y-m-d H:i:s');
+    $userEmail       = $_POST['email-utilisateur'];
+    $userPhoneNumber = $_POST['numero-utilisateur'];
+    $insertArray     = array(
+        'nom_util'     => $_POST['nom-utilisateur'],
+        'prenom_util'  => $_POST['prenom-utilisateur'],
+        'email_util'   => $userEmail,
+        'mdp_util'     => password_hash($_POST['password-utilisateur'], PASSWORD_BCRYPT),
+        'tel_util'     => $userPhoneNumber,
+        'type_util'    => $_POST['type-utilisateur'],
+        'creee_a_util' => date('Y-m-d H:i:s')
+    );
     //On test l'email
     if (filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
         // On test le numéro de téléphone
         if (preg_match("/^0[1-7]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/", $userPhoneNumber)) {
             //Requête sql d'insertion dans la BDD
-            $addUserQuery = $bdd->exec("INSERT INTO utilisateur(nom_util,prenom_util,email_util,mdp_util,tel_util,type_util,creee_a_util)
-                                          VALUES('$userFirstName', '$userLastName', '$userEmail', '$userPassword', '$userPhoneNumber', '$userType', '$userCreationDate');"
-            );
+            $addUserQuery = insert($bdd, $table, $insertArray);
             if (!$addUserQuery) {
                 // Erreur d'ajout d'un utilisateur
                 die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n" . $bdd->errorInfo());
@@ -109,14 +111,14 @@ function addUsers(PDO $bdd, string $table)
 
 function createTicket(PDO $bdd, string $tableTicket)
 {
-    $titreTicket    = $_POST['titre-ticket'];
-    $contenuTicket  = $_POST['message-ticket'];
-    $fichierTicket  = $_POST['fichier-ticket'];
-    $dateTicket     = date('Y-m-d H:i:s');
-    $idUtil         = $_SESSION['user_id'];
-    $addTicketQuery = $bdd->exec("INSERT INTO ticket(titre_ticket,contenu_ticket,fichier_ticket,date_ticket,id_util)
-                                            VALUES('$titreTicket', '$contenuTicket', '$fichierTicket', '$dateTicket ', '$idUtil');"
+    $insertArray    = array(
+        'titre_ticket'   => $_POST['titre-ticket'],
+        'contenu_ticket' => $_POST['message-ticket'],
+        'fichier_ticket' => $_POST['fichier-ticket'],
+        'date_ticket'    => date('Y-m-d H:i:s'),
+        'id_util'        => $_SESSION['user_id']
     );
+    $addTicketQuery = insert($bdd, $tableTicket, $insertArray);
     if (!$addTicketQuery) {
         // Erreur d'ajout d'un utilisateur
         die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n");
