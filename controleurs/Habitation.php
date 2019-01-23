@@ -53,6 +53,7 @@ switch ($fonction) {
         $zoneId     = $_POST['zone'];
         $checked    = $_POST['state'];
         updateArroseur($bdd, $tableArroseur, $checked, $arroseurId, $zoneId);
+        $vue = null;
         break;
 
     case "add-capteur-to-arroseur":

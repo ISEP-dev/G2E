@@ -74,8 +74,11 @@ function removeHouse(PDO $bdd, string $table, $idHouse)
 
 function getHouseInfos(PDO $bdd, string $table, $idMaison)
 {
-    $query = $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idMaison);
-    foreach ($query as $maison) {
+    $statment = $bdd->prepare("SELECT * FROM " . $table . " WHERE id_habit = :maison");
+    $statment->bindParam(':maison', $idMaison);
+    $statment->execute();
+    // $query = $bdd->query("SELECT * FROM " . $table . " WHERE id_habit=" . $idMaison);
+    foreach ($statment->fetchAll() as $maison) {
         if ($maison['order_habit'] == 1) {
             $status = "principale";
         } else {

@@ -51,7 +51,11 @@ function removeArroseur(PDO $bdd, string $table, $idArr)
 
 function updateArroseur(PDO $bdd, string $table, $checked, $arroseurId, $zoneId)
 {
-    return $bdd->query("UPDATE " . $table . " SET etat_arr=" . $checked . " WHERE id_arr=" . $arroseurId . " AND id_zone=" . $zoneId);
+    $statment = $bdd->prepare("UPDATE " . $table . " SET etat_arr = :checked WHERE id_arr = :arroseur AND id_zone = :zone");
+    $statment->bindParam(':checked', $checked);
+    $statment->bindParam(':arroseur', $arroseurId);
+    $statment->bindParam(':zone', $zoneId);
+    return $statment->execute();
 }
 
 function addCapteurToArroseur(PDO $bdd, string $table, $idArroseur, $idCapteur, $capteurState)
