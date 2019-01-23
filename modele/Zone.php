@@ -26,6 +26,6 @@ class Zone
 
     public function removeZone(PDO $bdd, string $table, $idZone)
     {
-        $bdd->query("DELETE FROM " . $table . " WHERE id_zone=" . $idZone);
+        delete($bdd, $table, "id_zone=" . $idZone);
     }
 }

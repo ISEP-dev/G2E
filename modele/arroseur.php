@@ -1,13 +1,6 @@
 <?php
-/**
- * Modèle des arroseurs
- * User: bastien
- * Date: 25/11/2018
- * Time: 17:03
- */
 
-// info -> déja  inclu dans modele/Habitation.php
-//include "modele/fonctions.php";
+require_once "fonctions.php";
 
 $tableArroseur     = 'arroseur';
 $tableArroseurType = 'type_arroseur';
@@ -15,7 +8,6 @@ $tableArroseurType = 'type_arroseur';
 function getArroseurByZoneId(PDO $bdd, string $table, int $idZone)
 {
     return $bdd->query("SELECT * FROM " . $table . " WHERE id_zone=" . $idZone);
-    // return selectAll($bdd, $table);
 }
 
 function getArroseurInfoById(PDO $bdd, string $table, int $idArr)
@@ -54,7 +46,7 @@ function getArroseurTypeByArroseurId(PDO $bdd, string $table, string $table2, $i
 
 function removeArroseur(PDO $bdd, string $table, $idArr)
 {
-    $bdd->query("DELETE FROM " . $table . " WHERE id_arr=" . $idArr);
+    delete($bdd, $table, "id_arr=" . $idArr);
 }
 
 function updateArroseur(PDO $bdd, string $table, $checked, $arroseurId, $zoneId)
@@ -71,7 +63,7 @@ function addCapteurToArroseur(PDO $bdd, string $table, $idArroseur, $idCapteur, 
         );
         insert($bdd, $table, $insertArray);
     } else {
-        $bdd->query("DELETE FROM " . $table . " WHERE id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
+        delete($bdd, $table, "id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
     }
 
 }

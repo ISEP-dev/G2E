@@ -69,8 +69,7 @@ function getNbHousesByUserId(PDO $bdd, string $table, $idUser): int
 
 function removeHouse(PDO $bdd, string $table, $idHouse)
 {
-    $bdd->query("DELETE FROM " . $table . " WHERE id_habit=" . $idHouse);
-
+    delete($bdd, $table, "id_habit=" . $idHouse);
 }
 
 function getHouseInfos(PDO $bdd, string $table, $idMaison)
