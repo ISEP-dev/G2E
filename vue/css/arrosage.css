@@ -273,7 +273,6 @@ td.td-centre {
 }
 
 
-
 .circle-delete:after {
     content         : '-';
     font-size       : 25px;
@@ -303,4 +302,37 @@ td.td-centre {
 .infos-capteur {
     height     : inherit;
     overflow-y : auto;
+}
+
+.link-program {
+    padding         : 10px;
+    font-size       : 0.75em;
+    color           : var(--gris-noir);
+    text-decoration : underline;
+}
+
+.link-program:hover {
+    color     : var(--bleu-clair);
+    font-size : 0.85em;
+}
+
+.weekday-selection > input {
+    display : none !important;
+}
+
+.weekday-selection input[type=checkbox] + label {
+    display       : inline-block;
+    height        : 40px;
+    width         : 40px;
+    margin-right  : 3px;
+    text-align    : center;
+    cursor        : pointer;
+    border-radius : 50%;
+    line-height   : 40px;
+    background    : var(--gris-clair);
+}
+
+.weekday-selection input[type=checkbox]:checked + label {
+    color            : var(--noir);
+    background-color : var(--vert);
 }

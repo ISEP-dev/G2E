@@ -210,7 +210,7 @@ select {
     margin             : 10px 0;
 }
 
-input[type=text], input[type=number], input[type=password], input[type=email] {
+input[type=text], input[type=number], input[type=password], input[type=email], input[type=datetime-local], input[type=date] {
     border-radius : var(--input-radius);
     height        : 30px;
 }

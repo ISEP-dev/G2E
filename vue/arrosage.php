@@ -71,15 +71,19 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                                 <a href="index.php?cible=habitation&fonction=config-arroseur&id=<?= $arroseur['id_arr'] ?>"><?= $arroseur['nom_arr'] ?></a>
                                 <span class="small-text">(<?= $arroseurType['nom_type_arroseur'] ?>)</span>
                             </div>
-                            <div class="toggle-button">
-                                <input id="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" type="checkbox"
-                                       class="arroseur-checkbox" name="button" <?= $checked ?>>
-                                <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>"
-                                       class="arroseur-label"
-                                       onclick="updateStatusArroseur(this);">
-                                    <span class="arroseur-inner"></span>
-                                    <span class="arroseur-slider"></span>
-                                </label>
+                            <div class="space-between">
+                                <a class="small-text v-centre link-program cursor"
+                                   onclick="addProgram(<?= $arroseur['id_arr'] ?>);">Programmer</a>
+                                <div class="toggle-button">
+                                    <input id="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>" type="checkbox"
+                                           class="arroseur-checkbox" name="button" <?= $checked ?>>
+                                    <label for="z<?= $arroseur['id_zone'] ?>-a<?= $arroseur['id_arr'] ?>"
+                                           class="arroseur-label"
+                                           onclick="updateStatusArroseur(this);">
+                                        <span class="arroseur-inner"></span>
+                                        <span class="arroseur-slider"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="space-between">
@@ -328,6 +332,49 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                 <input type="submit" name="submit" value="Supprimer" class="btn-modal-submit rouge text-medium">
                 <input type="button" value="Annuler" class="btn-modal-submit text-medium"
                        onclick="document.getElementById('modal-delete-zone').style.display = 'none';">
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal centre" id="modal-add-program">
+    <div class="modal-content">
+        <form action="index.php?cible=&fonction=" method="post">
+            <div class="modal-header space-between">
+                <h3>Ajouter un programme</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <table>
+                    <div class="centre"><h4><label for="titre-program">Nom du programme &nbsp;</label></h4></div>
+                    <div class="centre"><input type="text" id="titre-program" name="titre-program"
+                                               placeholder="Nom du programme"></div>
+                    <br><br>
+                    <tr>
+                        <th><label for="date-start">Date de début</label></th>
+                        <th><label for="date-end">Date de fin</label></th>
+                    </tr>
+                    <tr>
+                        <td><input type="datetime-local" id="date-start" name="date-start"></td>
+                        <td><input type="datetime-local" id="date-end" name="date-end"></td>
+                    </tr>
+                </table>
+                <br>
+                <h4 class="centre">Répétition du programme &nbsp;</h4>
+                <div class="weekday-selection centre">
+                    <input type="checkbox" id="day-l"><label for="day-l">L</label>
+                    <input type="checkbox" id="day-ma"><label for="day-ma">Ma</label>
+                    <input type="checkbox" id="day-me"><label for="day-me">Me</label>
+                    <input type="checkbox" id="day-j"><label for="day-j">J</label>
+                    <input type="checkbox" id="day-v"><label for="day-v">V</label>
+                    <input type="checkbox" id="day-s"><label for="day-s">S</label>
+                    <input type="checkbox" id="day-d"><label for="day-d">D</label>
+                </div>
+            </div>
+            <input type="hidden" id="arr-id-add-program" name="arr-id-add-program" value="">
+            <div class="modal-footer droite">
+                <input type="button" value="Annuler" class="btn-modal-submit rouge text-medium"
+                       onclick="document.getElementById('modal-add-program').style.display = 'none';">
+                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
             </div>
         </form>
     </div>

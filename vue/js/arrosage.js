@@ -4,6 +4,7 @@ let popUpArroseur       = document.getElementById('modal-add-arroseur');
 let popUpDeleteHouse    = document.getElementById('modal-delete-maison');
 let popUpDeleteZone     = document.getElementById('modal-delete-zone');
 let popUpDeleteArroseur = document.getElementById('modal-delete-arroseur');
+let popUpAddProgram     = document.getElementById('modal-add-program');
 
 let btnAddHouse    = document.getElementById('add-house');
 let btnAddZone     = document.getElementById('add-zone');
@@ -52,6 +53,9 @@ function modalEscape() {
             case 'modal-delete-zone':
                 popUpDeleteZone.style.display = "none";
                 break;
+            case 'modal-add-program':
+                popUpAddProgram.style.display = "none";
+                break;
         }
     });
     document.addEventListener("keydown", function (event) {
@@ -64,6 +68,7 @@ function modalEscape() {
             popUpZone.style.display        = "none";
             popUpDeleteHouse.style.display = "none";
             popUpDeleteZone.style.display  = "none";
+            popUpAddProgram.style.display  = "none";
         }
     });
 }
@@ -132,4 +137,11 @@ function updateAvailableCapteurArroseur(element) {
     xhttp.open("POST", "index.php?cible=habitation&fonction=add-capteur-to-arroseur", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("arroseur=" + idArroseur + "&capteur=" + idCapteur + "&state=" + etatCapteur);
+}
+
+function addProgram(idArroseur) {
+    document.getElementById('arr-id-add-program').setAttribute('value', idArroseur);
+    popUpAddProgram.style.display               = "block";
+    document.getElementById("date-start").value = new Date();
+    document.getElementById("date-end").value   = new Date();
 }
