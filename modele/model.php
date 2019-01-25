@@ -234,7 +234,6 @@ class Model
         }
 
 
-        include_once "modele/graph.php";
         include_once "graph.php";
 
 

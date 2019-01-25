@@ -4,7 +4,7 @@
             <a href="index.php" title="Accueil">Accueil</a> |
             <a href="" title="CGU">CGU</a> |
             <a href="" title="A Propos">A propos</a> |
-            <a href="" title="FAQ">FAQ</a> |
+            <a href="index.php?cible=utilisateurs&fonction=faq" title="FAQ">FAQ</a> |
             <a href="" title="Contactez-nous">Contactez-nous</a> |
             <a href="">Mentions légales</a>
         </p>

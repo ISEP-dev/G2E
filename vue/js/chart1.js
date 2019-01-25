@@ -25,6 +25,7 @@ function clickingRefresh() {
     rG.open("post", "controleurs/c_stat.php", true);
     rG.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let m                 = "fonction=stat_temp&Xaxis=" + x + "&Yaxis=" + y;
+    rG.send(m);
     rG.onreadystatechange = function () {
         if (rG.readyState == 4 && rG.status == 200) {
             for (let j = 0; j < 20; j++) {
@@ -35,22 +36,21 @@ function clickingRefresh() {
             Xaxis = JSON.parse(result['Xaxis']);
             Yaxis = JSON.parse(result['Yaxis']);
             titre = JSON.parse(result['Titre']);
+
             /*console.log(titre)
             console.log(Xaxis);
             console.log(Yaxis);*/
-
             for (let i = 0; i < Yaxis.length; i++) {
-                addData(myChart, Xaxis[i], Yaxis[i]);
 
+                addData(myChart, Xaxis[i], Yaxis[i]);
             }
             myChart.data.datasets[0].label = titre;
+
             myChart.update();
 
+
         }
-
-
-    }
-    rG.send(m);
+    };
 }
 
 
