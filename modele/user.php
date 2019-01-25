@@ -48,9 +48,9 @@ function connection_to_site(PDO $bdd, string $table)
                     // Commercial
                     header("Location: index.php?cible=Commercial&fonction=accueil");
                     break;
-                case 3:
+                case 4:
                     // Gestionnaire
-                    header("Location: index.php?cible=habitation&fonction=accueil");
+                    header("Location: index.php?cible=Mairie&fonction=accueil");
                     break;
                 default:
                     header("Location: index.php");
