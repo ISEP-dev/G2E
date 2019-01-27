@@ -16,6 +16,8 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 
+$utilisateur = new User($bdd);
+
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
@@ -27,13 +29,13 @@ switch ($fonction) {
         break;
 
     case "connexion":
-        connection_to_site($bdd, $tableUsers);
+        $utilisateur->connection_to_site($utilisateur->tableUsers);
         $head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
         break;
 
     /* ajout d'un utilisateur */
     case "ajouter":
-        addUsers($bdd, $tableUsers);
+        $utilisateur->addUsers($utilisateur->tableUsers);
         $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         $vue   = "home";
         $title = "Accueil";
@@ -54,7 +56,7 @@ switch ($fonction) {
         break;
 
     case "ticket":
-        displayTicket($bdd, $tableTicket);
+        $utilisateur->displayTicket($utilisateur->tableTicket);
         $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         $vue   = "ticket";
         $title = "Historique de vos incidents";
@@ -62,12 +64,12 @@ switch ($fonction) {
 
     case "get-ticket":
         $idTicket = $_POST['id'];
-        getUserTicket($bdd, $tableTicket, $idTicket);
+        $utilisateur->getUserTicket($utilisateur->tableTicket, $idTicket);
         $vue = null;
         break;
 
     case "ajoutTicket":
-        createTicket($bdd, $tableTicket);
+        $utilisateur->createTicket($utilisateur->tableTicket);
         $head  = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
         $vue   = "infos-arroseur";
         $title = "Configuration de l'arroseur";

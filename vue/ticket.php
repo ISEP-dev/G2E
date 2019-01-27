@@ -10,7 +10,8 @@
             Liste de vos tickets :
         </div>
         <br/>
-        <?php $tickets = displayTicket($bdd, $tableTicket);
+        <?php $utilisateur = new User($bdd);
+        $tickets           = $utilisateur->displayTicket($utilisateur->tableTicket);
         foreach ($tickets as $ticket) {
             ?>
             <div class="ticket" value="<?= $ticket['id_ticket'] ?>" onclick="showTicket(<?= $ticket['id_ticket'] ?>)">
