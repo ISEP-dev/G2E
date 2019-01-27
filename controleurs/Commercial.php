@@ -5,7 +5,7 @@
  * Date: 25/11/2018
  * Time: 00:42
  */
-include "modele/model.php";
+include "modele/Model.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";

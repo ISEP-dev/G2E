@@ -1,26 +1,14 @@
 <?php
 
+require_once "fonctions.php";
+
 class Model
 {
-    private $connexion;
+    private $bdd;
 
-    function __construct()
+    function __construct(PDO $bdd)
     {
-        $servername = "localhost";
-        $username   = "root";
-        $password   = "";
-
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=g2e", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->connexion = $conn;
-            /*echo "Connected successfully";*/
-        }
-        catch (PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
-        }
-
+        $this->bdd = $bdd;
     }
 
     function getMaisonsFromUserId($id)
@@ -28,10 +16,10 @@ class Model
         $query = "SELECT nom_habit FROM habitation 
         INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit
        INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util 
-       WHERE utilisateur.id_util =" . $id . "";
+       WHERE utilisateur.id_util =" . $id;
         //echo($query);
         //$result = $this->connexion->query($query)->fetch(PDO::FETCH_ASSOC);
-        $stmt = $this->connexion->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+        $stmt = $this->bdd->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
         $stmt->execute();
         $data = array();
         while ($row = $stmt->fetch(PDO::FETCH_BOTH)) {
@@ -49,7 +37,7 @@ class Model
         INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit
         INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util
         WHERE utilisateur.id_util =" . $id . " AND habitation.nom_habit= '" . $nom . "'";
-        $stmt  = $this->connexion->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+        $stmt  = $this->bdd->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
         $stmt->execute();
         $data = array();
         while ($row = $stmt->fetch(PDO::FETCH_BOTH)) {
@@ -69,7 +57,7 @@ class Model
         INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit
         INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util
         WHERE utilisateur.id_util =" . $id . " AND zone.nom_zone= '" . $nom . "'";
-        $stmt  = $this->connexion->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+        $stmt  = $this->bdd->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
         $stmt->execute();
         $data = array();
         while ($row = $stmt->fetch(PDO::FETCH_BOTH)) {
@@ -157,7 +145,7 @@ class Model
 
                     $query = 'SELECT COUNT(id_util) FROM utilisateur WHERE type_util = 1 AND creee_a_util BETWEEN ' . $tab_dat[$i] . ' AND ' . $tab_dat[$i + 1];
                     //echo($query);
-                    $result  = $this->connexion->query($query)->fetch(PDO::FETCH_ASSOC);
+                    $result  = $this->bdd->query($query)->fetch(PDO::FETCH_ASSOC);
                     $y[$ind] = (int)$result['COUNT(id_util)'];
                     //echo($y[$ind]);
                     $ind++;
@@ -179,7 +167,7 @@ class Model
                     INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit
                     INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util
                     WHERE utilisateur.id_util =1 AND programme.date_debut_prog BETWEEN "2017-12-01" AND "2018-12-01" AND arroseur.nom_arr = "petunia droite"';
-                    $stmt  = $this->connexion->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
+                    $stmt  = $this->bdd->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
                     $stmt->execute();
                     while ($row = $stmt->fetch(PDO::FETCH_BOTH)) {
                         array_push($data, $row[0]);
@@ -193,7 +181,7 @@ class Model
 
                     $query = $query_arroseur = 'SELECT COUNT(id_arr) FROM arroseur WHERE date_ajout_arr BETWEEN ' . $tab_dat[$i] . ' AND ' . $tab_dat[$i + 1];
                     //echo($query);
-                    $result  = $this->connexion->query($query)->fetch(PDO::FETCH_ASSOC);
+                    $result  = $this->bdd->query($query)->fetch(PDO::FETCH_ASSOC);
                     $y[$ind] = (int)$result['COUNT(id_arr)'];
                     //echo($y[$ind]);
                     $ind++;
@@ -206,7 +194,7 @@ class Model
 
                     $query = $query_arroseur = 'SELECT COUNT(id_habit) FROM habitation WHERE date_ajout_habit BETWEEN ' . $tab_dat[$i] . ' AND ' . $tab_dat[$i + 1];
                     /*echo($query);*/
-                    $result  = $this->connexion->query($query)->fetch(PDO::FETCH_ASSOC);
+                    $result  = $this->bdd->query($query)->fetch(PDO::FETCH_ASSOC);
                     $y[$ind] = (int)$result['COUNT(id_habit)'];
                     //echo($y[$ind]);
                     $ind++;
@@ -234,8 +222,7 @@ class Model
         }
 
 
-        include_once "graph.php";
-
+        include_once "Graph.php";
 
         /* $y = [5,8,9,12,6,7,8,9,10,11,12];*/
         $graph = new Graph($x, $y, $titre);
@@ -283,18 +270,15 @@ class Model
 					WHERE habitation.order_habit = 1 AND ville_habit = '" . $ville . "'";
         }
 
-        $req  = $this->connexion->query($sql);
-        $rows = $req->fetchAll();
-        return $rows;
+        $req = $this->bdd->query($sql);
+        return $req->fetchAll();
     }
 
 
     function getInfoParID($id)
     {
         $sql = 'SELECT * FROM utilisateur WHERE id_util ="' . $id . '"';
-        $req = $this->connexion->query($sql);
-        $rep = $req->fetch();
-
-        return $rep;
+        $req = $this->bdd->query($sql);
+        return $req->fetch();
     }
 }

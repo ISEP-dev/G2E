@@ -12,8 +12,8 @@
                     <td>
                         <select name="select-plant" id="select-plant" onchange="">
                             <?php
-                            $plante       = new Plante();
-                            $plantes_type = $plante->getAllPlantType($bdd, $plante->tablePlante);
+                            $plante       = new Plante($bdd);
+                            $plantes_type = $plante->getAllPlantType($plante->tablePlante);
                             foreach ($plantes_type as $plante_type) { ?>
                                 <option value="<?= $plante_type['id_plante'] ?>"><?= $plante_type['nom_plante'] ?></option>
                             <?php } ?>
@@ -60,23 +60,23 @@
             <h1 class="centre">Capteurs</h1>
             <table class="centre">
                 <?php
-                $capteur      = new Capteur();
-                $capteursType = $capteur->getCapteurType($bdd);
+                $capteur      = new Capteur($bdd);
+                $capteursType = $capteur->getCapteurType();
                 /*Todo : refactoring for test checked and checkbox*/
                 // Check température (id = 3)
-                if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 3)['COUNT(1)'] == 1) {
+                if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arr['id_arr'], 3)['COUNT(1)'] == 1) {
                     $checkedTemp = "checked";
                 } else {
                     $checkedTemp = "";
                 }
                 // Check humidité (id = 4)
-                if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 4)['COUNT(1)'] == 1) {
+                if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arr['id_arr'], 4)['COUNT(1)'] == 1) {
                     $checkedHumi = "checked";
                 } else {
                     $checkedHumi = "";
                 }
                 // Check présence (id = 7)
-                if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arr['id_arr'], 7)['COUNT(1)'] == 1) {
+                if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arr['id_arr'], 7)['COUNT(1)'] == 1) {
                     $checkedPres = "checked";
                 } else {
                     $checkedPres = "";

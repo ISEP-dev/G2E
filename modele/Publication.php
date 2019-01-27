@@ -5,9 +5,15 @@ require_once "fonctions.php";
 
 class Publication
 {
-    public $tablePublication = "publication";
+    private $bdd;
+    public  $tablePublication = "publication";
 
-    public function addPublication(PDO $bdd, string $table, $titre, $contenu, $idUser)
+    function __construct(PDO $bdd)
+    {
+        $this->bdd = $bdd;
+    }
+
+    public function addPublication(string $table, $titre, $contenu, $idUser)
     {
         $insertArray = array(
             'titre_pub'      => $titre,
@@ -15,11 +21,11 @@ class Publication
             'date_envoi_pub' => date('Y-m-d H:i:s'),
             'id_util'        => $idUser
         );
-        return insert($bdd, $table, $insertArray);
+        return insert($this->bdd, $table, $insertArray);
     }
 
-    public function getAllPublications(PDO $bdd, string $table)
+    public function getAllPublications(string $table)
     {
-        return $bdd->query("SELECT * FROM " . $table);
+        return $this->bdd->query("SELECT * FROM " . $table);
     }
 }

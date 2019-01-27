@@ -8,16 +8,22 @@
 
 class Plante
 {
-    public $tablePlante = "plante";
+    public  $tablePlante = "plante";
+    private $bdd;
 
-    public function getPlantType(PDO $bdd, string $table, int $idPlante)
+    function __construct(PDO $bdd)
     {
-        return $bdd->query("SELECT * FROM " . $table . " WHERE id_plante=" . $idPlante)->fetch(PDO::FETCH_ASSOC);
+        $this->bdd = $bdd;
     }
 
-    public function getAllPlantType(PDO $bdd, string $table)
+    public function getPlantType(string $table, int $idPlante)
     {
-        return $bdd->query("SELECT * FROM " . $table);
+        return $this->bdd->query("SELECT * FROM " . $table . " WHERE id_plante=" . $idPlante)->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getAllPlantType(string $table)
+    {
+        return $this->bdd->query("SELECT * FROM " . $table);
     }
 
 }

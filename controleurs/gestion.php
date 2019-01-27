@@ -1,7 +1,7 @@
 <?php
 
-include "modele/user.php";
-include "modele/habitation.php";
+include "modele/User.php";
+include "modele/Habitation.php";
 require "modele/Gestion.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
@@ -10,18 +10,20 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 
+$habitation = new Habitation($bdd);
+
 switch ($fonction) {
     case "accueil":
         $head    = '<link rel="stylesheet" href="vue/css/gestion.css">';
         $js      = '<script src="vue/js/gestion.js"></script>';
-        $maisons = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
+        $maisons = $habitation->getAllHousesFromUser($habitation->tableHabitation, $_SESSION['user_id']);
         $title   = "Gestion de vos maisons";
         $vue     = "gestion";
         break;
 
     case "ceder-maison":
-        $gestion = new Gestion();
-        $gestion->cederMaison($bdd, "utilisateur", $_POST['id-maison-ceder'], $_POST['mail']);
+        $gestion = new Gestion($bdd);
+        $gestion->cederMaison("utilisateur", $_POST['id-maison-ceder'], $_POST['mail']);
         header("Location: index.php?cible=gestion&fonction=accueil");
         break;
 
