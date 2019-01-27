@@ -12,7 +12,8 @@
             <label for="house-select"></label>
             <select id="house-select" name="house-select" class="maison-select" onchange="onSelectHouseChange(this)">
                 <option selected disabled>-- Selectionner votre maison --</option>
-                <?php $maisonSelect = getAllHousesFromUser($bdd, $tableHabitation, $_SESSION['user_id']);
+                <?php $habitation = new Habitation($bdd);
+                $maisonSelect     = $habitation->getAllHousesFromUser($habitation->tableHabitation, $_SESSION['user_id']);
                 foreach ($maisonSelect as $maisonUser) { ?>
                     <option value="<?= $maisonUser['id_habit'] ?>"><?= $maisonUser['nom_habit'] ?></option>
                 <?php } ?>
@@ -23,9 +24,9 @@
 </div>
 <!-- S : Zone -->
 <?php
-if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
-    $zoneClass = new Zone();
-    $zones     = $zoneClass->getZonesByHouseId($bdd, $tableZone, $_SESSION['id_maison']);
+if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION['user_id']) != 0) {
+    $zoneClass = new Zone($bdd);
+    $zones     = $zoneClass->getZonesByHouseId($habitation->tableZone, $_SESSION['id_maison']);
     foreach ($zones as $zone) { ?>
         <fieldset class="zone">
             <legend class="zone-titre b"><?= $zone['nom_zone'] ?></legend>
@@ -37,7 +38,8 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
             </div>
             <div class="container-zone">
 
-                <?php $arroseurs = getArroseurByZoneId($bdd, $tableArroseur, $zone['id_zone']);
+                <?php $arroseurClass = new Arroseur($bdd);
+                $arroseurs           = $arroseurClass->getArroseurByZoneId($arroseurClass->tableArroseur, $zone['id_zone']);
                 foreach ($arroseurs as $arroseur) {
                     if ($arroseur['etat_fonctionnement_arr'] == 0) {
                         $state_arr   = "green";
@@ -58,11 +60,11 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                     } else {
                         $checked = "";
                     }
-                    $plante            = new Plante();
-                    $plante_infos      = $plante->getPlantType($bdd, $plante->tablePlante, $arroseur['id_plante']);
+                    $plante            = new Plante($bdd);
+                    $plante_infos      = $plante->getPlantType($plante->tablePlante, $arroseur['id_plante']);
                     $prctTempsArrosage = rand(0, 100);
 
-                    $arroseurType = getArroseurTypeByArroseurId($bdd, $tableArroseurType, $tableArroseur, $arroseur['id_arr']);
+                    $arroseurType = $arroseurClass->getArroseurTypeByArroseurId($arroseurClass->tableArroseurType, $arroseurClass->tableArroseur, $arroseur['id_arr']);
                     ?>
                     <!-- S : Arroseur -->
                     <div class="arroseur">
@@ -103,18 +105,18 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                         <div class="space-between">
                             <div class="capteur-type">
                                 <table>
-                                    <?php $capteur = new Capteur();
-                                    if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arroseur['id_arr'], 3)['COUNT(1)']) {
+                                    <?php $capteur = new Capteur($bdd);
+                                    if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arroseur['id_arr'], 3)['COUNT(1)']) {
                                         $visibilityTemp = true;
                                     } else {
                                         $visibilityTemp = false;
                                     }
-                                    if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arroseur['id_arr'], 4)['COUNT(1)']) {
+                                    if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arroseur['id_arr'], 4)['COUNT(1)']) {
                                         $visibilityHumi = true;
                                     } else {
                                         $visibilityHumi = false;
                                     }
-                                    if ($capteur->checkCapteurStatus($bdd, $capteur->tableCapteur, $arroseur['id_arr'], 7)['COUNT(1)']) {
+                                    if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arroseur['id_arr'], 7)['COUNT(1)']) {
                                         $visibilityPres = true;
                                     } else {
                                         $visibilityPres = false;
@@ -227,8 +229,9 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
         <form action="index.php?cible=habitation&fonction=ajouter-zone" method="post">
             <div class="modal-header space-between">
                 <h3>Ajouter une nouvelle zone à votre maison
-                    <?php if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) {
-                        echo "(" . getHouseNameById($bdd, $tableHabitation, $_SESSION['id_maison'])['nom_habit'] . ")";
+                    <?php $habitation = new Habitation($bdd);
+                    if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION['user_id']) != 0) {
+                        echo "(" . $habitation->getHouseNameById($habitation->tableHabitation, $_SESSION['id_maison'])['nom_habit'] . ")";
                     } ?></h3>
                 <span class="close">&times;</span>
             </div>
@@ -277,8 +280,8 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                     <tr>
                         <td><label for="select-plante-type">Type de plante</label></td>
                         <td><select name="select-plante-type" id="select-plante-type">
-                                <?php $plante = new Plante();
-                                $plantes_type = $plante->getAllPlantType($bdd, "plante");
+                                <?php $plante = new Plante($bdd);
+                                $plantes_type = $plante->getAllPlantType($plante->tablePlante);
                                 foreach ($plantes_type as $plante_type) { ?>
                                     <option value="<?= $plante_type['id_plante'] ?>"><?= $plante_type['nom_plante'] ?></option>
                                 <?php } ?>
@@ -288,7 +291,8 @@ if (getNbHousesByUserId($bdd, $tableHabitationUser, $_SESSION['user_id']) != 0) 
                     <tr>
                         <td><label for="select-arroseur-type">Type d'arroseur</label></td>
                         <td><select name="select-arroseur-type" id="select-arroseur-type">
-                                <?php $types_arroseur = getAllArroseurType($bdd, $tableArroseurType);
+                                <?php $arroseur = new Arroseur($bdd);
+                                $types_arroseur = $arroseur->getAllArroseurType($arroseur->tableArroseurType);
                                 foreach ($types_arroseur as $type_arroseur) { ?>
                                     <option value="<?= $type_arroseur['id_type_arroseur'] ?>"><?= $type_arroseur['nom_type_arroseur'] ?></option>
                                 <?php } ?>

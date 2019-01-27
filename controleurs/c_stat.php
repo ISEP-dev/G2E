@@ -2,12 +2,12 @@
 //echo realpath('./');
 session_start();
 $id = $_SESSION['user_id'];
-include "../modele/model.php";
-$model = new Model();
+include "../modele/Model.php";
+$model = new Model($bdd);
 
 $fonction = $_POST['fonction'];
 
-$model = new Model();
+$model = new Model($bdd);
 
 switch ($fonction) {
     case 'maisons':

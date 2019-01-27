@@ -4,11 +4,11 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 include "modele/habitation.php";
-include "modele/arroseur.php";
+include "modele/Arroseur.php";
 include "modele/Plante.php";
 include "modele/Capteur.php";
 include "modele/Zone.php";
-include "modele/model.php";
+include "modele/Model.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -19,14 +19,17 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 $head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
 $js   = '<script src="vue/js/arrosage.js"></script>';
 
+$arroseur   = new Arroseur($bdd);
+$habitation = new Habitation($bdd);
+
 // Choix de la vue à afficher
 switch ($fonction) {
     case "accueil":
         if (isset($_POST['house-select'])) {
-            $maison                = getHouseById($bdd, $tableHabitation, $_POST['house-select']);
+            $maison                = $habitation->getHouseById($habitation->tableHabitation, $_POST['house-select']);
             $_SESSION['id_maison'] = $_POST['house-select'];
         } else {
-            $maison                = getHousebyUserId($bdd, $tableHabitation, $_SESSION['user_id']);
+            $maison                = $habitation->getHousebyUserId($habitation->tableHabitation, $_SESSION['user_id']);
             $_SESSION['id_maison'] = $maison['id_habit'];
         }
         $title = $maison['nom_habit'];
@@ -34,15 +37,15 @@ switch ($fonction) {
         break;
 
     case "ajouter-arroseur":
-        addArroseur($bdd, $tableArroseur, $_POST['zone-id-add-arr'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
+        $arroseur->addArroseur($arroseur->tableArroseur, $_POST['zone-id-add-arr'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
 
     case "config-arroseur":
-        $plante    = new Plante();
-        $arr       = getArroseurInfoById($bdd, $tableArroseur, $_GET['id']);
-        $planteArr = $plante->getPlantType($bdd, $plante->tablePlante, $arr['id_plante']);
+        $plante    = new Plante($bdd);
+        $arr       = $arroseur->getArroseurInfoById($arroseur->tableArroseur, $_GET['id']);
+        $planteArr = $plante->getPlantType($plante->tablePlante, $arr['id_plante']);
         $head      = '<link rel="stylesheet" href="vue/css/utilisateurs.css">' . '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title     = "Configuration de l'arroseur";
         $vue       = "infos-arroseur";
@@ -52,7 +55,7 @@ switch ($fonction) {
         $arroseurId = $_POST['arroseur'];
         $zoneId     = $_POST['zone'];
         $checked    = $_POST['state'];
-        updateArroseur($bdd, $tableArroseur, $checked, $arroseurId, $zoneId);
+        $arroseur->updateArroseur($arroseur->tableArroseur, $checked, $arroseurId, $zoneId);
         $vue = null;
         break;
 
@@ -60,42 +63,42 @@ switch ($fonction) {
         $idArroseur   = $_POST['arroseur'];
         $idCapteur    = $_POST['capteur'];
         $capteurState = $_POST['state'];
-        addCapteurToArroseur($bdd, "capteur", $idArroseur, $idCapteur, $capteurState);
+        $arroseur->addCapteurToArroseur("capteur", $idArroseur, $idCapteur, $capteurState);
         break;
 
     case "supprimer-arroseur":
-        removeArroseur($bdd, $tableArroseur, $_POST['arr-id-delete-arr']);
+        $arroseur->removeArroseur($arroseur->tableArroseur, $_POST['arr-id-delete-arr']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
 
     case "ajouter-zone":
-        $zone = new Zone();
-        $zone->addZone($bdd, $tableZone, $_POST['id-house']);
+        $zone = new Zone($bdd);
+        $zone->addZone($habitation->tableZone, $_POST['id-house']);
         break;
 
 
     case "supprimer-zone":
-        $zone = new Zone();
-        $zone->removeZone($bdd, $tableZone, $_POST['zone-id-delete-zone']);
+        $zone = new Zone($bdd);
+        $zone->removeZone($habitation->tableZone, $_POST['zone-id-delete-zone']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
 
     case "ajouter-maison":
-        addHouse($bdd, $tableHabitation, $_SESSION['user_id']);
+        $habitation->addHouse($habitation->tableHabitation, $_SESSION['user_id']);
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
         break;
 
     case "get-house-info":
         $idMaison = $_POST['idmaison'];
-        getHouseInfos($bdd, $tableHabitation, $idMaison);
+        $habitation->getHouseInfos($habitation->tableHabitation, $idMaison);
         $vue = null;
         break;
 
     case "supprimer-maison":
-        removeHouse($bdd, $tableHabitation, $_POST['id-house']);
+        $habitation->removeHouse($habitation->tableHabitation, $_POST['id-house']);
         header("Location: index.php?cible=habitation&fonction=accueil");
         $title = "Gestion de l'arrosage";
         $vue   = "arrosage";
