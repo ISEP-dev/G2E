@@ -38,8 +38,7 @@ switch ($fonction) {
 
     case "ajouter-arroseur":
         $arroseur->addArroseur($arroseur->tableArroseur, $_POST['zone-id-add-arr'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
-        $title = "Gestion de l'arrosage";
-        $vue   = "arrosage";
+        redirect("habitation", "accueil");
         break;
 
     case "config-arroseur":
@@ -68,27 +67,25 @@ switch ($fonction) {
 
     case "supprimer-arroseur":
         $arroseur->removeArroseur($arroseur->tableArroseur, $_POST['arr-id-delete-arr']);
-        $title = "Gestion de l'arrosage";
-        $vue   = "arrosage";
+        redirect("habitation", "accueil");
         break;
 
     case "ajouter-zone":
         $zone = new Zone($bdd);
         $zone->addZone($habitation->tableZone, $_POST['id-house']);
+        redirect("habitation", "accueil");
         break;
 
 
     case "supprimer-zone":
         $zone = new Zone($bdd);
         $zone->removeZone($habitation->tableZone, $_POST['zone-id-delete-zone']);
-        $title = "Gestion de l'arrosage";
-        $vue   = "arrosage";
+        redirect("habitation", "accueil");
         break;
 
     case "ajouter-maison":
         $habitation->addHouse($habitation->tableHabitation, $_SESSION['user_id']);
-        $title = "Gestion de l'arrosage";
-        $vue   = "arrosage";
+        redirect("habitation", "accueil");
         break;
 
     case "get-house-info":
@@ -99,9 +96,7 @@ switch ($fonction) {
 
     case "supprimer-maison":
         $habitation->removeHouse($habitation->tableHabitation, $_POST['id-house']);
-        header("Location: index.php?cible=habitation&fonction=accueil");
-        $title = "Gestion de l'arrosage";
-        $vue   = "arrosage";
+        redirect("habitation", "accueil");
         break;
 
     case "client-stat":

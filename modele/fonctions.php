@@ -74,3 +74,8 @@ function delete(PDO $bdd, string $table, string $conditions)
 {
     $bdd->query("DELETE FROM " . $table . " WHERE " . $conditions);
 }
+
+function redirect(string $controleur, string $fonction)
+{
+    header('Location: index.php?cible=' . $controleur . '&fonction=' . $fonction);
+}
