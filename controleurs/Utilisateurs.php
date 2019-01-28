@@ -16,7 +16,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 
-$utilisateur = new User($bdd);
+$utilisateur = new User();
 
 // Choix de la vue à afficher
 switch ($fonction) {

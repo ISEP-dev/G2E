@@ -22,7 +22,7 @@
     <div class="col-droite">
         <h2 class="centre recent-pub">Publications récentes</h2>
         <div class="publications">
-            <?php $publication = new Publication($bdd);
+            <?php $publication = new Publication();
             $allPublications   = $publication->getAllPublications($publication->tablePublication);
             foreach ($allPublications as $publication) { ?>
                 <h3><?= $publication['titre_pub'] ?></h3>

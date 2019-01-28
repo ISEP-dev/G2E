@@ -3,11 +3,11 @@
 session_start();
 $id = $_SESSION['user_id'];
 include "../modele/Model.php";
-$model = new Model($bdd);
+$model = new Model();
 
 $fonction = $_POST['fonction'];
 
-$model = new Model($bdd);
+$model = new Model();
 
 switch ($fonction) {
     case 'maisons':

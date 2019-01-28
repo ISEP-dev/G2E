@@ -12,7 +12,7 @@
                     <td>
                         <select name="select-plant" id="select-plant" onchange="">
                             <?php
-                            $plante       = new Plante($bdd);
+                            $plante       = new Plante();
                             $plantes_type = $plante->getAllPlantType($plante->tablePlante);
                             foreach ($plantes_type as $plante_type) { ?>
                                 <option value="<?= $plante_type['id_plante'] ?>"><?= $plante_type['nom_plante'] ?></option>
@@ -60,7 +60,7 @@
             <h1 class="centre">Capteurs</h1>
             <table class="centre">
                 <?php
-                $capteur      = new Capteur($bdd);
+                $capteur      = new Capteur();
                 $capteursType = $capteur->getCapteurType();
                 /*Todo : refactoring for test checked and checkbox*/
                 // Check température (id = 3)

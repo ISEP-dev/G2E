@@ -10,7 +10,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 
-$habitation = new Habitation($bdd);
+$habitation = new Habitation();
 
 switch ($fonction) {
     case "accueil":
@@ -22,9 +22,9 @@ switch ($fonction) {
         break;
 
     case "ceder-maison":
-        $gestion = new Gestion($bdd);
+        $gestion = new Gestion();
         $gestion->cederMaison("utilisateur", $_POST['id-maison-ceder'], $_POST['mail']);
-        header("Location: index.php?cible=gestion&fonction=accueil");
+        Database::redirect("gestion", "accueil");
         break;
 
     default:

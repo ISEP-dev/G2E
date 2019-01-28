@@ -21,7 +21,7 @@ search.addEventListener("keyup", function () {
         triangle.style.display     = "none"
     }
     let xhr = new XMLHttpRequest();
-    xhr.open('GET', 'modele/searchClient.php?term=' + search.value, true);
+    //xhr.open('GET', 'modele/searchClient.php?term=' + search.value, true);
     xhr.addEventListener('readystatechange', function () {
         if (this.readyState === 4 && this.status === 200) {
             let result = JSON.parse(this.responseText);

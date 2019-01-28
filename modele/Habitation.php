@@ -1,18 +1,12 @@
 <?php
 
-require_once "modele/fonctions.php";
+require_once "Database.php";
 
-class Habitation
+class Habitation extends Database
 {
-    private $bdd;
     public  $tableHabitation     = "habitation";
     public  $tableHabitationUser = "habitation_utilisateur";
     public  $tableZone           = "zone";
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     function getHousebyUserId(string $table, int $idUser)
     {
@@ -53,7 +47,7 @@ class Habitation
             'order_habit'       => $_POST['house-select-principal']
         );
 //    Insertion nouvelle habitation
-        insert($this->bdd, $table, $attributs);
+        Database::insert($this->bdd, $table, $attributs);
 
 //    insertion id de la maison et de l'utilisateur dans habitation_utilisateur
         $idHabit            = $this->bdd->lastInsertId();
@@ -62,11 +56,11 @@ class Habitation
             'id_util'  => $idUser,
             'id_habit' => $idHabit
         );
-        $addKeyHouse        = insert($this->bdd, $tableHabitUtil, $attributsHabitUtil);
+        $addKeyHouse        = Database::insert($this->bdd, $tableHabitUtil, $attributsHabitUtil);
         if (!$addKeyHouse) {
             die("Une erreur est survenue lors de l'ajout de votre maison, veuillez ré-essayer \n" . $this->bdd->errorInfo());
         } else {
-            header("Location: index.php?cible=habitation&fonction=accueil");
+            Database::redirect("habitation", "accueil");
         }
     }
 
@@ -77,7 +71,7 @@ class Habitation
 
     function removeHouse(string $table, $idHouse)
     {
-        delete($this->bdd, $table, "id_habit=" . $idHouse);
+        Database::delete($this->bdd, $table, "id_habit=" . $idHouse);
     }
 
     function getHouseInfos(string $table, $idMaison)

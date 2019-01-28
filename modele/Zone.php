@@ -1,16 +1,9 @@
 <?php
 
-require_once "fonctions.php";
+require_once "Database.php";
 
-class Zone
+class Zone extends Database
 {
-
-    private $bdd;
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     public function addZone(string $table, $idHabit)
     {
@@ -18,11 +11,11 @@ class Zone
             "nom_zone" => $_POST['zone-name'],
             "id_habit" => $idHabit
         );
-        $insertOk  = insert($this->bdd, $table, $attributs);
+        $insertOk  = Database::insert($this->bdd, $table, $attributs);
         if (!$insertOk) {
             die("Impossible d'ajouter une nouvelle zone : " . $this->bdd->errorInfo());
         } else {
-            header("Location: index.php?cible=habitation&fonction=accueil");
+            Database::redirect("habitation", "accueil");
         }
     }
 
@@ -33,6 +26,6 @@ class Zone
 
     public function removeZone(string $table, $idZone)
     {
-        delete($this->bdd, $table, "id_zone=" . $idZone);
+        Database::delete($this->bdd, $table, "id_zone=" . $idZone);
     }
 }

@@ -1,18 +1,12 @@
 <?php
 
-require_once "fonctions.php";
+require_once "Database.php";
 
-
-class Arroseur
+class Arroseur extends Database
 {
     public  $tableArroseurType = 'type_arroseur';
     public  $tableArroseur     = 'arroseur';
-    private $bdd;
 
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     function getArroseurByZoneId(string $table, int $idZone)
     {
@@ -37,7 +31,11 @@ class Arroseur
             'id_type_arroseur'        => $idTypeArroseur
         );
 
-        return insert($this->bdd, $table, $attributs);
+        if (Database::insert($this->bdd, $table, $attributs)) {
+            return true;
+        } else {
+            return false;
+        }
 
     }
 
@@ -54,7 +52,7 @@ class Arroseur
 
     function removeArroseur(string $table, $idArr)
     {
-        delete($this->bdd, $table, "id_arr=" . $idArr);
+        Database::delete($this->bdd, $table, "id_arr=" . $idArr);
     }
 
     function updateArroseur(string $table, $checked, $arroseurId, $zoneId)
@@ -73,9 +71,9 @@ class Arroseur
                 'type_capt' => $idCapteur,
                 'id_arr'    => $idArroseur
             );
-            insert($this->bdd, $table, $insertArray);
+            Database::insert($this->bdd, $table, $insertArray);
         } else {
-            delete($this->bdd, $table, "id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
+            Database::delete($this->bdd, $table, "id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
         }
 
     }

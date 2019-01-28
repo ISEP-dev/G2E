@@ -1,15 +1,9 @@
 <?php
 
-require_once "fonctions.php";
+require_once "Database.php";
 
-class Model
+class Model extends Database
 {
-    private $bdd;
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     function getMaisonsFromUserId($id)
     {

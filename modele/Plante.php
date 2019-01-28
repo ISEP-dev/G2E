@@ -1,20 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: basti
- * Date: 26/12/2018
- * Time: 11:57
- */
 
-class Plante
+require_once "Database.php";
+
+class Plante extends Database
 {
     public  $tablePlante = "plante";
-    private $bdd;
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     public function getPlantType(string $table, int $idPlante)
     {

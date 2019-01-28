@@ -10,7 +10,7 @@
             Liste de vos tickets :
         </div>
         <br/>
-        <?php $utilisateur = new User($bdd);
+        <?php $utilisateur = new User();
         $tickets           = $utilisateur->displayTicket($utilisateur->tableTicket);
         foreach ($tickets as $ticket) {
             ?>

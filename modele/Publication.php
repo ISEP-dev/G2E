@@ -1,17 +1,10 @@
 <?php
 
-require_once "connexion.php";
-require_once "fonctions.php";
+require_once "Database.php";
 
-class Publication
+class Publication extends Database
 {
-    private $bdd;
     public  $tablePublication = "publication";
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     public function addPublication(string $table, $titre, $contenu, $idUser)
     {
@@ -21,7 +14,7 @@ class Publication
             'date_envoi_pub' => date('Y-m-d H:i:s'),
             'id_util'        => $idUser
         );
-        return insert($this->bdd, $table, $insertArray);
+        return Database::insert($this->bdd, $table, $insertArray);
     }
 
     public function getAllPublications(string $table)

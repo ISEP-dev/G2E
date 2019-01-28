@@ -25,7 +25,7 @@ function ajouteS(select, value) {
 
 //----------------------------requete initiale : on charge et affiche les maisons de l'utilisateur
 rM = new XMLHttpRequest();
-rM.open("post", "controleurs/c_stat.php", true);
+rM.open("post", "controleurs/Stat.php", true);
 rM.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 rM.send('fonction=maisons');
 rM.onreadystatechange = function () {
@@ -44,7 +44,7 @@ rM.onreadystatechange = function () {
 //------------------------------------------Lorsqu'une maison est selectionnée on charge et affiche les zones-------------------------
 function changingM() {
     rZ = new XMLHttpRequest();
-    rZ.open("post", "controleurs/c_stat.php", true);
+    rZ.open("post", "controleurs/Stat.php", true);
     rZ.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let m                 = "fonction=zones&maison=" + selectM.value;
     rZ.onreadystatechange = function () {
@@ -63,7 +63,7 @@ function changingM() {
 //----------------------------------------Lorsqu'une zone est selectionné on charge et affiche les arroseurs----------------------
 function changingZ() {
     rA = new XMLHttpRequest();
-    rA.open("post", "controleurs/c_stat.php", true);
+    rA.open("post", "controleurs/Stat.php", true);
     rA.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let m                 = "fonction=arroseurs&zone=" + selectZ.value;
     rA.onreadystatechange = function () {
@@ -124,7 +124,7 @@ function clickingGraph() {
     let x = "stat_arroseur";
     let y = Xaxis.value;
     rG    = new XMLHttpRequest();
-    rG.open("post", "controleurs/c_stat.php", true);
+    rG.open("post", "controleurs/Stat.php", true);
     rG.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let m                 = "fonction=stat&Xaxis=" + x + "&Yaxis=" + y;
     rG.onreadystatechange = function () {

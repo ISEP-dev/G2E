@@ -8,7 +8,7 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = $_GET['fonction'];
 }
 
-$planning = new Planning($bdd);
+$planning = new Planning();
 
 switch ($fonction) {
     case "accueil":

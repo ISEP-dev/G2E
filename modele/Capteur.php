@@ -1,15 +1,11 @@
 <?php
 
-class Capteur
+require_once "Database.php";
+
+class Capteur extends Database
 {
     public  $tableCapteur     = "capteur";
     public  $tableTypeCapteur = "type_capteur";
-    private $bdd;
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     public function checkCapteurStatus(string $table, $idArr, $idCapt)
     {

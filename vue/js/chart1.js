@@ -22,7 +22,7 @@ function clickingRefresh() {
     let x = selectX.value;
     let y = selectY.value;
     rG    = new XMLHttpRequest();
-    rG.open("post", "controleurs/c_stat.php", true);
+    rG.open("post", "controleurs/Stat.php", true);
     rG.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let m                 = "fonction=stat_temp&Xaxis=" + x + "&Yaxis=" + y;
     rG.send(m);
@@ -96,7 +96,7 @@ var myChart = new Chart(ctx, {
 
 //--------------------------------------Initialisation du graphique----------------------
 r = new XMLHttpRequest();
-r.open("post", "controleurs/c_stat.php", true);
+r.open("post", "controleurs/Stat.php", true);
 r.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 m                    = "fonction=stat_temp&Xaxis=toujours&Yaxis=maisons";
 r.onreadystatechange = function () {

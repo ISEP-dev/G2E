@@ -1,19 +1,13 @@
 <?php
 
-require_once "fonctions.php";
+require_once "Database.php";
 
-class Gestion
+class Gestion extends Database
 {
-    private $bdd;
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     public function cederMaison(string $table, $idMaisonACeder, $emailUserToConcede)
     {
-        if ($this->isUserInDb($this->bdd, $table, $emailUserToConcede)) {
+        if ($this->isUserInDb($table, $emailUserToConcede)) {
             $idUserToConcede = $this->bdd->query("SELECT id_util FROM utilisateur WHERE email_util='" . $emailUserToConcede . "'")->fetch(PDO::FETCH_ASSOC)['id_util'];
             $statment        = $this->bdd->prepare("UPDATE habitation_utilisateur SET id_util= :util WHERE id_habit= :habit");
             $statment->bindParam(":util", $idUserToConcede);

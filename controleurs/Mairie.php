@@ -19,9 +19,9 @@ switch ($fonction) {
         break;
 
     case "ajouter-publication":
-        $publication = new Publication($bdd);
+        $publication = new Publication();
         $publication->addPublication($publication->tablePublication, $_POST['titre-publication'], $_POST['content-publication'], $_SESSION['user_id']);
-        header("Location: index.php?cible=mairie&fonction=accueil");
+        Database::redirect("mairie", "accueil");
         break;
 
     default:

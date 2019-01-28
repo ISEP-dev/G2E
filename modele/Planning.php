@@ -1,17 +1,11 @@
 <?php
 
-require_once "modele/fonctions.php";
+require_once "Database.php";
 
-class Planning
+class Planning extends Database
 {
 
-    private $bdd;
     public  $tablePlanning = "ticket";
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     function getTicketByDate(string $table, $date)
     {

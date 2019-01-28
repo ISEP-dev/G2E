@@ -1,25 +1,19 @@
 <?php
 
-require_once "modele/fonctions.php";
+require_once "Database.php";
 
-class User
+class User extends Database
 {
 
     public  $tableUsers  = 'utilisateur';
     public  $tableTicket = 'ticket';
-    private $bdd;
-
-    function __construct(PDO $bdd)
-    {
-        $this->bdd = $bdd;
-    }
 
     function connection_to_site(string $table)
     {
         if (isset($_POST['identifiant']) && isset($_POST['motdepasse'])) {
             $email  = $_POST['identifiant'];
             $passwd = $_POST['motdepasse'];
-            $stmt   = $this->bddprepare("SELECT * FROM " . $table . " WHERE email_util=?");
+            $stmt   = $this->bdd->prepare("SELECT * FROM " . $table . " WHERE email_util=?");
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($user['mdp_util'] == password_verify($passwd, $user['mdp_util'])) {
@@ -42,19 +36,19 @@ class User
                 switch ($user['type_util']) {
                     case 1:
                         // Utilisateur
-                        header("Location: index.php?cible=habitation&fonction=accueil");
+                        Database::redirect("habitation", "accueil");
                         break;
                     case 2:
                         // Technicien
-                        header("Location: index.php?cible=planning&fonction=accueil");
+                        Database::redirect("planning", "accueil");
                         break;
                     case 3:
                         // Commercial
-                        header("Location: index.php?cible=Commercial&fonction=accueil");
+                        Database::redirect("Commercial", "accueil");
                         break;
                     case 4:
                         // Gestionnaire
-                        header("Location: index.php?cible=Mairie&fonction=accueil");
+                        Database::redirect("Mairie", "accueil");
                         break;
                     default:
                         header("Location: index.php");
@@ -91,7 +85,7 @@ class User
             // On test le numéro de téléphone
             if (preg_match("/^0[1-7]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/", $userPhoneNumber)) {
                 //Requête sql d'insertion dans la BDD
-                $addUserQuery = insert($this->bdd, $table, $insertArray);
+                $addUserQuery = Database::insert($this->bdd, $table, $insertArray);
                 if (!$addUserQuery) {
                     // Erreur d'ajout d'un utilisateur
                     die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n" . $this->bdderrorInfo());
@@ -122,26 +116,26 @@ class User
             'date_ticket'    => date('Y-m-d H:i:s'),
             'id_util'        => $_SESSION['user_id']
         );
-        $addTicketQuery = insert($this->bdd, $tableTicket, $insertArray);
+        $addTicketQuery = Database::insert($this->bdd, $tableTicket, $insertArray);
         if (!$addTicketQuery) {
             // Erreur d'ajout d'un utilisateur
             die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n");
         } else {
             // Tout s'est bien passé on redirige où on veut
-            header("Location: index.php?cible=habitation&fonction=accueil");
+            Database::redirect("habitation", "accueil");
         }
     }
 
     function displayTicket(string $tableTicket)
     {
         //$idUtil = $_SESSION['user_id'];{
-        return $this->bddquery("SELECT  * FROM " . $tableTicket . " WHERE id_util=" . $_SESSION['user_id']);
+        return $this->bdd->query("SELECT  * FROM " . $tableTicket . " WHERE id_util=" . $_SESSION['user_id']);
         // return selectAll($bdd, $table);
     }
 
     function getUserTicket(string $table, $idTicket)
     {
-        $resultQuery = $this->bddquery("SELECT * FROM " . $table . " WHERE id_ticket='" . $idTicket . "'");
+        $resultQuery = $this->bdd->query("SELECT * FROM " . $table . " WHERE id_ticket='" . $idTicket . "'");
 
         foreach ($resultQuery as $ticket) {
             echo "<div class='v-haut header-user'>ticket n°000" . $ticket['id_ticket'] . "</div>";

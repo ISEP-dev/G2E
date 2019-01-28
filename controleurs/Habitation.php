@@ -19,8 +19,8 @@ if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
 $head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
 $js   = '<script src="vue/js/arrosage.js"></script>';
 
-$arroseur   = new Arroseur($bdd);
-$habitation = new Habitation($bdd);
+$arroseur   = new Arroseur();
+$habitation = new Habitation();
 
 // Choix de la vue à afficher
 switch ($fonction) {
@@ -38,11 +38,11 @@ switch ($fonction) {
 
     case "ajouter-arroseur":
         $arroseur->addArroseur($arroseur->tableArroseur, $_POST['zone-id-add-arr'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
-        redirect("habitation", "accueil");
+        Database::redirect("habitation", "accueil");
         break;
 
     case "config-arroseur":
-        $plante    = new Plante($bdd);
+        $plante    = new Plante();
         $arr       = $arroseur->getArroseurInfoById($arroseur->tableArroseur, $_GET['id']);
         $planteArr = $plante->getPlantType($plante->tablePlante, $arr['id_plante']);
         $head      = '<link rel="stylesheet" href="vue/css/utilisateurs.css">' . '<link rel="stylesheet" href="vue/css/arrosage.css">';
@@ -67,25 +67,25 @@ switch ($fonction) {
 
     case "supprimer-arroseur":
         $arroseur->removeArroseur($arroseur->tableArroseur, $_POST['arr-id-delete-arr']);
-        redirect("habitation", "accueil");
+        Database::redirect("habitation", "accueil");
         break;
 
     case "ajouter-zone":
-        $zone = new Zone($bdd);
+        $zone = new Zone();
         $zone->addZone($habitation->tableZone, $_POST['id-house']);
-        redirect("habitation", "accueil");
+        Database::redirect("habitation", "accueil");
         break;
 
 
     case "supprimer-zone":
-        $zone = new Zone($bdd);
+        $zone = new Zone();
         $zone->removeZone($habitation->tableZone, $_POST['zone-id-delete-zone']);
-        redirect("habitation", "accueil");
+        Database::redirect("habitation", "accueil");
         break;
 
     case "ajouter-maison":
         $habitation->addHouse($habitation->tableHabitation, $_SESSION['user_id']);
-        redirect("habitation", "accueil");
+        Database::redirect("habitation", "accueil");
         break;
 
     case "get-house-info":
@@ -96,7 +96,7 @@ switch ($fonction) {
 
     case "supprimer-maison":
         $habitation->removeHouse($habitation->tableHabitation, $_POST['id-house']);
-        redirect("habitation", "accueil");
+        Database::redirect("habitation", "accueil");
         break;
 
     case "client-stat":
