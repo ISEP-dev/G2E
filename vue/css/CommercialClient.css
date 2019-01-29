@@ -1,20 +1,19 @@
-h1 {
+div.titre-recherche {
     align-items      : center;
     height           : 3rem;
-
     padding-left     : 30px;
     padding-right    : 30px;
     border-radius    : var(--radius);
     background-color : var(--bleu-clair);
     color            : var(--blanc);
     font-size        : 1.1em;
+    margin           : 0.67em 0;
+    font-weight      : bold;
 }
 
 
-.champs {
-    padding-left  : 0px;
-    padding-right : 0px;
-    margin-left   : 150px;
+.champs > label {
+    margin : 0 5px;
 }
 
 .droite {
@@ -42,14 +41,14 @@ h1 {
     margin           : 15px;
 }
 
-.rechercher span {
+.rechercher > span {
     cursor     : pointer;
     display    : inline-block;
     position   : relative;
     transition : 0.5s;
 }
 
-.rechercher span:after {
+.rechercher > span:after {
     content    : '\00bb';
     position   : absolute;
     opacity    : 0;
@@ -58,76 +57,11 @@ h1 {
     transition : 0.5s;
 }
 
-.rechercher:hover span {
+.rechercher:hover > span {
     padding-right : 25px;
 }
 
-.rechercher:hover span:after {
+.rechercher:hover > span:after {
     opacity : 1;
     right   : 0;
-}
-
-ul {
-    height           : 20%;
-    list-style-type  : none;
-    margin           : 0;
-    padding          : 0;
-    overflow         : hidden;
-    background-color : #333;
-    font-weight      : bold;
-    font-size        : 110%;
-    font-family      : Arial;
-}
-
-li {
-    float : left;
-}
-
-li a {
-    display         : block;
-    color           : white;
-    text-align      : center;
-    padding         : 14px 16px;
-    text-decoration : none;
-
-}
-
-li a:hover:not(.active) {
-    background-color : #111;
-}
-
-.active {
-    background-color : #4CAF50;
-}
-
-@media (max-width : 768px) {
-    .ligne {
-        flex-flow : column wrap;
-        height    : 100%;
-    }
-
-    .header {order : 1;}
-
-    .col-gauche, .col-droite {
-        margin : 20px 0;
-        height : 500px;
-    }
-
-    .footer {order : 10;}
-}
-
-/* ------ Pour téléphone mobile ------ */
-@media (max-width : 576px) {
-    .ligne {
-        flex-flow : column wrap;
-        height    : 100%;
-    }
-
-    .header {order : 1;}
-
-    .col-gauche, .col-droite {
-        margin : 20px 0;
-    }
-
-    .footer {order : 10;}
 }

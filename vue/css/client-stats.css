@@ -12,57 +12,31 @@
 
 /*-----------------------------------------------------------------------------------------*/
 
-#haut {
-    /*border: 1px solid black;*/
-    border-radius : 12px;
-}
-
-#bas {
-    display     : flex;
-    align-items : stretch;
-    /*border: 1px solid black;
-    border-radius: 12px;*/
-}
-
-.element-bas {
+.btn-graph {
     width            : 30%;
-    margin           : 1%;
-    align-content    : center;
-    margin-block-end : 3px;
+    margin           : 5px;
+    font-size        : 18px;
     border           : 2px solid black;
     border-radius    : 12px;
     background-color : rgba(106, 126, 101, 0.651);
 }
 
-.element-bas:hover:not(.active) {
+.btn-graph:hover {
     background-color : rgba(216, 8, 8, 0.678);
 }
 
 
 .element-haut {
-    align-content : center;
-    width         : 94%;
-    max-height    : 8%;
-    margin        : 0 3% 3%;
-    border-radius : 9px;
-    border        : 1px solid black;
+    margin        : 0 30px;
+    width         : 90%;
+    height        : 2.8em;
+    border-radius : var(--radius);
 }
 
-
-#titre_haut {
-    margin-top : 3%;
-}
-
-h3 {
-    margin           : 0 3% 3%;
+.titre-select {
+    margin           : 20px 30px 10px 30px;
     background-color : #333;
-    color            : white;
-    font-family      : Arial, serif;
-    border-radius    : 9px;
-    padding          : 1%;
-    width            : 94%;
+    color            : var(--blanc);
+    border-radius    : var(--radius);
+    padding          : 10px;
 }
-
-
-
-

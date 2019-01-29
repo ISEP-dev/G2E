@@ -1,51 +1,4 @@
-/*Menu du haut */
-ul {
-    height           : 20%;
-    list-style-type  : none;
-    margin           : 0;
-    padding          : 0;
-    overflow         : hidden;
-    background-color : #333;
-    font-weight      : bold;
-    font-size        : 110%;
-    font-family      : Arial;
-}
-
-li {
-    float : left;
-}
-
-li a {
-    display         : block;
-    color           : white;
-    text-align      : center;
-    padding         : 14px 16px;
-    text-decoration : none;
-
-}
-
-li a:hover:not(.active) {
-    background-color : #111;
-}
-
-.active {
-    background-color : #4CAF50;
-}
-
-
-h1 {
-    font-family : 'Calibri';
-
-}
-
-
-/** {
-   /*box-sizing: border-box;
- }*/
-
-
 @media screen and (min-width : 780px) {
-
     .can {
         float         : left;
         border        : 2px solid grey;
@@ -53,10 +6,7 @@ h1 {
         margin        : 2%;
         border-radius : 15px;
         box-shadow    : 6px 6px 10px grey;
-
-
     }
-
 }
 
 /*-----------------------------------------------------------------------------------------*/
@@ -69,65 +19,33 @@ h1 {
         margin        : 2%;
         border-radius : 15px;
         box-shadow    : 6px 6px 10px grey;
-
     }
 }
 
-#labelh {
-    margin-top : 3%;
-}
-
-#haut {
-
-
-    border-radius : 12px;
-
-
-}
-
-
-
-.element-bas {
-
+.btn-graph {
     width            : 30%;
-    margin           : 1%;
-
-
-    align-content    : center;
-
+    margin           : 5px;
+    font-size        : 18px;
     border           : 2px solid black;
     border-radius    : 12px;
-
-
     background-color : rgba(106, 126, 101, 0.651);
-    
 }
 
-.element-bas:hover:not(.active) {
+.btn-graph:hover {
     background-color : rgba(216, 8, 8, 0.678);
 }
 
-
-h3 {
-    margin           : 3%;
+.titre-axe {
+    margin           : 30px;
     background-color : #333;
-    color            : white;
-    font-family      : Arial;
-    border-radius    : 9px;
-    padding          : 1%;
-
+    color            : var(--blanc);
+    border-radius    : var(--radius);
+    padding          : 10px;
 }
 
 .element-haut {
-    align-content : center;
-    width         : 92%;
-    margin-bottom : 1%;
-    height        : 3em;
-    margin-top    : 1%;
-    margin-left   : 5%;
-    font-size     : 12px;
-    border-radius : 9px;
-    border        : 1px solid black;
-
-
+    margin        : 0 30px;
+    width         : 90%;
+    height        : 2.8em;
+    border-radius : var(--radius);
 }

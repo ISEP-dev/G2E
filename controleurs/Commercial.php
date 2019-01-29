@@ -1,10 +1,5 @@
 <?php
-/**
- * Contrôleur des commerciaux
- * User: not me
- * Date: 25/11/2018
- * Time: 00:42
- */
+
 include "modele/Model.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
@@ -32,8 +27,6 @@ switch ($fonction) {
         $head  = '<link rel="stylesheet" href="vue/css/commercial.css">';
         $js    = '<script src="vue/js/chart1.js" defer></script>' .
             '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>';
-        $title = "Statistiques temporelles de ventes";
-        $vue   = "commercial";
         if (!isset($_POST['Xaxis']) && !isset($_POST['Yaxis'])) {
             $Xaxis = "toujours";
             $Yaxis = "clients";
@@ -42,6 +35,8 @@ switch ($fonction) {
             $Yaxis = $_POST['Yaxis'];
         }
         $graph = $model->getGraph($Xaxis, $Yaxis);
+        $title = "Statistiques temporelles de ventes";
+        $vue   = "commercial";
         break;
     case "stat_geo":
         $title = "Statistiques géographiques";

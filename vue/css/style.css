@@ -439,12 +439,12 @@ li.navitem > a {
 
 /* Change the link color to #111 (black) on hover */
 li.navitem > a:hover {
-    background-color : white;
-    color            : black;
+    background-color : white !important;
+    color            : black !important;
 }
 
 .active {
-    background-color : var(--bleu-clair);
+    background-color : var(--bleu-clair) !important;
 }
 
 .btn {
