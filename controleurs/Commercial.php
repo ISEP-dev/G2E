@@ -21,11 +21,19 @@ switch ($fonction) {
             $infos = $model->getInfoParID($_GET['id']);
         }
         $title = "Informations Client";
-        $vue   = "CommercialClient";
+        $vue   = "commercial_client";
         break;
+
+    case "stat_geo":
+        $js    = '<script src="vue/js/maps.js" defer></script>'
+            . '<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAteeaTGDmHd0ECWPah2EIPMJksVSW5IyI&callback=initMap" async defer></script>';
+        $title = "Statistiques géographiques";
+        $vue   = "commercial_geo";
+        break;
+
     case "stat_temp":
-        $head  = '<link rel="stylesheet" href="vue/css/commercial.css">';
-        $js    = '<script src="vue/js/chart1.js" defer></script>' .
+        $head = '<link rel="stylesheet" href="vue/css/commercial.css">';
+        $js   = '<script src="vue/js/chart1.js" defer></script>' .
             '<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>';
         if (!isset($_POST['Xaxis']) && !isset($_POST['Yaxis'])) {
             $Xaxis = "toujours";
@@ -36,12 +44,9 @@ switch ($fonction) {
         }
         $graph = $model->getGraph($Xaxis, $Yaxis);
         $title = "Statistiques temporelles de ventes";
-        $vue   = "commercial";
+        $vue   = "commercial_temp";
         break;
-    case "stat_geo":
-        $title = "Statistiques géographiques";
-        $vue   = "";
-        break;
+
     default:
         $title = "Erreur 404";
         $vue   = "erreur404";

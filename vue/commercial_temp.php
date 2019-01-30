@@ -3,7 +3,7 @@
     <ul class="navbar">
         <li class="navitem active"><a href="index.php?cible=Commercial&fonction=stat_temp">Statistiques temporelles</a>
         </li>
-        <li class="navitem"><a href="">Statistiques géographiques</a></li>
+        <li class="navitem"><a href="index.php?cible=Commercial&fonction=stat_geo">Statistiques géographiques</a></li>
         <li class="navitem"><a href="index.php?cible=Commercial&fonction=accueil">Informations clients</a></li>
     </ul>
 </nav>
