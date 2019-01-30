@@ -170,7 +170,7 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
         </a>
     </div>
 <?php } else {
-    echo "<br><br><br>";
+    echo "<br><br><br><h1 class='centre'>Vous n'avez aucune maison pour l'instant</h1><h2 class='centre'>Cliquez sur \"nouvelle maison\" pour en ajouter une !</h2>";
 } ?>
 <!-- S : Popups -->
 <div class="modal centre" id="modal-add-maison">
@@ -185,7 +185,7 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
                     <tr>
                         <td><label for="house-name">Nom de la maison : </label></td>
                         <td><input type="text" id="house-name" name="house-name"
-                                   placeholder="Entrez le nom de la maison" required></td>
+                                   placeholder="Entrez le nom de la maison" required autofocus></td>
                     <tr>
                         <td><label for="house-number">Numéro de rue : </label></td>
                         <td><input type="number" id="house-number" name="house-number"
@@ -239,7 +239,8 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
                 <table class="centre">
                     <tr>
                         <td><label for="arr-name">Nom de la zone : </label></td>
-                        <td><input type="text" id="zone-name" name="zone-name" placeholder="Entrez le nom" required>
+                        <td><input type="text" id="zone-name" name="zone-name" placeholder="Entrez le nom" required
+                                   autofocus>
                             <img src="vue/images/icon_question_1024x1024.png" alt="question.png" class="icon-question"
                                  title="Entrez un nom de zone ex: Potager, Serre, ...">
                         </td>
@@ -263,7 +264,8 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
                 <table class="centre">
                     <tr>
                         <td><label for="arr-name">Nom de l'arroseur : </label></td>
-                        <td><input type="text" id="arr-name" name="arr-name" placeholder="Entrez le nom" required>
+                        <td><input type="text" id="arr-name" name="arr-name" placeholder="Entrez le nom" required
+                                   autofocus>
                             <img src="vue/images/icon_question_1024x1024.png" alt="question.png" class="icon-question"
                                  title="Nom explicite (affiché pour la gestion de vos différents arroseurs)">
                         </td>
