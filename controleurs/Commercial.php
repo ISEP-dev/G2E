@@ -1,6 +1,7 @@
 <?php
 
 include "modele/Model.php";
+include "modele/Data.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -25,8 +26,12 @@ switch ($fonction) {
         break;
 
     case "stat_geo":
-        $js    = '<script src="vue/js/maps.js" defer></script>'
-            . '<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAteeaTGDmHd0ECWPah2EIPMJksVSW5IyI&callback=initMap" async defer></script>';
+        $head  = '<link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1542186754" />';
+        $js    = '<script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>'
+            . "<script src=\"http://js.api.here.com/v3/3.0/mapsjs-service.js\" type=\"text/javascript\" charset=\"utf-8\"></script>"
+            . '<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-ui.js"></script>'
+            . '<script type="text/javascript" src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js"></script>'
+            . '<script src="vue/js/maps.js" defer></script>';
         $title = "Statistiques géographiques";
         $vue   = "commercial_geo";
         break;

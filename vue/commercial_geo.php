@@ -10,8 +10,10 @@
 <div class="ligne">
     <div class="col-gauche">
         <h1 class="centre">Recherche client</h1>
-        <input type="text" id="address" autofocus>
-        <input type="submit" id="submit-address">
+        <input type="text" id="auto-complete-address" onkeyup="return autoCompleteListener(this, event);" autofocus>
+        <div id="result">
+
+        </div>
     </div>
     <div class="col-droite">
         <div id="carte" style="height: 100%;"></div>
