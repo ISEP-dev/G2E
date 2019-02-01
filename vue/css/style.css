@@ -215,6 +215,10 @@ input[type=text], input[type=number], input[type=password], input[type=email], i
     height        : 30px;
 }
 
+input:focus {
+    outline : none;
+}
+
 select:focus, textarea:focus, input[type=text]:focus {
     border-radius : var(--input-radius);
     outline       : 0;
@@ -335,6 +339,35 @@ select:focus, textarea:focus, input[type=text]:focus {
     100% { background : rgba(0, 0, 0, .0); }
 }
 
+/* ------ Tooltip général ------ */
+
+.tooltip {
+    position : relative;
+    display  : inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility       : hidden;
+    width            : 120px;
+    background-color : black;
+    color            : #fff;
+    text-align       : center;
+    padding          : 5px 0;
+    border-radius    : 6px;
+
+    /* Position the tooltip text - see examples below! */
+    position         : absolute;
+    z-index          : 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility : visible;
+}
+
+/* ------ Dropdown général ------ */
+
 .btn-dropdown {
     cursor : pointer;
     border : none;
@@ -394,6 +427,8 @@ select:focus, textarea:focus, input[type=text]:focus {
     content : '< ';
 }
 
+/* ------ Scrollbar générale ------ */
+
 ::-webkit-scrollbar {
     width            : 10px;
     background-color : #F5F5F5;
@@ -417,6 +452,8 @@ select:focus, textarea:focus, input[type=text]:focus {
 ::-webkit-scrollbar-thumb:hover {
     background-color : rgba(62, 102, 108, 0.85);
 }
+
+/* ------ Barre de navigation générale ------ */
 
 ul.navbar {
     list-style-type  : none;
