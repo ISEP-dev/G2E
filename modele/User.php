@@ -5,8 +5,8 @@ require_once "Database.php";
 class User extends Database
 {
 
-    public  $tableUsers  = 'utilisateur';
-    public  $tableTicket = 'ticket';
+    public $tableUsers  = 'utilisateur';
+    public $tableTicket = 'ticket';
 
     function connection_to_site(string $table)
     {
@@ -55,14 +55,26 @@ class User extends Database
                         break;
                 }
             } else {
-                echo '<body onLoad="alert(\'Membre non reconnu... entrez des identifiants valides\')">';
-                // On le redirige vers la page d'accueil
-                echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+                echo "<script>history.back();
+                                window.createNotification({
+                                    positionClass: 'nfc-top-center',
+                                    showDuration: 3000,
+                                    theme: 'warning'
+                                })({
+                                    title: 'Connexion',
+                                    message: 'Mot de passe invalide'
+                                });</script>";
             }
         } else {
-            echo '<body onLoad="alert(\'Membre non reconnu... entrez des identifiants valides\')">';
-            // On le redirige vers la page d'accueil
-            echo '<meta http-equiv="refresh" content="0;URL=index.php">';
+            echo "<script>history.back();
+                                window.createNotification({
+                                    positionClass: 'nfc-top-center',
+                                    showDuration: 3000,
+                                    theme: 'warning'
+                                })({
+                                    title: 'Connexion',
+                                    message: 'Utilisateur non reconnu'
+                                });</script>";
 
         }
     }
@@ -84,24 +96,42 @@ class User extends Database
         if (filter_var($userEmail, FILTER_VALIDATE_EMAIL)) {
             // On test le numéro de téléphone
             if (preg_match("/^0[1-7]{1}(([0-9]{2}){4})|((\s[0-9]{2}){4})|((-[0-9]{2}){4})$/", $userPhoneNumber)) {
-                //Requête sql d'insertion dans la BDD
                 $addUserQuery = Database::insert($this->bdd, $table, $insertArray);
                 if (!$addUserQuery) {
                     // Erreur d'ajout d'un utilisateur
                     die("Une erreur est survenue lors de l'ajout de votre user, veuillez ré-essayer \n" . $this->bdderrorInfo());
                 } else {
                     // Tout s'est bien passé on redirige où on veut
-                    //header("Location: index.php?cible=utilisateurs&fonction=accueil");
-                    //echo '<body onLoad="alert(\'Entre un mail valide\')">';
-                    echo '<script> alert("Votre compte a bien été créé.")</script>';
+                    echo "<script>window.createNotification({
+                                    positionClass: 'nfc-top-center',
+                                    showDuration: 3000,
+                                    theme: 'success'
+                                })({
+                                    title: 'Création de compte',
+                                    message: 'Votre compte a bien été créé'
+                                });</script>";
                 }
             } else {
-                echo '<body onload="alert(\'Entrez un numéro de téléphone valide\')">';
+                echo "<script>window.createNotification({
+                                    positionClass: 'nfc-top-center',
+                                    showDuration: 3000,
+                                    theme: 'success'
+                                })({
+                                    title: 'Création de compte',
+                                    message: 'Numéro de téléphone invalide'
+                                });</script>";
                 // puis on le redirige vers la page d'accueil
                 //echo '<meta http-equiv="refresh" content="0;URL=index.php">';
             }
         } else {
-            echo '<body onLoad="alert(\'Entre un mail valide\')">';
+            echo "<script>window.createNotification({
+                                    positionClass: 'nfc-top-center',
+                                    showDuration: 3000,
+                                    theme: 'success'
+                                })({
+                                    title: 'Création de compte',
+                                    message: 'Adresse mail invalide '
+                                });</script>";
             // puis on le redirige vers la page d'accueil
             //echo '<meta http-equiv="refresh" content="0;URL=index.php">';
         }

@@ -22,6 +22,7 @@ $utilisateur = new User();
 switch ($fonction) {
     case "accueil":
         $head = '<link rel="stylesheet" href="vue/css/utilisateurs.css">';
+        $js   = '<script src="vue/js/notifications.js"></script>';
         // '<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAteeaTGDmHd0ECWPah2EIPMJksVSW5IyI"></script>'.
         // '<script type="text/javascript" src="vue/js/autocomplete.js"></script>';
         $vue   = "home";
@@ -30,7 +31,9 @@ switch ($fonction) {
 
     case "connexion":
         $utilisateur->connection_to_site($utilisateur->tableUsers);
-        $head = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+        $head  = '<link rel="stylesheet" href="vue/css/arrosage.css">';
+        $vue   = "home";
+        $title = "Accueil";
         break;
 
     /* ajout d'un utilisateur */

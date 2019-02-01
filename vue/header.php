@@ -6,8 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="vue/css/style.css">
     <link rel="stylesheet" href="vue/css/base.css">
+    <link rel="stylesheet" href="vue/css/notifications.css">
     <link rel="icon" href="vue/images/logo_31x19.png">
     <script src="vue/js/main.js" defer async></script>
+    <script src="vue/js/notifications.js"></script>
     <?php if (isset($head)) {
         echo $head;
     } ?>

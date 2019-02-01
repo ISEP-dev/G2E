@@ -1,4 +1,3 @@
-<script src="vue/js/cgu.js" defer async></script>
 <script src="vue/js/accueil.js" defer async></script>
 <?php if (!isset($_SESSION['user_id'])) { ?>
     <div class="ligne">
@@ -12,16 +11,16 @@
                     <label for="input_login">Login: </label>
                     <?php
                     if (isset($_COOKIE['email'])) {
-                        echo "<input id='input_login' class='user-input' type='text' placeholder='Entrez un identifiant'  name='identifiant' required value='" . $_COOKIE['email'] . "'>";
+                        echo "<input id='input_login' class='user-input' type='email' placeholder='Entrez un identifiant'  name='identifiant' required value='" . $_COOKIE['email'] . "'>";
                     } else {
-                        echo "<input id='input_login' class='user-input' type='text' placeholder='Entrez un identifiant'  name='identifiant' required>";
+                        echo "<input id='input_login' class='user-input' type='email' placeholder='Entrez un identifiant'  name='identifiant' required>";
                     }
                     ?>
                     <!--<input id="input_login" type="text" placeholder="Entrez un identifiant" name="identifiant" required>-->
                     <label for="input_password">Mot de passe: </label>
                     <input id="input_password" class='user-input' type="password" placeholder="Entrez un mot de passe"
                            name="motdepasse"
-                           required>
+                           required autocomplete>
                     <br>
                     <label for="check_remember">Se souvenir: </label>
                     <input id="check_remember" type="checkbox" name="remember">
@@ -45,12 +44,12 @@
 
                     <div class="adresse">
                         <input type="text" class='user-input' placeholder="Nom*" name="nom-utilisateur" width="28"
-                               required>
+                               required>&nbsp;&nbsp;
                         <input type="text" class='user-input' placeholder="Prenom*" name="prenom-utilisateur" width="28"
                                required>
                     </div>
                     <div class="adresse ">
-                        <input id="mail" type="text" class='user-input'
+                        <input id="mail" type="email" class='user-input'
                                placeholder="Adresse mail de la forme : nom@domaine.fr*" name="email-utilisateur"
                                width="28"
                                required>&nbsp;&nbsp;
@@ -58,12 +57,13 @@
                                width="28"
                                required>
                     </div>
-                    <input type="password" class='user-input' placeholder="Entrez un mot de passe*"
-                           name="password-utilisateur" width="28"
-                           required>
+                    <input type="password" class='user-input tooltip' placeholder="Entrez un mot de passe*"
+                           name="password-utilisateur" id="password-utilisateur" width="28"
+                           title="8 charactères, 1 lettre min et MAJ, 1 chiffre"
+                           required autocomplete>
                     <input type="password" class='user-input' placeholder="Confirmez le mot de passe*"
-                           name="passwd-utilisateur2" width="28"
-                           required>
+                           name="passwd-utilisateur2" id="password-utilisateur2" width="28"
+                           required autocomplete>
                     <input type="text" class="user-input" placeholder="Numéro de série du CeMac" name="cemac-number">
                     <label for="type-utilisateur"></label>
                     <select id="type-utilisateur" name="type-utilisateur">
