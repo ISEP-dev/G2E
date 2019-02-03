@@ -5,7 +5,7 @@ require_once "Database.php";
 class Gestion extends Database
 {
 
-    public function cederMaison(string $table, $idMaisonACeder, $emailUserToConcede)
+    public function cederMaison(string $table, int $idMaisonACeder, string $emailUserToConcede)
     {
         if ($this->isUserInDb($table, $emailUserToConcede)) {
             $idUserToConcede = $this->bdd->query("SELECT id_util FROM utilisateur WHERE email_util='" . $emailUserToConcede . "'")->fetch(PDO::FETCH_ASSOC)['id_util'];

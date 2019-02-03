@@ -6,7 +6,7 @@ class Publication extends Database
 {
     public  $tablePublication = "publication";
 
-    public function addPublication(string $table, $titre, $contenu, $idUser)
+    public function addPublication(string $table, string $titre, string $contenu, int $idUser)
     {
         $insertArray = array(
             'titre_pub'      => $titre,

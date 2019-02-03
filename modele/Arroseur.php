@@ -18,7 +18,7 @@ class Arroseur extends Database
         return $this->bdd->query("SELECT * FROM " . $table . " WHERE id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);
     }
 
-    function addArroseur(string $table, $idZone, $idPlante, $idTypeArroseur): bool
+    function addArroseur(string $table, int $idZone, int $idPlante, int $idTypeArroseur): bool
     {
         $attributs = array(
             'nom_arr'                 => $_POST['arr-name'],
@@ -44,18 +44,18 @@ class Arroseur extends Database
         return $this->bdd->query("SELECT * FROM " . $table);
     }
 
-    function getArroseurTypeByArroseurId(string $table, string $table2, $idArr)
+    function getArroseurTypeByArroseurId(string $table, string $table2, int $idArr)
     {
         return $this->bdd->query("SELECT nom_type_arroseur FROM " . $table .
             " INNER JOIN arroseur ON arroseur.id_type_arroseur = type_arroseur.id_type_arroseur WHERE arroseur.id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);
     }
 
-    function removeArroseur(string $table, $idArr)
+    function removeArroseur(string $table, int $idArr)
     {
         Database::delete($this->bdd, $table, "id_arr=" . $idArr);
     }
 
-    function updateArroseur(string $table, $checked, $arroseurId, $zoneId)
+    function updateArroseur(string $table, $checked, int $arroseurId, int $zoneId)
     {
         $statment = $this->bdd->prepare("UPDATE " . $table . " SET etat_arr = :checked WHERE id_arr = :arroseur AND id_zone = :zone");
         $statment->bindParam(':checked', $checked);
@@ -64,7 +64,7 @@ class Arroseur extends Database
         return $statment->execute();
     }
 
-    function addCapteurToArroseur(string $table, $idArroseur, $idCapteur, $capteurState)
+    function addCapteurToArroseur(string $table, int $idArroseur, int $idCapteur, int $capteurState)
     {
         if ($capteurState == 1) {
             $insertArray = array(

@@ -163,7 +163,7 @@ class User extends Database
         // return selectAll($bdd, $table);
     }
 
-    function getUserTicket(string $table, $idTicket)
+    function getUserTicket(string $table, int $idTicket)
     {
         $resultQuery = $this->bdd->query("SELECT * FROM " . $table . " WHERE id_ticket='" . $idTicket . "'");
 

@@ -18,7 +18,7 @@ class Planning extends Database
         }
     }
 
-    function getTicketInfos(string $table, $idTicket)
+    function getTicketInfos(string $table, int $idTicket)
     {
         $queryTicket = $this->bdd->query("SELECT * FROM " . $table . " WHERE id_ticket=" . $idTicket);
         foreach ($queryTicket as $ticket) {
@@ -33,7 +33,7 @@ class Planning extends Database
         }
     }
 
-    function getUsernameTicket($idUser)
+    function getUsernameTicket(int $idUser)
     {
         $user   = $this->bdd->query("SELECT * FROM utilisateur WHERE id_util=" . $idUser)->fetch(PDO::FETCH_ASSOC);
         $return = array(

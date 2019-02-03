@@ -69,12 +69,12 @@ class Habitation extends Database
         return $this->bdd->query("SELECT COUNT(*) FROM " . $table . " WHERE id_util=" . $idUser)->fetch(PDO::FETCH_ASSOC)['COUNT(*)'];
     }
 
-    function removeHouse(string $table, $idHouse)
+    function removeHouse(string $table, int $idHouse)
     {
         Database::delete($this->bdd, $table, "id_habit=" . $idHouse);
     }
 
-    function getHouseInfos(string $table, $idMaison)
+    function getHouseInfos(string $table, int $idMaison)
     {
         $statment = $this->bdd->prepare("SELECT * FROM " . $table . " WHERE id_habit = :maison");
         $statment->bindParam(':maison', $idMaison);

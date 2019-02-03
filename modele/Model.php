@@ -5,7 +5,7 @@ require_once "Database.php";
 class Model extends Database
 {
 
-    function getMaisonsFromUserId($id)
+    function getMaisonsFromUserId(int $id)
     {
         $query = "SELECT nom_habit FROM habitation 
         INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit
@@ -24,7 +24,7 @@ class Model extends Database
     }
 
 
-    function getZonesFromMaison($nom, $id)
+    function getZonesFromMaison(string $nom, int $id)
     {
         $query = "SELECT nom_zone FROM zone
         INNER JOIN habitation ON habitation.id_habit = zone.id_habit
@@ -42,7 +42,7 @@ class Model extends Database
 
     }
 
-    function getArroseursFromZone($nom, $id)
+    function getArroseursFromZone(string $nom, int $id)
     {
         $query = "SELECT nom_arr FROM
         arroseur
@@ -227,7 +227,7 @@ class Model extends Database
     }
 
     //par josephbsslt
-    function getInfo($nom, $prenom, $ville, $numtel)
+    function getInfo(string $nom, string $prenom, string $ville, string $numtel)
     {//conn = PDO
 
         if (empty($nom) && empty($prenom) && empty($ville) && empty($numtel)) {
@@ -269,7 +269,7 @@ class Model extends Database
     }
 
 
-    function getInfoParID($id)
+    function getInfoParID(int $id)
     {
         $sql = 'SELECT * FROM utilisateur WHERE id_util ="' . $id . '"';
         $req = $this->bdd->query($sql);
