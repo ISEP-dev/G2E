@@ -24,7 +24,6 @@ switch ($fonction) {
     case "ceder-maison":
         $gestion = new Gestion();
         $gestion->cederMaison("utilisateur", $_POST['id-maison-ceder'], $_POST['mail']);
-        Database::redirect("gestion", "accueil");
         break;
 
     default:

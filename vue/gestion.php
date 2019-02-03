@@ -22,8 +22,6 @@
     </div>
     <div class="col-droite">
         <div id="info-maison"></div>
-        <div class="hide">
-        </div>
     </div>
 </div>
 

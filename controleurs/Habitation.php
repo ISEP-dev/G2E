@@ -42,10 +42,10 @@ switch ($fonction) {
         break;
 
     case "config-arroseur":
+        $head      = '<link rel="stylesheet" href="vue/css/utilisateurs.css">' . '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $plante    = new Plante();
         $arr       = $arroseur->getArroseurInfoById($arroseur->tableArroseur, $_GET['id']);
         $planteArr = $plante->getPlantType($plante->tablePlante, $arr['id_plante']);
-        $head      = '<link rel="stylesheet" href="vue/css/utilisateurs.css">' . '<link rel="stylesheet" href="vue/css/arrosage.css">';
         $title     = "Configuration de l'arroseur";
         $vue       = "infos-arroseur";
         break;

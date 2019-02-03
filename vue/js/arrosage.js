@@ -103,8 +103,22 @@ function updateStatusArroseur(element) {
 
     if (checked === true) {
         checked = 0;
+        window.createNotification({
+            positionClass: 'nfc-top-center',
+            showDuration: 2500,
+            theme: 'warning'
+        })({
+            message: 'Arroseur éteint'
+        });
     } else {
         checked = 1;
+        window.createNotification({
+            positionClass: 'nfc-top-center',
+            showDuration: 2500,
+            theme: 'success'
+        })({
+            message: 'Arroseur allumé'
+        });
     }
     let xHttp = new XMLHttpRequest();
     xHttp.open("POST", "index.php?cible=habitation&fonction=update-arroseur", true);
@@ -130,8 +144,22 @@ function updateAvailableCapteurArroseur(element) {
     let etatCapteur = element.checked;
     if (etatCapteur === true) {
         etatCapteur = 1;
+        window.createNotification({
+            positionClass: 'nfc-top-center',
+            showDuration: 2000,
+            theme: 'success'
+        })({
+            message: 'Capteur ajouté'
+        });
     } else {
         etatCapteur = 0;
+        window.createNotification({
+            positionClass: 'nfc-top-center',
+            showDuration: 2000,
+            theme: 'warning'
+        })({
+            message: 'Capteur supprimé'
+        });
     }
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST", "index.php?cible=habitation&fonction=add-capteur-to-arroseur", true);

@@ -13,6 +13,7 @@ class Gestion extends Database
             $statment->bindParam(":util", $idUserToConcede);
             $statment->bindParam(":habit", $idMaisonACeder);
             $statment->execute();
+            Database::redirect("gestion", "accueil");
             return $statment;
         } else {
             //    User email not in database
