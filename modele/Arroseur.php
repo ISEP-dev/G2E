@@ -44,7 +44,7 @@ class Arroseur extends Database
         return $this->bdd->query("SELECT * FROM " . $table);
     }
 
-    function getArroseurTypeByArroseurId(string $table, string $table2, int $idArr)
+    function getArroseurTypeByArroseurId(string $table, int $idArr)
     {
         return $this->bdd->query("SELECT nom_type_arroseur FROM " . $table .
             " INNER JOIN arroseur ON arroseur.id_type_arroseur = type_arroseur.id_type_arroseur WHERE arroseur.id_arr=" . $idArr)->fetch(PDO::FETCH_ASSOC);

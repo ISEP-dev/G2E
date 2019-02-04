@@ -65,7 +65,7 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
                         $plante_infos      = $plante->getPlantType($plante->tablePlante, $arroseur['id_plante']);
                         $prctTempsArrosage = rand(0, 100);
 
-                        $arroseurType = $arroseurClass->getArroseurTypeByArroseurId($arroseurClass->tableArroseurType, $arroseurClass->tableArroseur, $arroseur['id_arr']);
+                        $arroseurType = $arroseurClass->getArroseurTypeByArroseurId($arroseurClass->tableArroseurType, $arroseur['id_arr']);
                         ?>
                         <!-- S : Arroseur -->
                         <div class="arroseur">
