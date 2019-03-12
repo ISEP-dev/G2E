@@ -55,12 +55,12 @@ class Arroseur extends Database
         Database::delete($this->bdd, $table, "id_arr=" . $idArr);
     }
 
-    function updateArroseur(string $table, $checked, int $arroseurId, int $zoneId)
+    function updateArroseur(string $table, $checked, int $arroseurId)
     {
-        $statment = $this->bdd->prepare("UPDATE " . $table . " SET etat_arr = :checked WHERE id_arr = :arroseur AND id_zone = :zone");
+        $statment = $this->bdd->prepare("UPDATE " . $table . " SET etat_arr = :checked WHERE id_arr = :arroseur");
         $statment->bindParam(':checked', $checked);
         $statment->bindParam(':arroseur', $arroseurId);
-        $statment->bindParam(':zone', $zoneId);
+        // $statment->bindParam(':zone', $zoneId);
         return $statment->execute();
     }
 
@@ -76,5 +76,10 @@ class Arroseur extends Database
             Database::delete($this->bdd, $table, "id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
         }
 
+    }
+
+    function getAll()
+    {
+        return Database::selectAll($this->bdd, $this->tableArroseur);
     }
 }

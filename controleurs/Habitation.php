@@ -9,6 +9,7 @@ include "modele/Plante.php";
 include "modele/Capteur.php";
 include "modele/Zone.php";
 include "modele/Model.php";
+include "modele/Programme.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -36,6 +37,43 @@ switch ($fonction) {
         $vue   = "arrosage";
         break;
 
+    /**********************
+     ******* Maison *******
+     **********************/
+    case "ajouter-maison":
+        $habitation->addHouse($habitation->tableHabitation, $_SESSION['user_id']);
+        Database::redirect("habitation", "accueil");
+        break;
+
+    case "get-house-info":
+        $idMaison = $_POST['idmaison'];
+        $habitation->getHouseInfos($habitation->tableHabitation, $idMaison);
+        $vue = null;
+        break;
+
+    case "supprimer-maison":
+        $habitation->removeHouse($habitation->tableHabitation, $_POST['id-house']);
+        Database::redirect("habitation", "accueil");
+        break;
+
+    /**********************
+     ******** Zone ********
+     **********************/
+    case "ajouter-zone":
+        $zone = new Zone();
+        $zone->addZone($habitation->tableZone, $_POST['id-house']);
+        Database::redirect("habitation", "accueil");
+        break;
+
+    case "supprimer-zone":
+        $zone = new Zone();
+        $zone->removeZone($habitation->tableZone, $_POST['zone-id-delete-zone']);
+        Database::redirect("habitation", "accueil");
+        break;
+
+    /**********************
+     ****** Arroseur ******
+     **********************/
     case "ajouter-arroseur":
         $arroseur->addArroseur($arroseur->tableArroseur, $_POST['zone-id-add-arr'], $_POST['select-plante-type'], $_POST['select-arroseur-type']);
         Database::redirect("habitation", "accueil");
@@ -54,7 +92,7 @@ switch ($fonction) {
         $arroseurId = $_POST['arroseur'];
         $zoneId     = $_POST['zone'];
         $checked    = $_POST['state'];
-        $arroseur->updateArroseur($arroseur->tableArroseur, $checked, $arroseurId, $zoneId);
+        $arroseur->updateArroseur($arroseur->tableArroseur, $checked, $arroseurId);
         $vue = null;
         break;
 
@@ -70,39 +108,54 @@ switch ($fonction) {
         Database::redirect("habitation", "accueil");
         break;
 
-    case "ajouter-zone":
-        $zone = new Zone();
-        $zone->addZone($habitation->tableZone, $_POST['id-house']);
-        Database::redirect("habitation", "accueil");
+    /**********************
+     ***** Programme ******
+     **********************/
+    case "ajouter-programme":
+        foreach ($_POST['weekday'] as $weekday) {
+            $sendWeekday .= $weekday . ", ";
+        }
+        $attributs = array(
+            'nom_prog'        => $_POST['titre-programme'],
+            'date_debut_prog' => $_POST['date-start'],
+            'date_fin_prog'   => $_POST['date-end'],
+            'intensite_prog'  => 1, // todo change this value don't know by what
+            'iteration_prog'  => $sendWeekday,
+            'id_arr'          => $_POST['arr-id-add-program']
+        );
+        $programme = new Programme();
+        $programme->addProgram($programme->tableProgramme, $attributs);
         break;
 
-
-    case "supprimer-zone":
-        $zone = new Zone();
-        $zone->removeZone($habitation->tableZone, $_POST['zone-id-delete-zone']);
-        Database::redirect("habitation", "accueil");
-        break;
-
-    case "ajouter-maison":
-        $habitation->addHouse($habitation->tableHabitation, $_SESSION['user_id']);
-        Database::redirect("habitation", "accueil");
-        break;
-
-    case "get-house-info":
-        $idMaison = $_POST['idmaison'];
-        $habitation->getHouseInfos($habitation->tableHabitation, $idMaison);
+    case "check-program-date":
+        $arroseurs     = new Arroseur();
+        $arroseursList = $arroseurs->getAll();
+        $arrayToSend   = [];
+        foreach ($arroseursList as $arroseur) {
+            $programme = new Programme();
+            // echo $programme->checkDateActivation($arroseur['id_arr']);
+            $arrayToSend[] = array(
+                "etat"     => $programme->checkDateActivation($arroseur['id_arr']),
+                "zone"     => $arroseur['id_zone'],
+                "arroseur" => $arroseur['id_arr']
+            );
+        }
+        echo json_encode($arrayToSend);
         $vue = null;
         break;
 
-    case "supprimer-maison":
-        $habitation->removeHouse($habitation->tableHabitation, $_POST['id-house']);
-        Database::redirect("habitation", "accueil");
+    case "supprimer-programme":
+
         break;
 
+    /**********************
+     **** Statistiques ****
+     **********************/
     case "client-stat":
         $title = "Satistiques client";
         $vue   = "client-stats";
         break;
+
     case "stats":
         $head  = '<link rel="stylesheet" href="vue/css/client-stats.css">';
         $vue   = "client-stats";

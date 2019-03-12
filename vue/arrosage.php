@@ -349,7 +349,7 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
 </div>
 <div class="modal centre" id="modal-add-program">
     <div class="modal-content">
-        <form action="index.php?cible=&fonction=" method="post">
+        <form action="index.php?cible=habitation&fonction=ajouter-programme" method="post">
             <div class="modal-header space-between">
                 <h3>Ajouter un programme</h3>
                 <span class="close">&times;</span>
@@ -357,35 +357,40 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
             <div class="modal-body">
                 <table>
                     <div class="centre"><h4><label for="titre-program">Nom du programme &nbsp;</label></h4></div>
-                    <div class="centre"><input type="text" id="titre-program" name="titre-program"
-                                               placeholder="Nom du programme"></div>
+                    <div class="centre"><input type="text" id="titre-programme" name="titre-programme"
+                                               placeholder="Nom du programme">
+                    </div>
                     <br><br>
                     <tr>
                         <th><label for="date-start">Date de début</label></th>
                         <th><label for="date-end">Date de fin</label></th>
                     </tr>
                     <tr>
-                        <td><input type="datetime-local" id="date-start" name="date-start"></td>
+                        <td><input type="datetime-local" id="date-start" name="date-start"
+                                   value=""></td>
                         <td><input type="datetime-local" id="date-end" name="date-end"></td>
                     </tr>
                 </table>
                 <br>
                 <h4 class="centre">Répétition du programme &nbsp;</h4>
                 <div class="weekday-selection centre">
-                    <input type="checkbox" id="day-l"><label for="day-l">L</label>
-                    <input type="checkbox" id="day-ma"><label for="day-ma">Ma</label>
-                    <input type="checkbox" id="day-me"><label for="day-me">Me</label>
-                    <input type="checkbox" id="day-j"><label for="day-j">J</label>
-                    <input type="checkbox" id="day-v"><label for="day-v">V</label>
-                    <input type="checkbox" id="day-s"><label for="day-s">S</label>
-                    <input type="checkbox" id="day-d"><label for="day-d">D</label>
+                    <input type="checkbox" id="day-l" name="weekday[]" value="l"><label for="day-l">L</label>
+                    <input type="checkbox" id="day-ma" name="weekday[]" value="ma"><label for="day-ma">Ma</label>
+                    <input type="checkbox" id="day-me" name="weekday[]" value="me"><label for="day-me">Me</label>
+                    <input type="checkbox" id="day-j" name="weekday[]" value="j"><label for="day-j">J</label>
+                    <input type="checkbox" id="day-v" name="weekday[]" value="v"><label for="day-v">V</label>
+                    <input type="checkbox" id="day-s" name="weekday[]" value="s"><label for="day-s">S</label>
+                    <input type="checkbox" id="day-d" name="weekday[]" value="d"><label for="day-d">D</label>
                 </div>
             </div>
             <input type="hidden" id="arr-id-add-program" name="arr-id-add-program" value="">
-            <div class="modal-footer droite">
-                <input type="button" value="Annuler" class="btn-modal-submit rouge text-medium"
-                       onclick="document.getElementById('modal-add-program').style.display = 'none';">
-                <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
+            <div class="modal-footer space-between">
+                <input type="button" value="Enregistrer" class="btn-modal-submit bleu text-medium">
+                <div>
+                    <input type="button" value="Annuler" class="btn-modal-submit rouge text-medium"
+                           onclick="document.getElementById('modal-add-program').style.display = 'none';">
+                    <input type="submit" name="submit" value="Ajouter" class="btn-modal-submit text-medium">
+                </div>
             </div>
         </form>
     </div>

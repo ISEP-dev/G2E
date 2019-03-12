@@ -170,6 +170,38 @@ function updateAvailableCapteurArroseur(element) {
 function addProgram(idArroseur) {
     document.getElementById('arr-id-add-program').setAttribute('value', idArroseur);
     popUpAddProgram.style.display               = "block";
-    document.getElementById("date-start").value = new Date();
     document.getElementById("date-end").value   = new Date();
+    document.getElementById("date-start").value = new Date();
 }
+
+function checkDatePorgramme() {
+    let xHttp = new XMLHttpRequest();
+    xHttp.open("POST", "index.php?cible=habitation&fonction=check-program-date", true);
+    xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xHttp.send();
+    xHttp.addEventListener("readystatechange", function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let numOfArroseur = this.responseText.count("}");
+            let jsonObject    = JSON.parse(this.responseText);
+            for (let i = 0; i < numOfArroseur; i++) {
+                let etat     = jsonObject[i].etat;
+                let zone     = jsonObject[i].zone;
+                let arroseur = jsonObject[i].arroseur;
+                console.log("zone: " + zone + ", arroseur: " + arroseur + ", etat: " + etat);
+                if (etat === "on") {
+                    console.log("Arroseur ON");
+                    document.getElementById("z" + zone + "-a" + arroseur).checked = true;
+                } else if (jsonObject.etat === "off") {
+                    console.log("Arroseur OFF");
+                    document.getElementById("z" + zone + "-a" + arroseur).checked = false;
+                }
+            }
+        }
+    });
+}
+
+setInterval(checkDatePorgramme, 1000);
+
+String.prototype.count = function (str) {
+    return (this.length - this.replace(new RegExp(str, "g"), '').length) / str.length;
+};

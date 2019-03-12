@@ -52,6 +52,10 @@ a {
     background-color : var(--red) !important;
 }
 
+.bleu {
+    background-color : var(--bleu-clair) !important;
+}
+
 /* Texte gras */
 b, .b, .strong {
     font-weight : bolder;
