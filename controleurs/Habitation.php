@@ -81,6 +81,7 @@ switch ($fonction) {
 
     case "config-arroseur":
         $head      = '<link rel="stylesheet" href="vue/css/utilisateurs.css">' . '<link rel="stylesheet" href="vue/css/arrosage.css">';
+        $js        = '<script src="vue/js/arrosage.js" async defer></script>';
         $plante    = new Plante();
         $arr       = $arroseur->getArroseurInfoById($arroseur->tableArroseur, $_GET['id']);
         $planteArr = $plante->getPlantType($plante->tablePlante, $arr['id_plante']);
@@ -96,16 +97,35 @@ switch ($fonction) {
         $vue = null;
         break;
 
-    case "add-capteur-to-arroseur":
-        $idArroseur   = $_POST['arroseur'];
-        $idCapteur    = $_POST['capteur'];
-        $capteurState = $_POST['state'];
-        $arroseur->addCapteurToArroseur("capteur", $idArroseur, $idCapteur, $capteurState);
-        break;
-
     case "supprimer-arroseur":
         $arroseur->removeArroseur($arroseur->tableArroseur, $_POST['arr-id-delete-arr']);
         Database::redirect("habitation", "accueil");
+        break;
+
+    /**********************
+     ****** Capteur *******
+     **********************/
+    case "add-capteur-to-arroseur":
+        $arraySend = array(
+            'type_capt'   => $_POST['select-capteur'],
+            'id_arr'      => $_POST['id_arr'],
+            'name_capt'   => $_POST['name-capt'],
+            'number_capt' => isset($_POST['input-add-capteur-nb']) ? $_POST['input-add-capteur-nb'] : 1
+        );
+        $arroseur->addCapteurToArroseur("capteur", $arraySend);
+        header('Location: index.php?cible=habitation&fonction=config-arroseur&id=' . $_POST['id_arr']);
+        break;
+
+    case "supprimer-capteur":
+        $capteur = new Capteur();
+        $capteur->deleteCapteur($_POST['id-arr'], $_POST['delete-number-capt'], $_POST['delete-type-capt']);
+        header('Location: index.php?cible=habitation&fonction=config-arroseur&id=' . $_POST['id-arr']);
+        break;
+
+    case "update-capteur-number":
+        $capteur = new Capteur();
+        echo $capteur->getCapteurNumber($_POST['id_arr'], $_POST['type-capt']);
+        $vue = null;
         break;
 
     /**********************
@@ -130,10 +150,10 @@ switch ($fonction) {
     case "check-program-date":
         $arroseurs     = new Arroseur();
         $arroseursList = $arroseurs->getAll();
-        $arrayToSend   = [];
+        $programme     = new Programme();
+        $programme->deleteExpireProgram();
+        $arrayToSend = [];
         foreach ($arroseursList as $arroseur) {
-            $programme = new Programme();
-            // echo $programme->checkDateActivation($arroseur['id_arr']);
             $arrayToSend[] = array(
                 "etat"     => $programme->checkDateActivation($arroseur['id_arr']),
                 "zone"     => $arroseur['id_zone'],

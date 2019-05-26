@@ -5,6 +5,8 @@ let popUpDeleteHouse    = document.getElementById('modal-delete-maison');
 let popUpDeleteZone     = document.getElementById('modal-delete-zone');
 let popUpDeleteArroseur = document.getElementById('modal-delete-arroseur');
 let popUpAddProgram     = document.getElementById('modal-add-program');
+let popUpAddCapteur     = document.getElementById('modal-add-capteur');
+let popUpDeleteCapteur  = document.getElementById('modal-delete-capteur');
 
 let btnAddHouse    = document.getElementById('add-house');
 let btnAddZone     = document.getElementById('add-zone');
@@ -37,7 +39,7 @@ function closePopup(nbBtnClass) {
 
 function modalEscape() {
     document.addEventListener("click", function (event) {
-        switch (event.target.id) {
+        switch (event.target.getAttribute('id')) {
             case 'modal-add-maison':
                 popUpMaison.style.display = "none";
                 break;
@@ -56,19 +58,27 @@ function modalEscape() {
             case 'modal-add-program':
                 popUpAddProgram.style.display = "none";
                 break;
+            case 'modal-add-capteur':
+                popUpAddCapteur.style.display = "none";
+                break;
+            case 'modal-delete-capteur':
+                popUpAddCapteur.style.display = "none";
+                break;
         }
     });
     document.addEventListener("keydown", function (event) {
         if (event.defaultPrevented) {
             return;
         }
-        if (event.keyCode === 27) {
-            popUpArroseur.style.display    = "none";
-            popUpMaison.style.display      = "none";
-            popUpZone.style.display        = "none";
-            popUpDeleteHouse.style.display = "none";
-            popUpDeleteZone.style.display  = "none";
-            popUpAddProgram.style.display  = "none";
+        if (event.key === "Escape") {
+            popUpArroseur.style.display      = "none";
+            popUpMaison.style.display        = "none";
+            popUpZone.style.display          = "none";
+            popUpDeleteHouse.style.display   = "none";
+            popUpDeleteZone.style.display    = "none";
+            popUpAddProgram.style.display    = "none";
+            popUpAddCapteur.style.display    = "none";
+            popUpDeleteCapteur.style.display = "none";
         }
     });
 }
@@ -86,6 +96,16 @@ function deleteArroseur(element) {
 function addArroseur(element) {
     document.getElementById('zone-id-add-arr').setAttribute('value', element.id.substring(14));
     popUpArroseur.style.display = "block";
+}
+
+function addCapteur() {
+    popUpAddCapteur.style.display = "block";
+}
+
+function deleteCapteur(element) {
+    document.getElementById('delete-type-capt').value   = element.dataset.type.substring(0, 1);
+    document.getElementById('delete-number-capt').value = element.dataset.type.substring(2);
+    popUpDeleteCapteur.style.display                    = "block";
 }
 
 function onSelectHouseChange(element) {
@@ -200,8 +220,33 @@ function checkDatePorgramme() {
     });
 }
 
-setInterval(checkDatePorgramme, 1000);
+// setInterval(checkDatePorgramme, 1000);
 
 String.prototype.count = function (str) {
     return (this.length - this.replace(new RegExp(str, "g"), '').length) / str.length;
 };
+
+let btnsClose = document.getElementsByClassName('block-close');
+
+for (let i = 0; i < btnsClose.length; i++) {
+    let btnClose = btnsClose.item(i);
+    btnClose.addEventListener("click", function () {
+        console.log('test');
+    });
+}
+
+function changePlaceholderCapteurName(element) {
+    document.getElementById('name-capt').placeholder = element.options[element.selectedIndex].text;
+    document.getElementById('name-capt').value       = element.options[element.selectedIndex].text;
+    let xHttp                                        = new XMLHttpRequest();
+    xHttp.open("POST", "index.php?cible=habitation&fonction=update-capteur-number", true);
+    xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xHttp.send("id_arr=" + element.dataset.id + "&type-capt=" + element.options[element.selectedIndex].value);
+    xHttp.addEventListener("readystatechange", function () {
+        if (this.readyState === 4 && this.status === 200) {
+            let sum                                                     = (+this.responseText) + 1;
+            document.getElementById('input-add-capteur-nb').value       = sum;
+            document.getElementById('input-add-capteur-nb').placeholder = sum;
+        }
+    });
+}

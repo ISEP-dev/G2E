@@ -4,8 +4,8 @@ require_once "Database.php";
 
 class Arroseur extends Database
 {
-    public  $tableArroseurType = 'type_arroseur';
-    public  $tableArroseur     = 'arroseur';
+    public $tableArroseurType = 'type_arroseur';
+    public $tableArroseur     = 'arroseur';
 
 
     function getArroseurByZoneId(string $table, int $idZone)
@@ -64,18 +64,10 @@ class Arroseur extends Database
         return $statment->execute();
     }
 
-    function addCapteurToArroseur(string $table, int $idArroseur, int $idCapteur, int $capteurState)
+    function addCapteurToArroseur(string $table, array $insertArray)
     {
-        if ($capteurState == 1) {
-            $insertArray = array(
-                'type_capt' => $idCapteur,
-                'id_arr'    => $idArroseur
-            );
-            Database::insert($this->bdd, $table, $insertArray);
-        } else {
-            Database::delete($this->bdd, $table, "id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur);
-        }
-
+        Database::insert($this->bdd, $table, $insertArray);
+        // Database::delete($this->bdd, $table, "id_arr=" . $idArroseur . " AND type_capt=" . $idCapteur)
     }
 
     function getAll()
