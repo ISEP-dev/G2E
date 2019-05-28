@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 28 mai 2019 à 11:42
+-- Généré le :  mar. 28 mai 2019 à 13:31
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.3.1
 
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `capteur`
     KEY `type_capt` (`type_capt`),
     KEY `id_arr` (`id_arr`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 69
+  AUTO_INCREMENT = 71
   DEFAULT CHARSET = utf8;
 
 --
@@ -122,7 +122,9 @@ VALUES (21, 4, 20, NULL, 1),
        (62, 7, 33, 'Présence', 1),
        (65, 7, 33, 'Présence', 2),
        (66, 7, 33, 'Présence', 3),
-       (68, 3, 33, 'Température', 2);
+       (68, 3, 33, 'Température', 2),
+       (69, 7, 18, 'Présence', 1),
+       (70, 7, 18, 'Présence', 2);
 
 -- --------------------------------------------------------
 
@@ -272,12 +274,12 @@ VALUES (1, 'Arbres et Arbustes', '1 fois par semaine', 'Été, Printemps, Automn
 
 DROP TABLE IF EXISTS `programme`;
 CREATE TABLE IF NOT EXISTS `programme` (
-                                           `id_prog`         int(11) NOT NULL AUTO_INCREMENT,
+                                           `id_prog`         int(11)      NOT NULL AUTO_INCREMENT,
                                            `nom_prog`        varchar(255) NOT NULL,
-                                           `date_debut_prog` datetime NOT NULL,
-                                           `date_fin_prog`   datetime NOT NULL,
-                                           `intensite_prog`  int(3) NOT NULL,
-                                           `iteration_prog`  int(3) NOT NULL,
+                                           `date_debut_prog` datetime     NOT NULL,
+                                           `date_fin_prog`   datetime     NOT NULL,
+                                           `intensite_prog`  int(3)       NOT NULL,
+                                           `iteration_prog`  int(3)       NOT NULL,
                                            `id_arr`          int(11) DEFAULT NULL,
                                            PRIMARY KEY (`id_prog`),
                                            KEY `programme_arroseur_id_arr_fk` (`id_arr`)
@@ -394,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `type_arroseur`
 INSERT INTO `type_arroseur` (`id_type_arroseur`, `nom_type_arroseur`)
 VALUES (1, 'Arroseur multi-surface'),
        (2, 'Arroseur grande surface'),
-       (3, 'Aspregeur classique'),
+       (3, 'Aspergeur classique'),
        (4, 'Arroseur compte goutte d\'extérieur'),
        (5, 'Arroseur compte goutte d\'intérieur');
 
