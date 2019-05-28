@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 28 mai 2019 à 13:31
+-- Généré le :  mer. 29 mai 2019 à 06:13
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.3.1
 
@@ -60,7 +60,7 @@ VALUES (17, 'Acacia', 'DOM19630', 0, 0, '2018-11-27 15:13:00', 3, 1, 2),
        (18, 'Tomates', 'DOM15236', 1, 0, '2018-12-25 22:45:49', 1, 4, 3),
        (20, 'Plante grasse', 'DOM15278', 0, 0, '2018-12-26 18:46:57', 6, 3, 5),
        (31, 'Pin', 'DOM95738', 0, 0, '2019-01-17 19:50:57', 3, 3, 3),
-       (33, 'Salade', 'DOM13579', 1, 0, '2019-01-25 09:32:27', 1, 4, 1),
+       (33, 'Salade', 'DOM13579', 0, 0, '2019-01-25 09:32:27', 1, 4, 1),
        (35, 'Carottes', 'DOM24681', 0, 0, '2019-01-25 09:35:25', 1, 4, 3),
        (36, 'Aubergines', 'DOM12459', 0, 0, '2019-01-25 09:39:21', 1, 4, 1),
        (38, 'Geranium', 'DOM98765', 0, 0, '2019-01-25 09:42:08', 6, 3, 3);
@@ -97,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `capteur`
     KEY `type_capt` (`type_capt`),
     KEY `id_arr` (`id_arr`)
 ) ENGINE = InnoDB
-  AUTO_INCREMENT = 71
+  AUTO_INCREMENT = 73
   DEFAULT CHARSET = utf8;
 
 --
@@ -105,26 +105,42 @@ CREATE TABLE IF NOT EXISTS `capteur`
 --
 
 INSERT INTO `capteur` (`id_capt`, `type_capt`, `id_arr`, `name_capt`, `number_capt`)
-VALUES (21, 4, 20, NULL, 1),
-       (26, 3, 18, NULL, 1),
-       (30, 7, 17, NULL, 1),
-       (41, 4, 33, NULL, 1),
-       (43, 7, 35, NULL, 1),
-       (44, 7, 38, NULL, 1),
-       (45, 4, 38, NULL, 1),
-       (46, 3, 20, NULL, 1),
-       (47, 7, 20, NULL, 1),
-       (48, 3, 31, NULL, 1),
-       (49, 4, 31, NULL, 1),
-       (50, 7, 31, NULL, 1),
-       (52, 4, 18, NULL, 1),
+VALUES (21, 4, 20, 'Humidité', 1),
+       (26, 3, 18, 'Température', 1),
+       (30, 7, 17, 'Présence', 1),
+       (41, 4, 33, 'Humidité', 1),
+       (43, 7, 35, 'Présence', 1),
+       (44, 7, 38, 'Présence', 1),
+       (45, 4, 38, 'Humidité', 1),
+       (46, 3, 20, 'Température', 1),
+       (47, 7, 20, 'Présence', 1),
+       (48, 3, 31, 'Température', 1),
+       (49, 4, 31, 'Humidité', 1),
+       (50, 7, 31, 'Présence', 1),
+       (52, 4, 18, 'Humidité', 1),
        (61, 3, 33, 'Température', 1),
        (62, 7, 33, 'Présence', 1),
        (65, 7, 33, 'Présence', 2),
-       (66, 7, 33, 'Présence', 3),
        (68, 3, 33, 'Température', 2),
        (69, 7, 18, 'Présence', 1),
-       (70, 7, 18, 'Présence', 2);
+       (71, 3, 18, 'Température', 2),
+       (72, 4, 18, 'Humidité', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `cgu`
+--
+
+DROP TABLE IF EXISTS `cgu`;
+CREATE TABLE IF NOT EXISTS `cgu`
+(
+    `id`         int(11)  NOT NULL AUTO_INCREMENT,
+    `text`       text     NOT NULL,
+    `date_modif` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
@@ -145,6 +161,25 @@ CREATE TABLE IF NOT EXISTS `donnee` (
   PRIMARY KEY (`id_donnee`),
   KEY `id_capt` (`id_capt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `faq`
+--
+
+DROP TABLE IF EXISTS `faq`;
+CREATE TABLE IF NOT EXISTS `faq`
+(
+    `id_faq`       int(11)      NOT NULL AUTO_INCREMENT,
+    `question_faq` varchar(255) NOT NULL,
+    `reponse_faq`  text         NOT NULL,
+    `date_faq`     datetime     NOT NULL,
+    `id_util`      int(11)      NOT NULL,
+    PRIMARY KEY (`id_faq`),
+    KEY `id_util` (`id_util`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 -- --------------------------------------------------------
 
@@ -348,30 +383,6 @@ INSERT INTO `ticket` (`id_ticket`, `titre_ticket`, `status_ticket`, `contenu_tic
 VALUES (3, 'Problème arrosage potager', 1,
         'Bonjour, mon arroseur marche plus après mon retour de vacances, auriez-vous une solution pour me dépanner ? Cordialement ',
         '  ', '2019-01-04 00:53:31', 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `type`
---
-
-DROP TABLE IF EXISTS `type`;
-CREATE TABLE IF NOT EXISTS `type`
-(
-    `id_type`  int(11)      NOT NULL,
-    `nom_type` varchar(255) NOT NULL,
-    PRIMARY KEY (`id_type`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8;
-
---
--- Déchargement des données de la table `type`
---
-
-INSERT INTO `type` (`id_type`, `nom_type`)
-VALUES (3, 'Temperature'),
-       (4, 'Humidite'),
-       (7, 'Presence');
 
 -- --------------------------------------------------------
 
@@ -585,6 +596,12 @@ ALTER TABLE `capteur`
 --
 ALTER TABLE `donnee`
   ADD CONSTRAINT `id_capt` FOREIGN KEY (`id_capt`) REFERENCES `capteur` (`id_capt`);
+
+--
+-- Contraintes pour la table `faq`
+--
+ALTER TABLE `faq`
+    ADD CONSTRAINT `faq_ibfk_1` FOREIGN KEY (`id_util`) REFERENCES `utilisateur` (`id_util`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Contraintes pour la table `habitation_utilisateur`
