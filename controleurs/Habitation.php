@@ -3,13 +3,14 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: index.php');
 }
 
-include "modele/Habitation.php";
-include "modele/Arroseur.php";
-include "modele/Plante.php";
-include "modele/Capteur.php";
-include "modele/Zone.php";
-include "modele/Model.php";
-include "modele/Programme.php";
+include_once "modele/Habitation.php";
+include_once "modele/Arroseur.php";
+include_once "modele/Plante.php";
+include_once "modele/Capteur.php";
+include_once "modele/Zone.php";
+include_once "modele/Model.php";
+include_once "modele/Programme.php";
+include_once "modele/Data.php";
 
 if (!isset($_GET['fonction']) || empty($_GET['fonction'])) {
     $fonction = "accueil";
@@ -125,6 +126,29 @@ switch ($fonction) {
     case "update-capteur-number":
         $capteur = new Capteur();
         echo $capteur->getCapteurNumber($_POST['id_arr'], $_POST['type-capt']);
+        $vue = null;
+        break;
+
+    case "upload-data" :
+        $data        = new Data();
+        $typeTrame   = "1";
+        $team        = "002d";
+        $typeReq     = "1";
+        $typeCapeur  = "a";
+        $numCapteur  = "01";
+        $valeur      = $_POST['activeState'];
+        $numTrame    = "000" . $_POST['activeState'];
+        $checksum    = "00";
+        $date        = strftime("%Y%m%d%H%M%S");
+        $trameToSend = $typeTrame . $team . $typeReq . $typeCapeur . $numCapteur . $valeur . $numTrame . $checksum . $date;
+        $data->sendData("002d", $trameToSend);
+        $vue = null;
+        break;
+
+    case "refresh-data":
+        $data = new Data();
+        $data->getAndDecode("002d");
+        // header('Location: index.php?cible=habitation&fonction=accueil');
         $vue = null;
         break;
 

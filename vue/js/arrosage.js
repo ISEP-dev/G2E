@@ -120,7 +120,7 @@ function updateStatusArroseur(element) {
     let arroseurId = element.getAttribute("for").substring(element.getAttribute("for").indexOf('a') + 1);
     let zoneId     = element.getAttribute("for").substring(1, element.getAttribute("for").indexOf('-'));
     let checked    = document.getElementById(element.getAttribute("for")).checked;
-
+    let state;
     if (checked === true) {
         checked = 0;
         window.createNotification({
@@ -130,6 +130,7 @@ function updateStatusArroseur(element) {
         })({
             message: 'Arroseur éteint'
         });
+        state = "0000";
     } else {
         checked = 1;
         window.createNotification({
@@ -139,11 +140,13 @@ function updateStatusArroseur(element) {
         })({
             message: 'Arroseur allumé'
         });
+        state = "1111";
     }
     let xHttp = new XMLHttpRequest();
     xHttp.open("POST", "index.php?cible=habitation&fonction=update-arroseur", true);
     xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xHttp.send("arroseur=" + arroseurId + "&zone=" + zoneId + "&state=" + checked);
+    sendSensorData(state);
 }
 
 function checkSeriallNumber() {
@@ -250,3 +253,29 @@ function changePlaceholderCapteurName(element) {
         }
     });
 }
+
+function sendSensorData(active) {
+    let nbOfTrame = 0;
+    console.log("send data");
+    let xHttp = new XMLHttpRequest();
+    xHttp.open("POST", "index.php?cible=habitation&fonction=upload-data", true);
+    xHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xHttp.send("activeState=" + active + "&nbTrame=" + nbOfTrame + 1);
+}
+
+function refreshData() {
+    let xHttp = new XMLHttpRequest();
+    xHttp.open("GET", "index.php?cible=habitation&fonction=refresh-data", true);
+    xHttp.send();
+}
+
+setInterval(refreshData, 1000 * 10);
+
+function reloadSensorsValues() {
+    let allSensorsValue = document.getElementsByClassName('capteur-values');
+    for (let i = 0; i < allSensorsValue.length; i++) {
+        allSensorsValue.item(i).innerHTML = allSensorsValue.item(i).textContent + "\n";
+    }
+}
+
+setInterval(reloadSensorsValues, 1000);
