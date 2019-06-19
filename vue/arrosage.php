@@ -108,41 +108,28 @@ if ($habitation->getNbHousesByUserId($habitation->tableHabitationUser, $_SESSION
                             <div class="space-between">
                                 <div class="capteur-type">
                                     <table>
-                                        <?php $capteur = new Capteur();
-                                        if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arroseur['id_arr'], 3)['COUNT(1)']) {
-                                            $visibilityTemp = true;
-                                        } else {
-                                            $visibilityTemp = false;
-                                        }
-                                        if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arroseur['id_arr'], 4)['COUNT(1)']) {
-                                            $visibilityHumi = true;
-                                        } else {
-                                            $visibilityHumi = false;
-                                        }
-                                        if ($capteur->checkCapteurStatus($capteur->tableCapteur, $arroseur['id_arr'], 7)['COUNT(1)']) {
-                                            $visibilityPres = true;
-                                        } else {
-                                            $visibilityPres = false;
-                                        }
-                                        if ($visibilityTemp) { ?>
-                                            <tr>
-                                                <td>Température :</td>
-                                                <td class="italic"><?= rand(10, 35) ?>°C</td>
-                                            </tr>
-                                        <?php }
-                                        if ($visibilityHumi == 2) { ?>
-                                            <tr>
-                                                <td>Humidité :</td>
-                                                <td class="italic"><?= rand(0, 100) ?>%</td>
-                                            </tr>
-                                        <?php }
-                                        if ($visibilityPres == 3) { ?>
-                                            <tr>
-                                                <td>Présence :</td>
-                                                <td class="italic"><?= rand(0, 1) ?></td>
-                                            </tr>
+                                        <?php
+                                        $data = new Data();
+
+                                        $capteur  = new Capteur();
+                                        $nbOfCpt  = $capteur->getAllCapteurFromArroseur($arroseur['id_arr'])->rowCount();
+                                        $capteurs = $capteur->getAllCapteurFromArroseur($arroseur['id_arr']);
+                                        if ($nbOfCpt > 0) {
+                                            foreach ($capteurs as $capteurItem) { ?>
+                                                <tr>
+                                                    <td> <?= $capteur->beautifyBlockNameCapteur($capteurItem['type_capt'], $capteurItem['name_capt'], $capteurItem['number_capt']) ?>
+                                                    </td>
+                                                    <td class="italic capteur-values">
+                                                        : <?php echo Data::beautifyValue($data->getDatabaseData($capteurItem['type_capt']), $capteurItem['type_capt']); ?></td>
+                                                </tr>
+                                            <?php }
+                                        } else { ?>
+                                        <div class="b"
+                                        ">Aucun capteur
+                                </div>
                                         <?php } ?>
-                                    </table>
+
+                                </table>
                                 </div>
                                 <div>
                                     <div class="freq_plante">

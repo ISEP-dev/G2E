@@ -38,11 +38,11 @@ class Capteur extends Database
             $returnName = $nameCapt;
         }
         if ($numberCapt < 10) {
-            $leadingZero = "0";
+            $leadingZero = " 0";
         } else {
-            $leadingZero = "";
+            $leadingZero = " ";
         }
-        return ucfirst($returnName) . " " . $leadingZero . $numberCapt;
+        return ucfirst($returnName) . $leadingZero . $numberCapt;
     }
 
     public function deleteCapteur(int $idArr, int $numberCapt, int $typeCapt)

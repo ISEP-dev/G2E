@@ -75,11 +75,11 @@
                     if ($capteurItem['type_capt'] == 3) {
                         $image = "thermometer";
                     } else {
-                        if ($capteurItem['type_capt'] == 4) {
-                            $image = "goutte";
+                        if ($capteurItem['type_capt'] == 5) {
+                            $image = "luminosite";
                         } else {
-                            if ($capteurItem['type_capt'] == 7) {
-                                $image = "emoji_thinking";
+                            if ($capteurItem['type_capt'] == 1) {
+                                $image = "presence";
                             }
                         }
                     }
