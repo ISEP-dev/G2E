@@ -25,9 +25,10 @@ switch ($fonction) {
         echo json_encode($result);
         break;
     case 'stat':
-        $Xaxis  = $_POST['Xaxis'];
-        $Yaxis  = $_POST['Yaxis'];
-        $result = $model->getGraph($Xaxis, $Yaxis);
+        $Xaxis  = $_POST['Yaxis'];
+        $Yaxis  = $_POST['Xaxis'];
+        $graph  = $model->getGraph($Yaxis, $Xaxis);
+        $result = array('Xaxis' => json_encode($graph->getXaxis()), 'Yaxis' => json_encode($graph->getYaxis()), 'Titre' => json_encode($graph->getTitre()));
         echo json_encode($result);
         break;
     case 'stat_temp':

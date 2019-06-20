@@ -146,28 +146,29 @@ class Model extends Database
                 }
                 break;
 
-            case 'stat_arroseur':
-                $titre = "Consommation d'un arroseur";
-                $data  = array();
-                for ($i = 0; $i < count($tab_dat); $i = $i + 2) {
-
-                    $query = 'SELECT date_debut_prog,date_fin_prog,intensite_prog,iteration_prog 
-                    FROM programme
-                    INNER JOIN mode_programme ON mode_programme.id_prog = programme.id_prog
-                    INNER JOIN arroseur_mode ON arroseur_mode.id_mode = mode_programme.id_mode
-                    INNER JOIN arroseur ON arroseur_mode.id_arr = arroseur.id_arr
-                    INNER JOIN zone ON zone.id_zone = arroseur.id_zone
-                    INNER JOIN habitation ON habitation.id_habit = zone.id_habit
-                    INNER JOIN habitation_utilisateur ON habitation_utilisateur.id_habit = habitation.id_habit
-                    INNER JOIN utilisateur ON utilisateur.id_util = habitation_utilisateur.id_util
-                    WHERE utilisateur.id_util =1 AND programme.date_debut_prog BETWEEN "2017-12-01" AND "2018-12-01" AND arroseur.nom_arr = "petunia droite"';
-                    $stmt  = $this->bdd->prepare($query, array(PDO::ATTR_CURSOR, PDO::CURSOR_SCROLL));
-                    $stmt->execute();
-                    while ($row = $stmt->fetch(PDO::FETCH_BOTH)) {
-                        array_push($data, $row[0]);
-                    };
-                }
-                return $data;
+            case 'temperature':
+                $titre = "température près de l'arroseur";
+                
+                //$query = 'SELECT valeur_donn,horodatage_donn FROM donnee WHERE type_cpt_donn ="3" ORDER BY horodatage_donn DESC';
+                $query = 'SELECT valeur_donn,horodatage_donn FROM donnee WHERE type_cpt_donn ="3" ORDER BY horodatage_donn DESC LIMIT 25';
+                $stmt  = $this->bdd->query($query);
+                $x = array();
+                $y = array();
+                foreach ($stmt->fetchall() as $value) {
+                    array_push($x, $value['horodatage_donn']);
+                    array_push($y, $value['valeur_donn']);
+                    //  echo $value['valeur_donn'];
+                    //  echo "  ";
+                    //  echo $value['horodatage_donn'] . "\n";
+                    // echo "test\n";
+                    //echo $value[]['valeur_donn'];
+                    //var_dump($value);
+                    
+                    
+                    // array_push($x, $value["valeur_donn"]);
+                    
+                } 
+                break;
             case 'arroseurs':
                 $titre = "Arroseurs paramétrés";
                 $ind   = 0;
@@ -217,10 +218,10 @@ class Model extends Database
 
 
         include_once "Graph.php";
-
+        
         /* $y = [5,8,9,12,6,7,8,9,10,11,12];*/
         $graph = new Graph($x, $y, $titre);
-        //echo("je suis la ");
+        //echo "je suis la ";
         /*echo($graph->getXaxis());*/
         return $graph;
 

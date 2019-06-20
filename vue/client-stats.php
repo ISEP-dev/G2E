@@ -32,11 +32,13 @@
                 <div class="titre-select"> Choisissez votre abscisse</div>
             </label>
             <select class="element-haut" name="Xaxis" id="Xaxis">
-                <option value="---">Abscisse du graphe</option>
+                <!-- <option value="---">Abscisse du graphe</option>
                 <option value="toujours">Depuis toujours</option>
                 <option value="année">Depuis cette année</option>
                 <option value="mois">Depuis ce mois</option>
-                <option value="semaine">Depuis cette semaine</option>
+                <option value="semaine">Depuis cette semaine</option> -->
+                <option value="temperature">Température aux alentours</option>
+                <!--<option value="luminosite">Luminosité aux alentours</option> -->
             </select>
         </form>
         <br>

@@ -9,7 +9,7 @@ class Database
         try {
             $dataSourceName = "mysql:host=localhost;dbname=g2e;charset=utf8";
             $user           = "root";
-            $password       = "!MylaDayDar!28";
+            $password       = "root";
             $options        = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
             $this->bdd      = new PDO($dataSourceName, $user, $password, $options);
             date_default_timezone_set('Europe/Paris');

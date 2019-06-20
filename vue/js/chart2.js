@@ -119,6 +119,21 @@ var myChart = new Chart(ctx, {
 
 });
 
+function addData(chart, label, data) {
+    chart.data.labels.push(label);
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(data);
+    });
+    chart.update();
+}
+
+function removeData(chart) {
+    chart.data.labels.pop();
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.pop();
+    });
+    chart.update();
+}
 
 function clickingGraph() {
     let x = "stat_arroseur";
@@ -127,14 +142,32 @@ function clickingGraph() {
     rG.open("post", "controleurs/Stat.php", true);
     rG.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     let m                 = "fonction=stat&Xaxis=" + x + "&Yaxis=" + y;
+    rG.send(m);
     rG.onreadystatechange = function () {
-        if (rG.readyState == 4 && rG.status == 200) {
+        if (rG.readyState === 4 && rG.status === 200) {
             let result = JSON.parse(this.responseText);
-            alert(result);
+            //alert(result);
             console.log(result);
+            for (let j = -1; j < Ydata.length+1; j++) {
+                removeData(myChart);
+            }
+            
+            Xdata = JSON.parse(result['Xaxis']);
+            Ydata = JSON.parse(result['Yaxis']);
+            titre = JSON.parse(result['Titre']);
+
+            /*console.log(titre)
+            console.log(Xaxis);
+            console.log(Yaxis);*/
+            for (let i = Ydata.length-1; i >= 0; i--) {
+
+                addData(myChart, Xdata[i], Ydata[i]);
+            }
+            myChart.data.datasets[0].label = titre;
+
+            myChart.update();
         }
     }
-    rG.send(m);
 }
 
 //--------------------------------fonction pour le respnsive des divs-------------------------
